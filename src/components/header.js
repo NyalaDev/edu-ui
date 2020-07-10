@@ -92,19 +92,21 @@ const Header = () => (
       >
         <ul className="list-reset lg:flex flex-1 items-center px-4 md:px-0">
           <li className="mr-6 my-2 md:my-0">
-            <Link href="/">
-              <a className="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-gray-100 border-b-2 border-white hover:border-white">
-                <i className="fas fa-home fa-fw ml-3 text-white"></i>
-                <span className="pb-1 md:pb-0 text-l">الرئيسية</span>
-              </a>
+            <Link
+              to="/"
+              className="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-gray-100 border-b-2 border-white hover:border-white"
+            >
+              <i className="fas fa-home fa-fw ml-3 text-white"></i>
+              <span className="pb-1 md:pb-0 text-l">الرئيسية</span>
             </Link>
           </li>
           <li className="mr-6 my-2 md:my-0">
-            <Link href="/courses">
-              <a className="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white-100 border-b-2 border-gray-900  hover:border-pink-400">
-                <i className="fas fa-tasks fa-fw ml-3"></i>
-                <span className="pb-1 md:pb-0 text-l">الكورسات</span>
-              </a>
+            <Link
+              to="/courses"
+              className="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white-100 border-b-2 border-gray-900  hover:border-pink-400"
+            >
+              <i className="fas fa-tasks fa-fw ml-3"></i>
+              <span className="pb-1 md:pb-0 text-l">الكورسات</span>
             </Link>
           </li>
         </ul>
