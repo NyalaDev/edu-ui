@@ -36,6 +36,12 @@ module.exports = {
         queryLimit: 1000,
       },
     },
+    {
+      resolve: `gatsby-plugin-s3`,
+      option: {
+        bucketName: process.env.GATSBY_S3_BUCKET,
+      },
+    },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
