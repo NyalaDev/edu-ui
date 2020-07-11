@@ -38,7 +38,7 @@ module.exports = {
     },
     {
       resolve: `gatsby-plugin-s3`,
-      option: {
+      options: {
         bucketName: process.env.GATSBY_S3_BUCKET,
       },
     },
