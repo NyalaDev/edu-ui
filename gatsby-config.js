@@ -38,8 +38,8 @@ module.exports = {
     },
     {
       resolve: `gatsby-plugin-s3`,
-      option: {
-        bucketName: process.env.GATSBY_S3_BUCKET,
+      options: {
+        bucketName: process.env.GATSBY_S3_BUCKET || 'https://edu.nyaladev.com',
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality

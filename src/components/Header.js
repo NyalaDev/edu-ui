@@ -8,30 +8,20 @@ const Header = () => (
     className="bg-gray-900 fixed w-full z-10 top-0 shadow"
   >
     <div className="w-full container mx-auto flex flex-wrap items-center mt-0 pt-3 pb-3 md:pb-0">
-      <div className="w-1/2 pl-2 md:pl-0">
-        <a
-          className="text-white text-base xl:text-xl no-underline hover:no-underline font-bold"
-          href="/"
-        >
-          CoderHub
-        </a>
-      </div>
+      <div className="w-1/2 pl-2 md:pl-0"></div>
       <div className="w-1/2 pr-0">
         <div className="flex relative inline-block float-right">
           <div className="relative text-sm text-gray-100">
-            <button
-              id="userButton"
-              className="flex items-center focus:outline-none mr-3"
+            <a
+              className="text-white text-base xl:text-xl no-underline hover:no-underline font-bold"
+              href="/"
             >
               <img
-                className="w-8 h-8 rounded-full ml-4"
-                src="http://i.pravatar.cc/300"
-                alt="Avatar of User"
+                style={{ height: 30 }}
+                src="https://s3.abolkog.com/coderhub/logo.png"
+                alt="Coderhub"
               />
-              <span className="hidden md:inline-block text-xl text-gray-100">
-                مرحبا، يوزر
-              </span>
-            </button>
+            </a>
             <div
               id="userMenu"
               className="bg-gray-900 rounded shadow-md mt-2 absolute mt-12 top-0 right-0 min-w-full overflow-auto z-30 invisible"
@@ -76,7 +66,7 @@ const Header = () => (
               <svg
                 className="fill-current h-3 w-3"
                 viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
+                xmlns="https://www.w3.org/2000/svg"
               >
                 <title>Menu</title>
                 <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
@@ -123,7 +113,7 @@ const Header = () => (
           >
             <svg
               className="fill-current pointer-events-none text-gray-500 w-4 h-4"
-              xmlns="http://www.w3.org/2000/svg"
+              xmlns="https://www.w3.org/2000/svg"
               viewBox="0 0 20 20"
             >
               <path d="M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"></path>

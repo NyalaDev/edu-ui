@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link, graphql } from 'gatsby'
+import { graphql } from 'gatsby'
 
 import Layout from '../components/Layout'
-import SEO from '../components/Seo'
+import Seo from '../components/Seo'
 import CourseCard from '../components/CourseCard'
 import { getYoutubeThumbnail } from '../services/util'
 
@@ -14,7 +14,7 @@ const CoursesPage = ({ data }) => {
 
   return (
     <Layout>
-      <SEO title="Courses" />
+      <Seo title="Courses" />
       <div>
         <div className="grid grid-cols-2 gap-4">
           {courses.map(({ node: course }) => {
