@@ -16,7 +16,7 @@ const CoursesPage = ({ data }) => {
     <Layout>
       <Seo title="Courses" />
       <div>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-3 gap-4">
           {courses.map(({ node: course }) => {
             const {
               lectures: [firstLecture],

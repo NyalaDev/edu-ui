@@ -5,9 +5,11 @@ variables:
   AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
   AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
   S3_BUCKET_DEV: $S3_BUCKET_DEV
+  DEV_DISTRIBUTION: E2VIHSP9C4TT6O
 
 stages:
   - deploy
+  - invalidate
 
 cache:
   paths:
@@ -23,5 +25,13 @@ deploy (dev):
       GATSBY_SITE_URL="https://edu.nyaladev.com"
       yarn build
     - yarn deploy
+  except:
+    - master
+
+invalidate cache (dev):
+  stage: invalidate
+  image: registry.gitlab.com/gitlab-org/cloud-deploy/aws-base:latest
+  script:
+    - aws cloudfront create-invalidation --distribution-id "${DEV_DISTRIBUTION}" --paths "/*"
   except:
     - master
