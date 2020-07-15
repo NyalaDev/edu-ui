@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'gatsby'
 import PropTypes from 'prop-types'
 import HtmlViewer from './HtmlViewer'
 
@@ -7,7 +8,9 @@ const CourseCard = ({ title, description, link, image }) => {
     <div className="max-w-sm rounded overflow-hidden shadow-lg">
       <img className="w-full" src={image} alt={title} />
       <div className="px-6 py-4">
-        <div className="font-bold text-xl mb-2">{title}</div>
+        <div className="font-bold text-xl mb-2">
+          <Link to={link}>{title}</Link>
+        </div>
 
         <HtmlViewer className="text-gray-700 text-base" data={description} />
       </div>
