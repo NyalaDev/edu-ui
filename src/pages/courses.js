@@ -29,7 +29,7 @@ const CoursesPage = ({ data }) => {
                 title={course.title}
                 description={course.description}
                 image={getYoutubeThumbnail(imageUrl)}
-                link={`/courses/${course.id}/${course.slug}`}
+                link={`/courses/${course.slug}`}
               />
             )
           })}
@@ -46,7 +46,7 @@ export default CoursesPage
 
 export const pageQuery = graphql`
   query IndexQuery {
-    allStrapiCourse {
+    allStrapiCourse(sort: { fields: created_at, order: DESC }) {
       edges {
         node {
           id

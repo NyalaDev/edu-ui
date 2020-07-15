@@ -6,7 +6,7 @@ import './layout.css'
 
 const Layout = ({ children }) => {
   return (
-    <div className="font-sans leading-normal tracking-normal">
+    <div className="bg-gray-100 font-sans leading-normal tracking-normal">
       <Header />
 
       <div className="container w-full mx-auto pt-20">
