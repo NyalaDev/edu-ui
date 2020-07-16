@@ -21,14 +21,16 @@ jobs:
         run: yarn
       - name: Build website
         run: yarn build
-        env: GATSBY_STRAPI_API_URL=${{ secrets.GATSBY_STRAPI_API_URL }}
-          GATSBY_S3_BUCKET=${{ secrets.S3_BUCKET_DEV }}
-          GATSBY_SITE_URL="https://edu.nyaladev.com"
+        env:
+          GATSBY_STRAPI_API_URL: ${{ secrets.GATSBY_STRAPI_API_URL }}
+          GATSBY_S3_BUCKET: ${{ secrets.S3_BUCKET_DEV }}
+          GATSBY_SITE_URL: "https://edu.nyaladev.com"
       - name: Deploy website
         run: yarn deploy
   invalidate:
     name: Invalidate cloudfront cache
     runs-on: ubuntu-latest
+    needs: deploy
     steps:
       - uses: actions/checkout@v1
       - name: Configure AWS
