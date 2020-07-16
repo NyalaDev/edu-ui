@@ -60,6 +60,7 @@ export const StyledLink = styled(Link)`
     text-decoration: underline;
   }
 `
+
 export const StyledVideoIcon = styled(FaVideo)`
   position: absolute;
   font-size: 12px;

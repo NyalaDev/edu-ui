@@ -2,10 +2,14 @@ const path = require('path')
 
 exports.createPages = async ({ actions, graphql }) => {
   const { createPage } = actions
-  const couseViewTemplate = path.resolve('./src/templates/CourseView/index.js')
+  const couseViewTemplate = path.resolve('./src/templates/CourseView.js')
+  const lectureViewTemplate = path.resolve(
+    './src/templates/LectureView/index.js'
+  )
   const {
     data: {
       allStrapiCourse: { edges: courses },
+      allStrapiLecture: { edges: lectures },
     },
   } = await graphql(`
     {
@@ -14,6 +18,19 @@ exports.createPages = async ({ actions, graphql }) => {
           node {
             id
             slug
+          }
+        }
+      }
+
+      allStrapiLecture(limit: 1000) {
+        edges {
+          node {
+            id
+            strapiId
+            course {
+              id
+              slug
+            }
           }
         }
       }
@@ -28,6 +45,21 @@ exports.createPages = async ({ actions, graphql }) => {
       path: `/courses/${slug}`,
       context: {
         id,
+      },
+    })
+  })
+
+  lectures.forEach(edge => {
+    const {
+      node: { id, strapiId, course },
+    } = edge
+
+    createPage({
+      component: lectureViewTemplate,
+      path: `/courses/${course.slug}/lectures/${strapiId}`,
+      context: {
+        id,
+        courseSlug: course.slug,
       },
     })
   })
