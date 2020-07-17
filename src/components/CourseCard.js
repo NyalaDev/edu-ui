@@ -13,6 +13,7 @@ const CourseCard = ({
   githubRepo,
   lectureId,
   courseViewMode,
+  tags,
 }) => {
   return (
     <div className="max-w-sm rounded overflow-hidden shadow-lg">
@@ -50,15 +51,15 @@ const CourseCard = ({
             )}
           </>
         )}
-        <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">
-          #photography
-        </span>
-        <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">
-          #travel
-        </span>
-        <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">
-          #winter
-        </span>
+        {tags &&
+          tags.map(({ tagName }) => (
+            <span
+              key={`${lectureId}.${tagName}`}
+              className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2"
+            >
+              #{tagName}
+            </span>
+          ))}
       </div>
     </div>
   )
@@ -72,6 +73,7 @@ CourseCard.propTypes = {
   slug: PropTypes.string.isRequired,
   lectureId: PropTypes.number,
   courseViewMode: PropTypes.bool,
+  tags: PropTypes.array,
 }
 
 CourseCard.defaultProps = {
