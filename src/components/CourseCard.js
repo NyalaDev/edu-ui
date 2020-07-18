@@ -13,7 +13,7 @@ const CourseCard = ({
   githubRepo,
   lectureId,
   courseViewMode,
-  tags,
+  tags = [],
 }) => {
   return (
     <div className="max-w-sm rounded overflow-hidden shadow-lg">
@@ -73,7 +73,11 @@ CourseCard.propTypes = {
   slug: PropTypes.string.isRequired,
   lectureId: PropTypes.number,
   courseViewMode: PropTypes.bool,
-  tags: PropTypes.array,
+  tags: PropTypes.arrayOf(
+    PropTypes.shape({
+      tagName: PropTypes.string,
+    })
+  ),
 }
 
 CourseCard.defaultProps = {
