@@ -59,5 +59,13 @@
     "hooks": {
       "pre-commit": "lint-staged"
     }
-  }
+  },
+   "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NyalaDev/edu-ui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/NyalaDev/edu-ui/issues"
+  },
+  "homepage": "https://github.com/NyalaDev/edu-ui"
 }

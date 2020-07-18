@@ -9,7 +9,7 @@ const UserMenu = () => {
       >
         <img
           className="w-8 h-8 rounded-full mr-4"
-          src="http://i.pravatar.cc/300"
+          src="https://i.pravatar.cc/300"
           alt="Avatar of User"
         />
         <span className="hidden md:inline-block">Hi, User </span>
