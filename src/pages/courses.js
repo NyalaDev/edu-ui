@@ -22,7 +22,6 @@ const CoursesPage = ({ data }) => {
               lectures: [firstLecture],
             } = course
             const { url: imageUrl } = firstLecture
-
             return (
               <CourseCard
                 key={course.id}
@@ -30,6 +29,7 @@ const CoursesPage = ({ data }) => {
                 description={course.description}
                 image={getYoutubeThumbnail(imageUrl)}
                 slug={course.slug}
+                tags={course.tags}
               />
             )
           })}
@@ -53,6 +53,9 @@ export const pageQuery = graphql`
           title
           description
           slug
+          tags {
+            tagName
+          }
           lectures {
             url
           }
