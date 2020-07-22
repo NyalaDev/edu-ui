@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import { graphql } from 'gatsby'
+import { graphql, Link } from 'gatsby'
 
 import Layout from '../../components/Layout'
 import LecturesList from '../../components/LecturesList'
@@ -10,8 +10,20 @@ import { StyledPlayerWrap, StyledPlayer } from './styles'
 
 const LectureView = ({ data }) => {
   const { strapiLecture, strapiCourse } = data
-  const { url } = strapiLecture
+  const { url, title, position } = strapiLecture
+  const { title: courseTitle } = strapiCourse
 
+  const getNextLectureId = () => {
+    return strapiCourse.lectures.find(
+      lecture => lecture.position === position + 1
+    ).id
+  }
+  const getPreviousLectureId = () => {
+    return strapiCourse.lectures.find(
+      lecture => lecture.position === position - 1
+    ).id
+  }
+  console.log('position', position)
   return (
     <Layout>
       <Seo title="Lectures" />
@@ -23,6 +35,41 @@ const LectureView = ({ data }) => {
           />
         </div>
         <div>
+          <div>
+            <p>
+              <Link to={`/courses/${strapiCourse.slug}`}>{courseTitle}</Link>/
+            </p>
+
+            <p>{title}</p>
+
+            {position === 1 ? (
+              <p className="text-gray-300">previous</p>
+            ) : (
+              <p>
+                <Link
+                  to={`/courses/${
+                    strapiCourse.slug
+                  }/lectures/${getPreviousLectureId()}`}
+                >
+                  {' '}
+                  previous
+                </Link>
+              </p>
+            )}
+            {position === strapiCourse.lectures.length ? (
+              <p className="text-gray-300">next</p>
+            ) : (
+              <p>
+                <Link
+                  to={`/courses/${
+                    strapiCourse.slug
+                  }/lectures/${getNextLectureId()}`}
+                >
+                  next{' '}
+                </Link>
+              </p>
+            )}
+          </div>
           <StyledPlayerWrap>
             <StyledPlayer url={url} width="100%" height="100%" />
           </StyledPlayerWrap>
@@ -49,12 +96,15 @@ export const pageQuery = graphql`
       url
       updated_at
       created_at
+      title
+      position
     }
 
     strapiCourse(slug: { eq: $courseSlug }) {
       id
       slug
       strapiId
+      title
       lectures {
         id
         title
