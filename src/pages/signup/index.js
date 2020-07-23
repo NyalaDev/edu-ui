@@ -35,7 +35,7 @@ const signup = ({
               <input
                 className="w-full mt-2 py-2 px-4 bg-gray-100 text-gray-700 border border-gray-300 rounded  block appearance-none placeholder-gray-500 focus:outline-none focus:bg-white"
                 type="email"
-                placeholder="email"
+                placeholder="Email"
                 aria-label="email"
                 name="email"
                 {...getFieldProps('email')}
@@ -47,7 +47,7 @@ const signup = ({
               <input
                 className="w-full mt-2 py-2 px-4 bg-gray-100 text-gray-700 border border-gray-300 rounded  block appearance-none placeholder-gray-500 focus:outline-none focus:bg-white"
                 type="password"
-                placeholder="password"
+                placeholder="Password"
                 aria-label="password"
                 name="password"
                 {...getFieldProps('password')}
@@ -61,7 +61,7 @@ const signup = ({
               <input
                 className="w-full mt-2 py-2 px-4 bg-gray-100 text-gray-700 border border-gray-300 rounded  block appearance-none placeholder-gray-500 focus:outline-none focus:bg-white"
                 type="password"
-                placeholder="passwordConfirmation"
+                placeholder="Password Confirmation"
                 aria-label="passwordConfirmation"
                 name="passwordConfirmation"
                 {...getFieldProps('passwordConfirmation')}
@@ -77,7 +77,7 @@ const signup = ({
                   className="py-2 px-4 bg-gray-700 text-white rounded hover:bg-gray-600 focus:outline-none"
                   type="submit"
                 >
-                  Save
+                  Sign Up
                 </button>
               )}
               {isSubmitting && <span>One sec ...</span>}
