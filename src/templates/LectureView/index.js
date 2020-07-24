@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql, Link } from 'gatsby'
 
@@ -7,23 +7,19 @@ import LecturesList from '../../components/LecturesList'
 import Seo from '../../components/Seo'
 
 import { StyledPlayerWrap, StyledPlayer } from './styles'
+import { AiFillForward, AiFillBackward } from 'react-icons/ai'
 
 const LectureView = ({ data }) => {
   const { strapiLecture, strapiCourse } = data
   const { url, title, position } = strapiLecture
   const { title: courseTitle } = strapiCourse
 
-  const getNextLectureId = () => {
+  const findLectureByPosition = index => {
     return strapiCourse.lectures.find(
-      lecture => lecture.position === position + 1
+      lecture => lecture.position === position + index
     ).id
   }
-  const getPreviousLectureId = () => {
-    return strapiCourse.lectures.find(
-      lecture => lecture.position === position - 1
-    ).id
-  }
-  console.log('position', position)
+
   return (
     <Layout>
       <Seo title="Lectures" />
@@ -35,41 +31,55 @@ const LectureView = ({ data }) => {
           />
         </div>
         <div>
-          <div>
-            <p>
-              <Link to={`/courses/${strapiCourse.slug}`}>{courseTitle}</Link>/
-            </p>
+          <div className=" px-4 py-3 mb-3 flex flex-wrap items-center justify-between bg-gray-900">
+            <div className="w-full flex justify-between lg:w-auto  pl-4  lg:block lg:justify-start">
+              <Link
+                className="text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-no-wrap text-white hover:opacity-75"
+                to={`/courses/${strapiCourse.slug}`}
+              >
+                {courseTitle}
+              </Link>
+            </div>
+            <div className="lg:flex flex-grow items-center">
+              <div className="flex flex-col lg:flex-row ml-auto">
+                <div className="px-3 py-2  text-xs font-bold leading-snug text-white ">
+                  {title}
+                </div>
+                <div className="flex">
+                  {position === strapiCourse.lectures.length ? (
+                    <div className="px-3 py-1 text-xl text-white text-gray-600 leading-snug">
+                      <AiFillForward />
+                    </div>
+                  ) : (
+                    <Link
+                      to={`/courses/${
+                        strapiCourse.slug
+                      }/lectures/${findLectureByPosition(1)}`}
+                      className=" px-3 py-1 text-xl text-white hover:opacity-75 leading-snug"
+                    >
+                      <AiFillForward />
+                    </Link>
+                  )}
 
-            <p>{title}</p>
-
-            {position === 1 ? (
-              <p className="text-gray-300">previous</p>
-            ) : (
-              <p>
-                <Link
-                  to={`/courses/${
-                    strapiCourse.slug
-                  }/lectures/${getPreviousLectureId()}`}
-                >
-                  {' '}
-                  previous
-                </Link>
-              </p>
-            )}
-            {position === strapiCourse.lectures.length ? (
-              <p className="text-gray-300">next</p>
-            ) : (
-              <p>
-                <Link
-                  to={`/courses/${
-                    strapiCourse.slug
-                  }/lectures/${getNextLectureId()}`}
-                >
-                  next{' '}
-                </Link>
-              </p>
-            )}
+                  {position === 1 ? (
+                    <div className=" px-3 py-1 text-xl text-gray-600 leading-snug">
+                      <AiFillBackward />
+                    </div>
+                  ) : (
+                    <Link
+                      to={`/courses/${
+                        strapiCourse.slug
+                      }/lectures/${findLectureByPosition(-1)}`}
+                      className=" px-3 py-1 text-xl text-white hover:opacity-75 leading-snug"
+                    >
+                      <AiFillBackward />
+                    </Link>
+                  )}
+                </div>
+              </div>
+            </div>
           </div>
+
           <StyledPlayerWrap>
             <StyledPlayer url={url} width="100%" height="100%" />
           </StyledPlayerWrap>
