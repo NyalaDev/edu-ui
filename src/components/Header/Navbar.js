@@ -1,19 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'gatsby'
-
-const urls = [
-  {
-    id: 1,
-    to: '/',
-    text: 'الرئيسية',
-  },
-  {
-    id: 2,
-    to: '/courses',
-    text: 'الكورسات',
-  },
-]
+import UserMenu from './UserMenu'
+import { isLoggedIn, getUser } from '../../services/util'
 
 const NavBar = ({ open }) => {
   const statusClassName = open ? 'flex' : 'hidden'
@@ -23,16 +12,38 @@ const NavBar = ({ open }) => {
       id="nav-content"
     >
       <ul className="list-reset lg:flex flex-1 items-center px-4 md:px-0">
-        {urls.map(url => (
-          <li key={url.id} className="mr-6 my-2 md:my-0">
-            <Link
-              to={url.to}
-              className="block py-1 md:py-3 pl-1 align-middle text-gray-100 no-underline hover:text-white hover:border-b-2  hover:border-grey-600"
-            >
-              <span className="pb-1 md:pb-0 text-sm">{url.text}</span>
-            </Link>
-          </li>
-        ))}
+        <li className="mr-6 my-2 md:my-0">
+          {isLoggedIn() && getUser() ? (
+            <>
+              <UserMenu />
+            </>
+          ) : (
+            <>
+              <Link
+                to="/signin"
+                className="block py-1 md:py-3 pl-1 align-middle text-gray-100 no-underline hover:text-white hover:border-b-2  hover:border-grey-600"
+              >
+                <span className="pb-1 md:pb-0 text-sm">تسجيل الدخول</span>
+              </Link>
+            </>
+          )}
+        </li>
+        <li className="mr-6 my-2 md:my-0">
+          <Link
+            to="/"
+            className="block py-1 md:py-3 pl-1 align-middle text-gray-100 no-underline hover:text-white hover:border-b-2  hover:border-grey-600"
+          >
+            <span className="pb-1 md:pb-0 text-sm">الرئيسية</span>
+          </Link>
+        </li>
+        <li className="mr-6 my-2 md:my-0">
+          <Link
+            to="/courses"
+            className="block py-1 md:py-3 pl-1 align-middle text-gray-100 no-underline hover:text-white hover:border-b-2  hover:border-grey-600"
+          >
+            <span className="pb-1 md:pb-0 text-sm">الكورسات</span>
+          </Link>
+        </li>
       </ul>
 
       <div className="relative pull-right pl-4 pr-4 md:pr-0">
