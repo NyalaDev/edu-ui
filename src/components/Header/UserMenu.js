@@ -1,6 +1,9 @@
 import React from 'react'
+import { isLoggedIn, getUser } from '../../services/util'
 
 const UserMenu = () => {
+  let greetingMessage = `مرحباً ${getUser().username.toUpperCase()} `
+
   return (
     <div className="relative text-sm">
       <button
@@ -12,7 +15,9 @@ const UserMenu = () => {
           src="https://i.pravatar.cc/300"
           alt="Avatar of User"
         />
-        <span className="hidden md:inline-block">Hi, User </span>
+        <p className=" md:inline-block text-purple-600 block">
+          {greetingMessage}{' '}
+        </p>
       </button>
       <div
         id="userMenu"
