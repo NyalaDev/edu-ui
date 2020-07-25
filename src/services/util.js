@@ -12,10 +12,11 @@ export const getYoutubeThumbnail = url => {
   }
 }
 
-const user = getLocalStorage(USER_DATA_KEY)
-
 export const isLoggedIn = () => {
   return getLocalStorage(TOKEN_KEY) ? true : false
 }
 
-export const getUser = () => (isBrowser && user ? JSON.parse(user) : {})
+export const getUser = () => {
+  const user = getLocalStorage(USER_DATA_KEY)
+  return isBrowser && user ? JSON.parse(user) : {}
+}
