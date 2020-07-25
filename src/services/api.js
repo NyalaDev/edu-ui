@@ -9,11 +9,14 @@ import {
 const axiosInstance = () => {
   const token = getLocalStorage(TOKEN_KEY)
   const headers = token ? { Authorization: `Bearer ${token}` } : undefined
-  return axios.create({
+  let params = {
     baseURL: `${process.env.GATSBY_STRAPI_API_URL}`,
     timeout: 10000,
-    headers,
-  })
+  }
+  if (headers) {
+    params.headers = headers
+  }
+  return axios.create(params)
 }
 
 /**

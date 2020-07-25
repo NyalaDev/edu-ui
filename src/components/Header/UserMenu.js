@@ -1,8 +1,9 @@
 import React from 'react'
-import { isLoggedIn, getUser } from '../../services/util'
+import { getUser } from '../../services/util'
 
 const UserMenu = () => {
-  let greetingMessage = `مرحباً ${getUser().username.toUpperCase()} `
+  const { username } = getUser()
+  const greetingMessage = `مرحباً ${username}! `
 
   return (
     <div className="relative text-sm">
@@ -15,7 +16,7 @@ const UserMenu = () => {
           src="https://i.pravatar.cc/300"
           alt="Avatar of User"
         />
-        <p className=" md:inline-block text-purple-600 block">
+        <p className=" md:inline-block text-gray-200 block mr-3">
           {greetingMessage}{' '}
         </p>
       </button>

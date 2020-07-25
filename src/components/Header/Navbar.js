@@ -13,7 +13,7 @@ const NavBar = ({ open }) => {
     >
       <ul className="list-reset lg:flex flex-1 items-center px-4 md:px-0">
         <li className="mr-6 my-2 md:my-0">
-          {isLoggedIn() ? (
+          {isLoggedIn() && getUser() ? (
             <>
               <UserMenu />
             </>
