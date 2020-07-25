@@ -5,19 +5,23 @@ import { graphql, Link } from 'gatsby'
 import Layout from '../../components/Layout'
 import LecturesList from '../../components/LecturesList'
 import Seo from '../../components/Seo'
+import LectureNavigationButton from './LectureNavigationButton'
 
 import { StyledPlayerWrap, StyledPlayer } from './styles'
 import { AiFillForward, AiFillBackward } from 'react-icons/ai'
 
 const LectureView = ({ data }) => {
   const { strapiLecture, strapiCourse } = data
-  const { url, title, position } = strapiLecture
-  const { title: courseTitle } = strapiCourse
+  const { url, title: lectureTitle, position } = strapiLecture
+  const { title: courseTitle, slug, lectures } = strapiCourse
+  const isLastLecture = position === lectures.length
+  const isFirstLecture = position === 1
 
   const findLectureByPosition = index => {
-    return strapiCourse.lectures.find(
+    const lecture = lectures.find(
       lecture => lecture.position === position + index
-    ).id
+    )
+    return lecture ? lecture.id : ''
   }
 
   return (
@@ -25,17 +29,14 @@ const LectureView = ({ data }) => {
       <Seo title="Lectures" />
       <div className="flex flex-col-reverse">
         <div className="py-5">
-          <LecturesList
-            lectures={strapiCourse.lectures}
-            courseSlug={strapiCourse.slug}
-          />
+          <LecturesList lectures={lectures} courseSlug={slug} />
         </div>
         <div>
           <div className=" px-4 py-3 mb-3 flex flex-wrap items-center justify-between bg-gray-900">
             <div className="w-full flex justify-between lg:w-auto  pl-4  lg:block lg:justify-start">
               <Link
                 className="text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-no-wrap text-white hover:opacity-75"
-                to={`/courses/${strapiCourse.slug}`}
+                to={`/courses/${slug}`}
               >
                 {courseTitle}
               </Link>
@@ -43,38 +44,24 @@ const LectureView = ({ data }) => {
             <div className="lg:flex flex-grow items-center">
               <div className="flex flex-col lg:flex-row ml-auto">
                 <div className="px-3 py-2  text-xs font-bold leading-snug text-white ">
-                  {title}
+                  {lectureTitle}
                 </div>
                 <div className="flex">
-                  {position === strapiCourse.lectures.length ? (
-                    <div className="px-3 py-1 text-xl text-white text-gray-600 leading-snug">
-                      <AiFillForward />
-                    </div>
-                  ) : (
-                    <Link
-                      to={`/courses/${
-                        strapiCourse.slug
-                      }/lectures/${findLectureByPosition(1)}`}
-                      className=" px-3 py-1 text-xl text-white hover:opacity-75 leading-snug"
-                    >
-                      <AiFillForward />
-                    </Link>
-                  )}
+                  <LectureNavigationButton
+                    isEdge={isLastLecture}
+                    courseSlug={slug}
+                    nextLecturePosition={findLectureByPosition(1)}
+                  >
+                    <AiFillForward />
+                  </LectureNavigationButton>
 
-                  {position === 1 ? (
-                    <div className=" px-3 py-1 text-xl text-gray-600 leading-snug">
-                      <AiFillBackward />
-                    </div>
-                  ) : (
-                    <Link
-                      to={`/courses/${
-                        strapiCourse.slug
-                      }/lectures/${findLectureByPosition(-1)}`}
-                      className=" px-3 py-1 text-xl text-white hover:opacity-75 leading-snug"
-                    >
-                      <AiFillBackward />
-                    </Link>
-                  )}
+                  <LectureNavigationButton
+                    isEdge={isFirstLecture}
+                    courseSlug={slug}
+                    nextLecturePosition={findLectureByPosition(-1)}
+                  >
+                    <AiFillBackward />
+                  </LectureNavigationButton>
                 </div>
               </div>
             </div>
