@@ -17,8 +17,6 @@ const Header = () => {
         <Logo />
         <div className="w-1/2 pr-0">
           <div className="flex relative float-right">
-            <UserMenu />
-
             <div className="block lg:hidden pr-4">
               <button
                 id="nav-toggle"

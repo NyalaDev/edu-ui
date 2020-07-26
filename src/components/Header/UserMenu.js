@@ -1,6 +1,10 @@
 import React from 'react'
+import { getUser } from '../../services/util'
 
 const UserMenu = () => {
+  const { username } = getUser()
+  const greetingMessage = `مرحباً ${username}! `
+
   return (
     <div className="relative text-sm">
       <button
@@ -12,7 +16,9 @@ const UserMenu = () => {
           src="https://i.pravatar.cc/300"
           alt="Avatar of User"
         />
-        <span className="hidden md:inline-block">Hi, User </span>
+        <p className=" md:inline-block text-gray-200 block mr-3">
+          {greetingMessage}{' '}
+        </p>
       </button>
       <div
         id="userMenu"
