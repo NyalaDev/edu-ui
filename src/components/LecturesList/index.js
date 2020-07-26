@@ -20,7 +20,7 @@ const LectureList = ({ lectures, courseSlug, currentLecture }) => {
       {sortedLectures.map((lecture, index) => (
         <StyledLectureListItem
           key={lecture.id}
-          active={currentLecture.strapiId === lecture.id}
+          active={currentLecture && currentLecture.strapiId === lecture.id}
         >
           <StyledCount>
             <span>{++index}</span>
