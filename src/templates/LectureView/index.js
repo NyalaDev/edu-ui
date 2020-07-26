@@ -29,40 +29,41 @@ const LectureView = ({ data }) => {
       <Seo title="Lectures" />
       <div className="flex flex-col-reverse">
         <div className="py-5">
-          <LecturesList lectures={lectures} courseSlug={slug} />
+          <LecturesList
+            lectures={lectures}
+            courseSlug={slug}
+            currentLecture={strapiLecture}
+          />
         </div>
         <div>
-          <div className=" px-4 py-3 mb-3 flex flex-wrap items-center justify-between bg-gray-900">
-            <div className="w-full flex justify-between lg:w-auto  pl-4  lg:block lg:justify-start">
+          <div className="bg-gray-900 px-4 py-3 mb-3 flex flex-col items-end md:flex-row-reverse justify-between ">
+            <div className="text-white flex flex-col items-end md:flex-row-reverse md:items-center ">
               <Link
-                className="text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-no-wrap text-white hover:opacity-75"
+                className="text-sm font-bold leading-relaxed inline-block py-2 whitespace-no-wrap text-white hover:opacity-75"
                 to={`/courses/${slug}`}
               >
                 {courseTitle}
               </Link>
+              <span className="text-sm mx-2">/</span>
+              <span className="text-sm text-gray-400">{lectureTitle}</span>
             </div>
-            <div className="lg:flex flex-grow items-center">
-              <div className="flex flex-col lg:flex-row ml-auto">
-                <div className="px-3 py-2  text-xs font-bold leading-snug text-white ">
-                  {lectureTitle}
-                </div>
-                <div className="flex">
-                  <LectureNavigationButton
-                    isEdge={isLastLecture}
-                    courseSlug={slug}
-                    nextLecturePosition={findLectureByPosition(1)}
-                  >
-                    <AiFillForward />
-                  </LectureNavigationButton>
+            <div className="text-white">
+              <div className="flex">
+                <LectureNavigationButton
+                  isEdge={isLastLecture}
+                  courseSlug={slug}
+                  nextLecturePosition={findLectureByPosition(1)}
+                >
+                  <AiFillForward />
+                </LectureNavigationButton>
 
-                  <LectureNavigationButton
-                    isEdge={isFirstLecture}
-                    courseSlug={slug}
-                    nextLecturePosition={findLectureByPosition(-1)}
-                  >
-                    <AiFillBackward />
-                  </LectureNavigationButton>
-                </div>
+                <LectureNavigationButton
+                  isEdge={isFirstLecture}
+                  courseSlug={slug}
+                  nextLecturePosition={findLectureByPosition(-1)}
+                >
+                  <AiFillBackward />
+                </LectureNavigationButton>
               </div>
             </div>
           </div>
@@ -90,6 +91,7 @@ export const pageQuery = graphql`
   query LectureByID($id: String!, $courseSlug: String!) {
     strapiLecture(id: { eq: $id }) {
       id
+      strapiId
       url
       updated_at
       created_at

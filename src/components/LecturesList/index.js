@@ -12,14 +12,16 @@ import {
   StyledDuration,
 } from './styles'
 
-const LectureList = ({ lectures, courseSlug }) => {
-  // FIXME: sort data from query?
+const LectureList = ({ lectures, courseSlug, currentLecture }) => {
   const sortedLectures = orderBy(lectures, 'position', 'asc')
 
   return (
     <StyledLectureList>
       {sortedLectures.map((lecture, index) => (
-        <StyledLectureListItem key={lecture.id}>
+        <StyledLectureListItem
+          key={lecture.id}
+          active={currentLecture.strapiId === lecture.id}
+        >
           <StyledCount>
             <span>{++index}</span>
           </StyledCount>
@@ -41,13 +43,16 @@ const LectureList = ({ lectures, courseSlug }) => {
 LectureList.propTypes = {
   lectures: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number,
+      id: PropTypes.numbe,
       url: PropTypes.string,
       title: PropTypes.title,
       duration: PropTypes.duration,
       position: PropTypes.number,
     })
   ).isRequired,
+  currentLecture: PropTypes.shape({
+    strapiId: PropTypes.numbe,
+  }).isRequired,
   courseSlug: PropTypes.string.isRequired,
 }
 export default LectureList

@@ -1,5 +1,6 @@
 export const isBrowser = typeof window !== 'undefined'
 
+export const LANG_KEY = 'siteLang'
 export const USER_DATA_KEY = 'userData'
 export const TOKEN_KEY = 'token'
 
