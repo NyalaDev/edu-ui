@@ -51,7 +51,7 @@ LectureList.propTypes = {
     })
   ).isRequired,
   currentLecture: PropTypes.shape({
-    strapiId: PropTypes.numbe,
+    strapiId: PropTypes.number,
   }).isRequired,
   courseSlug: PropTypes.string.isRequired,
 }
