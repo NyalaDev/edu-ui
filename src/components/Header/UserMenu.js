@@ -1,50 +1,67 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { getUser } from '../../services/util'
 
 const UserMenu = () => {
+  const [open, setOpen] = useState(false)
   const { username } = getUser()
   const greetingMessage = `مرحباً ${username}! `
 
+  const toggleOpen = () => {
+    setOpen(!open)
+  }
+
+  // FIXME: Change Dropdown on desktop to open right
   return (
-    <div className="relative text-sm">
-      <button
-        id="userButton"
-        className="flex items-center focus:outline-none mr-3"
-      >
-        <img
-          className="w-8 h-8 rounded-full mr-4"
-          src="https://i.pravatar.cc/300"
-          alt="Avatar of User"
-        />
-        <p className=" md:inline-block text-gray-200 block mr-3">
-          {greetingMessage}{' '}
-        </p>
-      </button>
+    <div className="ml-3 relative">
+      <div>
+        <button
+          className="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-white transition duration-150 ease-in-out"
+          id="user-menu"
+          aria-label="User menu"
+          aria-haspopup="true"
+          onClick={toggleOpen}
+        >
+          <img
+            className="h-8 w-8 rounded-full"
+            src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+            alt=""
+          />
+        </button>
+      </div>
+
       <div
-        id="userMenu"
-        className="bg-white rounded shadow-md mt-2 absolute mt-12 top-0 right-0 min-w-full overflow-auto z-30 invisible"
+        className={`${
+          open ? '' : 'hidden'
+        } origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg`}
       >
-        <ul className="list-reset">
-          <li>
-            <a
-              href="#"
-              className="px-4 py-2 block text-gray-900 hover:bg-gray-400 no-underline hover:no-underline"
-            >
-              My account
-            </a>
-          </li>
-          <li>
-            <hr className="border-t mx-2 border-gray-400" />
-          </li>
-          <li>
-            <a
-              href="#"
-              className="px-4 py-2 block text-gray-900 hover:bg-gray-400 no-underline hover:no-underline"
-            >
-              Logout
-            </a>
-          </li>
-        </ul>
+        <div
+          className="py-1 rounded-md bg-white shadow-xs"
+          role="menu"
+          aria-orientation="vertical"
+          aria-labelledby="user-menu"
+        >
+          <a
+            href="#"
+            className="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out"
+            role="menuitem"
+          >
+            Your Profile
+          </a>
+          <a
+            href="#"
+            className="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out"
+            role="menuitem"
+          >
+            Settings
+          </a>
+          <a
+            href="#"
+            className="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out"
+            role="menuitem"
+          >
+            Sign out
+          </a>
+        </div>
       </div>
     </div>
   )

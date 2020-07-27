@@ -9,7 +9,7 @@ const LectureNavigationButton = ({
   nextLecturePosition,
 }) => {
   return isEdge ? (
-    <div className="px-3 py-1 text-xl text-white text-gray-600 leading-snug">
+    <div className="px-3 py-1 text-xl text-gray-600 leading-snug">
       {children}
     </div>
   ) : (

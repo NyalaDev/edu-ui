@@ -2,6 +2,8 @@ import React from 'react'
 import { ToastContainer } from 'react-toastify'
 import Header from './Header'
 import Footer from './Footer'
+import '../i18n'
+
 import 'react-toastify/dist/ReactToastify.css'
 import './layout.css'
 

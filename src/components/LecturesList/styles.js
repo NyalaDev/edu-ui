@@ -12,7 +12,7 @@ export const StyledLectureListItem = styled.li`
   position: relative;
   border-top: 1px solid #d4d4d4;
   border-right: 1px solid #d4d4d4;
-  background-color: #eee;
+  background-color: ${({ active }) => (active ? '#fff' : '#eee')};
   transition: all 0.3s ease 0s;
 `
 
