@@ -104,6 +104,16 @@ const SigninForm = () => {
                   Forgot Password?
                 </a>
               </div>
+              <div className="text-center">
+                <h1 className="font-bold text-grey-darker block mb-2 mt-5">
+                  Or
+                </h1>
+                <button className="py-2 px-4 bg-gray-700 text-white text-center rounded hover:bg-gray-600 focus:outline-none mt-5 ml-4">
+                  <a href="http://localhost:8082/connect/github">
+                    Sign in using Github
+                  </a>
+                </button>
+              </div>
             </form>
           )}
           {error && <div className="text-red-600 mt-1">{error}</div>}
