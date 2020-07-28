@@ -3,7 +3,7 @@ import { handleAuthentication } from '../../services/auth'
 
 const Github = () => {
   const url = process.env.GATSBY_STRAPI_API_URL || 'http://localhost:8082'
-  const { jwt } = handleAuthentication(url, 'github')
+  handleAuthentication(url, 'github')
 
   return (
     <div className="container section has-text-centered">

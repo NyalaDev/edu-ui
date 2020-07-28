@@ -9,6 +9,7 @@ import {
   USER_DATA_KEY,
   isBrowser,
 } from '../../services/localStorage'
+const url = process.env.GATSBY_STRAPI_API_URL || 'http://localhost:8082'
 
 const SigninForm = () => {
   const [error, setError] = useState(null)
@@ -109,9 +110,7 @@ const SigninForm = () => {
                   Or
                 </h1>
                 <button className="py-2 px-4 bg-gray-700 text-white text-center rounded hover:bg-gray-600 focus:outline-none mt-5 ml-4">
-                  <a href="http://localhost:8082/connect/github">
-                    Sign in using Github
-                  </a>
+                  <a href={`${url}/connect/github`}>Sign in using Github</a>
                 </button>
               </div>
             </form>

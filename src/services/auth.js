@@ -23,6 +23,4 @@ export const handleAuthentication = async (url, provider = 'github') => {
     setLocalStorage(USER_DATA_KEY, JSON.stringify(data.user))
     navigate('/signin')
   }
-
-  return data
 }
