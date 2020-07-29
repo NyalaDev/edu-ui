@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useFormik } from 'formik'
+import { Link } from 'gatsby'
 import * as api from '../../services/api'
 import * as Yup from 'yup'
 import {
@@ -32,7 +33,7 @@ const SigninForm = () => {
     }),
     onSubmit: async values => {
       try {
-        const result = await api.signin(values)
+        await api.signin(values)
         setError(null)
         if (isBrowser) window.location.reload()
       } catch (err) {
@@ -57,10 +58,14 @@ const SigninForm = () => {
           {!success && (
             <form onSubmit={formik.handleSubmit}>
               <div className="mb-4">
-                <label className="font-bold text-grey-darker block mb-2">
+                <label
+                  htmlFor="identifier"
+                  className="font-bold text-grey-darker block mb-2"
+                >
                   Username or Email
                 </label>
                 <input
+                  id="identifier"
                   {...formik.getFieldProps('identifier')}
                   type="text"
                   className="block appearance-none w-full bg-white border border-grey-light hover:border-grey px-2 py-2 rounded shadow"
@@ -74,10 +79,14 @@ const SigninForm = () => {
               </div>
 
               <div className="mb-4">
-                <label className="font-bold text-grey-darker block mb-2">
+                <label
+                  htmlFor="password"
+                  className="font-bold text-grey-darker block mb-2"
+                >
                   Password
                 </label>
                 <input
+                  id="password"
                   {...formik.getFieldProps('password')}
                   type="password"
                   className="block appearance-none w-full bg-white border border-grey-light hover:border-grey px-2 py-2 rounded shadow"
@@ -98,12 +107,12 @@ const SigninForm = () => {
                   Sign in
                 </button>
 
-                <a
+                <Link
                   className="no-underline inline-block align-baseline font-bold text-sm text-blue hover:text-blue-dark float-right"
-                  href="#"
+                  to="/"
                 >
                   Forgot Password?
-                </a>
+                </Link>
               </div>
               <div className="text-center">
                 <h1 className="font-bold text-grey-darker block mb-2 mt-5">
@@ -137,7 +146,7 @@ const SigninForm = () => {
 
         <div className="text-center">
           <p className="text-grey-dark text-sm">
-            Don't have an account?{' '}
+            {`Don't have an account?`}
             <a href="/signup" className="no-underline text-blue font-bold">
               Create an Account
             </a>

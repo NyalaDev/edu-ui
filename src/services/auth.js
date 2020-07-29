@@ -16,9 +16,6 @@ export const handleAuthentication = async (url, provider = 'github') => {
   const callBackParams = queryString.parse(window.location.search)
 
   const requestURL = `${url}/auth/${provider}/callback`
-  console.log(requestURL)
-
-  console.log(callBackParams)
 
   try {
     const { data } = await axios.get(requestURL, { params: callBackParams })
@@ -29,6 +26,6 @@ export const handleAuthentication = async (url, provider = 'github') => {
       navigate('/signin')
     }
   } catch (e) {
-    console.error(e)
+    //
   }
 }

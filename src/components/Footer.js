@@ -7,7 +7,7 @@ const Footer = () => {
         <div className="w-full mx-auto flex flex-wrap">
           <div className="flex w-full md:w-1/3 ">
             <div className="px-8">
-              <h3 className="font-bold font-bold text-gray-100">About</h3>
+              <h3 className="font-bold text-gray-100">About</h3>
               <p className="py-4 text-gray-600 text-sm">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 Maecenas vel mi ut felis tempus commodo nec id erat. Suspendisse
@@ -18,23 +18,16 @@ const Footer = () => {
 
           <div className="flex w-full md:w-1/3">
             <div className="px-8">
-              <h3 className="font-bold font-bold text-gray-100">Social</h3>
+              <h3 className="font-bold text-gray-100">Social</h3>
               <ul className="list-reset items-center text-sm pt-3">
-                <li>
-                  <a
-                    className="inline-block text-gray-600 no-underline hover:text-gray-100 hover:text-underline py-1"
-                    href="#"
-                  >
-                    Add social link
-                  </a>
-                </li>
+                <li></li>
                 <li></li>
               </ul>
             </div>
           </div>
           <div className="flex w-full md:w-1/3">
             <div className="px-8">
-              <h3 className="font-bold font-bold text-gray-100">Language</h3>
+              <h3 className="ont-bold text-gray-100">Language</h3>
               <ul className="list-reset items-center text-sm pt-3">
                 <li>
                   <LanguageSwitcher />

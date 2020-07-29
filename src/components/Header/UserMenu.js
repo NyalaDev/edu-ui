@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
-import { getUser } from '../../services/util'
+import { Link } from 'gatsby'
+// import { getUser } from '../../services/util'
 
 const UserMenu = () => {
   const [open, setOpen] = useState(false)
-  const { username } = getUser()
-  const greetingMessage = `مرحباً ${username}! `
+  // const { username } = getUser()
+  // const greetingMessage = `مرحباً ${username}! `
 
   const toggleOpen = () => {
     setOpen(!open)
@@ -40,27 +41,27 @@ const UserMenu = () => {
           aria-orientation="vertical"
           aria-labelledby="user-menu"
         >
-          <a
-            href="#"
+          <Link
+            href="/"
             className="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out"
             role="menuitem"
           >
             Your Profile
-          </a>
-          <a
-            href="#"
+          </Link>
+          <Link
+            href="/"
             className="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out"
             role="menuitem"
           >
             Settings
-          </a>
-          <a
-            href="#"
+          </Link>
+          <Link
+            href="/"
             className="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out"
             role="menuitem"
           >
             Sign out
-          </a>
+          </Link>
         </div>
       </div>
     </div>
