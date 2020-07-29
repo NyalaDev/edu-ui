@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import { getUser } from '../../services/util'
+import { useTranslation } from 'react-i18next'
 
 const UserMenu = () => {
   const [open, setOpen] = useState(false)
   const { username } = getUser()
+  const { t } = useTranslation()
   const greetingMessage = `مرحباً ${username}! `
 
   const toggleOpen = () => {
@@ -45,21 +47,21 @@ const UserMenu = () => {
             className="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out"
             role="menuitem"
           >
-            Your Profile
+            {t('profile')}
           </a>
           <a
             href="#"
             className="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out"
             role="menuitem"
           >
-            Settings
+            {t('settings')}
           </a>
           <a
             href="#"
             className="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out"
             role="menuitem"
           >
-            Sign out
+            {t('signOut')}
           </a>
         </div>
       </div>
