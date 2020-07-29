@@ -16,11 +16,19 @@ export const handleAuthentication = async (url, provider = 'github') => {
   const callBackParams = queryString.parse(window.location.search)
 
   const requestURL = `${url}/auth/${provider}/callback`
-  const { data } = await axios.get(requestURL, { params: callBackParams })
+  console.log(requestURL)
 
-  if (data.jwt) {
-    setLocalStorage(TOKEN_KEY, data.jwt)
-    setLocalStorage(USER_DATA_KEY, JSON.stringify(data.user))
-    navigate('/signin')
+  console.log(callBackParams)
+
+  try {
+    const { data } = await axios.get(requestURL, { params: callBackParams })
+
+    if (data.jwt) {
+      setLocalStorage(TOKEN_KEY, data.jwt)
+      setLocalStorage(USER_DATA_KEY, JSON.stringify(data.user))
+      navigate('/signin')
+    }
+  } catch (e) {
+    console.error(e)
   }
 }
