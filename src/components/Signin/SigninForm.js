@@ -116,8 +116,8 @@ const SigninForm = () => {
                 <button className="py-2 px-4 bg-gray-700 text-white text-center rounded hover:bg-gray-600 focus:outline-none mt-5 ml-4">
                   <a href={`${url}/connect/github`}>{t('signUsingGithub')}</a>
                 </button>
-                <button className="py-2 px-4 bg-gray-700 text-white text-center block rounded hover:bg-gray-600 focus:outline-none mt-5 ml-4">
-                  <a href={`${url}/connect/google`}>Sign in using Google</a>
+                <button className="py-2 px-4 bg-gray-700 text-white text-center rounded hover:bg-gray-600 focus:outline-none mt-5 ml-4">
+                  <a href={`${url}/connect/google`}>{t('signUsingGoogle')}</a>
                 </button>
               </div>
             </form>
