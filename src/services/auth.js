@@ -12,7 +12,7 @@ export const handleAuthentication = async (url, provider = 'github') => {
   if (!isBrowser) {
     return
   }
-
+  console.log('In here')
   const callBackParams = queryString.parse(window.location.search)
 
   const requestURL = `${url}/auth/${provider}/callback`

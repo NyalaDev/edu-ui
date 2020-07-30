@@ -112,8 +112,12 @@ const SigninForm = () => {
                 <h1 className="font-bold text-grey-darker block mb-2 mt-5">
                   {t('or')}
                 </h1>
+
                 <button className="py-2 px-4 bg-gray-700 text-white text-center rounded hover:bg-gray-600 focus:outline-none mt-5 ml-4">
                   <a href={`${url}/connect/github`}>{t('signUsingGithub')}</a>
+                </button>
+                <button className="py-2 px-4 bg-gray-700 text-white text-center block rounded hover:bg-gray-600 focus:outline-none mt-5 ml-4">
+                  <a href={`${url}/connect/google`}>Sign in using Google</a>
                 </button>
               </div>
             </form>
