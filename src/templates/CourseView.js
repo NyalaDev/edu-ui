@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next'
 import Layout from '../components/Layout'
 import Seo from '../components/Seo'
 import CourseCard from '../components/CourseCard'
+import CourseMeta from '../components/CourseMeta'
 import LecturesList from '../components/LecturesList'
 import { getYoutubeThumbnail } from '../services/util'
 
@@ -28,6 +29,8 @@ const CourseView = ({ data }) => {
             lectureId={lectures[0].id}
             slug={slug}
           />
+
+          <CourseMeta />
         </div>
 
         <div className="md:col-span-2 sm:col-span-1">
