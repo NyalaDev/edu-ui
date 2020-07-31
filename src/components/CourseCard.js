@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'gatsby'
 import PropTypes from 'prop-types'
 import { DiGithubBadge } from 'react-icons/di'
-
+import { useTranslation } from 'react-i18next'
 import HtmlViewer from './HtmlViewer'
 
 const CourseCard = ({
@@ -15,6 +15,8 @@ const CourseCard = ({
   courseViewMode,
   tags = [],
 }) => {
+  const { t } = useTranslation()
+
   return (
     <div className="max-w-sm rounded overflow-hidden shadow-lg">
       <img className="w-full" src={image} alt={title} />
@@ -29,23 +31,23 @@ const CourseCard = ({
         {courseViewMode && (
           <>
             <Link
-              className="block bg-purple-800 text-white text-center hover:bg-purple-900 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1"
+              className="block bg-purple-800 text-white text-center hover:bg-purple-900 font-bold uppercase text-md px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1"
               style={{ transition: 'all .15s ease' }}
               to={`/courses/${slug}/lectures/${lectureId}`}
             >
-              Start Learning
+              {t('start')}
             </Link>
             {githubRepo && (
               <div className="py-4">
                 <a
-                  className="flex flex-row-reverse items-center justify-center bg-gray-800 text-white text-center hover:bg-gray-900 font-bold uppercase text-xs px-4 py-1 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1"
+                  className="flex flex-row-reverse items-center justify-center bg-gray-800 text-white text-center hover:bg-gray-900 font-bold uppercase text-md px-4 py-1 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1"
                   style={{ transition: 'all .15s ease' }}
                   href={githubRepo}
                   target="_blank"
                   rel="noreferrer"
                 >
                   <DiGithubBadge size={28} />
-                  <span>View Code</span>
+                  <span>{t('viewCode')}</span>
                 </a>
               </div>
             )}

@@ -7,11 +7,13 @@ import Seo from '../components/Seo'
 import CourseCard from '../components/CourseCard'
 import LecturesList from '../components/LecturesList'
 import { getYoutubeThumbnail } from '../services/util'
+import { useTranslation } from 'react-i18next'
 
 const CourseView = ({ data }) => {
   const { strapiCourse } = data
   const { lectures, description, slug, github_repo } = strapiCourse
   const thumbnail = getYoutubeThumbnail(lectures[0].url)
+  const { t } = useTranslation()
 
   return (
     <Layout>
@@ -31,7 +33,7 @@ const CourseView = ({ data }) => {
         <div className="md:col-span-2 sm:col-span-1">
           <div>
             <h4 className="bg-gray-700 rounded-tl-md rounded-tr-md py-2 px-3 text-white">
-              Lectures
+              {t('lectures')}
             </h4>
             <LecturesList courseSlug={slug} lectures={lectures} />
           </div>

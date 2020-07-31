@@ -1,10 +1,13 @@
 import React, { useState } from 'react'
 import { Link } from 'gatsby'
+
 // import { getUser } from '../../services/util'
+import { useTranslation } from 'react-i18next'
 
 const UserMenu = () => {
   const [open, setOpen] = useState(false)
   // const { username } = getUser()
+  const { t } = useTranslation()
   // const greetingMessage = `مرحباً ${username}! `
 
   const toggleOpen = () => {
@@ -46,21 +49,21 @@ const UserMenu = () => {
             className="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out"
             role="menuitem"
           >
-            Your Profile
+            {t('profile')}
           </Link>
           <Link
-            href="/"
+            href="#"
             className="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out"
             role="menuitem"
           >
-            Settings
+            {t('settings')}
           </Link>
           <Link
-            href="/"
+            href="#"
             className="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out"
             role="menuitem"
           >
-            Sign out
+            {t('signOut')}
           </Link>
         </div>
       </div>

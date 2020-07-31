@@ -1,6 +1,7 @@
 import React from 'react'
 import Layout from '../../components/Layout'
 import formEnhancer from './enhancedForm'
+import { useTranslation } from 'react-i18next'
 
 const signup = ({
   getFieldProps,
@@ -9,12 +10,14 @@ const signup = ({
   errors,
   isSubmitting,
 }) => {
+  const { t } = useTranslation()
+
   return (
     <Layout>
       <div className="bg-white w-full max-w-lg rounded-lg shadow-md overflow-hidden mx-auto">
         <div className="py-4 px-6">
           <h2 className="text-center font-bold text-gray-700 text-3xl">
-            Sign up
+            {t('signUp')}
           </h2>
 
           <form onSubmit={handleSubmit}>
@@ -22,7 +25,7 @@ const signup = ({
               <input
                 className="w-full mt-2 py-2 px-4 bg-gray-100 text-gray-700 border border-gray-300 rounded  block appearance-none placeholder-gray-500 focus:outline-none focus:bg-white"
                 type="text"
-                placeholder="Name"
+                placeholder={t('name')}
                 aria-label="Name"
                 name="username"
                 {...getFieldProps('username')}
@@ -35,7 +38,7 @@ const signup = ({
               <input
                 className="w-full mt-2 py-2 px-4 bg-gray-100 text-gray-700 border border-gray-300 rounded  block appearance-none placeholder-gray-500 focus:outline-none focus:bg-white"
                 type="email"
-                placeholder="Email"
+                placeholder={t('email')}
                 aria-label="email"
                 name="email"
                 {...getFieldProps('email')}
@@ -47,7 +50,7 @@ const signup = ({
               <input
                 className="w-full mt-2 py-2 px-4 bg-gray-100 text-gray-700 border border-gray-300 rounded  block appearance-none placeholder-gray-500 focus:outline-none focus:bg-white"
                 type="password"
-                placeholder="Password"
+                placeholder={t('password')}
                 aria-label="password"
                 name="password"
                 {...getFieldProps('password')}
@@ -61,7 +64,7 @@ const signup = ({
               <input
                 className="w-full mt-2 py-2 px-4 bg-gray-100 text-gray-700 border border-gray-300 rounded  block appearance-none placeholder-gray-500 focus:outline-none focus:bg-white"
                 type="password"
-                placeholder="Password Confirmation"
+                placeholder={t('passConfirm')}
                 aria-label="passwordConfirmation"
                 name="passwordConfirmation"
                 {...getFieldProps('passwordConfirmation')}
@@ -77,7 +80,7 @@ const signup = ({
                   className="py-2 px-4 bg-gray-700 text-white rounded hover:bg-gray-600 focus:outline-none"
                   type="submit"
                 >
-                  Sign Up
+                  {t('signUp')}
                 </button>
               )}
               {isSubmitting && <span>One sec ...</span>}
