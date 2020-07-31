@@ -32,8 +32,7 @@ module.exports = {
     'plugin:import/errors',
   ],
   rules: {
-    'react/prop-types': 'warn',
-    'no-console': 'warn',
+    'no-console': 'error',
     'react/prop-types': ['warn', { ignore: ['children'] }],
   },
 }
