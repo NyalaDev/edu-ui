@@ -39,7 +39,7 @@ const SiginPage = () => {
     }),
     onSubmit: async values => {
       try {
-        const result = await signin(values)
+        await signin(values)
         setError(null)
         if (isBrowser) window.location.reload()
       } catch (err) {
@@ -122,11 +122,13 @@ const SiginPage = () => {
                 </div>
               </form>
             )}
-            <div>
-              {providers.map(provider => (
-                <SocialButton key={provider} provider={provider} />
-              ))}
-            </div>
+            {!success && (
+              <div>
+                {providers.map(provider => (
+                  <SocialButton key={provider} provider={provider} />
+                ))}
+              </div>
+            )}
             {error && <div className="text-red-600 mt-1">{error}</div>}
             {success && (
               <div className="mt-1 text-center">

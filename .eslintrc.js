@@ -35,5 +35,6 @@ module.exports = {
     'react/prop-types': 'warn',
     'no-console': 'warn',
     'react/prop-types': ['warn', { ignore: ['children'] }],
+    'jsx-a11y/anchor-is-valid': 'off',
   },
 }

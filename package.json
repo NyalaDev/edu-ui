@@ -55,10 +55,12 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "deploy": "gatsby-plugin-s3 deploy",
+    "lint": "eslint --fix \"./src/**/*.{js,jsx}\"",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
   },
   "lint-staged": {
     "**/*.(jsx|js)": [
+      "eslint --fix",
       "prettier --write"
     ]
   },
