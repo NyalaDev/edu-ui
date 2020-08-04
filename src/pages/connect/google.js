@@ -4,7 +4,7 @@ import { handleAuthentication } from '../../services/auth'
 const Google = () => {
   const url = process.env.GATSBY_STRAPI_API_URL || 'http://localhost:8082'
   handleAuthentication(url, 'google')
-  console.log()
+
   return (
     <div className="container section has-text-centered">
       <div className="columns is-centered">

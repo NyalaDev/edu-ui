@@ -1,7 +1,11 @@
 import React from 'react'
-import Layout from '../../components/Layout'
-import formEnhancer from './enhancedForm'
 import { useTranslation } from 'react-i18next'
+import { Link } from 'gatsby'
+import Layout from '../../components/Layout'
+import SocialButton from '../../components/SocialButton'
+import formEnhancer from './enhancedForm'
+
+const providers = ['GitHub', 'Google']
 
 const signup = ({
   getFieldProps,
@@ -22,6 +26,9 @@ const signup = ({
 
           <form onSubmit={handleSubmit}>
             <div className="mt-4 w-full">
+              <label className="font-bold text-grey-darker block mb-2">
+                {t('name')}
+              </label>
               <input
                 className="w-full mt-2 py-2 px-4 bg-gray-100 text-gray-700 border border-gray-300 rounded  block appearance-none placeholder-gray-500 focus:outline-none focus:bg-white"
                 type="text"
@@ -35,6 +42,9 @@ const signup = ({
               )}
             </div>
             <div className="mt-4 w-full">
+              <label className="font-bold text-grey-darker block mb-2">
+                {t('email')}
+              </label>
               <input
                 className="w-full mt-2 py-2 px-4 bg-gray-100 text-gray-700 border border-gray-300 rounded  block appearance-none placeholder-gray-500 focus:outline-none focus:bg-white"
                 type="email"
@@ -47,6 +57,9 @@ const signup = ({
             </div>
 
             <div className="mt-4 w-full">
+              <label className="font-bold text-grey-darker block mb-2">
+                {t('email')}
+              </label>
               <input
                 className="w-full mt-2 py-2 px-4 bg-gray-100 text-gray-700 border border-gray-300 rounded  block appearance-none placeholder-gray-500 focus:outline-none focus:bg-white"
                 type="password"
@@ -61,6 +74,9 @@ const signup = ({
             </div>
 
             <div className="mt-4 w-full">
+              <label className="font-bold text-grey-darker block mb-2">
+                {t('passConfirm')}
+              </label>
               <input
                 className="w-full mt-2 py-2 px-4 bg-gray-100 text-gray-700 border border-gray-300 rounded  block appearance-none placeholder-gray-500 focus:outline-none focus:bg-white"
                 type="password"
@@ -85,7 +101,29 @@ const signup = ({
               )}
               {isSubmitting && <span>One sec ...</span>}
             </div>
+
+            <div className="text-center">
+              <h1 className="font-bold text-grey-darker block mb-2 mt-5">
+                {t('or')}
+              </h1>
+            </div>
           </form>
+
+          <div>
+            {providers.map(provider => (
+              <SocialButton key={provider} provider={provider} />
+            ))}
+          </div>
+
+          <div className="text-center mt-6 mb-2">
+            <p className="text-grey-dark text-sm">
+              {t('hasAccount')}{' '}
+              <Link to="/signin" className="no-underline text-blue font-bold">
+                {t('signIn')}
+              </Link>
+              .
+            </p>
+          </div>
         </div>
       </div>
     </Layout>
