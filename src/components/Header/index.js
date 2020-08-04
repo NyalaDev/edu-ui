@@ -43,6 +43,7 @@ const Header = () => {
               aria-label="Main menu"
               aria-expanded="false"
               onClick={toggleMobileNavBarOpen}
+              type="button"
             >
               <svg
                 className="block h-6 w-6"

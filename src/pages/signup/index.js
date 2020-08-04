@@ -1,13 +1,15 @@
 import React from 'react'
+
 import { useTranslation } from 'react-i18next'
 import { Link } from 'gatsby'
 import Layout from '../../components/Layout'
 import SocialButton from '../../components/SocialButton'
 import formEnhancer from './enhancedForm'
+import formikProps from '../../common/formik-props'
 
 const providers = ['GitHub', 'Google']
 
-const signup = ({
+const Signup = ({
   getFieldProps,
   handleSubmit,
   touched,
@@ -26,7 +28,10 @@ const signup = ({
 
           <form onSubmit={handleSubmit}>
             <div className="mt-4 w-full">
-              <label className="font-bold text-grey-darker block mb-2">
+              <label
+                htmlFor="name"
+                className="font-bold text-grey-darker block mb-2"
+              >
                 {t('name')}
               </label>
               <input
@@ -42,7 +47,10 @@ const signup = ({
               )}
             </div>
             <div className="mt-4 w-full">
-              <label className="font-bold text-grey-darker block mb-2">
+              <label
+                htmlFor="email"
+                className="font-bold text-grey-darker block mb-2"
+              >
                 {t('email')}
               </label>
               <input
@@ -57,7 +65,10 @@ const signup = ({
             </div>
 
             <div className="mt-4 w-full">
-              <label className="font-bold text-grey-darker block mb-2">
+              <label
+                htmlFor="password"
+                className="font-bold text-grey-darker block mb-2"
+              >
                 {t('email')}
               </label>
               <input
@@ -74,7 +85,10 @@ const signup = ({
             </div>
 
             <div className="mt-4 w-full">
-              <label className="font-bold text-grey-darker block mb-2">
+              <label
+                htmlFor="passwordConfirmation"
+                className="font-bold text-grey-darker block mb-2"
+              >
                 {t('passConfirm')}
               </label>
               <input
@@ -117,7 +131,7 @@ const signup = ({
 
           <div className="text-center mt-6 mb-2">
             <p className="text-grey-dark text-sm">
-              {t('hasAccount')}{' '}
+              {`${t('hasAccount')} `}
               <Link to="/signin" className="no-underline text-blue font-bold">
                 {t('signIn')}
               </Link>
@@ -130,4 +144,8 @@ const signup = ({
   )
 }
 
-export default formEnhancer(signup)
+Signup.propTypes = {
+  ...formikProps,
+}
+
+export default formEnhancer(Signup)

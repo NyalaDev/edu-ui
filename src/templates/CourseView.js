@@ -1,17 +1,17 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
+import { useTranslation } from 'react-i18next'
 
 import Layout from '../components/Layout'
 import Seo from '../components/Seo'
 import CourseCard from '../components/CourseCard'
 import LecturesList from '../components/LecturesList'
 import { getYoutubeThumbnail } from '../services/util'
-import { useTranslation } from 'react-i18next'
 
 const CourseView = ({ data }) => {
   const { strapiCourse } = data
-  const { lectures, description, slug, github_repo } = strapiCourse
+  const { lectures, description, slug, github_repo: githubRepo } = strapiCourse
   const thumbnail = getYoutubeThumbnail(lectures[0].url)
   const { t } = useTranslation()
 
@@ -24,7 +24,7 @@ const CourseView = ({ data }) => {
             courseViewMode
             image={thumbnail}
             description={description}
-            githubRepo={github_repo}
+            githubRepo={githubRepo}
             lectureId={lectures[0].id}
             slug={slug}
           />

@@ -22,7 +22,7 @@ const languages = [
 ]
 
 const LanguageSwitcher = () => {
-  const [locale, setLocale] = useState(getLocalStorage(LANG_KEY) || 'ar')
+  const [language, setLanguage] = useState(getLocalStorage(LANG_KEY) || 'ar')
   const [open, setOpen] = useState(false)
   const { i18n } = useTranslation()
 
@@ -38,18 +38,19 @@ const LanguageSwitcher = () => {
       },
     } = e
     i18n.changeLanguage(locale)
-    setLocale(locale)
+    setLanguage(locale)
     setOpen(false)
     setLocalStorage(LANG_KEY, locale)
   }
 
   const selectedLanguage =
-    languages.find(item => item.locale === locale) || languages[0]
+    languages.find(item => item.locale === language) || languages[0]
 
   return (
     <div className="relative group">
       <button
         className="p-1 border-2 border-transparent text-gray-400 flex items-center  hover:text-white focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out"
+        type="button"
         onClick={toggleOpen}
       >
         <img
@@ -65,19 +66,20 @@ const LanguageSwitcher = () => {
           open ? '' : 'hidden'
         } items-center absolute border border-t-0 rounded-b bg-white p-2`}
       >
-        {languages.map(language => (
+        {languages.map(lang => (
           <button
-            key={language.id}
+            key={lang.id}
             className="flex items-center  focus:outline-none border-transparent px-4 py-2  text-black hover:bg-grey-lighter"
             onClick={onLanguageButtonClick}
-            data-locale={language.locale}
+            data-locale={lang.locale}
+            type="button"
           >
             <img
-              src={`https://cdn.nyaladev.com/coderhub/${language.icon}`}
+              src={`https://cdn.nyaladev.com/coderhub/${lang.icon}`}
               className="w-3 ml-2"
               alt="Flag"
             />
-            {language.label}
+            {lang.label}
           </button>
         ))}
       </div>

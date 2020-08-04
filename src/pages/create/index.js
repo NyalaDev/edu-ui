@@ -1,7 +1,8 @@
 import React from 'react'
-import Layout from '../../components/Layout'
 import { graphql } from 'gatsby'
+import Layout from '../../components/Layout'
 import formEnhancer from './enhancedForm'
+import formikProps from '../../common/formik-props'
 
 const Create = ({
   data,
@@ -111,5 +112,9 @@ export const pageQuery = graphql`
     }
   }
 `
+
+Create.propTypes = {
+  ...formikProps,
+}
 
 export default formEnhancer(Create)

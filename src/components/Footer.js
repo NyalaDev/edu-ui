@@ -1,6 +1,6 @@
 import React from 'react'
-import LanguageSwitcher from './LanguageSwitcher'
 import { useTranslation } from 'react-i18next'
+import LanguageSwitcher from './LanguageSwitcher'
 
 const Footer = () => {
   const { t } = useTranslation()
@@ -24,8 +24,8 @@ const Footer = () => {
             <div className="px-8">
               <h3 className="font-bold text-gray-100">{t('social')}</h3>
               <ul className="list-reset items-center text-sm pt-3">
-                <li></li>
-                <li></li>
+                <li />
+                <li />
               </ul>
             </div>
           </div>

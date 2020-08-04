@@ -17,13 +17,9 @@ module.exports = {
   globals: {
     ENV: true,
   },
-  settings: {
-    react: {
-      version: '>16',
-    },
-  },
   plugins: ['react', 'import'],
   extends: [
+    'airbnb',
     'eslint:recommended',
     'plugin:react/recommended',
     'prettier',
@@ -32,9 +28,12 @@ module.exports = {
     'plugin:import/errors',
   ],
   rules: {
-    'react/prop-types': 'warn',
     'no-console': 'warn',
     'react/prop-types': ['warn', { ignore: ['children'] }],
     'jsx-a11y/anchor-is-valid': 'off',
+    'react/jsx-filename-extension': ['error', { extensions: ['.js', '.jsx'] }],
+    'react/jsx-props-no-spreading': 'off',
+    'import/prefer-default-export': 'off',
+    'func-style': ['error', 'expression'],
   },
 }

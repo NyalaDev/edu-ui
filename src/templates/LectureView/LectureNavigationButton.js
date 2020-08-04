@@ -25,7 +25,8 @@ const LectureNavigationButton = ({
 LectureNavigationButton.propTypes = {
   isEdge: PropTypes.bool.isRequired,
   courseSlug: PropTypes.string.isRequired,
-  nextLecturePosition: PropTypes.any.isRequired,
+  nextLecturePosition: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+    .isRequired,
 }
 
 export default LectureNavigationButton
