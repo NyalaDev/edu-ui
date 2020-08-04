@@ -14,7 +14,6 @@ export const handleAuthentication = async (url, provider = 'github') => {
   }
 
   const callBackParams = queryString.parse(window.location.search)
-
   const requestURL = `${url}/auth/${provider}/callback`
 
   try {

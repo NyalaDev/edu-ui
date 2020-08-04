@@ -32,7 +32,9 @@ module.exports = {
     'plugin:import/errors',
   ],
   rules: {
-    'no-console': 'error',
+    'react/prop-types': 'warn',
+    'no-console': 'warn',
     'react/prop-types': ['warn', { ignore: ['children'] }],
+    'jsx-a11y/anchor-is-valid': 'off',
   },
 }
