@@ -24,6 +24,7 @@ const UserMenu = () => {
           aria-label="User menu"
           aria-haspopup="true"
           onClick={toggleOpen}
+          type="button"
         >
           <img
             className="h-8 w-8 rounded-full"

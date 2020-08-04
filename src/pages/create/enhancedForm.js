@@ -20,11 +20,9 @@ export default withFormik({
   handleSubmit: async (values, bag) => {
     try {
       await axios.post(`${process.env.GATSBY_STRAPI_API_URL}/lectures`, values)
-      alert('Saved')
       bag.resetForm()
     } catch (e) {
       bag.setSubmitting(false)
-      alert('Opps, Failed to save. Check console log')
     }
   },
 })

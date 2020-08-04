@@ -1,6 +1,7 @@
 import queryString from 'query-string'
 import axios from 'axios'
 import { navigate } from 'gatsby'
+import { appConfig } from '../common/config'
 import {
   setLocalStorage,
   TOKEN_KEY,
@@ -8,13 +9,13 @@ import {
   isBrowser,
 } from './localStorage'
 
-export const handleAuthentication = async (url, provider = 'github') => {
+export const handleAuthentication = async (provider = 'github') => {
   if (!isBrowser) {
     return
   }
 
   const callBackParams = queryString.parse(window.location.search)
-  const requestURL = `${url}/auth/${provider}/callback`
+  const requestURL = `${appConfig.strapiURL}/auth/${provider}/callback`
 
   try {
     const { data } = await axios.get(requestURL, { params: callBackParams })

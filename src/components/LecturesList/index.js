@@ -15,6 +15,11 @@ import {
 const LectureList = ({ lectures, courseSlug, currentLecture }) => {
   const sortedLectures = orderBy(lectures, 'position', 'asc')
 
+  const getNumber = index => {
+    const value = index + 1
+    return value
+  }
+
   return (
     <StyledLectureList>
       {sortedLectures.map((lecture, index) => (
@@ -23,7 +28,7 @@ const LectureList = ({ lectures, courseSlug, currentLecture }) => {
           active={currentLecture && currentLecture.strapiId === lecture.id}
         >
           <StyledCount>
-            <span>{++index}</span>
+            <span>{getNumber(index)}</span>
           </StyledCount>
           <StyledListBody>
             <StyledVideoIcon />

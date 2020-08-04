@@ -13,7 +13,7 @@ const CourseCard = ({
   githubRepo,
   lectureId,
   courseViewMode,
-  tags = [],
+  tags,
 }) => {
   const { t } = useTranslation()
 
@@ -87,6 +87,7 @@ CourseCard.defaultProps = {
   githubRepo: '',
   lectureId: 0,
   courseViewMode: false,
+  tags: [],
 }
 
 export default CourseCard

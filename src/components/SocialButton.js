@@ -37,7 +37,7 @@ const SocialButton = ({ provider }) => {
 }
 
 SocialButton.propTypes = {
-  provider: PropTypes.oneOf(['Google', 'GitHub']),
+  provider: PropTypes.oneOf(['Google', 'GitHub']).isRequired,
 }
 
 export default SocialButton

@@ -5,16 +5,16 @@ export const USER_DATA_KEY = 'userData'
 export const TOKEN_KEY = 'token'
 
 export const getLocalStorage = key => {
-  if (!isBrowser) return
-  return window.localStorage.getItem(key)
+  if (!isBrowser) return null
+  return localStorage.getItem(key)
 }
 
 export const setLocalStorage = (key, value) => {
   if (!isBrowser) return
-  return window.localStorage.setItem(key, value)
+  localStorage.setItem(key, value)
 }
 
 export const clearLocalStorage = key => {
   if (!isBrowser) return
-  return window.localStorage.removeItem(key)
+  localStorage.removeItem(key)
 }

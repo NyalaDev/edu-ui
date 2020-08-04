@@ -67,10 +67,14 @@ const SiginPage = () => {
             {!success && (
               <form onSubmit={formik.handleSubmit}>
                 <div className="mb-4">
-                  <label className="font-bold text-grey-darker block mb-2">
+                  <label
+                    htmlFor="identifier"
+                    className="font-bold text-grey-darker block mb-2"
+                  >
                     {t('userOrEmail')}
                   </label>
                   <input
+                    id="identifier"
                     {...formik.getFieldProps('identifier')}
                     type="text"
                     className="block appearance-none w-full bg-white border border-grey-light hover:border-grey px-2 py-2 rounded shadow"
@@ -84,11 +88,15 @@ const SiginPage = () => {
                 </div>
 
                 <div className="mb-4">
-                  <label className="font-bold text-grey-darker block mb-2">
+                  <label
+                    htmlFor="password"
+                    className="font-bold text-grey-darker block mb-2"
+                  >
                     {t('password')}
                   </label>
                   <input
                     {...formik.getFieldProps('password')}
+                    id="password"
                     type="password"
                     className="block appearance-none w-full bg-white border border-grey-light hover:border-grey px-2 py-2 rounded shadow"
                     placeholder={t('passPlaceholder')}
@@ -135,9 +143,14 @@ const SiginPage = () => {
                 <div className="font-bold text-green-600 text-lg text-grey-darker block mb-2">
                   {t('signed')}
                 </div>
-                <button className="py-2 px-4 bg-gray-700 text-white rounded hover:bg-gray-600 focus:outline-none mt-5">
-                  <a href="/courses">{t('courses')}</a>
-                </button>
+
+                <a
+                  className="py-2 px-4 bg-gray-700 text-white rounded hover:bg-gray-600 focus:outline-none mt-5"
+                  href="/courses"
+                >
+                  {t('courses')}
+                </a>
+
                 <button
                   className="py-2 px-4 bg-gray-700 text-white rounded hover:bg-gray-600 focus:outline-none mt-5 ml-4"
                   type="submit"
@@ -152,7 +165,7 @@ const SiginPage = () => {
           <div className="text-center">
             {!success ? (
               <p className="text-grey-dark text-sm">
-                {`${t('noAccount')}` + '  '}
+                {`${t('noAccount')} `}
                 <Link to="/signup" className="no-underline text-blue font-bold">
                   {t('createAccount')}
                 </Link>

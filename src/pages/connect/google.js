@@ -2,8 +2,7 @@ import React from 'react'
 import { handleAuthentication } from '../../services/auth'
 
 const Google = () => {
-  const url = process.env.GATSBY_STRAPI_API_URL || 'http://localhost:8082'
-  handleAuthentication(url, 'google')
+  handleAuthentication('google')
 
   return (
     <div className="container section has-text-centered">

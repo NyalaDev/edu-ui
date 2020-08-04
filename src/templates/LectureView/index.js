@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql, Link } from 'gatsby'
+import { AiFillForward, AiFillBackward } from 'react-icons/ai'
 
 import Layout from '../../components/Layout'
 import LecturesList from '../../components/LecturesList'
@@ -8,7 +9,6 @@ import Seo from '../../components/Seo'
 import LectureNavigationButton from './LectureNavigationButton'
 
 import { StyledPlayerWrap, StyledPlayer } from './styles'
-import { AiFillForward, AiFillBackward } from 'react-icons/ai'
 
 const LectureView = ({ data }) => {
   const { strapiLecture, strapiCourse } = data
@@ -18,9 +18,7 @@ const LectureView = ({ data }) => {
   const isFirstLecture = position === 1
 
   const findLectureByPosition = index => {
-    const lecture = lectures.find(
-      lecture => lecture.position === position + index
-    )
+    const lecture = lectures.find(item => item.position === position + index)
     return lecture ? lecture.id : ''
   }
 
