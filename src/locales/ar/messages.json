@@ -26,5 +26,8 @@
   "signUp": "إنشاء حساب",
   "name": "الأسم",
   "email": "البريد الشخصي",
-  "passConfirm": "تأكيد كلمة المرور"
+  "passConfirm": "تأكيد كلمة المرور",
+  "aboutCourse": "عن الكورس",
+  "duration": "مدة الكورس",
+  "released": "نشر بتاريخ"
 }

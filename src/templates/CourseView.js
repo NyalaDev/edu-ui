@@ -12,7 +12,13 @@ import { getYoutubeThumbnail } from '../services/util'
 
 const CourseView = ({ data }) => {
   const { strapiCourse } = data
-  const { lectures, description, slug, github_repo: githubRepo } = strapiCourse
+  const {
+    lectures,
+    description,
+    slug,
+    github_repo: githubRepo,
+    created_at,
+  } = strapiCourse
   const thumbnail = getYoutubeThumbnail(lectures[0].url)
   const { t } = useTranslation()
 
@@ -29,8 +35,8 @@ const CourseView = ({ data }) => {
             lectureId={lectures[0].id}
             slug={slug}
           />
-
-          <CourseMeta />
+          <br />
+          <CourseMeta lectures={lectures} createdAt={created_at} />
         </div>
 
         <div className="md:col-span-2 sm:col-span-1">
