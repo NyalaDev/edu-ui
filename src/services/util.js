@@ -29,8 +29,8 @@ export const calculateVideosDuration = (lectures = []) => {
   const totalDuration = lectures
     .slice(1)
     .reduce(
-      (prev, cur) => moment.duration(cur.duration).add(prev),
-      moment.duration(duration)
+      (prev, cur) => moment.duration(`00:${cur.duration}`).add(prev),
+      moment.duration(`00:${duration}`)
     )
   return moment.utc(totalDuration.asMilliseconds()).format('HH:mm:ss')
 }
