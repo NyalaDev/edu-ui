@@ -12,25 +12,40 @@ const MyProfile = () => {
   const { t } = useTranslation()
   const user = getUser()
   const [error, setError] = useState(null)
-  const [profile, setProfile] = useState('')
+  const [profile, setProfile] = useState({})
+  const [isSaved, setIsSaved] = useState(false)
 
   useEffect(() => {
     if (!user) {
       navigate('/signin')
     }
-    const getProfiles = async () => {
-      const { data } = await getProfile(user.id)
-      setProfile(data)
+    const getProfileData = async () => {
+      try {
+        const { data } = await getProfile()
+        if (data) {
+          setProfile(data)
+        }
+        setError(null)
+      } catch (err) {
+        if (err.message.match(/(403|400)/)) {
+          setError('You are not a user')
+        } else setError('Something went wrong')
+      }
     }
-    getProfiles()
+    getProfileData()
   }, [])
 
+  /*   useEffect(() => {
+    console.log(profile)
+  }, [profile]) */
+
   const formik = useFormik({
+    enableReinitialize: true,
     initialValues: {
-      bio: '',
-      linkedin: '',
-      github: '',
-      twitter: '',
+      bio: profile.bio || '',
+      linkedin: profile.linkedin || '',
+      github: profile.github || '',
+      twitter: profile.twitter || '',
     },
     validationSchema: Yup.object({
       bio: Yup.string().min(50, 'should be at least 50'),
@@ -41,6 +56,7 @@ const MyProfile = () => {
     onSubmit: async values => {
       try {
         await addProfile(values)
+        setIsSaved(true)
         setError(null)
       } catch (err) {
         if (err.message.match(/(403|400)/)) {
@@ -140,10 +156,19 @@ const MyProfile = () => {
                   </div>
                 ) : null}
               </div>
+
+              <div className="flex items-center justify-between">
+                <button
+                  className="py-2 px-4 bg-gray-700 text-white rounded hover:bg-gray-600 focus:outline-none"
+                  type="submit"
+                >
+                  {t('save')}
+                </button>
+              </div>
             </form>
           </div>
-          {profile}
           {error && <div className="text-red-600 mt-1">{error}</div>}
+          {isSaved && <div className="text-green-600 mt-1">Saved</div>}
         </div>
       </div>
     </Layout>
