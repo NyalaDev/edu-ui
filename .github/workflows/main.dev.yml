@@ -3,8 +3,8 @@ name: Build and Deploy (Dev)
 on: [pull_request]
 
 jobs:
-  lint:
-    name: Syntax check (Eslint)
+  lint-and-test:
+    name: Syntax check (Eslint) and Tests
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -12,10 +12,12 @@ jobs:
         run: yarn
       - name: Run Eslint
         run: yarn lint
+      - name: Run Tests
+        run: yarn test
   deploy:
     name: Build and Deploy to AWS S3
     runs-on: ubuntu-latest
-    needs: lint
+    needs: lint-and-test
     steps:
       - uses: actions/checkout@v1
       - name: Configure AWS
@@ -31,7 +33,7 @@ jobs:
         env:
           GATSBY_STRAPI_API_URL: ${{ secrets.GATSBY_STRAPI_API_URL }}
           GATSBY_S3_BUCKET: ${{ secrets.S3_BUCKET_DEV }}
-          GATSBY_SITE_URL: "https://edu.nyaladev.com"
+          GATSBY_SITE_URL: 'https://edu.nyaladev.com'
       - name: Deploy website
         run: yarn deploy
   invalidate:
