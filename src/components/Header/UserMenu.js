@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'gatsby'
 
-// import { getUser } from '../../services/util'
+// import { getUser } from '../../services/auth'
 import { useTranslation } from 'react-i18next'
 
 const UserMenu = () => {
@@ -46,21 +46,21 @@ const UserMenu = () => {
           aria-labelledby="user-menu"
         >
           <Link
-            href="/"
+            to="/"
             className="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out"
             role="menuitem"
           >
             {t('profile')}
           </Link>
           <Link
-            href="#"
+            to="/"
             className="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out"
             role="menuitem"
           >
             {t('settings')}
           </Link>
           <Link
-            href="#"
+            to="/"
             className="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out"
             role="menuitem"
           >

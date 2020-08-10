@@ -5,7 +5,7 @@ import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
 import Seo from '../components/Seo'
 import CourseCard from '../components/CourseCard'
-import { getYoutubeThumbnail } from '../services/util'
+import { getYoutubeThumbnail } from '../common/util'
 
 const CoursesPage = ({ data }) => {
   const {

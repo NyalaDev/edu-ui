@@ -1,14 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { calculateVideosDuration } from '../services/util'
 import { useTranslation } from 'react-i18next'
 import { FaRegClock, FaRegCalendarAlt } from 'react-icons/fa'
 import moment from 'moment'
 
+import { calculateVideosDuration } from '../common/util'
+
 const CourseMeta = ({ lectures, createdAt }) => {
   const { t } = useTranslation()
   return (
-    <div className="max-w-sm mx-auto bg-white shadow-lg rounded-xs overflow-hidden">
+    <div className="max-w-sm rounded overflow-hidden shadow-lg ">
       <div className="px-6 py-3 bg-purple-800">
         <h1 className="text-white font-semibold text-lg text-center items-center">
           {t('aboutCourse')}
@@ -26,7 +27,7 @@ const CourseMeta = ({ lectures, createdAt }) => {
 
         <div className="flex justify-end items-center mt-4 text-gray-700">
           <div className="px-2 text-sm font-bold">
-            {moment.utc(created_at).format('DD/MM/YYYY')}
+            {moment.utc(createdAt).format('DD/MM/YYYY')}
           </div>
           <div className="font-bold pl-1 pr-4">{t('released')}</div>
           <FaRegCalendarAlt />
@@ -40,8 +41,8 @@ CourseMeta.propTypes = {
   lectures: PropTypes.arrayOf(
     PropTypes.shape({
       duration: PropTypes.string.isRequired,
-    }).isRequired
-  ),
+    })
+  ).isRequired,
   createdAt: PropTypes.string.isRequired,
 }
 

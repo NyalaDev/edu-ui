@@ -3,6 +3,7 @@ import axios from 'axios'
 import { navigate } from 'gatsby'
 import { appConfig } from '../common/config'
 import {
+  getLocalStorage,
   setLocalStorage,
   TOKEN_KEY,
   USER_DATA_KEY,
@@ -28,4 +29,13 @@ export const handleAuthentication = async (provider = 'github') => {
   } catch (e) {
     //
   }
+}
+
+export const isLoggedIn = () => {
+  return getLocalStorage(TOKEN_KEY) ? true : false
+}
+
+export const getUser = () => {
+  const user = getLocalStorage(USER_DATA_KEY)
+  return isBrowser && user ? JSON.parse(user) : {}
 }

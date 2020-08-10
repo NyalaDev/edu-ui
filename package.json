@@ -63,7 +63,8 @@
     "clean": "gatsby clean",
     "deploy": "gatsby-plugin-s3 deploy",
     "lint": "eslint --fix \"./src/**/*.{js,jsx}\"",
-    "test": "jest --watch"
+    "test": "jest",
+    "test:watch": "jest --watch"
   },
   "lint-staged": {
     "**/*.(jsx|js)": [
