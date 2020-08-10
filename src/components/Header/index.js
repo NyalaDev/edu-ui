@@ -7,7 +7,7 @@ import UserMenu from './UserMenu'
 import SearchBar from './SearchBar'
 import MobileMenu from './MobileMenu'
 
-import { getUser } from '../../services/util'
+import { getUser } from '../../services/auth'
 
 const navBarItems = [
   {

@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { orderBy } from 'lodash'
+import { formatDuration } from '../../common/util'
 
 import {
   StyledLectureList,
@@ -37,7 +38,7 @@ const LectureList = ({ lectures, courseSlug, currentLecture }) => {
                 {lecture.title}
               </StyledLink>
             </p>
-            <StyledDuration>{lecture.duration}</StyledDuration>
+            <StyledDuration>{formatDuration(lecture.duration)}</StyledDuration>
           </StyledListBody>
         </StyledLectureListItem>
       ))}
@@ -48,16 +49,21 @@ const LectureList = ({ lectures, courseSlug, currentLecture }) => {
 LectureList.propTypes = {
   lectures: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.numbe,
+      id: PropTypes.number,
       url: PropTypes.string,
-      title: PropTypes.title,
-      duration: PropTypes.duration,
+      title: PropTypes.string,
+      duration: PropTypes.string,
       position: PropTypes.number,
     })
   ).isRequired,
   currentLecture: PropTypes.shape({
     strapiId: PropTypes.number,
-  }).isRequired,
+  }),
   courseSlug: PropTypes.string.isRequired,
 }
+
+LectureList.defaultProps = {
+  currentLecture: {},
+}
+
 export default LectureList

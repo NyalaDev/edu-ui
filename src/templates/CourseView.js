@@ -6,12 +6,19 @@ import { useTranslation } from 'react-i18next'
 import Layout from '../components/Layout'
 import Seo from '../components/Seo'
 import CourseCard from '../components/CourseCard'
+import CourseMeta from '../components/CourseMeta'
 import LecturesList from '../components/LecturesList'
-import { getYoutubeThumbnail } from '../services/util'
+import { getYoutubeThumbnail } from '../common/util'
 
 const CourseView = ({ data }) => {
   const { strapiCourse } = data
-  const { lectures, description, slug, github_repo: githubRepo } = strapiCourse
+  const {
+    lectures,
+    description,
+    slug,
+    github_repo: githubRepo,
+    created_at: createdAt,
+  } = strapiCourse
   const thumbnail = getYoutubeThumbnail(lectures[0].url)
   const { t } = useTranslation()
 
@@ -28,6 +35,8 @@ const CourseView = ({ data }) => {
             lectureId={lectures[0].id}
             slug={slug}
           />
+          <br />
+          <CourseMeta lectures={lectures} createdAt={createdAt} />
         </div>
 
         <div className="md:col-span-2 sm:col-span-1">
