@@ -31,9 +31,12 @@
   "duration": "Duration",
   "released": "Released",
   "bio": "Your bio",
-  "linkedin": "Your Linkedin Url",
-  "github": "Your Github Url",
-  "twitter": "Your Twitter Url",
+  "socialLink": "Your {{provider}} Url",
+  "validation.required": "This field is required",
+  "atLeast50": "Should be at least 50",
+  "beLink": "Should be a link",
+  "notUser": "You are not a user",
+  "somethingWrong": "Something went wrong",
   "save": "Save Profile",
   "saved": "Saved Successfully"
 }
