@@ -34,5 +34,6 @@
   "linkedin": "Your Linkedin Url",
   "github": "Your Github Url",
   "twitter": "Your Twitter Url",
-  "save": "Save Profile"
+  "save": "Save Profile",
+  "saved": "Saved Successfully"
 }
