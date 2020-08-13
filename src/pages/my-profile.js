@@ -82,7 +82,7 @@ const MyProfile = () => {
                 >
                   {t('bio')}
                 </label>
-                <input
+                <textarea
                   id="bio"
                   {...formik.getFieldProps('bio')}
                   type="text"
