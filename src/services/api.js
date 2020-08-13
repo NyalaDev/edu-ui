@@ -38,3 +38,12 @@ export const signin = async ({ identifier, password }) => {
 
   return data
 }
+
+export const getProfile = async userId => {
+  return axiosInstance().get(`/profiles/${userId}`)
+}
+
+export const addProfile = async values => {
+  const { data } = await axiosInstance().post(`/profiles`, values)
+  return data
+}

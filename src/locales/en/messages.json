@@ -29,5 +29,9 @@
   "passConfirm": "Password Confirmation",
   "aboutCourse": "Course info",
   "duration": "Duration",
-  "released": "Released"
+  "released": "Released",
+  "bio": "Your bio",
+  "linkedin": "Your Linkedin Url",
+  "github": "Your Github Url",
+  "twitter": "Your Twitter Url"
 }

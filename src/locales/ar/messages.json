@@ -29,5 +29,9 @@
   "passConfirm": "تأكيد كلمة المرور",
   "aboutCourse": "عن الكورس",
   "duration": "مدة الكورس",
-  "released": "نشر بتاريخ"
+  "released": "نشر بتاريخ",
+  "bio": "السيرة الذاتية",
+  "linkedin": " Linkedin حسابك بموقع",
+  "github": "Github حسابك بموقع",
+  "twitter": "Twitter حسابك بموقع"
 }
