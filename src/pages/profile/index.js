@@ -35,6 +35,7 @@ const MyProfile = () => {
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
+      name: profile.name || '',
       bio: profile.bio || '',
       linkedin: profile.linkedin || '',
       github: profile.github || '',
@@ -67,6 +68,25 @@ const MyProfile = () => {
           </h2>
           <div className="border-teal p-8 border-t-12 bg-white mb-6 rounded-lg  mt-3">
             <form onSubmit={formik.handleSubmit}>
+              <div className="mb-4">
+                <label
+                  htmlFor="name"
+                  className="font-bold text-grey-darker block mb-2"
+                >
+                  {t('name')}
+                </label>
+                <input
+                  id="name"
+                  {...formik.getFieldProps('name')}
+                  type="text"
+                  className="block appearance-none w-full bg-white border border-grey-light hover:border-grey px-2 py-2 rounded shadow"
+                  placeholder={t('name')}
+                />
+                {formik.touched.name && formik.errors.name ? (
+                  <div className="text-red-600 mt-1">{formik.errors.name}</div>
+                ) : null}
+              </div>
+
               <div className="mb-4">
                 <label
                   htmlFor="bio"
