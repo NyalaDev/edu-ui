@@ -5,6 +5,7 @@
   "version": "0.1.0",
   "author": "NyalaDev",
   "dependencies": {
+    "algoliasearch": "^4.4.0",
     "axios": "^0.19.2",
     "babel-plugin-styled-components": "^1.10.7",
     "formik": "^2.1.5",
@@ -30,6 +31,7 @@
     "react-helmet": "^6.1.0",
     "react-i18next": "^11.7.0",
     "react-icons": "^3.10.0",
+    "react-instantsearch-dom": "^6.7.0",
     "react-player": "^2.5.0",
     "react-toastify": "^6.0.8",
     "styled-components": "^5.1.1",
@@ -37,9 +39,9 @@
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
-    "eslint-config-airbnb": "^18.2.0",
     "babel-jest": "^26.2.1",
     "babel-preset-gatsby": "^0.5.4",
+    "eslint-config-airbnb": "^18.2.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-jsx-a11y": "^6.3.1",
