@@ -7,6 +7,7 @@ import Layout from '../components/Layout'
 import Seo from '../components/Seo'
 import CourseCard from '../components/CourseCard'
 import CourseMeta from '../components/CourseMeta'
+import InstructorBio from '../components/InstructorBio'
 import LecturesList from '../components/LecturesList'
 import { getYoutubeThumbnail } from '../common/util'
 
@@ -18,6 +19,7 @@ const CourseView = ({ data }) => {
     slug,
     github_repo: githubRepo,
     created_at: createdAt,
+    instructor,
   } = strapiCourse
   const thumbnail = getYoutubeThumbnail(lectures[0].url)
   const { t } = useTranslation()
@@ -37,6 +39,8 @@ const CourseView = ({ data }) => {
           />
           <br />
           <CourseMeta lectures={lectures} createdAt={createdAt} />
+          <br />
+          <InstructorBio instructor={instructor} />
         </div>
 
         <div className="md:col-span-2 sm:col-span-1">
@@ -74,6 +78,13 @@ export const pageQuery = graphql`
         position
         duration
         url
+      }
+      instructor {
+        username
+        profile {
+          name
+          bio
+        }
       }
       updated_at
       created_at
