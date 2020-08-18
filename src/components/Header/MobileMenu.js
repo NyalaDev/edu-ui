@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'gatsby'
 import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
-import SearchBar from './SearchBar'
+import Search from '../Search'
 
 const MobileMenu = ({ open, navBarItems }) => {
   const { t } = useTranslation()
@@ -21,7 +21,7 @@ const MobileMenu = ({ open, navBarItems }) => {
         ))}
       </div>
       <div className="px-4 py-2">
-        <SearchBar />
+        <Search />
       </div>
     </div>
   )
