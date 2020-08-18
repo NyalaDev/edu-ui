@@ -1,13 +1,29 @@
-import React from 'react'
+import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
 
-const SearchBar = () => {
+const SearchBox = ({ onSearch }) => {
+  const [text, setText] = useState('')
   const { t } = useTranslation()
+
+  const handleKeyDown = e => {
+    if (e.key === 'Enter') {
+      onSearch(text)
+    }
+  }
+
+  const handleChange = e => {
+    setText(e.target.value)
+  }
+
   return (
-    <div className="relative">
+    <>
       <input
+        value={text}
         type="search"
         placeholder={t('search')}
+        onChange={handleChange}
+        onKeyDown={handleKeyDown}
         className="w-full bg-gray-100 text-sm text-gray-800 transition border focus:outline-none focus:border-gray-700 rounded py-1 px-2 pl-10 appearance-none leading-normal"
       />
       <div
@@ -22,8 +38,12 @@ const SearchBar = () => {
           <path d="M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z" />
         </svg>
       </div>
-    </div>
+    </>
   )
 }
 
-export default SearchBar
+SearchBox.propTypes = {
+  onSearch: PropTypes.func.isRequired,
+}
+
+export default SearchBox
