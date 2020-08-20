@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { appConfig } from '../common/config'
 import {
   setLocalStorage,
   getLocalStorage,
@@ -10,7 +11,7 @@ const axiosInstance = () => {
   const token = getLocalStorage(TOKEN_KEY)
   const headers = token ? { Authorization: `Bearer ${token}` } : undefined
   const params = {
-    baseURL: `${process.env.GATSBY_STRAPI_API_URL}`,
+    baseURL: appConfig.strapiURL,
     timeout: 10000,
   }
   if (headers) {
@@ -45,5 +46,16 @@ export const getProfile = async () => {
 
 export const addProfile = async values => {
   const { data } = await axiosInstance().put(`/profiles`, values)
+  return data
+}
+
+/**
+ * Upload file to strapi media
+ * @param {*} file The file object
+ */
+export const uploadFile = async file => {
+  const formData = new FormData()
+  formData.append('files', file)
+  const { data } = await axiosInstance().post(`/upload`, formData)
   return data
 }

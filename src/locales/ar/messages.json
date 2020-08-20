@@ -38,5 +38,13 @@
   "somethingWrong": "حدث خطأ",
   "save": "حفظ الملف الشخصي",
   "saved": "تم الحفظ",
-  "instructorBio": "السيرة الذاتية للمعلم"
+  "instructorBio": "السيرة الذاتية للمعلم",
+  "updatePhoto": "تعديل الصورة",
+  "validation": {
+    "required": "هذ الحقل مطلوب"
+  },
+  "errors": {
+    "generic": "حدث خطأ, الرجاء المحاول مرة أخري",
+    "invalid_auth": "إسم المستخدم أو كلمة المرور غير صحيحة"
+  }
 }
