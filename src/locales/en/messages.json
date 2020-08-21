@@ -38,5 +38,13 @@
   "somethingWrong": "Something went wrong",
   "save": "Save Profile",
   "saved": "Saved Successfully",
-  "instructorBio": "Instructor Bio"
+  "instructorBio": "Instructor Bio",
+  "updatePhoto": "Update Photo",
+  "validation": {
+    "required": "This field is required"
+  },
+  "errors": {
+    "generic": "An error occured. Please try again",
+    "invalid_auth": "Invalid username/password. Please try again"
+  }
 }

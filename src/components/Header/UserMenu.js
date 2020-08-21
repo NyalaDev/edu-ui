@@ -3,12 +3,11 @@ import { Link } from 'gatsby'
 
 // import { getUser } from '../../services/auth'
 import { useTranslation } from 'react-i18next'
+import { DEFAULT_PROFILE_PIC } from '../../common/const'
 
 const UserMenu = () => {
   const [open, setOpen] = useState(false)
-  // const { username } = getUser()
   const { t } = useTranslation()
-  // const greetingMessage = `مرحباً ${username}! `
 
   const toggleOpen = () => {
     setOpen(!open)
@@ -17,7 +16,7 @@ const UserMenu = () => {
   // FIXME: Change Dropdown on desktop to open right
   return (
     <div className="ml-3 relative">
-      <div>
+      <div className="mr-4">
         <button
           className="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-white transition duration-150 ease-in-out"
           id="user-menu"
@@ -28,7 +27,7 @@ const UserMenu = () => {
         >
           <img
             className="h-8 w-8 rounded-full"
-            src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+            src={DEFAULT_PROFILE_PIC}
             alt=""
           />
         </button>

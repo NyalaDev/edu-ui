@@ -32,7 +32,7 @@ export const handleAuthentication = async (provider = 'github') => {
 }
 
 export const isLoggedIn = () => {
-  return getLocalStorage(TOKEN_KEY) ? true : false
+  return getLocalStorage(TOKEN_KEY) || false
 }
 
 export const getUser = () => {
