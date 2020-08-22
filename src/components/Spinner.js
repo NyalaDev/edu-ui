@@ -1,9 +1,10 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-const Spinner = () => (
+const Spinner = ({ size }) => (
   <StyledContainer>
-    <StyledSpinner viewBox="0 0 50 50">
+    <StyledSpinner viewBox="0 0 50 50" size={size}>
       <circle
         className="path"
         cx="25"
@@ -16,6 +17,14 @@ const Spinner = () => (
   </StyledContainer>
 )
 
+Spinner.propTypes = {
+  size: PropTypes.number,
+}
+
+Spinner.defaultProps = {
+  size: 25,
+}
+
 const StyledContainer = styled.div`
   display: flex;
   align-items: center;
@@ -24,8 +33,8 @@ const StyledContainer = styled.div`
 
 const StyledSpinner = styled.svg`
   animation: rotate 2s linear infinite;
-  width: 25px;
-  height: 25px;
+  width: ${({ size }) => size}px;
+  height: ${({ size }) => size}px;
 
   & .path {
     stroke: #5652bf;

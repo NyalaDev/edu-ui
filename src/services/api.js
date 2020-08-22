@@ -1,14 +1,10 @@
 import axios from 'axios'
 import { appConfig } from '../common/config'
-import {
-  setLocalStorage,
-  getLocalStorage,
-  USER_DATA_KEY,
-  TOKEN_KEY,
-} from './localStorage'
+import { getLocalStorage } from './localStorage'
+import { LOCALE_STORAGE_TOKEN } from '../common/const'
 
 const axiosInstance = () => {
-  const token = getLocalStorage(TOKEN_KEY)
+  const token = getLocalStorage(LOCALE_STORAGE_TOKEN)
   const headers = token ? { Authorization: `Bearer ${token}` } : undefined
   const params = {
     baseURL: appConfig.strapiURL,
@@ -33,10 +29,6 @@ export const signin = async ({ identifier, password }) => {
     identifier,
     password,
   })
-
-  setLocalStorage(TOKEN_KEY, data.jwt)
-  setLocalStorage(USER_DATA_KEY, JSON.stringify(data.user))
-
   return data
 }
 

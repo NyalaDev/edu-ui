@@ -1,11 +1,5 @@
 import moment from 'moment'
 import { isEmpty } from 'lodash'
-import {
-  getLocalStorage,
-  TOKEN_KEY,
-  USER_DATA_KEY,
-  isBrowser,
-} from './localStorage'
 
 export const getYoutubeThumbnail = url => {
   if (url && url.match(/youtube/)) {
@@ -33,13 +27,4 @@ export const calculateVideosDuration = (lectures = []) => {
       moment.duration(`00:${duration}`)
     )
   return moment.utc(totalDuration.asMilliseconds()).format('HH:mm:ss')
-}
-
-export const isLoggedIn = () => {
-  return getLocalStorage(TOKEN_KEY) || false
-}
-
-export const getUser = () => {
-  const user = getLocalStorage(USER_DATA_KEY)
-  return isBrowser && user ? JSON.parse(user) : {}
 }

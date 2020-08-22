@@ -1,7 +1,7 @@
-/**
- * Implement Gatsby's Browser APIs in this file.
- *
- * See: https://www.gatsbyjs.org/docs/browser-apis/
- */
+/* eslint-disable */
+import React from 'react'
+import { AuthProvider } from './src/contexts/AuthContext'
 
-// You can delete this file if you're not using it
+export const wrapRootElement = ({ element }) => {
+  return <AuthProvider>{element}</AuthProvider>
+}

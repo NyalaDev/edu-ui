@@ -1,41 +1,24 @@
+import { useContext } from 'react'
 import queryString from 'query-string'
 import axios from 'axios'
 import { navigate } from 'gatsby'
 import { appConfig } from '../common/config'
-import {
-  getLocalStorage,
-  setLocalStorage,
-  TOKEN_KEY,
-  USER_DATA_KEY,
-  isBrowser,
-} from './localStorage'
+import { AuthContext } from '../contexts/AuthContext'
 
 export const handleAuthentication = async (provider = 'github') => {
-  if (!isBrowser) {
-    return
-  }
-
+  const { setCurrentUser, setAuthToken } = useContext(AuthContext)
   const callBackParams = queryString.parse(window.location.search)
   const requestURL = `${appConfig.strapiURL}/auth/${provider}/callback`
 
   try {
     const { data } = await axios.get(requestURL, { params: callBackParams })
 
-    if (data.jwt) {
-      setLocalStorage(TOKEN_KEY, data.jwt)
-      setLocalStorage(USER_DATA_KEY, JSON.stringify(data.user))
-      navigate('/signin')
+    if (data.user && data.jwt) {
+      setCurrentUser(data.user)
+      setAuthToken(data.jwt)
+      navigate('/')
     }
   } catch (e) {
     //
   }
-}
-
-export const isLoggedIn = () => {
-  return getLocalStorage(TOKEN_KEY) || false
-}
-
-export const getUser = () => {
-  const user = getLocalStorage(USER_DATA_KEY)
-  return isBrowser && user ? JSON.parse(user) : {}
 }
