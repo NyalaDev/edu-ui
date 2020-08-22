@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import { navigate } from 'gatsby'
 import { useFormik } from 'formik'
@@ -6,39 +6,25 @@ import * as Yup from 'yup'
 import { isEmpty } from 'lodash'
 import { toast } from 'react-toastify'
 import Layout from '../../components/Layout'
-import { getUser } from '../../services/util'
-import { getProfile, addProfile, uploadFile } from '../../services/api'
-import { DEFAULT_PROFILE_PIC } from '../../common/const'
 import Spinner from '../../components/Spinner'
+import InputWithAddOn from '../../components/InputWithAddOn'
+import { AuthContext } from '../../contexts/AuthContext'
+import { addProfile, uploadFile } from '../../services/api'
+import { getProfilePicuteUrlFromUserObject } from '../../common/util'
 
 const MyProfile = () => {
   const { t } = useTranslation()
-  const user = getUser()
-  const [profile, setProfile] = useState({})
+  const { currentUser, setCurrentUser } = useContext(AuthContext)
   const [uploading, setUploading] = useState(false)
   const fileInputEl = useRef(null)
 
   useEffect(() => {
-    if (isEmpty(user)) {
+    if (isEmpty(currentUser)) {
       navigate('/signin')
-      return
     }
-
-    const getProfileData = async () => {
-      try {
-        const { data } = await getProfile()
-        if (data) {
-          setProfile(data)
-        }
-      } catch (err) {
-        if (err.message.match(/(403|400)/)) {
-          toast.error(t('notUser'))
-        } else toast.error(t('somethingWrong'))
-      }
-    }
-    getProfileData()
   }, [])
 
+  const profile = currentUser.profile ? currentUser.profile : {}
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
@@ -56,7 +42,8 @@ const MyProfile = () => {
     }),
     onSubmit: async values => {
       try {
-        await addProfile(values)
+        const response = await addProfile(values)
+        setCurrentUser({ ...currentUser, profile: response })
         toast.success(t('saved'))
       } catch (err) {
         if (err.message.match(/(403|400)/)) {
@@ -84,7 +71,7 @@ const MyProfile = () => {
           profilepicture: data[0],
         }
         const updatedProfile = await addProfile(updateProfileRequest)
-        setProfile(updatedProfile)
+        setCurrentUser({ ...currentUser, profile: updatedProfile })
         setUploading(false)
       } catch (error) {
         setUploading(false)
@@ -93,9 +80,7 @@ const MyProfile = () => {
     }
   }
 
-  const { profilepicture } = profile
-  const profilePictureUrl =
-    (profilepicture && profilepicture.url) || DEFAULT_PROFILE_PIC
+  const profilePictureUrl = getProfilePicuteUrlFromUserObject(currentUser)
   return (
     <Layout>
       <div className="flex flex-col md:flex-row">
@@ -105,24 +90,28 @@ const MyProfile = () => {
             src={profilePictureUrl}
             alt="Avatar of Jonathan Reinink"
           />
-          <input
-            type="file"
-            hidden
-            ref={fileInputEl}
-            name="photo"
-            onChange={handleFileChange}
-          />
+          {!isEmpty(profile) && (
+            <>
+              <input
+                type="file"
+                hidden
+                ref={fileInputEl}
+                name="photo"
+                onChange={handleFileChange}
+              />
 
-          {!uploading && (
-            <button
-              type="button"
-              className="bg-gray-900 mt-3 hover:bg-gray-600 text-white px-4 rounded"
-              onClick={() => fileInputEl.current.click()}
-            >
-              {t('updatePhoto')}
-            </button>
+              {!uploading && (
+                <button
+                  type="button"
+                  className="bg-gray-900 mt-3 hover:bg-gray-600 text-white px-4 rounded"
+                  onClick={() => fileInputEl.current.click()}
+                >
+                  {t('updatePhoto')}
+                </button>
+              )}
+              {uploading && <Spinner />}
+            </>
           )}
-          {uploading && <Spinner />}
         </div>
         <div className="w-2/3">
           <form onSubmit={formik.handleSubmit}>
@@ -171,12 +160,11 @@ const MyProfile = () => {
               >
                 {t('socialLink', { provider: 'Linkedin' })}
               </label>
-              <input
+              <InputWithAddOn
                 id="linkedin"
-                {...formik.getFieldProps('linkedin')}
-                type="text"
-                className="block appearance-none w-full bg-white border border-grey-light hover:border-grey px-2 py-2 rounded shadow"
                 placeholder={t('socialLink', { provider: 'Linkedin' })}
+                prefix="https://linkedin.com/in/"
+                {...formik.getFieldProps('linkedin')}
               />
               {formik.touched.linkedin && formik.errors.linkedin ? (
                 <div className="text-red-600 mt-1">
@@ -192,12 +180,11 @@ const MyProfile = () => {
               >
                 {t('socialLink', { provider: 'Github' })}
               </label>
-              <input
+              <InputWithAddOn
                 id="github"
+                placeholder={t('socialLink', { provider: 'github' })}
+                prefix="https://github.com/"
                 {...formik.getFieldProps('github')}
-                type="text"
-                className="block appearance-none w-full bg-white border border-grey-light hover:border-grey px-2 py-2 rounded shadow"
-                placeholder={t('socialLink', { provider: 'Github' })}
               />
               {formik.touched.github && formik.errors.github ? (
                 <div className="text-red-600 mt-1">{formik.errors.github}</div>
@@ -211,12 +198,11 @@ const MyProfile = () => {
               >
                 {t('socialLink', { provider: 'Twitter' })}
               </label>
-              <input
+              <InputWithAddOn
                 id="twitter"
+                placeholder={t('socialLink', { provider: 'twitter' })}
+                prefix="https://twitter.com/"
                 {...formik.getFieldProps('twitter')}
-                type="text"
-                className="block appearance-none w-full bg-white border border-grey-light hover:border-grey px-2 py-2 rounded shadow"
-                placeholder={t('socialLink', { provider: 'Twitter' })}
               />
               {formik.touched.twitter && formik.errors.twitter ? (
                 <div className="text-red-600 mt-1">{formik.errors.twitter}</div>

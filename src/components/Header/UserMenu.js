@@ -1,17 +1,24 @@
-import React, { useState } from 'react'
-import { Link } from 'gatsby'
-
-// import { getUser } from '../../services/auth'
+import React, { useState, useContext } from 'react'
+import { Link, navigate } from 'gatsby'
 import { useTranslation } from 'react-i18next'
-import { DEFAULT_PROFILE_PIC } from '../../common/const'
+import { AuthContext } from '../../contexts/AuthContext'
+import { getProfilePicuteUrlFromUserObject } from '../../common/util'
 
 const UserMenu = () => {
+  const { currentUser, logout } = useContext(AuthContext)
   const [open, setOpen] = useState(false)
   const { t } = useTranslation()
 
   const toggleOpen = () => {
     setOpen(!open)
   }
+
+  const onLogoutClick = () => {
+    logout()
+    navigate('/')
+  }
+
+  const profilePictureUrl = getProfilePicuteUrlFromUserObject(currentUser)
 
   // FIXME: Change Dropdown on desktop to open right
   return (
@@ -27,7 +34,7 @@ const UserMenu = () => {
         >
           <img
             className="h-8 w-8 rounded-full"
-            src={DEFAULT_PROFILE_PIC}
+            src={profilePictureUrl}
             alt=""
           />
         </button>
@@ -36,7 +43,7 @@ const UserMenu = () => {
       <div
         className={`${
           open ? '' : 'hidden'
-        } origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg`}
+        } origin-top-right absolute right-0 mt-2 w-40 rounded-md shadow-lg`}
       >
         <div
           className="py-1 rounded-md bg-white shadow-xs"
@@ -52,16 +59,10 @@ const UserMenu = () => {
             {t('profile')}
           </Link>
           <Link
-            to="/"
-            className="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out"
-            role="menuitem"
-          >
-            {t('settings')}
-          </Link>
-          <Link
             to="#"
             className="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out"
             role="menuitem"
+            onClick={onLogoutClick}
           >
             {t('signOut')}
           </Link>

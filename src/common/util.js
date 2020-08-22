@@ -1,5 +1,6 @@
 import moment from 'moment'
 import { isEmpty } from 'lodash'
+import { DEFAULT_PROFILE_PIC } from './const'
 
 /**
  * Format a duration
@@ -46,4 +47,26 @@ export const calculateVideosDuration = (lectures = []) => {
       moment.duration(duration)
     )
   return moment.utc(totalDuration.asMilliseconds()).format('HH:mm:ss')
+}
+
+/**
+ * Helper function to get profile picture from the user object
+ * @param {*} user the current user
+ */
+export const getProfilePicuteUrlFromUserObject = user => {
+  if (!user || isEmpty(user)) {
+    return DEFAULT_PROFILE_PIC
+  }
+
+  // TODO: use the CDN link instead of the s3 ?
+  try {
+    const { profile } = user
+    const {
+      profilepicture: { url },
+    } = profile
+
+    return url || DEFAULT_PROFILE_PIC
+  } catch (error) {
+    return DEFAULT_PROFILE_PIC
+  }
 }

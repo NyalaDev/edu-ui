@@ -3,6 +3,7 @@ import { Link } from 'gatsby'
 import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
 import Search from '../Search'
+import LanguageSwitcher from '../LanguageSwitcher'
 
 const MobileMenu = ({ open, navBarItems }) => {
   const { t } = useTranslation()
@@ -22,6 +23,9 @@ const MobileMenu = ({ open, navBarItems }) => {
       </div>
       <div className="px-4 py-2">
         <Search />
+      </div>
+      <div className="block md:hidden px-4 py-2">
+        <LanguageSwitcher />
       </div>
     </div>
   )

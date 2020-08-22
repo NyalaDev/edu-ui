@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { useFormik } from 'formik'
 import { useTranslation } from 'react-i18next'
 import * as Yup from 'yup'
@@ -7,23 +7,19 @@ import { toast } from 'react-toastify'
 import Layout from '../../components/Layout'
 import SocialButton from '../../components/SocialButton'
 import { signin } from '../../services/api'
-import {
-  getLocalStorage,
-  TOKEN_KEY,
-  isBrowser,
-} from '../../services/localStorage'
+import { AuthContext } from '../../contexts/AuthContext'
 
 const providers = ['GitHub', 'Google']
 
 const SiginPage = () => {
+  const { isLoggedIn, setCurrentUser, setAuthToken } = useContext(AuthContext)
   const { t } = useTranslation()
 
-  const token = getLocalStorage(TOKEN_KEY)
   useEffect(() => {
-    if (token) {
+    if (isLoggedIn) {
       navigate('/')
     }
-  }, [token])
+  }, [isLoggedIn])
 
   const formik = useFormik({
     initialValues: {
@@ -36,8 +32,10 @@ const SiginPage = () => {
     }),
     onSubmit: async values => {
       try {
-        await signin(values)
-        if (isBrowser) window.location.reload()
+        const data = await signin(values)
+        setAuthToken(data.jwt)
+        setCurrentUser(data.user)
+        navigate('/')
       } catch (err) {
         const message = err.message.match(/(403|400)/)
           ? 'errors.invalid_auth'

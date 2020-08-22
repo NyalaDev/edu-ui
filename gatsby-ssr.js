@@ -1,7 +1,7 @@
-/**
- * Implement Gatsby's SSR (Server Side Rendering) APIs in this file.
- *
- * See: https://www.gatsbyjs.org/docs/ssr-apis/
- */
+/* eslint-disable */
+const React = require('react')
+const { AuthProvider } = require('./src/contexts/AuthContext')
 
-// You can delete this file if you're not using it
+exports.wrapRootElement = ({ element }) => {
+  return <AuthProvider>{element}</AuthProvider>
+}

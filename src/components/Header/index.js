@@ -1,13 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { Link } from 'gatsby'
 import { useTranslation } from 'react-i18next'
-import { isEmpty } from 'lodash'
-
+import LanguageSwitcher from '../LanguageSwitcher'
 import UserMenu from './UserMenu'
 import Search from '../Search'
 import MobileMenu from './MobileMenu'
-
-import { getUser } from '../../services/auth'
+import { AuthContext } from '../../contexts/AuthContext'
 
 const navBarItems = [
   {
@@ -23,8 +21,7 @@ const navBarItems = [
 ]
 
 const Header = () => {
-  // Temp for styeling. FIXME: User context or redux ?
-  const isAuthenticated = !isEmpty(getUser())
+  const { isLoggedIn } = useContext(AuthContext)
 
   const { t } = useTranslation()
   const [mobileNavbarOpen, setMobileNavbarOpen] = useState(false)
@@ -122,8 +119,7 @@ const Header = () => {
                 />
               </svg>
             </button> */}
-
-            {!isAuthenticated && (
+            {!isLoggedIn && (
               <Link
                 to="/signin"
                 className="mx-2 px-3 py-2 rounded-md text-sm font-medium leading-5 text-white  focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out"
@@ -131,7 +127,10 @@ const Header = () => {
                 {t('signIn')}
               </Link>
             )}
-            {isAuthenticated && <UserMenu />}
+            {isLoggedIn && <UserMenu />}
+            <div className="hidden md:block">
+              <LanguageSwitcher />
+            </div>
           </div>
         </div>
       </div>
