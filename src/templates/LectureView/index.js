@@ -7,13 +7,17 @@ import Layout from '../../components/Layout'
 import LecturesList from '../../components/LecturesList'
 import Seo from '../../components/Seo'
 import LectureNavigationButton from './LectureNavigationButton'
-
-import { StyledPlayerWrap, StyledPlayer } from './styles'
+import VideoPlayer from './VideoPlayer'
 
 const LectureView = ({ data }) => {
   const { strapiLecture, strapiCourse } = data
-  const { url, title: lectureTitle, position } = strapiLecture
-  const { title: courseTitle, slug, lectures } = strapiCourse
+  const { url, title: lectureTitle, position, strapiId } = strapiLecture
+  const {
+    title: courseTitle,
+    slug,
+    lectures,
+    strapiId: courseStrapiId,
+  } = strapiCourse
   const isLastLecture = position === lectures.length
   const isFirstLecture = position === 1
 
@@ -66,9 +70,11 @@ const LectureView = ({ data }) => {
             </div>
           </div>
 
-          <StyledPlayerWrap>
-            <StyledPlayer url={url} width="100%" height="100%" />
-          </StyledPlayerWrap>
+          <VideoPlayer
+            url={url}
+            lectureStrapiId={strapiId}
+            courseStrapiId={courseStrapiId}
+          />
         </div>
       </div>
     </Layout>

@@ -40,6 +40,7 @@
   "saved": "Saved Successfully",
   "instructorBio": "Instructor Bio",
   "updatePhoto": "Update Photo",
+  "lectureCompletedMsg": "This lecture is completed",
   "validation": {
     "required": "This field is required"
   },
