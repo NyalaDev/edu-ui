@@ -1,16 +1,12 @@
 import React, { useContext } from 'react'
-import { useTranslation } from 'react-i18next'
 import ReactPlayer from 'react-player'
 import PropTypes from 'prop-types'
-
-import { toast } from 'react-toastify'
 import { AuthContext } from '../../contexts/AuthContext'
 import { addProfile } from '../../services/api'
 
 const VideoPlayer = ({ url, lectureStrapiId, courseStrapiId }) => {
   const DEFENITION_OF_COMPLETED = 0.8
   const { currentUser, isLoggedIn, setCurrentUser } = useContext(AuthContext)
-  const { t } = useTranslation()
 
   const lectures =
     isLoggedIn &&
@@ -24,9 +20,8 @@ const VideoPlayer = ({ url, lectureStrapiId, courseStrapiId }) => {
     try {
       const response = await addProfile({ completedlectures: updatedLectures })
       setCurrentUser({ ...currentUser, profile: response })
-      toast.success(t('lectureCompletedMsg'))
     } catch (err) {
-      console.log(err)
+      // FIXME: error handling
     }
   }
 
@@ -53,6 +48,7 @@ const VideoPlayer = ({ url, lectureStrapiId, courseStrapiId }) => {
         url={url}
         width="100%"
         height="100%"
+        controls
         onProgress={isLoggedIn ? handleProgress : () => {}}
       />
     </div>
