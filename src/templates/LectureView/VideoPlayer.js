@@ -8,7 +8,7 @@ import { AuthContext } from '../../contexts/AuthContext'
 import { addProfile } from '../../services/api'
 
 const VideoPlayer = ({ url, lectureStrapiId, courseStrapiId }) => {
-  const DEFENITION_OF_COMPLETED = 0.01
+  const DEFENITION_OF_COMPLETED = 0.8
   const { currentUser, isLoggedIn, setCurrentUser } = useContext(AuthContext)
   const { t } = useTranslation()
 
@@ -21,11 +21,13 @@ const VideoPlayer = ({ url, lectureStrapiId, courseStrapiId }) => {
       : {}
 
   const updateCompletedLectures = async updatedLectures => {
-    // try {
-    const response = await addProfile({ completedlectures: updatedLectures })
-    setCurrentUser({ ...currentUser, profile: response })
-    toast.success(t('lectureCompletedMsg'))
-    // } catch (err) {}
+    try {
+      const response = await addProfile({ completedlectures: updatedLectures })
+      setCurrentUser({ ...currentUser, profile: response })
+      toast.success(t('lectureCompletedMsg'))
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   const handleProgress = state => {
@@ -35,13 +37,10 @@ const VideoPlayer = ({ url, lectureStrapiId, courseStrapiId }) => {
       lectures[courseStrapiId].includes(lectureStrapiId)
     if (!isCourseInProgress || !isLectureCompleted) {
       if (state.played > DEFENITION_OF_COMPLETED) {
-        const updatedLectures = lectures[courseStrapiId]
-          ? {
-              ...lectures,
-              [courseStrapiId]: [...lectures[courseStrapiId], lectureStrapiId],
-            }
-          : { ...lectures, [courseStrapiId]: [lectureStrapiId] }
-
+        const updatedLectures = {
+          course: courseStrapiId,
+          lecture: lectureStrapiId,
+        }
         updateCompletedLectures(updatedLectures)
       }
     }
