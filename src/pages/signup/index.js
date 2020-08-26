@@ -69,7 +69,7 @@ const Signup = ({
                 htmlFor="password"
                 className="font-bold text-grey-darker block mb-2"
               >
-                {t('email')}
+                {t('password')}
               </label>
               <input
                 className="w-full mt-2 py-2 px-4 bg-gray-100 text-gray-700 border border-gray-300 rounded  block appearance-none placeholder-gray-500 focus:outline-none focus:bg-white"
