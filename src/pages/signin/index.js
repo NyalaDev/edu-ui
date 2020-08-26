@@ -104,12 +104,12 @@ const SiginPage = () => {
                   {t('signIn')}
                 </button>
 
-                <a
+                {/* <a
                   className="no-underline inline-block align-baseline font-bold text-sm text-blue hover:text-blue-dark float-right"
                   href="#"
                 >
                   {t('forgotPass')}
-                </a>
+                </a> */}
               </div>
               <div className="text-center">
                 <h1 className="font-bold text-grey-darker block mb-2 mt-5">

@@ -8,11 +8,11 @@ import MobileMenu from './MobileMenu'
 import { AuthContext } from '../../contexts/AuthContext'
 
 const navBarItems = [
-  {
-    id: 1,
-    label: 'home',
-    to: '/',
-  },
+  // {
+  //   id: 1,
+  //   label: 'home',
+  //   to: '/',
+  // },
   {
     id: 2,
     label: 'courses',
