@@ -36,6 +36,14 @@ export const getProfile = async () => {
   return axiosInstance().get(`/profiles/`)
 }
 
+/**
+ * Get a single profile by its id
+ * @param {*} id the profile id
+ */
+export const getProfileById = async id => {
+  return axiosInstance().get(`/profiles/${id}`)
+}
+
 export const addProfile = async values => {
   const { data } = await axiosInstance().put(`/profiles`, values)
   return data

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import { useTranslation } from 'react-i18next'
@@ -10,8 +10,11 @@ import CourseMeta from '../components/CourseMeta'
 import InstructorBio from '../components/InstructorBio'
 import LecturesList from '../components/LecturesList'
 import { getYoutubeThumbnail } from '../common/util'
+import { DEFAULT_PROFILE_PIC } from '../common/const'
+import { getProfileById } from '../services/api'
 
 const CourseView = ({ data }) => {
+  const [instructorPhoto, setInstructorPhoto] = useState(DEFAULT_PROFILE_PIC)
   const { strapiCourse } = data
   const {
     lectures,
@@ -23,6 +26,23 @@ const CourseView = ({ data }) => {
   } = strapiCourse
   const thumbnail = getYoutubeThumbnail(lectures[0].url)
   const { t } = useTranslation()
+
+  useEffect(() => {
+    const fetchPhoto = async () => {
+      try {
+        const { profile } = instructor
+        if (!profile.id) return
+        const { data: profileData } = await getProfileById(profile.id)
+        if (profileData.profilepicture) {
+          setInstructorPhoto(profileData.profilepicture.url)
+        }
+      } catch (e) {
+        //
+      }
+    }
+
+    fetchPhoto()
+  }, [])
 
   return (
     <Layout>
@@ -40,7 +60,7 @@ const CourseView = ({ data }) => {
           <br />
           <CourseMeta lectures={lectures} createdAt={createdAt} />
           <br />
-          <InstructorBio instructor={instructor} />
+          <InstructorBio instructor={instructor} photo={instructorPhoto} />
         </div>
 
         <div className="md:col-span-2 sm:col-span-1">
@@ -82,6 +102,8 @@ export const pageQuery = graphql`
       instructor {
         username
         profile {
+          id
+          user
           name
           bio
         }

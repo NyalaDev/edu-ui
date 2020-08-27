@@ -4,8 +4,12 @@ import axios from 'axios'
 import { navigate } from 'gatsby'
 import { appConfig } from '../common/config'
 import { AuthContext } from '../contexts/AuthContext'
+import { isBrowser } from './localStorage'
 
 export const handleAuthentication = async (provider = 'github') => {
+  if (!isBrowser) {
+    return
+  }
   const { setCurrentUser, setAuthToken } = useContext(AuthContext)
   const callBackParams = queryString.parse(window.location.search)
   const requestURL = `${appConfig.strapiURL}/auth/${provider}/callback`

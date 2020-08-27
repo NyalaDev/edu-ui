@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
 
-const InstructorBio = ({ instructor }) => {
+const InstructorBio = ({ instructor, photo }) => {
   const { t } = useTranslation()
   return (
     <div className="max-w-sm rounded overflow-hidden shadow-lg ">
@@ -16,7 +16,7 @@ const InstructorBio = ({ instructor }) => {
           <img
             className="h-16 w-16 rounded-full mx-auto"
             alt="instructor"
-            src="https://thumbs.dreamstime.com/b/animation-portrait-young-beautiful-african-woman-dreadlocks-animation-portrait-young-beautiful-african-woman-128907279.jpg"
+            src={photo}
           />
           <h3 className="px-2 py-3 text-lg font-bold">
             {instructor.profile.name}
@@ -35,6 +35,7 @@ InstructorBio.propTypes = {
       bio: PropTypes.string,
     }).isRequired,
   }).isRequired,
+  photo: PropTypes.string.isRequired,
 }
 
 export default InstructorBio
