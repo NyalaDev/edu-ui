@@ -28,3 +28,6 @@ export const calculateVideosDuration = (lectures = []) => {
     )
   return moment.utc(totalDuration.asMilliseconds()).format('HH:mm:ss')
 }
+
+export const getPercentage = (number, total) =>
+  Math.round((number / total) * 100)

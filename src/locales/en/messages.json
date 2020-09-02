@@ -40,6 +40,7 @@
   "saved": "Saved Successfully",
   "instructorBio": "Instructor Bio",
   "updatePhoto": "Update Photo",
+  "continue": "Continue",
   "validation": {
     "required": "This field is required"
   },

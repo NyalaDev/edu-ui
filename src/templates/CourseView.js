@@ -2,16 +2,17 @@ import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import { useTranslation } from 'react-i18next'
-
 import Layout from '../components/Layout'
 import Seo from '../components/Seo'
 import CourseCard from '../components/CourseCard'
 import CourseMeta from '../components/CourseMeta'
 import InstructorBio from '../components/InstructorBio'
 import LecturesList from '../components/LecturesList'
+import CourseProgress from '../components/CourseProgress'
 import { getYoutubeThumbnail } from '../common/util'
 import { DEFAULT_PROFILE_PIC } from '../common/const'
 import { getProfileById } from '../services/api'
+import useCourseProgress from '../hooks/useCourseProgress'
 
 const CourseView = ({ data }) => {
   const [instructorPhoto, setInstructorPhoto] = useState(DEFAULT_PROFILE_PIC)
@@ -23,9 +24,11 @@ const CourseView = ({ data }) => {
     github_repo: githubRepo,
     created_at: createdAt,
     instructor,
+    strapiId: courseStrapiId,
   } = strapiCourse
   const thumbnail = getYoutubeThumbnail(lectures[0].url)
   const { t } = useTranslation()
+  const isCourseInProgress = useCourseProgress(courseStrapiId)
 
   useEffect(() => {
     const fetchPhoto = async () => {
@@ -49,6 +52,13 @@ const CourseView = ({ data }) => {
       <Seo title="Courses" />
       <div className="grid md:grid-cols-3 sm:grid-col-1 gap-4">
         <div className="md:col-span-1 sm:col-span-1">
+          {isCourseInProgress && (
+            <CourseProgress
+              isCourseInProgress={isCourseInProgress}
+              lecturesCount={lectures.length}
+            />
+          )}
+
           <CourseCard
             courseViewMode
             image={thumbnail}
@@ -56,7 +66,9 @@ const CourseView = ({ data }) => {
             githubRepo={githubRepo}
             lectureId={lectures[0].id}
             slug={slug}
+            isCourseInProgress={isCourseInProgress}
           />
+
           <br />
           <CourseMeta lectures={lectures} createdAt={createdAt} />
           <br />
@@ -68,7 +80,11 @@ const CourseView = ({ data }) => {
             <h4 className="bg-gray-700 rounded-tl-md rounded-tr-md py-2 px-3 text-white">
               {t('lectures')}
             </h4>
-            <LecturesList courseSlug={slug} lectures={lectures} />
+            <LecturesList
+              courseSlug={slug}
+              lectures={lectures}
+              courseStrapiId={courseStrapiId}
+            />
           </div>
         </div>
       </div>
