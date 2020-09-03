@@ -14,6 +14,7 @@ const CourseCard = ({
   lectureId,
   courseViewMode,
   tags,
+  isCourseInProgress,
 }) => {
   const { t } = useTranslation()
 
@@ -35,7 +36,7 @@ const CourseCard = ({
               style={{ transition: 'all .15s ease' }}
               to={`/courses/${slug}/lectures/${lectureId}`}
             >
-              {t('start')}
+              {isCourseInProgress ? t('continue') : t('start')}
             </Link>
             {githubRepo && (
               <div className="py-4">

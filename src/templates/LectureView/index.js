@@ -35,6 +35,7 @@ const LectureView = ({ data }) => {
             lectures={lectures}
             courseSlug={slug}
             currentLecture={strapiLecture}
+            courseStrapiId={courseStrapiId}
           />
         </div>
         <div>
