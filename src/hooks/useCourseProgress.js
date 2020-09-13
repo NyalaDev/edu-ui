@@ -6,6 +6,7 @@ const useCourseProgress = courseStrapiId => {
   const isCourseInProgress =
     isLoggedIn &&
     currentUser.profile &&
+    currentUser.profile.completedlectures &&
     currentUser.profile.completedlectures[courseStrapiId]
 
   return isCourseInProgress

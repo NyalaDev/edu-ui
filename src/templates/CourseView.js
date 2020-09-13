@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import { useTranslation } from 'react-i18next'
+import { orderBy } from 'lodash'
 import Layout from '../components/Layout'
 import Seo from '../components/Seo'
 import CourseCard from '../components/CourseCard'
@@ -26,7 +27,10 @@ const CourseView = ({ data }) => {
     instructor,
     strapiId: courseStrapiId,
   } = strapiCourse
-  const thumbnail = getYoutubeThumbnail(lectures[0].url)
+
+  const sortedLectures = orderBy(lectures, 'position', 'asc')
+
+  const thumbnail = getYoutubeThumbnail(sortedLectures[0].url)
   const { t } = useTranslation()
   const isCourseInProgress = useCourseProgress(courseStrapiId)
 
@@ -64,13 +68,13 @@ const CourseView = ({ data }) => {
             image={thumbnail}
             description={description}
             githubRepo={githubRepo}
-            lectureId={lectures[0].id}
+            lectureId={sortedLectures[0].id}
             slug={slug}
             isCourseInProgress={isCourseInProgress}
           />
 
           <br />
-          <CourseMeta lectures={lectures} createdAt={createdAt} />
+          <CourseMeta lectures={sortedLectures} createdAt={createdAt} />
           <br />
           <InstructorBio instructor={instructor} photo={instructorPhoto} />
         </div>
@@ -82,7 +86,7 @@ const CourseView = ({ data }) => {
             </h4>
             <LecturesList
               courseSlug={slug}
-              lectures={lectures}
+              lectures={sortedLectures}
               courseStrapiId={courseStrapiId}
             />
           </div>

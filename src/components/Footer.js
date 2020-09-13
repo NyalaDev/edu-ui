@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
 const quotes = [
   {
@@ -22,7 +22,12 @@ const quotes = [
 ]
 
 const Footer = () => {
-  const randomQuote = quotes[Math.floor(Math.random() * quotes.length)]
+  const [randomQuote, setRandomQuote] = useState(null)
+
+  useEffect(() => {
+    setRandomQuote(quotes[Math.floor(Math.random() * quotes.length)])
+  }, [])
+
   return (
     <footer className="flex justify-center px-4 text-gray-100 bg-gray-800">
       <div className="container py-6">
@@ -30,12 +35,14 @@ const Footer = () => {
           style={{ direction: 'ltr' }}
           className="flex items-center justify-center"
         >
-          <div className="flex flex-col items-center w-1/2">
-            <h1 className="text-center text-lg font-bold lg:text-2xl">
-              {randomQuote.text}
-            </h1>
-            <h4>{randomQuote.author}</h4>
-          </div>
+          {randomQuote && (
+            <div className="flex flex-col items-center w-1/2">
+              <h1 className="text-center text-lg font-bold lg:text-2xl">
+                {randomQuote.text}
+              </h1>
+              <h4>{randomQuote.author}</h4>
+            </div>
+          )}
         </div>
 
         <hr className="h-px mt-6 bg-gray-700 border-none" />

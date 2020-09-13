@@ -210,12 +210,15 @@ const MyProfile = () => {
             </div>
 
             <div className="flex items-center justify-between">
-              <button
-                className="py-2 px-4 bg-gray-700 text-white rounded hover:bg-gray-600 focus:outline-none"
-                type="submit"
-              >
-                {t('save')}
-              </button>
+              {formik.isSubmitting && <Spinner />}
+              {!formik.isSubmitting && (
+                <button
+                  className="py-2 px-4 bg-gray-700 text-white rounded hover:bg-gray-600 focus:outline-none"
+                  type="submit"
+                >
+                  {t('save')}
+                </button>
+              )}
             </div>
           </form>
         </div>
