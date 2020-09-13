@@ -1,0 +1,16 @@
+name: Syntax and Linting
+
+on: [pull_request]
+
+jobs:
+  lint-and-test:
+    name: Syntax check (Eslint) and Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Install dependencies
+        run: yarn
+      - name: Run Eslint
+        run: yarn lint
+      - name: Run Tests
+        run: yarn test

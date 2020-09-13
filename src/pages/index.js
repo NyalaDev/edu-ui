@@ -1,8 +1,9 @@
 import React from 'react'
-import { Link, navigate } from 'gatsby'
+import { navigate } from 'gatsby'
 import Layout from '../components/Layout'
 import Seo from '../components/Seo'
 import { isBrowser } from '../services/localStorage'
+import Spinner from '../components/Spinner'
 
 const IndexPage = () => {
   // Do not show the landing page for now
@@ -13,8 +14,7 @@ const IndexPage = () => {
   return (
     <Layout>
       <Seo title="Home" />
-      <h4>This page is still a WIP</h4>
-      <Link to="/courses">Browser Courses</Link>
+      <Spinner />
     </Layout>
   )
 }
