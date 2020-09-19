@@ -17,7 +17,7 @@ import useCourseProgress from '../hooks/useCourseProgress'
 
 const CourseView = ({ data }) => {
   const [instructorPhoto, setInstructorPhoto] = useState(DEFAULT_PROFILE_PIC)
-  const { strapiCourse } = data
+  const { strapiCourse, allStrapiCourse } = data
   const {
     lectures,
     description,
@@ -92,6 +92,34 @@ const CourseView = ({ data }) => {
           </div>
         </div>
       </div>
+
+      {allStrapiCourse.edges.length !== 0 && (
+        <div className="rounded shadow-lg bg-gray-200 my-6 ">
+          <div className=" px-6 py-3 bg-gray-800">
+            <h1 className="text-white font-semibold text-lg text-center">
+              {t('relatedCourses')}
+            </h1>
+          </div>
+          <div className="grid md:grid-cols-3 sm:grid-cols-1 gap-4 my-6 mx-3">
+            {allStrapiCourse.edges.map(({ node: course }) => {
+              const {
+                lectures: [firstLecture],
+              } = course
+              const { url: imageUrl } = firstLecture
+              return (
+                <CourseCard
+                  key={course.id}
+                  title={course.title}
+                  description={course.description}
+                  image={getYoutubeThumbnail(imageUrl)}
+                  slug={course.slug}
+                  tags={course.tags}
+                />
+              )
+            })}
+          </div>
+        </div>
+      )}
     </Layout>
   )
 }
@@ -99,12 +127,13 @@ const CourseView = ({ data }) => {
 CourseView.propTypes = {
   data: PropTypes.shape({
     strapiCourse: PropTypes.objectOf(PropTypes.any),
+    allStrapiCourse: PropTypes.objectOf(PropTypes.any),
   }).isRequired,
 }
 export default CourseView
 
 export const pageQuery = graphql`
-  query CourseByID($id: String!) {
+  query CourseByID($id: String!, $tagName: String!) {
     strapiCourse(id: { eq: $id }) {
       id
       strapiId
@@ -130,6 +159,29 @@ export const pageQuery = graphql`
       }
       updated_at
       created_at
+    }
+
+    allStrapiCourse(
+      limit: 3
+      filter: {
+        tags: { elemMatch: { tagName: { eq: $tagName } } }
+        id: { ne: $id }
+      }
+    ) {
+      edges {
+        node {
+          id
+          title
+          description
+          slug
+          lectures {
+            url
+          }
+          tags {
+            tagName
+          }
+        }
+      }
     }
   }
 `

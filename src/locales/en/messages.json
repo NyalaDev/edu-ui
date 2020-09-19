@@ -47,5 +47,6 @@
   "errors": {
     "generic": "An error occured. Please try again",
     "invalid_auth": "Invalid username/password. Please try again"
-  }
+  },
+  "relatedCourses": "Related Courses"
 }
