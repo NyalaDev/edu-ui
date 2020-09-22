@@ -20,6 +20,9 @@ exports.createPages = async ({ actions, graphql }) => {
           node {
             id
             slug
+            tags {
+              tagName
+            }
           }
         }
       }
@@ -49,13 +52,17 @@ exports.createPages = async ({ actions, graphql }) => {
 
   courses.forEach(edge => {
     const {
-      node: { id, slug },
+      node: { id, slug, tags },
     } = edge
+
+    const [firstTag = {}] = tags
+    const { tagName = '' } = firstTag
     createPage({
       component: courseViewTemplate,
       path: `/courses/${slug}`,
       context: {
         id,
+        tagName,
       },
     })
   })
