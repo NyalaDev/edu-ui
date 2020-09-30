@@ -1,8 +1,6 @@
-<img src="https://s3.abolkog.com/coderhub/logo.png" title="coderhub" alt="coderhub">
+# Barmaga.io UI
 
-# Coderhub UI
-
-CoderHub, an open source education/learning platform.
+Barmaga.io, an open source education/learning platform.
 This is the client side of the project (Front-End)
 
 This project is build with [Gatsby](https://www.gatsbyjs.org/)

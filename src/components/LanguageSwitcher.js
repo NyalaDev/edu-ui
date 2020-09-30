@@ -54,7 +54,7 @@ const LanguageSwitcher = () => {
         onClick={toggleOpen}
       >
         <img
-          src={`https://cdn.nyaladev.com/coderhub/${selectedLanguage.icon}`}
+          src={`https://cdn.nyaladev.com/barmaga.io/${selectedLanguage.icon}`}
           className="w-3 ml-2"
           alt="Flag"
         />
@@ -75,7 +75,7 @@ const LanguageSwitcher = () => {
             type="button"
           >
             <img
-              src={`https://cdn.nyaladev.com/coderhub/${lang.icon}`}
+              src={`https://cdn.nyaladev.com/barmaga.io/${lang.icon}`}
               className="w-3 ml-2"
               alt="Flag"
             />

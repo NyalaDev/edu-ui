@@ -74,13 +74,13 @@ const Header = () => {
             <div className="flex-shrink-0 ml-2">
               <img
                 className="block lg:hidden h-8 w-auto"
-                src="https://cdn.nyaladev.com/coderhub/coderhub_small.png"
-                alt="Coderhub"
+                src="https://cdn.nyaladev.com/barmaga.io/barmaga_logo_sm.svg"
+                alt="Barmaga"
               />
               <img
                 className="hidden lg:block h-8 w-auto"
-                src="https://cdn.nyaladev.com/coderhub/coderhub_logo_light.png"
-                alt="Coderhub"
+                src="https://cdn.nyaladev.com/barmaga.io/barmaga_logo.svg"
+                alt="Barmaga"
               />
             </div>
             <div className="hidden sm:block sm:ml-6">

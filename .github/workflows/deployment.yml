@@ -23,8 +23,8 @@ jobs:
         run: yarn build
         env:
           GATSBY_STRAPI_API_URL: ${{ secrets.GATSBY_STRAPI_API_URL }}
-          GATSBY_S3_BUCKET: ${{ secrets.S3_BUCKET_DEV }}
-          GATSBY_SITE_URL: 'https://edu.nyaladev.com'
+          GATSBY_S3_BUCKET: ${{ secrets.S3_BUCKET_PROD }}
+          GATSBY_SITE_URL: 'https://barmaga.io'
           GATSBY_ALGOLIA_APP_ID: ${{ secrets.GATSBY_ALGOLIA_APP_ID }}
           GATSBY_ALGOLIA_SEARCH_KEY: ${{ secrets.GATSBY_ALGOLIA_SEARCH_KEY }}
       - name: Deploy website
@@ -42,4 +42,4 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: eu-central-1
       - name: Invalidate cache
-        run: aws cloudfront create-invalidation --distribution-id "${{ secrets.DEV_DISTRIBUTION }}" --paths "/*"
+        run: aws cloudfront create-invalidation --distribution-id "${{ secrets.CLOUD_FRONT_PROD_DISTRIBUTION }}" --paths "/*"

@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `CoderHub`,
+    title: `Barmaga.io`,
     description: `Learn coding online`,
     author: `nyala.dev`,
   },
@@ -39,7 +39,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-s3`,
       options: {
-        bucketName: process.env.GATSBY_S3_BUCKET || 'https://edu.nyaladev.com',
+        bucketName: process.env.GATSBY_S3_BUCKET || 'https://barmaga.io',
       },
     },
     `gatsby-plugin-styled-components`,
