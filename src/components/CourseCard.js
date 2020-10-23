@@ -4,26 +4,47 @@ import PropTypes from 'prop-types'
 import { DiGithubBadge } from 'react-icons/di'
 import { useTranslation } from 'react-i18next'
 import HtmlViewer from './HtmlViewer'
+import Badge from './Badge'
 
 const CourseCard = ({
-  title,
-  description,
+  course,
   image,
-  slug,
-  githubRepo,
   lectureId,
   courseViewMode,
-  tags,
   isCourseInProgress,
+  forDashboard,
+  showTags,
 }) => {
   const { t } = useTranslation()
+  const {
+    language,
+    title,
+    description,
+    slug,
+    status,
+    tags,
+    github_repo: githubRepo,
+  } = course
+  const cardLink = forDashboard
+    ? `/dashboard/manage/${slug}`
+    : `/courses/${slug}`
 
   return (
     <div className="max-w-sm rounded overflow-hidden shadow-lg">
       <img className="w-full" src={image} alt={title} />
       <div className="px-6 py-4">
         <div className="font-bold text-xl mb-2">
-          <Link to={`/courses/${slug}`}>{title}</Link>
+          <Link to={cardLink}>{title}</Link>
+        </div>
+
+        <div className="flex flex-wrap my-2">
+          <Badge text={language.name} color="gray-900" />
+          {forDashboard && status && (
+            <Badge
+              text={status}
+              color={`${status === 'Published' ? 'green' : 'red'}-600`}
+            />
+          )}
         </div>
 
         <HtmlViewer className="text-gray-700 text-base" data={description} />
@@ -36,7 +57,7 @@ const CourseCard = ({
               style={{ transition: 'all .15s ease' }}
               to={`/courses/${slug}/lectures/${lectureId}`}
             >
-              {isCourseInProgress ? t('continue') : t('start')}
+              {isCourseInProgress.length > 0 ? t('continue') : t('start')}
             </Link>
             {githubRepo && (
               <div className="py-4">
@@ -54,43 +75,56 @@ const CourseCard = ({
             )}
           </>
         )}
-        {tags &&
-          tags.map(({ tagName }) => (
-            <span key={`${lectureId}.${tagName}`}>
-              <Link
-                className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2"
-                to={`/tags/${tagName}`}
-              >
-                {tagName}
-              </Link>
-            </span>
-          ))}
+        {showTags && (
+          <div className="flex flex-wrap">
+            {tags &&
+              tags.map(({ tagName }) => (
+                <Badge
+                  key={`${lectureId}.${tagName}`}
+                  text={tagName}
+                  color="purple-800"
+                  link={`/tags/${tagName}`}
+                />
+              ))}
+          </div>
+        )}
       </div>
     </div>
   )
 }
 
 CourseCard.propTypes = {
-  title: PropTypes.string,
-  description: PropTypes.string.isRequired,
+  course: PropTypes.shape({
+    language: PropTypes.shape({
+      id: PropTypes.number,
+      name: PropTypes.string,
+    }),
+    title: PropTypes.string,
+    description: PropTypes.string,
+    slug: PropTypes.string,
+    status: PropTypes.string,
+    tags: PropTypes.arrayOf(
+      PropTypes.shape({
+        tagName: PropTypes.string,
+      })
+    ),
+    github_repo: PropTypes.string,
+  }).isRequired,
+
   image: PropTypes.string.isRequired,
-  githubRepo: PropTypes.string,
-  slug: PropTypes.string.isRequired,
   lectureId: PropTypes.number,
   courseViewMode: PropTypes.bool,
-  tags: PropTypes.arrayOf(
-    PropTypes.shape({
-      tagName: PropTypes.string,
-    })
-  ),
+  isCourseInProgress: PropTypes.arrayOf(PropTypes.number),
+  forDashboard: PropTypes.bool,
+  showTags: PropTypes.bool,
 }
 
 CourseCard.defaultProps = {
-  title: '',
-  githubRepo: '',
   lectureId: 0,
   courseViewMode: false,
-  tags: [],
+  isCourseInProgress: [],
+  forDashboard: false,
+  showTags: true,
 }
 
 export default CourseCard

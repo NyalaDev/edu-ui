@@ -3,6 +3,7 @@ import { isEmpty } from 'lodash'
 import useAuthHandler from '../hooks/useAuthHandler'
 import { getLocalStorage } from '../services/localStorage'
 import { LOCALE_STORAGE_USER, LOCALE_STORAGE_TOKEN } from '../common/const'
+import { isTeacher } from '../common/util'
 
 /**
  * Helper function to get user from locale storage if exists
@@ -21,6 +22,7 @@ const getTokenFromLocaleStorageIfAny = () => {
 
 export const AuthContext = createContext({
   isLoggedIn: false,
+  isTeacher: false,
   currentUser: {},
   setCurrentUser: () => {},
   authToken: '',
@@ -51,6 +53,7 @@ export const AuthProvider = ({ children }) => {
     <AuthContext.Provider
       value={{
         isLoggedIn: !isEmpty(currentUser),
+        isTeacher: isTeacher(currentUser),
         currentUser,
         setCurrentUser,
         authToken,

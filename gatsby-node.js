@@ -2,11 +2,14 @@ const path = require('path')
 
 exports.createPages = async ({ actions, graphql }) => {
   const { createPage } = actions
-  const courseViewTemplate = path.resolve('./src/templates/CourseView.js')
+
+  const templatesBase = './src/templates'
+  const courseViewTemplate = path.resolve(`${templatesBase}/CourseView.js`)
   const lectureViewTemplate = path.resolve(
-    './src/templates/LectureView/index.js'
+    `${templatesBase}/LectureView/index.js`
   )
-  const tagViewTemplate = path.resolve('./src/templates/TagView.js')
+  const tagViewTemplate = path.resolve(`${templatesBase}/TagView.js`)
+
   const {
     data: {
       allStrapiCourse: { edges: courses },
@@ -52,10 +55,10 @@ exports.createPages = async ({ actions, graphql }) => {
 
   courses.forEach(edge => {
     const {
-      node: { id, slug, tags },
+      node: { id, slug, tags: courseTags },
     } = edge
 
-    const [firstTag = {}] = tags
+    const [firstTag = {}] = courseTags
     const { tagName = '' } = firstTag
     createPage({
       component: courseViewTemplate,
@@ -95,4 +98,11 @@ exports.createPages = async ({ actions, graphql }) => {
       },
     })
   })
+}
+
+exports.onCreatePage = async ({ page, actions }) => {
+  const { createPage } = actions
+  if (page.path.match(/^\/dashboard/)) {
+    createPage({ ...page, matchPath: '/dashboard/*' })
+  }
 }

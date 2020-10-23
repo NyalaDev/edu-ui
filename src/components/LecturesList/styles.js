@@ -26,7 +26,6 @@ export const StyledCount = styled.div`
   span {
     display: inline-block;
     position: absolute;
-    font-family: Lato, sans-serif;
     font-size: 16px;
     font-weight: 700;
     color: #666;

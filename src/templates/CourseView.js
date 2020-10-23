@@ -9,6 +9,7 @@ import CourseCard from '../components/CourseCard'
 import CourseMeta from '../components/CourseMeta'
 import InstructorBio from '../components/InstructorBio'
 import LecturesList from '../components/LecturesList'
+import CourseTags from '../components/CourseTags'
 import CourseProgress from '../components/CourseProgress'
 import { getYoutubeThumbnail } from '../common/util'
 import { DEFAULT_PROFILE_PIC } from '../common/const'
@@ -19,10 +20,9 @@ const CourseView = ({ data }) => {
   const [instructorPhoto, setInstructorPhoto] = useState(DEFAULT_PROFILE_PIC)
   const { strapiCourse, allStrapiCourse } = data
   const {
+    tags,
     lectures,
-    description,
     slug,
-    github_repo: githubRepo,
     created_at: createdAt,
     instructor,
     strapiId: courseStrapiId,
@@ -55,7 +55,7 @@ const CourseView = ({ data }) => {
     <Layout>
       <Seo title="Courses" />
       <div className="grid md:grid-cols-3 sm:grid-col-1 gap-4">
-        <div className="md:col-span-1 sm:col-span-1">
+        <div className="flex flex-col md:col-span-1 sm:col-span-1">
           {isCourseInProgress && (
             <CourseProgress
               isCourseInProgress={isCourseInProgress}
@@ -65,17 +65,17 @@ const CourseView = ({ data }) => {
 
           <CourseCard
             courseViewMode
+            course={strapiCourse}
             image={thumbnail}
-            description={description}
-            githubRepo={githubRepo}
             lectureId={sortedLectures[0].id}
-            slug={slug}
             isCourseInProgress={isCourseInProgress}
+            showTags={false}
           />
 
-          <br />
           <CourseMeta lectures={sortedLectures} createdAt={createdAt} />
-          <br />
+
+          <CourseTags tags={tags} />
+
           <InstructorBio instructor={instructor} photo={instructorPhoto} />
         </div>
 
@@ -94,7 +94,7 @@ const CourseView = ({ data }) => {
       </div>
 
       {allStrapiCourse.edges.length !== 0 && (
-        <div className="rounded shadow-lg bg-gray-200 my-6 ">
+        <div className="rounded shadow-lg bg-gray-200 my-6 py-2">
           <div className=" px-6 py-3 bg-gray-800">
             <h1 className="text-white font-semibold text-lg text-center">
               {t('relatedCourses')}
@@ -109,11 +109,8 @@ const CourseView = ({ data }) => {
               return (
                 <CourseCard
                   key={course.id}
-                  title={course.title}
-                  description={course.description}
+                  course={course}
                   image={getYoutubeThumbnail(imageUrl)}
-                  slug={course.slug}
-                  tags={course.tags}
                 />
               )
             })}
@@ -157,6 +154,14 @@ export const pageQuery = graphql`
           bio
         }
       }
+      language {
+        id
+        name
+      }
+      tags {
+        id
+        tagName
+      }
       updated_at
       created_at
     }
@@ -178,7 +183,12 @@ export const pageQuery = graphql`
             url
           }
           tags {
+            id
             tagName
+          }
+          language {
+            id
+            name
           }
         }
       }

@@ -24,9 +24,9 @@ export const getYoutubeThumbnail = url => {
       const id = url.match(/v=(.+)$/)[1]
       return id ? `https://i.ytimg.com/vi/${id}/mqdefault.jpg` : ''
     }
-    return ''
+    return 'https://cdn.nyaladev.com/barmaga.io/nyala-placeholder.png'
   } catch (e) {
-    return ''
+    return 'https://cdn.nyaladev.com/barmaga.io/nyala-placeholder.png'
   }
 }
 
@@ -68,5 +68,14 @@ export const getProfilePicuteUrlFromUserObject = user => {
     return url || DEFAULT_PROFILE_PIC
   } catch (error) {
     return DEFAULT_PROFILE_PIC
+  }
+}
+
+export const isTeacher = user => {
+  try {
+    const { role = {} } = user
+    return role.name.toLowerCase() === 'teacher'
+  } catch (e) {
+    return false
   }
 }

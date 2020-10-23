@@ -18,18 +18,14 @@ const TagView = ({ data }) => {
         </div>
         <div className="grid md:grid-cols-3 sm:grid-cols-1 gap-4">
           {courses.map(course => {
-            const {
-              lectures: [firstLecture],
-            } = course
-            const { url: imageUrl } = firstLecture
+            const { lectures } = course
+            const { url: imageUrl } = lectures[0] || {}
 
             return (
               <CourseCard
                 key={course.id}
-                title={course.title}
-                description={course.description}
+                course={course}
                 image={getYoutubeThumbnail(imageUrl)}
-                slug={course.slug}
               />
             )
           })}
@@ -59,6 +55,10 @@ export const pageQuery = graphql`
         slug
         lectures {
           url
+        }
+        language {
+          id
+          name
         }
       }
     }

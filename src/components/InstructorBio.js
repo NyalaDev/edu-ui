@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next'
 const InstructorBio = ({ instructor, photo }) => {
   const { t } = useTranslation()
   return (
-    <div className="max-w-sm rounded overflow-hidden shadow-lg ">
+    <div className="max-w-sm rounded overflow-hidden shadow-lg my-5">
       <div className="px-6 py-3 bg-purple-800">
         <h1 className="text-white font-semibold text-lg text-center items-center">
           {t('instructorBio')}
