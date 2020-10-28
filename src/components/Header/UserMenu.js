@@ -5,7 +5,7 @@ import { AuthContext } from '../../contexts/AuthContext'
 import { getProfilePicuteUrlFromUserObject } from '../../common/util'
 
 const UserMenu = () => {
-  const { currentUser, logout } = useContext(AuthContext)
+  const { currentUser, isTeacher, logout } = useContext(AuthContext)
   const [open, setOpen] = useState(false)
   const { t } = useTranslation()
 
@@ -51,6 +51,15 @@ const UserMenu = () => {
           aria-orientation="vertical"
           aria-labelledby="user-menu"
         >
+          {isTeacher && (
+            <Link
+              to="/dashboard"
+              className="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out"
+              role="menuitem"
+            >
+              {t('dashboard')}
+            </Link>
+          )}
           <Link
             to="/profile"
             className="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out"

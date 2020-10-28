@@ -26,6 +26,8 @@ describe('getYoutubeThumbnail', () => {
 
   it('Should return empty string when youtube URL is not valid', () => {
     const youtubeURL = 'https://www.anothersite.com/watch?v=123'
-    expect(getYoutubeThumbnail(youtubeURL)).toBe('')
+    expect(getYoutubeThumbnail(youtubeURL)).toBe(
+      'https://cdn.nyaladev.com/barmaga.io/nyala-placeholder.png'
+    )
   })
 })

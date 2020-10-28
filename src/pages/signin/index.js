@@ -8,6 +8,7 @@ import Layout from '../../components/Layout'
 import SocialButton from '../../components/SocialButton'
 import { signin } from '../../services/api'
 import { AuthContext } from '../../contexts/AuthContext'
+import ActivityIndicator from '../../components/ActivityIndicator'
 
 const providers = ['GitHub', 'Google']
 
@@ -97,19 +98,14 @@ const SiginPage = () => {
               </div>
 
               <div className="flex items-center justify-between">
-                <button
-                  className="py-2 px-4 bg-gray-700 text-white rounded hover:bg-gray-600 focus:outline-none"
-                  type="submit"
-                >
-                  {t('signIn')}
-                </button>
-
-                {/* <a
-                  className="no-underline inline-block align-baseline font-bold text-sm text-blue hover:text-blue-dark float-right"
-                  href="#"
-                >
-                  {t('forgotPass')}
-                </a> */}
+                <ActivityIndicator active={formik.isSubmitting}>
+                  <button
+                    className="py-2 px-4 bg-gray-700 text-white rounded hover:bg-gray-600 focus:outline-none"
+                    type="submit"
+                  >
+                    {t('signIn')}
+                  </button>
+                </ActivityIndicator>
               </div>
               <div className="text-center">
                 <h1 className="font-bold text-grey-darker block mb-2 mt-5">

@@ -26,3 +26,13 @@ export const handleAuthentication = async (provider = 'github') => {
     //
   }
 }
+
+export const extractErrorMessage = err => {
+  try {
+    const { response } = err
+    const { data } = response
+    return data.message
+  } catch (error) {
+    return 'Something went wrong'
+  }
+}
