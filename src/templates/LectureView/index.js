@@ -10,7 +10,10 @@ import LectureNavigationButton from './LectureNavigationButton'
 import VideoPlayer from './VideoPlayer'
 
 const LectureView = ({ data }) => {
-  const { strapiLecture, strapiCourse } = data
+  const { strapiLecture = {}, strapiCourse = {} } = data
+  if (!strapiCourse) {
+    return <div />
+  }
   const { url, title: lectureTitle, position, strapiId } = strapiLecture
   const {
     title: courseTitle,
