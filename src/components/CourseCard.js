@@ -57,7 +57,9 @@ const CourseCard = ({
               style={{ transition: 'all .15s ease' }}
               to={`/courses/${slug}/lectures/${lectureId}`}
             >
-              {isCourseInProgress.length > 0 ? t('continue') : t('start')}
+              {isCourseInProgress && isCourseInProgress.length > 0
+                ? t('continue')
+                : t('start')}
             </Link>
             {githubRepo && (
               <div className="py-4">

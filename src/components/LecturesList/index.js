@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { orderBy } from 'lodash'
 import { FcCheckmark } from 'react-icons/fc'
 import { formatDuration } from '../../common/util'
 
@@ -25,9 +26,10 @@ const LectureList = ({
     return value
   }
   const isCourseInProgress = useCourseProgress(courseStrapiId)
+  const sortedLectures = orderBy(lectures, 'position', 'asc')
   return (
     <StyledLectureList>
-      {lectures.map((lecture, index) => (
+      {sortedLectures.map((lecture, index) => (
         <StyledLectureListItem
           key={lecture.id}
           active={currentLecture && currentLecture.strapiId === lecture.id}
@@ -70,6 +72,7 @@ LectureList.propTypes = {
     strapiId: PropTypes.number,
   }),
   courseSlug: PropTypes.string.isRequired,
+  courseStrapiId: PropTypes.number.isRequired,
 }
 
 LectureList.defaultProps = {
