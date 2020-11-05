@@ -49,6 +49,16 @@ export const addProfile = async values => {
   return data
 }
 
+export const forgotPassword = async values => {
+  const { data } = await axiosInstance().post(`/auth/forgot-password`, values)
+  return data
+}
+
+export const resetPassword = async values => {
+  const { data } = await axiosInstance().post(`/auth/reset-password`, values)
+  return data
+}
+
 /**
  * Upload file to strapi media
  * @param {*} file The file object
