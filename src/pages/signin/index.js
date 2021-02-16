@@ -106,6 +106,12 @@ const SiginPage = () => {
                     {t('signIn')}
                   </button>
                 </ActivityIndicator>
+                <ActivityIndicator>
+                  <div className="font-bold">
+                    {' '}
+                    <Link to="./forgotPassword">Forgot Password?</Link>
+                  </div>
+                </ActivityIndicator>
               </div>
               <div className="text-center">
                 <h1 className="font-bold text-grey-darker block mb-2 mt-5">
