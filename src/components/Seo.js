@@ -20,12 +20,10 @@ const SEO = ({ description, lang, meta, title }) => {
 
   const metaDescription = description || site.siteMetadata.description
 
-  // FIXME: Fix this hard coded rtl
   return (
     <Helmet
       htmlAttributes={{
         lang,
-        dir: 'rtl',
       }}
       title={title}
       titleTemplate={`%s | ${site.siteMetadata.title}`}

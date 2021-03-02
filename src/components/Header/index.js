@@ -6,6 +6,7 @@ import UserMenu from './UserMenu'
 import Search from '../Search'
 import MobileMenu from './MobileMenu'
 import { AuthContext } from '../../contexts/AuthContext'
+import useLanguage from '../../hooks/useLanguage'
 
 const navBarItems = [
   // {
@@ -22,7 +23,7 @@ const navBarItems = [
 
 const Header = () => {
   const { isLoggedIn } = useContext(AuthContext)
-
+  const { isRtl } = useLanguage()
   const { t } = useTranslation()
   const [mobileNavbarOpen, setMobileNavbarOpen] = useState(false)
 
@@ -31,8 +32,8 @@ const Header = () => {
   }
 
   return (
-    <nav style={{ direction: 'rtl' }} className="bg-gray-800">
-      <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+    <nav style={{ direction: isRtl ? 'rtl' : 'ltr' }} className="bg-gray-800">
+      <div className="max-w-6xl mx-auto px-2 sm:px-6 lg:px-8">
         <div className="relative flex items-center justify-between h-16">
           <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
             <button

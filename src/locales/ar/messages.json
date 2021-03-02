@@ -21,7 +21,7 @@
   "forgotPass": "نسيت كلمة السر؟",
   "resetPass": "اعادة تعيين كلمة المرور",
   "or": "أو",
-  "socialSignIn": "{{provider}} تسجيل الدخول باستخدام ",
+  "socialSignIn": "تسجيل الدخول باستخدام {{provider}}",
   "signed": "تم تسجيل الدخول بنجاح",
   "noAccount": "لا تمتلك حساب؟",
   "hasAccount": "لديك حساب؟",

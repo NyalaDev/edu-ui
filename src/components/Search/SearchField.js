@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
+import useLanguage from '../../hooks/useLanguage'
 
 const SearchBox = ({ onSearch }) => {
   const [text, setText] = useState('')
+  const { isRtl } = useLanguage()
   const { t } = useTranslation()
 
   const handleKeyDown = e => {
@@ -24,11 +26,13 @@ const SearchBox = ({ onSearch }) => {
         placeholder={t('search')}
         onChange={handleChange}
         onKeyDown={handleKeyDown}
-        className="w-full bg-gray-100 text-sm text-gray-800 transition border focus:outline-none focus:border-gray-700 rounded py-1 px-2 pl-10 appearance-none leading-normal"
+        className={`w-full bg-gray-100 text-sm text-gray-800 transition border focus:outline-none focus:border-gray-700 rounded py-1 px-2 ${
+          isRtl ? 'pl-10' : 'pr-10'
+        } appearance-none leading-normal`}
       />
       <div
         className="absolute search-icon"
-        style={{ top: '0.375rem', left: '1.75rem' }}
+        style={{ top: '0.375rem', [isRtl ? 'left' : 'right']: '1.75rem' }}
       >
         <svg
           className="fill-current pointer-events-none text-gray-800 w-4 h-4"

@@ -1,10 +1,5 @@
 import React, { useState } from 'react'
-import { useTranslation } from 'react-i18next'
-import {
-  getLocalStorage,
-  setLocalStorage,
-  LANG_KEY,
-} from '../services/localStorage'
+import useLanguage from '../hooks/useLanguage'
 
 const languages = [
   {
@@ -22,9 +17,9 @@ const languages = [
 ]
 
 const LanguageSwitcher = () => {
-  const [language, setLanguage] = useState(getLocalStorage(LANG_KEY) || 'ar')
+  const { language, isRtl, setCurrentLanguage } = useLanguage()
+
   const [open, setOpen] = useState(false)
-  const { i18n } = useTranslation()
 
   const toggleOpen = () => {
     setOpen(!open)
@@ -37,10 +32,8 @@ const LanguageSwitcher = () => {
         dataset: { locale = 'ar' },
       },
     } = e
-    i18n.changeLanguage(locale)
-    setLanguage(locale)
+    setCurrentLanguage(locale)
     setOpen(false)
-    setLocalStorage(LANG_KEY, locale)
   }
 
   const selectedLanguage =
@@ -55,8 +48,8 @@ const LanguageSwitcher = () => {
       >
         <img
           src={`https://cdn.nyaladev.com/barmaga.io/${selectedLanguage.icon}`}
-          className="w-3 ml-2"
-          alt="Flag"
+          className={`w-3 ${isRtl ? 'ml-2' : 'mr-2'}`}
+          alt={`${selectedLanguage.label} Flag`}
         />
         <span>{selectedLanguage.label}</span>
       </button>
@@ -76,8 +69,8 @@ const LanguageSwitcher = () => {
           >
             <img
               src={`https://cdn.nyaladev.com/barmaga.io/${lang.icon}`}
-              className="w-3 ml-2"
-              alt="Flag"
+              className={`w-3 ${isRtl ? 'ml-2' : 'mr-2'}`}
+              alt={`${selectedLanguage.label} Flag`}
             />
             {lang.label}
           </button>
