@@ -50,15 +50,13 @@ const SiginPage = () => {
     <Layout>
       <div className="bg-white w-full max-w-lg rounded-lg shadow-md overflow-hidden mx-auto">
         <div className="py-4 px-6">
-          <h2 className="text-center font-bold text-gray-700 text-3xl">
-            {t('signIn')}
-          </h2>
+          <h2 className="text-center text-gray-700 text-3xl">{t('signIn')}</h2>
           <div className="border-teal p-8 border-t-12 bg-white mb-6 rounded-lg  mt-3">
             <form onSubmit={formik.handleSubmit}>
               <div className="mb-4">
                 <label
                   htmlFor="identifier"
-                  className="font-bold text-grey-darker block mb-2"
+                  className="text-grey-darker block mb-2"
                 >
                   {t('userOrEmail')}
                 </label>
@@ -79,7 +77,7 @@ const SiginPage = () => {
               <div className="mb-4">
                 <label
                   htmlFor="password"
-                  className="font-bold text-grey-darker block mb-2"
+                  className="text-grey-darker block mb-2"
                 >
                   {t('password')}
                 </label>
@@ -107,9 +105,9 @@ const SiginPage = () => {
                   </button>
                 </ActivityIndicator>
                 <ActivityIndicator>
-                  <div className="font-bold">
+                  <div>
                     {' '}
-                    <Link to="./forgotPassword">Forgot Password?</Link>
+                    <Link to="./forgotPassword">{t('forgotPass')}</Link>
                   </div>
                 </ActivityIndicator>
               </div>

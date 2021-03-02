@@ -22,16 +22,11 @@ const Signup = ({
     <Layout>
       <div className="bg-white w-full max-w-lg rounded-lg shadow-md overflow-hidden mx-auto">
         <div className="py-4 px-6">
-          <h2 className="text-center font-bold text-gray-700 text-3xl">
-            {t('signUp')}
-          </h2>
+          <h2 className="text-center text-gray-700 text-3xl">{t('signUp')}</h2>
 
           <form onSubmit={handleSubmit}>
             <div className="mt-4 w-full">
-              <label
-                htmlFor="name"
-                className="font-bold text-grey-darker block mb-2"
-              >
+              <label htmlFor="name" className="text-grey-darker block mb-2">
                 {t('name')}
               </label>
               <input
@@ -47,10 +42,7 @@ const Signup = ({
               )}
             </div>
             <div className="mt-4 w-full">
-              <label
-                htmlFor="email"
-                className="font-bold text-grey-darker block mb-2"
-              >
+              <label htmlFor="email" className="text-grey-darker block mb-2">
                 {t('email')}
               </label>
               <input
@@ -65,10 +57,7 @@ const Signup = ({
             </div>
 
             <div className="mt-4 w-full">
-              <label
-                htmlFor="password"
-                className="font-bold text-grey-darker block mb-2"
-              >
+              <label htmlFor="password" className="text-grey-darker block mb-2">
                 {t('password')}
               </label>
               <input
@@ -87,7 +76,7 @@ const Signup = ({
             <div className="mt-4 w-full">
               <label
                 htmlFor="passwordConfirmation"
-                className="font-bold text-grey-darker block mb-2"
+                className="text-grey-darker block mb-2"
               >
                 {t('passConfirm')}
               </label>
@@ -117,9 +106,7 @@ const Signup = ({
             </div>
 
             <div className="text-center">
-              <h1 className="font-bold text-grey-darker block mb-2 mt-5">
-                {t('or')}
-              </h1>
+              <h1 className="text-grey-darker block mb-2 mt-5">{t('or')}</h1>
             </div>
           </form>
 
@@ -132,7 +119,7 @@ const Signup = ({
           <div className="text-center mt-6 mb-2">
             <p className="text-grey-dark text-sm">
               {`${t('hasAccount')} `}
-              <Link to="/signin" className="no-underline text-blue font-bold">
+              <Link to="/signin" className="no-underline text-blue">
                 {t('signIn')}
               </Link>
               .
