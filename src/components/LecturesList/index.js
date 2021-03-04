@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { orderBy } from 'lodash'
 import { FcCheckmark } from 'react-icons/fc'
+import { Link } from 'gatsby'
 import { formatDuration } from '../../common/util'
 
 import {
@@ -30,29 +31,37 @@ const LectureList = ({
   return (
     <StyledLectureList>
       {sortedLectures.map((lecture, index) => (
-        <StyledLectureListItem
+        <Link
           key={lecture.id}
-          active={currentLecture && currentLecture.strapiId === lecture.id}
+          to={`/courses/${courseSlug}/lectures/${lecture.id}`}
         >
-          <StyledCount>
-            <span>
-              {getNumber(index)}
-              {isCourseInProgress &&
-                isCourseInProgress.includes(lecture.id) && (
-                  <FcCheckmark className="m-auto" />
-                )}
-            </span>
-          </StyledCount>
-          <StyledListBody>
-            <StyledVideoIcon />
-            <p>
-              <StyledLink to={`/courses/${courseSlug}/lectures/${lecture.id}`}>
-                {lecture.title}
-              </StyledLink>
-            </p>
-            <StyledDuration>{formatDuration(lecture.duration)}</StyledDuration>
-          </StyledListBody>
-        </StyledLectureListItem>
+          <StyledLectureListItem
+            active={currentLecture && currentLecture.strapiId === lecture.id}
+          >
+            <StyledCount>
+              <span>
+                {getNumber(index)}
+                {isCourseInProgress &&
+                  isCourseInProgress.includes(lecture.id) && (
+                    <FcCheckmark className="m-auto" />
+                  )}
+              </span>
+            </StyledCount>
+            <StyledListBody>
+              <StyledVideoIcon />
+              <p>
+                <StyledLink
+                  to={`/courses/${courseSlug}/lectures/${lecture.id}`}
+                >
+                  {lecture.title}
+                </StyledLink>
+              </p>
+              <StyledDuration>
+                {formatDuration(lecture.duration)}
+              </StyledDuration>
+            </StyledListBody>
+          </StyledLectureListItem>
+        </Link>
       ))}
     </StyledLectureList>
   )

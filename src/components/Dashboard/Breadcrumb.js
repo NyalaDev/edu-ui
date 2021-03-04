@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next'
 const Breadcrumbs = ({ name }) => {
   const { t } = useTranslation()
   return (
-    <nav className="bg-gray-400  p-3 rounded font-sans w-full my-4">
+    <nav className="bg-gray-400  p-3 rounded w-full my-4">
       <ol className="list-reset flex">
         <li>
           <Link className="text-purple-700 font-bold" to="/dashboard">

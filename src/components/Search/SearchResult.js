@@ -30,7 +30,7 @@ const SearchResult = ({ searching, result }) => {
                     src={getYoutubeThumbnail(imageUrl)}
                     alt={course.title}
                   />
-                  <p className="ml-2 text-gray-700 font-semibold font-sans tracking-wide">
+                  <p className="ml-2 text-gray-700 font-semibold tracking-wide">
                     {course.title}
                   </p>
                 </div>

@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: `Barmaga.io`,
-    description: `Learn coding online`,
+    description: `Learn coding in Arabic, Amharic and Swahili`,
     author: `nyala.dev`,
   },
   plugins: [
@@ -10,7 +10,7 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
-        path: `${__dirname}/src/images`,
+        path: `${__dirname}/src/assets/images`,
       },
     },
     `gatsby-transformer-sharp`,
@@ -24,7 +24,7 @@ module.exports = {
         background_color: `#663399`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/logo_no_text.png`, // This path is relative to the root of the site.
+        icon: `src/assets/images/logo_no_text.png`, // This path is relative to the root of the site.
       },
     },
     `gatsby-plugin-postcss`,

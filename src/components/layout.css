@@ -1,3 +1,19 @@
 @tailwind base;
+
+@layer base {
+    
+}
+
+.rtl {
+    @apply font-ar;
+    direction: rtl;
+}
+
+.rtl .title {
+    @apply font-ar-title;
+    font-family: NotoKufi;
+}
+
+
 @tailwind components;
 @tailwind utilities;

@@ -11,12 +11,13 @@ import './layout.css'
 import useLanguage from '../hooks/useLanguage'
 
 const Layout = ({ children, pageTitle }) => {
-  const { language } = useLanguage()
+  const { isRtl } = useLanguage()
 
   return (
     <div
-      style={{ direction: language === 'ar' ? 'rtl' : 'ltr' }}
-      className="bg-gray-100 font-sans leading-normal tracking-normal"
+      className={`${
+        isRtl ? 'rtl' : ''
+      } bg-gray-100 leading-normal tracking-normal`}
     >
       <Header />
 
