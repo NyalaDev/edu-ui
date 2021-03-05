@@ -138,6 +138,11 @@ export const pageQuery = graphql`
       title
       description
       github_repo
+      resourses {
+        link
+        type
+        text
+      }
       lectures {
         id
         title
