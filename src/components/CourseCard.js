@@ -30,7 +30,6 @@ const CourseCard = ({
   const cardLink = forDashboard
     ? `/dashboard/manage/${slug}`
     : `/courses/${slug}`
-  console.log(course)
   return (
     <div className="max-w-sm rounded overflow-hidden shadow-lg">
       <Link to={cardLink}>
