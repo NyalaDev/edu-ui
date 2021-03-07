@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
-import { FaRegClock, FaRegCalendarAlt } from 'react-icons/fa'
+import { FaRegClock, FaRegCalendarAlt, FaInfoCircle } from 'react-icons/fa'
 import moment from 'moment'
 
 import { calculateVideosDuration } from '../common/util'
@@ -11,8 +11,9 @@ const CourseMeta = ({ lectures, createdAt }) => {
   return (
     <div className="max-w-sm rounded overflow-hidden shadow-lg my-5 ">
       <div className="px-6 py-3 bg-purple-800">
-        <h1 className="text-white font-semibold text-lg text-center items-center">
-          {t('aboutCourse')}
+        <h1 className="text-white font-semibold text-lg items-center justify-center flex">
+          <FaInfoCircle />
+          <span className="mx-1">{t('aboutCourse')}</span>
         </h1>
       </div>
 

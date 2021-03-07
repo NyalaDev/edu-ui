@@ -71,6 +71,11 @@
   "tag": "أوسمة",
   "courseTags": "أوسمة الكورس",
   "unpublish": "إلغاء النشر",
+  "resources": "الملحقات",
+  "details": "البيانات",
+  "add": "أضف",
+  "title": "العنوان",
+  "url": "الرابط",
   "validation": {
     "required": "هذ الحقل مطلوب"
   },

@@ -7,6 +7,7 @@ import Layout from '../components/Layout'
 import Seo from '../components/Seo'
 import CourseCard from '../components/CourseCard'
 import CourseMeta from '../components/CourseMeta'
+import CourseResources from '../components/CourseResources'
 import InstructorBio from '../components/InstructorBio'
 import LecturesList from '../components/LecturesList'
 import CourseTags from '../components/CourseTags'
@@ -71,6 +72,8 @@ const CourseView = ({ data }) => {
             isCourseInProgress={isCourseInProgress}
             showTags={false}
           />
+
+          <CourseResources course={strapiCourse} />
 
           <CourseMeta lectures={sortedLectures} createdAt={createdAt} />
 
@@ -138,8 +141,8 @@ export const pageQuery = graphql`
       title
       description
       github_repo
-      resourses {
-        link
+      resources {
+        url
         type
         text
       }

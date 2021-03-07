@@ -71,6 +71,11 @@
   "tags": "Tag",
   "tag": "Tags",
   "courseTags": "Course tags",
+  "resources": "Resources",
+  "details": "Details",
+  "add": "Add",
+  "title": "Title",
+  "url": "URL",
   "validation": {
     "required": "This field is required"
   },

@@ -8,6 +8,7 @@ import ActivityIndicator from '../ActivityIndicator'
 import Clickable from '../Clickable'
 import CourseForm from './CourseForm'
 import LecturesList from './LecturesList'
+import ResourcesList from './ResourcesList'
 
 import { teacher } from '../../services/api'
 import { AdminContext } from '../../contexts/AdminContext'
@@ -18,6 +19,7 @@ import AutoCompleteInput from '../AutocompleteInput'
 const tabs = [
   { id: 1, title: 'courseDetails' },
   { id: 2, title: 'lectures' },
+  { id: 3, title: 'resources' },
 ]
 
 const StyledButton = styled.button.attrs(props => ({
@@ -153,6 +155,7 @@ const ManageCourse = ({ slug }) => {
                 ))}
               </div>
               <AutoCompleteInput
+                name="tag"
                 placeholder="Tag course"
                 options={tags.map(tag => ({ id: tag.id, name: tag.tagName }))}
                 onSelect={tag => onAddTag(tag)}
@@ -170,6 +173,12 @@ const ManageCourse = ({ slug }) => {
             {currentTab === 2 && (
               <LecturesList
                 languages={languages}
+                course={course}
+                onSaveSuccess={() => setRefreshIndex(refreshIndex + 1)}
+              />
+            )}
+            {currentTab === 3 && (
+              <ResourcesList
                 course={course}
                 onSaveSuccess={() => setRefreshIndex(refreshIndex + 1)}
               />
