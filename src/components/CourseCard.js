@@ -5,7 +5,6 @@ import { DiGithubBadge } from 'react-icons/di'
 import { useTranslation } from 'react-i18next'
 import HtmlViewer from './HtmlViewer'
 import Badge from './Badge'
-import Resourses from './Resourses'
 
 const CourseCard = ({
   course,
@@ -25,7 +24,6 @@ const CourseCard = ({
     status,
     tags,
     github_repo: githubRepo,
-    resourses,
   } = course
   const cardLink = forDashboard
     ? `/dashboard/manage/${slug}`
@@ -78,7 +76,6 @@ const CourseCard = ({
                 </a>
               </div>
             )}
-            {resourses && <Resourses resourses={resourses} />}
           </>
         )}
         {showTags && (
@@ -115,13 +112,6 @@ CourseCard.propTypes = {
       })
     ),
     github_repo: PropTypes.string,
-    resourses: PropTypes.arrayOf(
-      PropTypes.shape({
-        type: PropTypes.string,
-        link: PropTypes.string,
-        text: PropTypes.string,
-      })
-    ),
   }).isRequired,
 
   image: PropTypes.string.isRequired,
