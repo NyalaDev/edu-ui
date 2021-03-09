@@ -2,36 +2,25 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 
+import { useTranslation } from 'react-i18next'
 import Layout from '../components/Layout'
 import Seo from '../components/Seo'
-import CourseCard from '../components/CourseCard'
-import { getYoutubeThumbnail } from '../common/util'
+import { AppProvider } from '../contexts/AppContext'
+import CoursesHome from '../components/Courses/CoursesHome'
 
 const CoursesPage = ({ data }) => {
   const {
-    allStrapiCourse: { edges: courses },
+    allStrapiCourse: { edges },
   } = data
 
+  const coursesList = edges.map(edge => edge.node)
+  const { t } = useTranslation()
   return (
     <Layout>
-      <Seo title="Courses" />
-      <div>
-        <div className="grid md:grid-cols-3 sm:grid-cols-1 gap-4">
-          {courses.map(({ node: course }) => {
-            const {
-              lectures: [firstLecture],
-            } = course
-            const { url: imageUrl } = firstLecture
-            return (
-              <CourseCard
-                key={course.id}
-                course={course}
-                image={getYoutubeThumbnail(imageUrl)}
-              />
-            )
-          })}
-        </div>
-      </div>
+      <Seo title={t('courses')} />
+      <AppProvider initialCoursesList={coursesList}>
+        <CoursesHome courses={coursesList} />
+      </AppProvider>
     </Layout>
   )
 }
@@ -59,6 +48,7 @@ export const pageQuery = graphql`
           language {
             id
             name
+            iso2
           }
         }
       }

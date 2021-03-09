@@ -34,6 +34,7 @@ module.exports = {
     'react/jsx-filename-extension': ['error', { extensions: ['.js', '.jsx'] }],
     'react/jsx-props-no-spreading': 'off',
     'import/prefer-default-export': 'off',
+    'jsx-a11y/no-onchange': 'warn',
     'func-style': ['error', 'expression'],
   },
 }

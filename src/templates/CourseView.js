@@ -5,13 +5,13 @@ import { useTranslation } from 'react-i18next'
 import { orderBy } from 'lodash'
 import Layout from '../components/Layout'
 import Seo from '../components/Seo'
-import CourseCard from '../components/CourseCard'
-import CourseMeta from '../components/CourseMeta'
-import CourseResources from '../components/CourseResources'
-import InstructorBio from '../components/InstructorBio'
+import CourseCard from '../components/Courses/CourseCard'
+import CourseResources from '../components/Courses/CourseResources'
+import CourseMeta from '../components/Courses/CourseMeta'
+import InstructorBio from '../components/Courses/InstructorBio'
 import LecturesList from '../components/LecturesList'
-import CourseTags from '../components/CourseTags'
-import CourseProgress from '../components/CourseProgress'
+import CourseTags from '../components/Courses/CourseTags'
+import CourseProgress from '../components/Courses/CourseProgress'
 import { getYoutubeThumbnail } from '../common/util'
 import { DEFAULT_PROFILE_PIC } from '../common/const'
 import { getProfileById } from '../services/api'
@@ -165,6 +165,7 @@ export const pageQuery = graphql`
       language {
         id
         name
+        iso2
       }
       tags {
         id
@@ -197,6 +198,7 @@ export const pageQuery = graphql`
           language {
             id
             name
+            iso2
           }
         }
       }

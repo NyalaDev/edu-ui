@@ -3,8 +3,9 @@ import { Link } from 'gatsby'
 import PropTypes from 'prop-types'
 import { DiGithubBadge } from 'react-icons/di'
 import { useTranslation } from 'react-i18next'
-import HtmlViewer from './HtmlViewer'
-import Badge from './Badge'
+import HtmlViewer from '../HtmlViewer'
+import Badge from '../Badge'
+import { CoursePropType } from '../../common/util'
 
 const CourseCard = ({
   course,
@@ -34,7 +35,7 @@ const CourseCard = ({
         <img className="w-full" src={image} alt={title} />
       </Link>
       <div className="px-6 py-4">
-        <div className="font-bold text-xl mb-2">
+        <div className="title text-xl mb-2">
           <Link to={cardLink}>{title}</Link>
         </div>
 
@@ -54,7 +55,7 @@ const CourseCard = ({
         {courseViewMode && (
           <>
             <Link
-              className="block bg-purple-800 text-white text-center hover:bg-purple-900 font-bold uppercase text-md px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1"
+              className="block bg-purple-800 text-white text-center hover:bg-purple-900 uppercase text-md px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1"
               style={{ transition: 'all .15s ease' }}
               to={`/courses/${slug}/lectures/${lectureId}`}
             >
@@ -65,7 +66,7 @@ const CourseCard = ({
             {githubRepo && (
               <div className="py-4">
                 <a
-                  className="flex flex-row-reverse items-center justify-center bg-gray-800 text-white text-center hover:bg-gray-900 font-bold uppercase text-md px-4 py-1 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1"
+                  className="flex flex-row-reverse items-center justify-center bg-gray-800 text-white text-center hover:bg-gray-900 uppercase text-md px-4 py-1 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1"
                   style={{ transition: 'all .15s ease' }}
                   href={githubRepo}
                   target="_blank"
@@ -97,22 +98,7 @@ const CourseCard = ({
 }
 
 CourseCard.propTypes = {
-  course: PropTypes.shape({
-    language: PropTypes.shape({
-      id: PropTypes.number,
-      name: PropTypes.string,
-    }),
-    title: PropTypes.string,
-    description: PropTypes.string,
-    slug: PropTypes.string,
-    status: PropTypes.string,
-    tags: PropTypes.arrayOf(
-      PropTypes.shape({
-        tagName: PropTypes.string,
-      })
-    ),
-    github_repo: PropTypes.string,
-  }).isRequired,
+  course: CoursePropType.isRequired,
 
   image: PropTypes.string.isRequired,
   lectureId: PropTypes.number,

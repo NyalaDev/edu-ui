@@ -1,7 +1,12 @@
 module.exports = {
   purge: false,
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        ar: ['Noto'],
+        'ar-title': ['NotoKufi'],
+      },
+    },
   },
   variants: {},
   plugins: [],

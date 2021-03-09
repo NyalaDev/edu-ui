@@ -61,7 +61,40 @@ const SEO = ({ description, lang, meta, title }) => {
           content: metaDescription,
         },
       ].concat(meta)}
-    />
+    >
+      <style type="text/css">
+        {`
+          @font-face {
+            font-family: Noto;
+            src: url('/fonts/NotoSansArabicUI-Regular.woff') format('woff'),
+                  url('/fonts/NotoSansArabicUI-Regular.ttf') format('truetype');
+          }
+          @font-face {
+              font-family: Noto;
+              font-weight: 700;
+              src: url('/fonts/NotoSansArabicUI-Bold.woff') format('woff'),
+                    url('/fonts/NotoSansArabicUI-Bold.ttf') format('truetype');
+          }
+          @font-face {
+              font-family: Noto;
+              font-weight: 300;
+              src: url('/fonts/NotoSansArabicUI-Light.woff') format('woff'),
+                    url('/fonts/NotoSansArabicUI-Light.ttf') format('truetype');
+          }
+          @font-face {
+            font-family: NotoKufi;
+            src: url('/fonts/NotoKufiArabic-Regular.woff') format('woff'),
+                  url('/fonts/NotoKufiArabic-Regular.ttf') format('truetype');
+          }
+          @font-face {
+            font-family: NotoKufi;
+            font-weight: 700;
+            src: url('/fonts/NotoKufiArabic-Bold.woff') format('woff'),
+                  url('/fonts/NotoKufiArabic-Bold.ttf') format('truetype');
+          }
+        `}
+      </style>
+    </Helmet>
   )
 }
 

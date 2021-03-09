@@ -56,7 +56,7 @@
   "newCourse": "كورس جديد",
   "courseTitle": "إسم الكورس",
   "lectureTitle": "عنوان الدرس",
-  "selectLanguage": "إختار اللغة",
+  "selectLanguage": "اختر اللغة",
   "courseSlug": "الرابط الثابت",
   "courseDescription": "وصف الكورس",
   "lectureDescription": "وصف الدرس",
@@ -82,5 +82,10 @@
   "errors": {
     "generic": "حدث خطأ, الرجاء المحاول مرة أخري",
     "invalid_auth": "إسم المستخدم أو كلمة المرور غير صحيحة"
+  },
+  "filters": {
+    "title": "خياراتي",
+    "allLanguages": "جميع اللغات",
+    "allTags": "جميع الأوسمة"
   }
 }

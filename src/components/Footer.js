@@ -37,10 +37,10 @@ const Footer = () => {
         >
           {randomQuote && (
             <div className="flex flex-col items-center w-1/2">
-              <h1 className="text-center text-lg font-bold lg:text-2xl">
+              <h1 className="text-center title text-lg lg:text-2xl">
                 {randomQuote.text}
               </h1>
-              <h4>{randomQuote.author}</h4>
+              <h4 className="font-light">{randomQuote.author}</h4>
             </div>
           )}
         </div>

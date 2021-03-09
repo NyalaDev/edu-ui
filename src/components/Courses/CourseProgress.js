@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { getPercentage } from '../services/util'
+import { getPercentage } from '../../services/util'
 
 const CourseProgress = ({ isCourseInProgress, lecturesCount }) => {
   const calculateCourseProgress = () => {
@@ -39,6 +39,7 @@ const CourseProgress = ({ isCourseInProgress, lecturesCount }) => {
 
 CourseProgress.propTypes = {
   lecturesCount: PropTypes.number.isRequired,
+  isCourseInProgress: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 }
 
 export default CourseProgress

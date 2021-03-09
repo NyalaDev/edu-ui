@@ -8,7 +8,7 @@ const InstructorBio = ({ instructor, photo }) => {
   return (
     <div className="max-w-sm rounded overflow-hidden shadow-lg my-5">
       <div className="px-6 py-3 bg-purple-800">
-        <h1 className="text-white font-semibold text-lg items-center justify-center flex">
+        <h1 className="text-white title text-lg items-center justify-center flex">
           <FaUserAlt />
           <span className="mx-1">{t('instructorBio')}</span>
         </h1>
