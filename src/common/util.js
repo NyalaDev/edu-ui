@@ -1,5 +1,6 @@
 import moment from 'moment'
 import { isEmpty } from 'lodash'
+import PropTypes from 'prop-types'
 import { DEFAULT_PROFILE_PIC } from './const'
 
 /**
@@ -79,3 +80,20 @@ export const isTeacher = user => {
     return false
   }
 }
+
+export const CoursePropType = PropTypes.shape({
+  language: PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+  }),
+  title: PropTypes.string,
+  description: PropTypes.string,
+  slug: PropTypes.string,
+  status: PropTypes.string,
+  tags: PropTypes.arrayOf(
+    PropTypes.shape({
+      tagName: PropTypes.string,
+    })
+  ),
+  github_repo: PropTypes.string,
+})

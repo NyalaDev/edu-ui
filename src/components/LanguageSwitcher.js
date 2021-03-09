@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import useLanguage from '../hooks/useLanguage'
 
-const languages = [
+export const appLanguages = [
   {
     id: 1,
     label: 'العربية',
@@ -37,7 +37,7 @@ const LanguageSwitcher = () => {
   }
 
   const selectedLanguage =
-    languages.find(item => item.locale === language) || languages[0]
+    appLanguages.find(item => item.locale === language) || appLanguages[0]
 
   return (
     <div className="relative group">
@@ -59,7 +59,7 @@ const LanguageSwitcher = () => {
           open ? '' : 'hidden'
         } items-center absolute border border-t-0 rounded-b bg-white p-2`}
       >
-        {languages.map(lang => (
+        {appLanguages.map(lang => (
           <button
             key={lang.id}
             className="flex items-center  focus:outline-none border-transparent px-4 py-2  text-black hover:bg-grey-lighter"

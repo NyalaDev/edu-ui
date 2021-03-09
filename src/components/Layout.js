@@ -23,8 +23,8 @@ const Layout = ({ children, pageTitle }) => {
 
       {pageTitle && <PageTitle title={pageTitle} />}
 
-      <div className="container max-w-6xl w-full mx-auto pt-20">
-        <div className="w-full md:mt-8 mb-16 text-black-800 leading-normal">
+      <div className="container max-w-6xl w-full mx-auto pt-10">
+        <div className="w-full md:mt-2 mb-16 text-black-800 leading-normal">
           {children}
         </div>
       </div>

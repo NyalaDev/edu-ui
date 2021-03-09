@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import Seo from '../components/Seo'
 import Layout from '../components/Layout'
-import CourseCard from '../components/CourseCard'
+import CourseCard from '../components/Courses/CourseCard'
 import { getYoutubeThumbnail } from '../common/util'
 
 const TagView = ({ data }) => {
