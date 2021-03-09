@@ -3,16 +3,17 @@ import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
 import { uniqueId } from 'lodash'
 import { BiTask } from 'react-icons/bi'
-
 import { Link } from 'gatsby'
-import { AuthContext } from '../contexts/AuthContext'
+import { AuthContext } from '../../contexts/AuthContext'
 import CourseExercise from './CourseExercise'
 
 const CourseExercises = ({ course }) => {
-  const { t } = useTranslation()
   const { resources } = course
   if (!resources) return null
+
+  const { t } = useTranslation()
   const { isLoggedIn } = useContext(AuthContext)
+
   return (
     <div className="max-w-sm rounded overflow-hidden shadow-lg my-5 relative">
       <div className="px-6 py-3 bg-purple-800">
@@ -35,7 +36,8 @@ const CourseExercises = ({ course }) => {
             )
           })}
         </div>
-        {isLoggedIn && (
+
+        {!isLoggedIn && (
           <div className="py-4 px-6  absolute top-0 left-0  w-full h-full ">
             <div className="bg-white absolute w-full h-full opacity-80" />
             <div className="flex justify-center items-center w-full h-full">
