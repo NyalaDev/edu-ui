@@ -16,6 +16,7 @@ import { getYoutubeThumbnail } from '../common/util'
 import { DEFAULT_PROFILE_PIC } from '../common/const'
 import { getProfileById } from '../services/api'
 import useCourseProgress from '../hooks/useCourseProgress'
+import CourseExercises from '../components/CourseExercises'
 
 const CourseView = ({ data }) => {
   const [instructorPhoto, setInstructorPhoto] = useState(DEFAULT_PROFILE_PIC)
@@ -74,7 +75,7 @@ const CourseView = ({ data }) => {
           />
 
           <CourseResources course={strapiCourse} />
-
+          <CourseExercises course={strapiCourse} />
           <CourseMeta lectures={sortedLectures} createdAt={createdAt} />
 
           <CourseTags tags={tags} />

@@ -48,6 +48,10 @@ export const addProfile = async values => {
   const { data } = await axiosInstance().put(`/profiles`, values)
   return data
 }
+export const addPRToReview = async values => {
+  const { data } = await axiosInstance().post(`/prs`, values)
+  return data
+}
 
 export const forgotPassword = async values => {
   const { data } = await axiosInstance().post(`/auth/forgot-password`, values)
