@@ -3,6 +3,7 @@ import { initReactI18next } from 'react-i18next'
 import { DEFAULT_LANGUAGE } from '../common/const'
 import ar from '../locales/ar/messages.json'
 import en from '../locales/en/messages.json'
+import am from '../locales/am/messages.json'
 import { getLocalStorage } from '../services/localStorage'
 
 i18next.use(initReactI18next).init({
@@ -17,6 +18,9 @@ i18next.use(initReactI18next).init({
     en: {
       messages: en,
     },
+    am: {
+      messages: am,
+    },
   },
   // debug: process.env.NODE_ENV !== 'production',
   interpolation: {
@@ -27,6 +31,6 @@ i18next.use(initReactI18next).init({
   },
 })
 
-i18next.languages = ['ar', 'en']
+i18next.languages = ['ar', 'en', 'am']
 
 export default i18next

@@ -14,6 +14,12 @@ export const appLanguages = [
     locale: 'en',
     icon: 'au.svg',
   },
+  {
+    id: 3,
+    label: 'Amharic',
+    locale: 'am',
+    icon: 'et.svg',
+  },
 ]
 
 const LanguageSwitcher = () => {

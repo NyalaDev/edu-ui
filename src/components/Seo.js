@@ -92,6 +92,11 @@ const SEO = ({ description, lang, meta, title }) => {
             src: url('/fonts/NotoKufiArabic-Bold.woff') format('woff'),
                   url('/fonts/NotoKufiArabic-Bold.ttf') format('truetype');
           }
+          @font-face {
+            font-family: Noto;
+            src: url('/fonts/NotoSansEthiopic-Regular.woff') format('woff'),
+                  url('/fonts/NotoSansEthiopic-Regular.ttf') format('truetype');
+          }
         `}
       </style>
     </Helmet>
