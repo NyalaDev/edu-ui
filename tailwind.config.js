@@ -5,6 +5,7 @@ module.exports = {
       fontFamily: {
         ar: ['Noto'],
         'ar-title': ['NotoKufi'],
+        am: ['NotoEthio'],
       },
     },
     opacity: {
