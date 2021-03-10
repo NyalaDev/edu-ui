@@ -16,7 +16,7 @@ export const appLanguages = [
   },
   {
     id: 3,
-    label: 'Amharic',
+    label: 'አማርኛ',
     locale: 'am',
     icon: 'et.svg',
   },
@@ -54,7 +54,7 @@ const LanguageSwitcher = () => {
       >
         <img
           src={`https://cdn.nyaladev.com/barmaga.io/${selectedLanguage.icon}`}
-          className={`w-3 ${isRtl ? 'ml-2' : 'mr-2'}`}
+          className={`w-8 ${isRtl ? 'ml-2' : 'mr-2'}`}
           alt={`${selectedLanguage.label} Flag`}
         />
         <span>{selectedLanguage.label}</span>
@@ -63,19 +63,19 @@ const LanguageSwitcher = () => {
       <div
         className={`${
           open ? '' : 'hidden'
-        } items-center absolute border border-t-0 rounded-b bg-white p-2`}
+        } items-center w-32 absolute border border-t-0 rounded-b bg-white p-2`}
       >
         {appLanguages.map(lang => (
           <button
             key={lang.id}
-            className="flex items-center  focus:outline-none border-transparent px-4 py-2  text-black hover:bg-grey-lighter"
+            className="flex items-center focus:outline-none border-transparent px-2 py-2  text-black hover:bg-grey-lighter"
             onClick={onLanguageButtonClick}
             data-locale={lang.locale}
             type="button"
           >
             <img
               src={`https://cdn.nyaladev.com/barmaga.io/${lang.icon}`}
-              className={`w-3 ${isRtl ? 'ml-2' : 'mr-2'}`}
+              className={`w-4 ${isRtl ? 'ml-2' : 'mr-2'}`}
               alt={`${selectedLanguage.label} Flag`}
             />
             {lang.label}
