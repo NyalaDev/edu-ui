@@ -80,6 +80,8 @@
   "add": "أضف",
   "title": "العنوان",
   "url": "الرابط",
+  "preferedLanguage": "اللغة المفضلة",
+  "choosePreferedLanguage": "اختار لغتك المفضلة:",
   "validation": {
     "required": "هذ الحقل مطلوب"
   },

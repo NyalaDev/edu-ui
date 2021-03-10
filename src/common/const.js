@@ -5,3 +5,18 @@ export const LOCALE_STORAGE_USER = 'AuthUser'
 export const LOCALE_STORAGE_TOKEN = 'AuthToken'
 
 export const DEFAULT_LANGUAGE = 'siteLang'
+
+export const appLanguages = [
+  {
+    id: 1,
+    label: 'العربية',
+    locale: 'ar',
+    icon: 'sd.svg',
+  },
+  {
+    id: 2,
+    label: 'English',
+    locale: 'en',
+    icon: 'au.svg',
+  },
+]
