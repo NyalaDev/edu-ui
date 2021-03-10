@@ -11,12 +11,12 @@ import './layout.css'
 import useLanguage from '../hooks/useLanguage'
 
 const Layout = ({ children, pageTitle }) => {
-  const { isRtl } = useLanguage()
+  const { isRtl, language } = useLanguage()
 
   return (
     <div
-      className={`${
-        isRtl ? 'rtl' : ''
+      className={`${isRtl ? 'rtl' : ''} ${
+        language === 'am' ? 'amharic' : ''
       } bg-gray-100 leading-normal tracking-normal`}
     >
       <Header />

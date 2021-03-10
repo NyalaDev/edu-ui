@@ -93,9 +93,15 @@ const SEO = ({ description, lang, meta, title }) => {
                   url('/fonts/NotoKufiArabic-Bold.ttf') format('truetype');
           }
           @font-face {
-            font-family: Noto;
+            font-family: NotoEthio;
             src: url('/fonts/NotoSansEthiopic-Regular.woff') format('woff'),
                   url('/fonts/NotoSansEthiopic-Regular.ttf') format('truetype');
+          }
+          @font-face {
+            font-family: NotoEthio;
+            font-weight: 700;
+            src: url('/fonts/NotoSansEthiopic-Bold.woff') format('woff'),
+                  url('/fonts/NotoSansEthiopic-Bold.ttf') format('truetype');
           }
         `}
       </style>
