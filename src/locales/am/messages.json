@@ -12,7 +12,7 @@
     "viewCode": "ኮድ ምልከታ",
     "profile": "መገለጫ",
     "settings": "ሴቲንግ",
-    "signOut": "ዛግተ ውጣ",
+    "signOut": "ዘግተ ውጣ",
     "userOrEmail": "የተጠቃሚ ስም ወይም ኢሜይል አድራሻ",
     "password": "የይለፍ ቃል",
     "newPassword": "አዲስ የይለፍ ቃል",
@@ -81,10 +81,10 @@
     },
     "errors": {
       "generic": "አንድ ስህተት ተከስቷል። እባክዎ ዳግም ይሞክሩ",
-      "invalid_auth": "ልክ ያልሆነ የተጠቃሚ ስም / ይለፍ ቃል ። እባክዎ ዳግም ይሞክሩ"
+      "invalid_auth": "ልክ ያልሆነ የተጠቃሚ ስም / የይለፍ ቃል ። እባክዎ ዳግም ይሞክሩ"
     },
     "filters": {
-      "title": "ማጣሪያዎች",
+      "title": "ርዕስ",
       "allLanguages": "ሁሉም ቋንቋዎች",
       "allTags": "ሁሉም መለያዎች"
     }
