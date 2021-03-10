@@ -1,26 +1,6 @@
 import React, { useState } from 'react'
 import useLanguage from '../hooks/useLanguage'
-
-export const appLanguages = [
-  {
-    id: 1,
-    label: 'العربية',
-    locale: 'ar',
-    icon: 'sd.svg',
-  },
-  {
-    id: 2,
-    label: 'English',
-    locale: 'en',
-    icon: 'au.svg',
-  },
-  {
-    id: 3,
-    label: 'አማርኛ',
-    locale: 'am',
-    icon: 'et.svg',
-  },
-]
+import { appLanguages } from '../common/const'
 
 const LanguageSwitcher = () => {
   const { language, isRtl, setCurrentLanguage } = useLanguage()
