@@ -36,7 +36,7 @@ const IndexPage = () => {
           onDismiss={() => setOpen(false)}
           title={t('preferedLanguage')}
         >
-          <div className="flex justify-center items-center flex-col h-40">
+          <div className="flex justify-center items-center flex-col min-h-40">
             <div className="text-2xl font-semibold mb-3">
               {t('choosePreferedLanguage')}
             </div>

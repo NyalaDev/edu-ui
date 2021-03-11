@@ -21,7 +21,7 @@ const DefaultLanguage = ({ onDismiss }) => {
     appLanguages.find(item => item.locale === language) || appLanguages[0]
 
   return (
-    <div className="flex justify-center flex-1 rounded-b p-2 ">
+    <div className="flex flex-col md:flex-row justify-center rounded-b p-2 ">
       {appLanguages.map(lang => (
         <button
           key={lang.id}
