@@ -5,7 +5,7 @@ import { toast } from 'react-toastify'
 import { uniqueId } from 'lodash'
 import { addPRToReview } from '../../services/api'
 
-const CourseExercise = ({ exercise, course }) => {
+const CourseExercise = ({ exercise, courseId }) => {
   const { t } = useTranslation()
   const [inputValue, setInputValue] = useState('')
 
@@ -13,7 +13,7 @@ const CourseExercise = ({ exercise, course }) => {
     try {
       await addPRToReview({
         link: inputValue,
-        course: course.strapiId,
+        course: courseId,
         exercise: exercise.text,
       })
       toast.success('PR submitted successfully')
@@ -67,9 +67,7 @@ CourseExercise.propTypes = {
     url: PropTypes.string,
     text: PropTypes.string,
   }).isRequired,
-  course: PropTypes.shape({
-    strapiId: PropTypes.number,
-  }).isRequired,
+  courseId: PropTypes.number.isRequired,
 }
 
 export default CourseExercise
