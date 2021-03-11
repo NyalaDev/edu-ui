@@ -1,4 +1,4 @@
-import { LOCALE_STORAGE_USER, LOCALE_STORAGE_TOKEN } from '../common/const'
+import { LOCALE_STORAGE_USER, LOCALE_STORAGE_TOKEN } from '../common/constants'
 
 export const isBrowser = typeof window !== 'undefined'
 

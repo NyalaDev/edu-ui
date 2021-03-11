@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import useLanguage from '../hooks/useLanguage'
-import { appLanguages } from '../common/const'
+import { appLanguages } from '../common/constants'
 
 const DefaultLanguage = ({ onDismiss }) => {
   const { language, isRtl, setCurrentLanguage } = useLanguage()

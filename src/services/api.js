@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { appConfig } from '../common/config'
 import { getLocalStorage } from './localStorage'
-import { LOCALE_STORAGE_TOKEN } from '../common/const'
+import { LOCALE_STORAGE_TOKEN } from '../common/constants'
 
 const axiosInstance = () => {
   const token = getLocalStorage(LOCALE_STORAGE_TOKEN)

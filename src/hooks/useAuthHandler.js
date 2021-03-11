@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { setLocalStorage, clearLocalStorage } from '../services/localStorage'
-import { LOCALE_STORAGE_USER, LOCALE_STORAGE_TOKEN } from '../common/const'
+import { LOCALE_STORAGE_USER, LOCALE_STORAGE_TOKEN } from '../common/constants'
 
 /**
  * Custom hook used as a helper to handle authentication status
