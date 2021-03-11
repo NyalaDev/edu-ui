@@ -3,22 +3,24 @@ import useLanguage from '../hooks/useLanguage'
 
 export const appLanguages = [
   {
-    id: 1,
     label: 'العربية',
     locale: 'ar',
     icon: 'sd.svg',
   },
   {
-    id: 2,
     label: 'English',
     locale: 'en',
     icon: 'au.svg',
   },
   {
-    id: 3,
     label: 'አማርኛ',
     locale: 'am',
     icon: 'et.svg',
+  },
+  {
+    label: 'Swahili',
+    locale: 'sw',
+    icon: 'sw.svg',
   },
 ]
 
@@ -67,7 +69,7 @@ const LanguageSwitcher = () => {
       >
         {appLanguages.map(lang => (
           <button
-            key={lang.id}
+            key={lang.locale}
             className="flex items-center focus:outline-none border-transparent px-2 py-2  text-black hover:bg-grey-lighter"
             onClick={onLanguageButtonClick}
             data-locale={lang.locale}

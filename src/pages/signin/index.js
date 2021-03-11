@@ -65,7 +65,7 @@ const SiginPage = () => {
                   {...formik.getFieldProps('identifier')}
                   type="text"
                   className="block appearance-none w-full bg-white border border-grey-light hover:border-grey px-2 py-2 rounded shadow"
-                  placeholder={t('userPlaceholder')}
+                  placeholder={t('userOrEmail')}
                 />
                 {formik.touched.identifier && formik.errors.identifier ? (
                   <div className="text-red-600 mt-1">

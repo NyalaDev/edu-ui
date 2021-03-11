@@ -4,11 +4,12 @@ import { DEFAULT_LANGUAGE } from '../common/const'
 import ar from '../locales/ar/messages.json'
 import en from '../locales/en/messages.json'
 import am from '../locales/am/messages.json'
+import sw from '../locales/sw/messages.json'
 import { getLocalStorage } from '../services/localStorage'
 
 i18next.use(initReactI18next).init({
   lng: getLocalStorage(DEFAULT_LANGUAGE),
-  fallbackLng: 'ar',
+  fallbackLng: 'en',
   ns: ['messages'],
   defaultNS: 'messages',
   resources: {
@@ -20,6 +21,9 @@ i18next.use(initReactI18next).init({
     },
     am: {
       messages: am,
+    },
+    sw: {
+      messages: sw,
     },
   },
   // debug: process.env.NODE_ENV !== 'production',
