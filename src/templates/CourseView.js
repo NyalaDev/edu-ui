@@ -32,6 +32,9 @@ const CourseView = ({ data }) => {
 
   const sortedLectures = orderBy(lectures, 'position', 'asc')
 
+  const resources = strapiCourse.resources || []
+  const exercises = resources.filter(resourse => resourse.type === 'exercise')
+
   const thumbnail = getYoutubeThumbnail(sortedLectures[0].url)
   const { t } = useTranslation()
   const isCourseInProgress = useCourseProgress(courseStrapiId)
@@ -76,7 +79,12 @@ const CourseView = ({ data }) => {
 
           <CourseResources course={strapiCourse} />
 
-          <CourseExercises course={strapiCourse} />
+          {exercises.length > 0 && (
+            <CourseExercises
+              exercises={exercises}
+              courseId={strapiCourse.strapiId}
+            />
+          )}
 
           <CourseMeta lectures={sortedLectures} createdAt={createdAt} />
 

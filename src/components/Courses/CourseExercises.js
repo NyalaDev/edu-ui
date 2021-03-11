@@ -7,10 +7,7 @@ import { Link } from 'gatsby'
 import { AuthContext } from '../../contexts/AuthContext'
 import CourseExercise from './CourseExercise'
 
-const CourseExercises = ({ course }) => {
-  const { resources } = course
-  if (!resources) return null
-
+const CourseExercises = ({ courseId, exercises }) => {
   const { t } = useTranslation()
   const { isLoggedIn } = useContext(AuthContext)
 
@@ -25,16 +22,13 @@ const CourseExercises = ({ course }) => {
 
       <div className="relative">
         <div className="py-4 px-6 ">
-          {resources.map(resource => {
-            if (resource.type !== 'exercise') return null
-            return (
-              <CourseExercise
-                key={uniqueId('exercise-')}
-                exercise={resource}
-                course={course}
-              />
-            )
-          })}
+          {exercises.map(exercise => (
+            <CourseExercise
+              key={uniqueId('exercise-')}
+              exercise={exercise}
+              courseId={courseId}
+            />
+          ))}
         </div>
 
         {!isLoggedIn && (
@@ -59,16 +53,14 @@ const CourseExercises = ({ course }) => {
 }
 
 CourseExercises.propTypes = {
-  course: PropTypes.shape({
-    id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    resources: PropTypes.arrayOf(
-      PropTypes.shape({
-        type: PropTypes.string,
-        url: PropTypes.string,
-        text: PropTypes.string,
-      })
-    ),
-  }).isRequired,
+  exercises: PropTypes.arrayOf(
+    PropTypes.shape({
+      type: PropTypes.string,
+      url: PropTypes.string,
+      text: PropTypes.string,
+    })
+  ).isRequired,
+  courseId: PropTypes.number.isRequired,
 }
 
 export default CourseExercises
