@@ -76,6 +76,7 @@
   "add": "أضف",
   "title": "العنوان",
   "url": "الرابط",
+  "importFromYoutube": "جلب من اليوتيوب",
   "validation": {
     "required": "هذ الحقل مطلوب"
   },
