@@ -4,6 +4,7 @@
     
 }
 
+
 .rtl {
     @apply font-ar;
     direction: rtl;

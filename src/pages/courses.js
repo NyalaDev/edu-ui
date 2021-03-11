@@ -18,9 +18,13 @@ const CoursesPage = ({ data }) => {
   return (
     <Layout>
       <Seo title={t('courses')} />
-      <AppProvider initialCoursesList={coursesList}>
-        <CoursesHome courses={coursesList} />
-      </AppProvider>
+      <div className="container max-w-6xl w-full mx-auto pt-10">
+        <div className="w-full md:mt-2 mb-16 text-black-800 leading-normal">
+          <AppProvider initialCoursesList={coursesList}>
+            <CoursesHome courses={coursesList} />
+          </AppProvider>
+        </div>
+      </div>
     </Layout>
   )
 }
