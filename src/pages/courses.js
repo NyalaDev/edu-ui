@@ -39,6 +39,7 @@ export const pageQuery = graphql`
           title
           description
           slug
+          level
           tags {
             tagName
           }
