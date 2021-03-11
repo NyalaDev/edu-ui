@@ -90,6 +90,7 @@
   "filters": {
     "title": "Filters",
     "allLanguages": "All Languages",
-    "allTags": "All Tags"
+    "allTags": "All Tags",
+    "allLevels": "All Levels"
   }
 }

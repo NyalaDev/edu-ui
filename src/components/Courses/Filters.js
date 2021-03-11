@@ -9,14 +9,17 @@ const Filters = () => {
 
   const { initialCoursesList, setCourses } = useContext(AppContext)
   const [values, setValues] = useState({})
+
   const tags = uniq(
     flatten(
       initialCoursesList.map(course => course.tags.map(tag => tag.tagName))
     )
   )
+  const levels = ['Beginner', 'Intermediate', 'Advanced']
 
   useEffect(() => {
     let filteredList = [...initialCoursesList]
+
     Object.keys(values).forEach(key => {
       const value = values[key]
       if (value === '-1') return
@@ -29,6 +32,9 @@ const Filters = () => {
         filteredList = filteredList.filter(course =>
           find(course.tags, ({ tagName }) => tagName === value)
         )
+      }
+      if (key === 'level') {
+        filteredList = filteredList.filter(course => course.level === value)
       }
     })
 
@@ -70,6 +76,21 @@ const Filters = () => {
             return (
               <option key={tag} value={tag}>
                 {tag}
+              </option>
+            )
+          })}
+        </select>
+        <select
+          className="mx-4 placeholder-gray-500 focus:outline-none focus:bg-white"
+          name="level"
+          value={values.level}
+          onChange={updateList}
+        >
+          <option value="-1">{t('filters.allLevels')}</option>
+          {levels.map(level => {
+            return (
+              <option key={level} value={level}>
+                {level}
               </option>
             )
           })}

@@ -90,6 +90,7 @@
   "filters": {
     "title": "خياراتي",
     "allLanguages": "جميع اللغات",
-    "allTags": "جميع الأوسمة"
+    "allTags": "جميع الأوسمة",
+    "allLevels": "جميع المستويات"
   }
 }
