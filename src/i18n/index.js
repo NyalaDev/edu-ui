@@ -8,7 +8,7 @@ import sw from '../locales/sw/messages.json'
 import { getLocalStorage } from '../services/localStorage'
 
 i18next.use(initReactI18next).init({
-  lng: getLocalStorage(DEFAULT_LANGUAGE),
+  lng: getLocalStorage(DEFAULT_LANGUAGE) || 'ar',
   fallbackLng: 'en',
   ns: ['messages'],
   defaultNS: 'messages',
