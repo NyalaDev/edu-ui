@@ -92,5 +92,12 @@
     "allLanguages": "All Languages",
     "allTags": "All Tags",
     "allLevels": "All Levels"
+  },
+  "landingPage": {
+    "heroText": "localised, not translated",
+    "heroSubtitle": "Learn coding in Arabic, Amharic, Swahili and more.",
+    "comingSoon": "Coming Soon",
+    "followOnTwitter": "Follow us on Twitter",
+    "getIntouch": "Get in touch to record a tutorial, support the project or just for a chat:"
   }
 }

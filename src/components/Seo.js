@@ -103,6 +103,17 @@ const SEO = ({ description, lang, meta, title }) => {
             src: url('/fonts/NotoSansEthiopic-Bold.woff') format('woff'),
                   url('/fonts/NotoSansEthiopic-Bold.ttf') format('truetype');
           }
+          @font-face {
+            font-family: NotoSwahili;
+            src: url('/fonts/NotoSans-Regular.woff') format('woff'),
+                  url('/fonts/NotoSans-Regular.ttf') format('truetype');
+          }
+          @font-face {
+            font-family: NotoSwahili;
+            font-weight: 700;
+            src: url('/fonts/NotoSans-Bold.woff') format('woff'),
+                  url('/fonts/NotoSans-Bold.ttf') format('truetype');
+          }
         `}
       </style>
     </Helmet>

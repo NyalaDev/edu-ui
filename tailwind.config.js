@@ -3,6 +3,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
+        sans: ['NotoSwahili'],
         ar: ['Noto'],
         'ar-title': ['NotoKufi'],
         am: ['NotoEthio'],
