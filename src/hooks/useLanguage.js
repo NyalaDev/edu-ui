@@ -8,7 +8,7 @@ import { DEFAULT_LANGUAGE } from '../common/const'
  */
 const useLanguage = () => {
   const { i18n } = useTranslation()
-  const [language, setLanguage] = useState(undefined)
+  const [language, setLanguage] = useState('ar')
 
   const storedLanguage = getLocalStorage(DEFAULT_LANGUAGE) || 'ar'
 
