@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { setLocalStorage, getLocalStorage } from '../services/localStorage'
+import { setLocalStorage } from '../services/localStorage'
 import { DEFAULT_LANGUAGE } from '../common/const'
 
 /**
@@ -8,14 +8,13 @@ import { DEFAULT_LANGUAGE } from '../common/const'
  */
 const useLanguage = () => {
   const { i18n } = useTranslation()
-  const [language, setLanguage] = useState('ar')
 
-  const storedLanguage = getLocalStorage(DEFAULT_LANGUAGE) || 'ar'
+  const [language, setLanguage] = useState(i18n.language)
 
   const isRtl = language === 'ar'
 
   useEffect(() => {
-    setLanguage(i18n.language || storedLanguage)
+    setLanguage(i18n.language)
   }, [i18n.language])
 
   const setCurrentLanguage = useCallback(languageToSet => {
