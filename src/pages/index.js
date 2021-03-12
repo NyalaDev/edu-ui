@@ -1,10 +1,12 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
 import Seo from '../components/Seo'
 import LandingPage from '../components/LandingPage'
 import CoursesHome from '../components/Courses/CoursesHome'
 import { AppProvider } from '../contexts/AppContext'
+import { CoursePropType } from '../common/util'
 
 const IndexPage = ({ data }) => {
   const {
@@ -14,7 +16,7 @@ const IndexPage = ({ data }) => {
   const coursesList = edges.map(edge => edge.node)
 
   return (
-    <Layout>
+    <Layout fullPage>
       <Seo title="Home" />
       <LandingPage />
       <div className="container max-w-6xl w-full mx-auto pt-10">
@@ -33,6 +35,10 @@ const IndexPage = ({ data }) => {
   )
 }
 
+IndexPage.propTypes = {
+  data: PropTypes.shape({ allStrapiCourse: { edges: CoursePropType } })
+    .isRequired,
+}
 export default IndexPage
 
 export const pageQuery = graphql`
