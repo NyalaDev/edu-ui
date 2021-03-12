@@ -80,6 +80,7 @@
   "add": "Add",
   "title": "Title",
   "url": "URL",
+  "importFromYoutube": "Import from YouTube",
   "validation": {
     "required": "This field is required"
   },
