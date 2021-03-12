@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
-import { FaTrash } from 'react-icons/fa'
+import { FaTrash, FaPlus, FaSyncAlt } from 'react-icons/fa'
 import { toast } from 'react-toastify'
 import { formatDuration } from '../../common/util'
 import Clickable from '../Clickable'
 import Modal from '../Modal'
 import LectureFrorm from './LectureForm'
+import ImportLecturesForm from './ImportLecturesForm'
 import { teacher } from '../../services/api'
 import {
   StyledLectureList,
@@ -20,6 +21,7 @@ import { extractErrorMessage } from '../../services/auth'
 
 const LecturesList = ({ course, onSaveSuccess }) => {
   const { t } = useTranslation()
+  const [importOpen, setImportOpen] = useState(false)
   const [open, setOpen] = useState(false)
   const [lectureForDelete, setLectureForDelete] = useState(null)
 
@@ -49,13 +51,22 @@ const LecturesList = ({ course, onSaveSuccess }) => {
   return (
     <div className="bg-white w-full rounded-lg shadow-md overflow-hidden mx-auto">
       <div className="py-4 px-6">
-        <div className="mb-8">
+        <div className="mb-8 flex justify-evenly">
           <button
             onClick={() => setOpen(true)}
-            className="py-2 px-4 bg-red-500 text-white rounded hover:bg-gray-600 focus:outline-none"
+            className="py-2 px-4 bg-red-500 text-white rounded hover:bg-gray-600 focus:outline-none flex items-center"
             type="button"
           >
-            {t('addLecture')}
+            <FaPlus />
+            <span className="mx-1">{t('addLecture')}</span>
+          </button>
+          <button
+            onClick={() => setImportOpen(true)}
+            className="py-2 px-4 bg-blue-500 text-white rounded hover:bg-gray-600 focus:outline-none flex items-center"
+            type="button"
+          >
+            <FaSyncAlt />
+            <span className="mx-1">{t('importFromYoutube')}</span>
           </button>
         </div>
         <h1 className="text-3xl  text-gray-800 font-extrabold ">
@@ -94,6 +105,19 @@ const LecturesList = ({ course, onSaveSuccess }) => {
           title={t('lectureDetail')}
         >
           <LectureFrorm onSaveComplete={onNewLectureSaved} course={course} />
+        </Modal>
+      )}
+
+      {importOpen && (
+        <Modal
+          withActions={false}
+          onDismiss={() => setImportOpen(false)}
+          title={t('importFromYoutube')}
+        >
+          <ImportLecturesForm
+            onSaveComplete={onNewLectureSaved}
+            course={course}
+          />
         </Modal>
       )}
 

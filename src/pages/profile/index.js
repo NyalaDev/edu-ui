@@ -86,7 +86,7 @@ const MyProfile = () => {
       <div className="flex flex-col md:flex-row">
         <div className="flex flex-col flex-1 items-center justify-start">
           <img
-            className="w-100 h-100"
+            className="w-64 h-auto"
             src={profilePictureUrl}
             alt="Avatar of Jonathan Reinink"
           />

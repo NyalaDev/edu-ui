@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import useLanguage from '../hooks/useLanguage'
 
 const Input = ({
   type,
@@ -10,11 +11,14 @@ const Input = ({
   error,
   prefix,
   forceLtr,
+  width,
+  wrapperClasses,
   ...rest
 }) => {
-  const inputWidth = prefix ? 'w-11/12' : 'w-full'
+  const inputWidth = width || (prefix ? 'w-11/12' : 'w-full')
+  const { isRtl } = useLanguage()
   return (
-    <div className="mt-4 w-full">
+    <div className={`${wrapperClasses || 'mt-4 w-full'}`}>
       {label && (
         <label htmlFor={name} className="font-bold text-grey-darker block mb-2">
           {label}
@@ -35,7 +39,7 @@ const Input = ({
       {type !== 'textarea' && (
         <div
           className="flex w-full"
-          style={{ direction: prefix || forceLtr ? 'ltr' : 'rtl' }}
+          style={{ direction: prefix || !isRtl ? 'ltr' : 'rtl' }}
         >
           {prefix && (
             <div className="mt-2 py-2 w-3/12  align-middle bg-gray-400">
@@ -66,6 +70,8 @@ Input.propTypes = {
   error: PropTypes.string,
   prefix: PropTypes.string,
   forceLtr: PropTypes.bool,
+  width: PropTypes.string,
+  wrapperClasses: PropTypes.string,
 }
 
 Input.defaultProps = {
@@ -75,6 +81,8 @@ Input.defaultProps = {
   error: '',
   prefix: '',
   forceLtr: false,
+  width: '',
+  wrapperClasses: '',
 }
 
 export default Input
