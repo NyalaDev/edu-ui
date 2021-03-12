@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'gatsby'
+import { useTranslation } from 'react-i18next'
 import { CoursePropType, getYoutubeThumbnail } from '../../common/util'
 import { AppContext } from '../../contexts/AppContext'
 import CourseCard from './CourseCard'
@@ -12,6 +13,7 @@ const CoursesHome = ({
   showMoreCard = false,
 }) => {
   const { courses, setCourses } = useContext(AppContext)
+  const { t } = useTranslation()
 
   useEffect(() => {
     setCourses(coursesList)
@@ -38,7 +40,7 @@ const CoursesHome = ({
           <Link to="/courses">
             <div className="max-w-sm h-full items-center justify-center flex rounded overflow-hidden shadow-lg">
               <div className="px-6 py-4 text-gray-600 text-3xl">
-                And more...
+                {t('moreCourses')}
               </div>
             </div>
           </Link>
