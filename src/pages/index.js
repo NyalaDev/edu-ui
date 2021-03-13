@@ -1,10 +1,9 @@
-import React, { useEffect, useState, useContext } from 'react'
+import React, { useEffect, useState } from 'react'
 import { navigate } from 'gatsby'
 import { useTranslation } from 'react-i18next'
 import Layout from '../components/Layout'
 import Seo from '../components/Seo'
 import { getLocalStorage, isBrowser } from '../services/localStorage'
-import { AuthContext } from '../contexts/AuthContext'
 import Spinner from '../components/Spinner'
 import Modal from '../components/Modal'
 import DefaultLanguage from '../components/DefaultLanguage'
@@ -15,12 +14,11 @@ const IndexPage = () => {
     navigate('/courses')
   }
 
-  const { isLoggedIn } = useContext(AuthContext)
   const [open, setOpen] = useState(false)
   const { t } = useTranslation()
 
   useEffect(() => {
-    if (isLoggedIn && !getLocalStorage('siteLang')) {
+    if (!getLocalStorage('siteLang')) {
       setOpen(true)
     }
   }, [])
