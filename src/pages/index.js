@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { graphql } from 'gatsby'
 import { useTranslation } from 'react-i18next'
+import PropTypes from 'prop-types'
 import Layout from '../components/Layout'
 import Seo from '../components/Seo'
-import { getLocalStorage, isBrowser } from '../services/localStorage'
+import { getLocalStorage } from '../services/localStorage'
 import Spinner from '../components/Spinner'
 import Modal from '../components/Modal'
 import DefaultLanguage from '../components/DefaultLanguage'
@@ -11,7 +12,6 @@ import LandingPage from '../components/LandingPage'
 import CoursesHome from '../components/Courses/CoursesHome'
 import { AppProvider } from '../contexts/AppContext'
 import { CoursePropType } from '../common/util'
-import PropTypes from 'prop-types'
 
 const IndexPage = ({ data }) => {
   const {
@@ -45,9 +45,9 @@ const IndexPage = ({ data }) => {
           </AppProvider>
         </div>
       </div>
-    
+
       <Spinner />
-    
+
       {open && (
         <Modal
           withActions={false}
