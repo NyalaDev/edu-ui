@@ -25,7 +25,9 @@ const CourseCard = ({
     status,
     tags,
     github_repo: githubRepo,
+    level,
   } = course
+
   const cardLink = forDashboard
     ? `/dashboard/manage/${slug}`
     : `/courses/${slug}`
@@ -90,6 +92,7 @@ const CourseCard = ({
                   link={`/tags/${tagName}`}
                 />
               ))}
+            {level && <Badge text={level} color="pink-800" />}
           </div>
         )}
       </div>

@@ -8,14 +8,13 @@ import { DEFAULT_LANGUAGE } from '../common/constants'
  */
 const useLanguage = () => {
   const { i18n } = useTranslation()
-  const [language, setLanguage] = useState(undefined)
 
-  const storedLanguage = getLocalStorage(DEFAULT_LANGUAGE) || 'ar'
+  const [language, setLanguage] = useState(i18n.language)
 
   const isRtl = language === 'ar'
 
   useEffect(() => {
-    setLanguage(i18n.language || storedLanguage)
+    setLanguage(i18n.language)
   }, [i18n.language])
 
   const setCurrentLanguage = useCallback(languageToSet => {

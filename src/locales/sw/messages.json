@@ -92,6 +92,14 @@
   "filters": {
     "title": "Chuja",
     "allLanguages": "Lugha zote",
-    "allTags": "Tags zote"
+    "allTags": "Tags zote",
+    "allLevels": "All Levels"
+  },
+  "landingPage": {
+    "heroText": "Code ndio lugha yangu",
+    "heroSubtitle": "Jifunze coding Kwa kiarabu, kiamrahiki, kiswahili na zaidi",
+    "comingSoon": " Inakuja hivi karibuni",
+    "followOnTwitter": "Tufuate katika Twitter",
+    "getIntouch": "Wasiliana nasi kwa ajili ya  kurekodi vipindi, kufadhili mradi au kuchati nasi:"
   }
 }

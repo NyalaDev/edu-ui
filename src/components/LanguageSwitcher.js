@@ -43,7 +43,7 @@ const LanguageSwitcher = () => {
       <div
         className={`${
           open ? '' : 'hidden'
-        } items-center w-32 absolute border border-t-0 rounded-b bg-white p-2`}
+        } items-center w-32 absolute border border-t-0 rounded-b bg-white p-2 z-50`}
       >
         {appLanguages.map(lang => (
           <button

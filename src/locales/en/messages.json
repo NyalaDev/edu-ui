@@ -82,8 +82,10 @@
   "url": "URL",
   "preferedLanguage": "Default language",
   "choosePreferedLanguage": "Choose you prefered language",
+  "importFromYoutube": "Import from YouTube",
   "validation": {
-    "required": "This field is required"
+    "required": "This field is required",
+    "email": "Please enter a valid email"
   },
   "errors": {
     "generic": "An error occured. Please try again",
@@ -92,6 +94,19 @@
   "filters": {
     "title": "Filters",
     "allLanguages": "All Languages",
-    "allTags": "All Tags"
-  }
+    "allTags": "All Tags",
+    "allLevels": "All Levels"
+  },
+  "landingPage": {
+    "heroText": "localised, not translated",
+    "heroSubtitle": "Learn coding in Arabic, Amharic, Swahili and more.",
+    "comingSoon": "Coming Soon",
+    "followOnTwitter": "Follow us on Twitter",
+    "getIntouch": "Get in touch to record a tutorial, support the project or just for a chat:",
+    "subscribe": "Subscribe",
+    "notifyMeWhenLaunch": "Notify me when Barmaga is launched",
+    "subscribeSuccess": "Your email was added successfully.",
+    "subscribeError": "Something went wrong, please try again or contact us directly through email or Twitter."
+  },
+  "moreCourses": "See More"
 }

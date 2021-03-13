@@ -72,6 +72,10 @@
   "courseTags": "የኮርስ መለያዎች",
   "unpublish": "አታትም",
   "resources": "ሰነዶች",
+  "exercises": "Exercises",
+  "exerciseLink": "Exercise Link",
+  "linkToPR": "Enter the link to your PR:",
+  "viewExcercises": "Please signin to view Excercises",
   "details": "ዝርዝሮች",
   "add": "ጨምር",
   "title": "ርዕስ",
@@ -88,6 +92,14 @@
   "filters": {
     "title": "ርዕስ",
     "allLanguages": "ሁሉም ቋንቋዎች",
-    "allTags": "ሁሉም መለያዎች"
+    "allTags": "ሁሉም መለያዎች",
+    "allLevels": "All Levels"
+  },  
+  "landingPage": {
+    "heroText": "localised, not translated",
+    "heroSubtitle": "Learn coding in Arabic, Amharic, Swahili and more..",
+    "comingSoon": "Coming Soon",
+    "followOnTwitter": "Follow us on Twitter",
+    "getIntouch": "Get in touch to record a tutorial, support the project or just for a chat:"
   }
 }

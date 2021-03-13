@@ -82,8 +82,10 @@
   "url": "الرابط",
   "preferedLanguage": "اللغة المفضلة",
   "choosePreferedLanguage": "اختار لغتك المفضلة:",
+  "importFromYoutube": "جلب من اليوتيوب",
   "validation": {
-    "required": "هذ الحقل مطلوب"
+    "required": "هذ الحقل مطلوب",
+    "email": "الرجاء ادخال بريد الكتروني صحيح"
   },
   "errors": {
     "generic": "حدث خطأ, الرجاء المحاول مرة أخري",
@@ -92,6 +94,19 @@
   "filters": {
     "title": "خياراتي",
     "allLanguages": "جميع اللغات",
-    "allTags": "جميع الأوسمة"
-  }
+    "allTags": "جميع الأوسمة",
+    "allLevels": "جميع المستويات"
+  },
+  "landingPage": {
+    "heroText": "نتكلم كود؟",
+    "heroSubtitle": "برمجة بالعربي (والأمهري والسواحيلي)",
+    "comingSoon": "قيد الانشاء",
+    "followOnTwitter": "تابعونا على تويتر",
+    "getIntouch": "اتصلوا بنا لتشاركونا بتسجيل فيديو، دعم المشروع أو حتى ونسة ساي:",
+    "subscribe": "تسجيل",
+    "notifyMeWhenLaunch": "اعلمني عند اطلاق الموقع",
+    "subscribeSuccess": "تم اضافة الايميل بنجاح.",
+    "subscribeError": "حدث خطأ عند تسجيل الايميل. الرجاء مراسلتنا مباشرة أو المحاولة مرة أخرى."
+  },
+  "moreCourses": "مشاهدة البقية"
 }

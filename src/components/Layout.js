@@ -10,8 +10,18 @@ import 'react-toastify/dist/ReactToastify.css'
 import './layout.css'
 import useLanguage from '../hooks/useLanguage'
 
-const Layout = ({ children, pageTitle }) => {
+const Layout = ({ children, pageTitle, fullPage }) => {
   const { isRtl, language } = useLanguage()
+
+  const wrappedChildren = fullPage ? (
+    children
+  ) : (
+    <div className="container max-w-6xl w-full mx-auto pt-10">
+      <div className="w-full md:mt-2 mb-16 text-black-800 leading-normal">
+        {children}
+      </div>
+    </div>
+  )
 
   return (
     <div
@@ -23,11 +33,7 @@ const Layout = ({ children, pageTitle }) => {
 
       {pageTitle && <PageTitle title={pageTitle} />}
 
-      <div className="container max-w-6xl w-full mx-auto pt-10">
-        <div className="w-full md:mt-2 mb-16 text-black-800 leading-normal">
-          {children}
-        </div>
-      </div>
+      {wrappedChildren}
 
       <Footer />
       <ToastContainer />
@@ -37,10 +43,12 @@ const Layout = ({ children, pageTitle }) => {
 
 Layout.propTypes = {
   pageTitle: PropTypes.string,
+  fullPage: PropTypes.bool,
 }
 
 Layout.defaultProps = {
   pageTitle: '',
+  fullPage: false,
 }
 
 export default Layout
