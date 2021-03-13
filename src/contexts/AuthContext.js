@@ -2,7 +2,7 @@ import React, { createContext } from 'react'
 import { isEmpty } from 'lodash'
 import useAuthHandler from '../hooks/useAuthHandler'
 import { getLocalStorage } from '../services/localStorage'
-import { LOCALE_STORAGE_USER, LOCALE_STORAGE_TOKEN } from '../common/const'
+import { LOCALE_STORAGE_USER, LOCALE_STORAGE_TOKEN } from '../common/constants'
 import { isTeacher } from '../common/util'
 
 /**

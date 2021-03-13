@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { flatten, uniq, find } from 'lodash'
-import { appLanguages } from '../LanguageSwitcher'
+import { appLanguages } from '../../common/constants'
 import { AppContext } from '../../contexts/AppContext'
 
 const Filters = () => {

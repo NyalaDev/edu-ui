@@ -1,7 +1,7 @@
 import moment from 'moment'
 import { isEmpty } from 'lodash'
 import PropTypes from 'prop-types'
-import { DEFAULT_PROFILE_PIC } from './const'
+import { DEFAULT_PROFILE_PIC } from './constants'
 
 /**
  * Format a duration

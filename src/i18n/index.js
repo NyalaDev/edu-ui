@@ -1,6 +1,6 @@
 import i18next from 'i18next'
 import { initReactI18next } from 'react-i18next'
-import { DEFAULT_LANGUAGE } from '../common/const'
+import { DEFAULT_LANGUAGE } from '../common/constants'
 import ar from '../locales/ar/messages.json'
 import en from '../locales/en/messages.json'
 import am from '../locales/am/messages.json'

@@ -80,6 +80,8 @@
   "add": "Ongeza",
   "title": "Kichwa",
   "url": "URL",
+  "preferedLanguage": "Default language",
+  "choosePreferedLanguage": "Choose you prefered language",
   "validation": {
     "required": "Taarifa hii inahitajika"
   },
