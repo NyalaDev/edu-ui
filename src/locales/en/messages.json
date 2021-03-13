@@ -80,6 +80,8 @@
   "add": "Add",
   "title": "Title",
   "url": "URL",
+  "preferedLanguage": "Default language",
+  "choosePreferedLanguage": "Choose you prefered language",
   "importFromYoutube": "Import from YouTube",
   "validation": {
     "required": "This field is required",

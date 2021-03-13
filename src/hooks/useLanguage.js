@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { setLocalStorage } from '../services/localStorage'
-import { DEFAULT_LANGUAGE } from '../common/const'
+import { setLocalStorage, getLocalStorage } from '../services/localStorage'
+import { DEFAULT_LANGUAGE } from '../common/constants'
 
 /**
  * Custom hook to handle language switching
