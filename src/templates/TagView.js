@@ -13,10 +13,8 @@ const TagView = ({ data, location }) => {
   return (
     <Layout>
       <Seo title="Tags" />
-      <Helmet titleTemplate="%s | مركز الدراسات السودانية">
+      <Helmet titleTemplate="%s | barmaga.io">
         <title>{`${tagName}`}</title>
-        <meta property="og:type" content="article" />
-        <meta property="og:locale" content="ar_TN" />
         <meta property="og:title" content={tagName} />
         <meta property="og:url" content={location.href} />
       </Helmet>
