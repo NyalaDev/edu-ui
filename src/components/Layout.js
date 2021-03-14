@@ -1,6 +1,8 @@
 import React from 'react'
 import { ToastContainer } from 'react-toastify'
 import PropTypes from 'prop-types'
+import { useTranslation } from 'react-i18next'
+import Helmet from 'react-helmet'
 import Header from './Header'
 import PageTitle from './PageTitle'
 import Footer from './Footer'
@@ -12,7 +14,7 @@ import useLanguage from '../hooks/useLanguage'
 
 const Layout = ({ children, pageTitle, fullPage }) => {
   const { isRtl, language } = useLanguage()
-
+  const { t } = useTranslation()
   const wrappedChildren = fullPage ? (
     children
   ) : (
@@ -24,19 +26,40 @@ const Layout = ({ children, pageTitle, fullPage }) => {
   )
 
   return (
-    <div
-      className={`${isRtl ? 'rtl' : ''} ${
-        language === 'am' ? 'amharic' : ''
-      } bg-gray-100 leading-normal tracking-normal`}
-    >
-      <Header />
+    <div>
+      <Helmet titleTemplate="%s | barmaga.io">
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content={t('landingPage.heroText')} />
+        <meta
+          property="og:description"
+          content={t('landingPage.heroSubtitle')}
+        />
+        <meta property="og:url" content="https://barmaga.io" />
+        <meta
+          property="og:image"
+          content="https://cdn.nyaladev.com/barmaga.io/barmaga_logo_sm.svg"
+        />
+        <meta
+          name="twitter:image"
+          content="https://cdn.nyaladev.com/barmaga.io/barmaga_logo_sm.svg"
+        />
+        <meta name="twitter:card" content={t('landingPage.heroText')} />
+        <meta charset="utf-8" />
+      </Helmet>
+      <div
+        className={`${isRtl ? 'rtl' : ''} ${
+          language === 'am' ? 'amharic' : ''
+        } bg-gray-100 leading-normal tracking-normal`}
+      >
+        <Header />
 
-      {pageTitle && <PageTitle title={pageTitle} />}
+        {pageTitle && <PageTitle title={pageTitle} />}
 
-      {wrappedChildren}
+        {wrappedChildren}
 
-      <Footer />
-      <ToastContainer />
+        <Footer />
+        <ToastContainer />
+      </div>
     </div>
   )
 }
