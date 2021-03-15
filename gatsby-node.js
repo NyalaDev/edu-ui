@@ -3,12 +3,17 @@ const path = require('path')
 exports.createPages = async ({ actions, graphql }) => {
   const { createPage } = actions
 
+  const courseLanguages = ['Arabic', 'Swahili', 'English', 'Amharic']
+  const CourseLevels = ['Beginner', 'Intermediate', 'Advanced']
+
   const templatesBase = './src/templates'
   const courseViewTemplate = path.resolve(`${templatesBase}/CourseView.js`)
   const lectureViewTemplate = path.resolve(
     `${templatesBase}/LectureView/index.js`
   )
   const tagViewTemplate = path.resolve(`${templatesBase}/TagView.js`)
+  const levelViewTemplate = path.resolve(`${templatesBase}/LevelView.js`)
+  const languageViewTemplate = path.resolve(`${templatesBase}/LanguageView.js`)
 
   const {
     data: {
@@ -95,6 +100,26 @@ exports.createPages = async ({ actions, graphql }) => {
       path: `/tags/${tagName}`,
       context: {
         id,
+      },
+    })
+  })
+
+  CourseLevels.forEach(level => {
+    createPage({
+      component: levelViewTemplate,
+      path: `/levels/${level}`,
+      context: {
+        level,
+      },
+    })
+  })
+
+  courseLanguages.forEach(language => {
+    createPage({
+      component: languageViewTemplate,
+      path: `/languages/${language}`,
+      context: {
+        language,
       },
     })
   })
