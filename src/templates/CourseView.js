@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
+import Helmet from 'react-helmet'
 import { graphql } from 'gatsby'
 import { useTranslation } from 'react-i18next'
 import { orderBy } from 'lodash'
@@ -18,10 +19,12 @@ import { getProfileById } from '../services/api'
 import useCourseProgress from '../hooks/useCourseProgress'
 import CourseExercises from '../components/Courses/CourseExercises'
 
-const CourseView = ({ data }) => {
+const CourseView = ({ data, location }) => {
   const [instructorPhoto, setInstructorPhoto] = useState(DEFAULT_PROFILE_PIC)
   const { strapiCourse, allStrapiCourse } = data
   const {
+    title,
+    description,
     tags,
     lectures,
     slug,
@@ -59,6 +62,14 @@ const CourseView = ({ data }) => {
   return (
     <Layout>
       <Seo title="Courses" />
+      <Helmet titleTemplate="%s | barmaga.io">
+        <title>{`${title}`}</title>
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:url" content={location.href} />
+        <meta property="og:image" content={thumbnail} />
+      </Helmet>
       <div className="grid md:grid-cols-3 sm:grid-col-1 gap-4">
         <div className="flex flex-col md:col-span-1 sm:col-span-1">
           {isCourseInProgress && (
@@ -140,6 +151,7 @@ CourseView.propTypes = {
     strapiCourse: PropTypes.objectOf(PropTypes.any),
     allStrapiCourse: PropTypes.objectOf(PropTypes.any),
   }).isRequired,
+  location: PropTypes.objectOf.isRequired,
 }
 export default CourseView
 
