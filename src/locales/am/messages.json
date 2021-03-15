@@ -96,10 +96,10 @@
     "allLevels": "All Levels"
   },  
   "landingPage": {
-    "heroText": "localised, not translated",
-    "heroSubtitle": "Learn coding in Arabic, Amharic, Swahili and more..",
-    "comingSoon": "Coming Soon",
-    "followOnTwitter": "Follow us on Twitter",
-    "getIntouch": "Get in touch to record a tutorial, support the project or just for a chat:"
+    "heroText": "ፕሮግራሚንግ በራሴ ቋንቋ",
+    "heroSubtitle": "በአማርኛ፣ በአረብኛ፣ ስዋሂሊ እናም በሌሎች ቋንቋዎች ኮድ መጻፍን ይማሩ",
+    "comingSoon": "በቅርበ ቀን ይጠብቁን",
+    "followOnTwitter": "ትዊተር ላይ ይከተሉን",
+    "getIntouch": "ስልጠናን ለመቅረጽ ፣ ፕሮጀክቱንም ስፖንሰር ለማድረግ ወይም ውይይት ካስፈለጎዎ በ"
   }
 }
