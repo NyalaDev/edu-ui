@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { graphql } from 'gatsby'
-import { useTranslation } from 'react-i18next'
 import PropTypes from 'prop-types'
 import Layout from '../components/Layout'
 import Seo from '../components/Seo'
@@ -21,7 +20,6 @@ const IndexPage = ({ data }) => {
   const coursesList = edges.map(edge => edge.node)
 
   const [open, setOpen] = useState(false)
-  const { t } = useTranslation()
 
   useEffect(() => {
     if (!getLocalStorage('siteLang')) {
@@ -30,41 +28,41 @@ const IndexPage = ({ data }) => {
   }, [])
 
   return (
-    <Layout fullPage>
-      <Seo title="Home" />
-      <LandingPage />
-      <div className="container max-w-6xl w-full mx-auto pt-10">
-        <div className="w-full md:mt-2 mb-16 text-black-800 leading-normal">
-          <AppProvider initialCoursesList={coursesList}>
-            <CoursesHome
-              showMoreCard
-              hidleFilters
-              noFilter
-              courses={coursesList}
-            />
-          </AppProvider>
-        </div>
-      </div>
-
-      <Spinner />
-
-      {open && (
-        <Modal
-          withActions={false}
-          onDismiss={() => setOpen(false)}
-          title={t('preferedLanguage')}
-        >
-          <div className="flex justify-center items-center flex-col min-h-40">
-            <div className="text-2xl font-semibold mb-3">
-              {t('choosePreferedLanguage')}
-            </div>
-            <div>
-              <DefaultLanguage onDismiss={() => setOpen(false)} />
-            </div>
+    <>
+      <Layout modalOpen={open} fullPage>
+        <Seo title="Home" />
+        <LandingPage />
+        <div className="container max-w-6xl w-full mx-auto pt-10">
+          <div className="w-full md:mt-2 mb-16 text-black-800 leading-normal">
+            <AppProvider initialCoursesList={coursesList}>
+              <CoursesHome
+                showMoreCard
+                hidleFilters
+                noFilter
+                courses={coursesList}
+              />
+            </AppProvider>
           </div>
-        </Modal>
+        </div>
+
+        <Spinner />
+      </Layout>
+      {open && (
+        <div style={{ direction: 'ltr' }}>
+          <Modal
+            withActions={false}
+            titleCentered
+            title="Please Choose a Language"
+          >
+            <div className="flex justify-center items-center flex-col min-h-40">
+              <div>
+                <DefaultLanguage onDismiss={() => setOpen(false)} />
+              </div>
+            </div>
+          </Modal>
+        </div>
       )}
-    </Layout>
+    </>
   )
 }
 

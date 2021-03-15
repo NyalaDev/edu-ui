@@ -12,7 +12,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import './layout.css'
 import useLanguage from '../hooks/useLanguage'
 
-const Layout = ({ children, pageTitle, fullPage }) => {
+const Layout = ({ children, pageTitle, fullPage, modalOpen }) => {
   const { isRtl, language } = useLanguage()
   const { t } = useTranslation()
   const wrappedChildren = fullPage ? (
@@ -26,7 +26,7 @@ const Layout = ({ children, pageTitle, fullPage }) => {
   )
 
   return (
-    <div>
+    <div className={modalOpen ? 'opacity-40' : ''}>
       <Helmet titleTemplate="%s | barmaga.io">
         <meta property="og:type" content="website" />
         <meta property="og:title" content={t('landingPage.heroText')} />
@@ -67,11 +67,13 @@ const Layout = ({ children, pageTitle, fullPage }) => {
 Layout.propTypes = {
   pageTitle: PropTypes.string,
   fullPage: PropTypes.bool,
+  modalOpen: PropTypes.bool,
 }
 
 Layout.defaultProps = {
   pageTitle: '',
   fullPage: false,
+  modalOpen: false,
 }
 
 export default Layout
