@@ -43,7 +43,7 @@ const Layout = ({ children, pageTitle, fullPage }) => {
           name="twitter:image"
           content="https://cdn.nyaladev.com/barmaga.io/barmaga_logo_sm.svg"
         />
-        <meta name="twitter:card" content={t('landingPage.heroText')} />
+        <meta name="twitter:card" content="summary_large_image" />
         <meta charset="utf-8" />
       </Helmet>
       <div
