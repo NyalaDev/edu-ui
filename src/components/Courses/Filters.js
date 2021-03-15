@@ -3,9 +3,12 @@ import { useTranslation } from 'react-i18next'
 import { flatten, uniq, find } from 'lodash'
 import { appLanguages } from '../../common/constants'
 import { AppContext } from '../../contexts/AppContext'
+import useLanguage from '../../hooks/useLanguage'
 
 const Filters = () => {
   const { t } = useTranslation()
+
+  const { language } = useLanguage()
 
   const { initialCoursesList, setCourses } = useContext(AppContext)
   const [values, setValues] = useState({})
@@ -15,7 +18,10 @@ const Filters = () => {
       initialCoursesList.map(course => course.tags.map(tag => tag.tagName))
     )
   )
+
   const levels = ['Beginner', 'Intermediate', 'Advanced']
+
+  useEffect(() => setValues({ ...values, language }), [])
 
   useEffect(() => {
     let filteredList = [...initialCoursesList]
@@ -39,7 +45,7 @@ const Filters = () => {
     })
 
     setCourses(filteredList)
-  }, [values])
+  }, [values, language])
 
   const updateList = event => {
     const { name, value } = event.target
