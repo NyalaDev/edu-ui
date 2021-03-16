@@ -42,7 +42,11 @@ const CourseCard = ({
         </div>
 
         <div className="flex flex-wrap my-2">
-          <Badge text={language.name} color="gray-900" />
+          <Badge
+            text={language.name}
+            color="gray-900"
+            link={`/languages/${language.name}`}
+          />
           {forDashboard && status && (
             <Badge
               text={status}
@@ -92,7 +96,9 @@ const CourseCard = ({
                   link={`/tags/${tagName}`}
                 />
               ))}
-            {level && <Badge text={level} color="pink-800" />}
+            {level && (
+              <Badge text={level} color="pink-800" link={`/levels/${level}`} />
+            )}
           </div>
         )}
       </div>
