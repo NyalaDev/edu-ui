@@ -183,6 +183,7 @@ export const pageQuery = graphql`
           user
           name
           bio
+          github
         }
       }
       language {

@@ -1,4 +1,5 @@
 const path = require('path')
+const { uniq } = require('lodash')
 
 exports.createPages = async ({ actions, graphql }) => {
   const { createPage } = actions
@@ -14,6 +15,9 @@ exports.createPages = async ({ actions, graphql }) => {
   const tagViewTemplate = path.resolve(`${templatesBase}/TagView.js`)
   const levelViewTemplate = path.resolve(`${templatesBase}/LevelView.js`)
   const languageViewTemplate = path.resolve(`${templatesBase}/LanguageView.js`)
+  const instructorViewTemplate = path.resolve(
+    `${templatesBase}/InstructorView.js`
+  )
 
   const {
     data: {
@@ -28,6 +32,11 @@ exports.createPages = async ({ actions, graphql }) => {
           node {
             id
             slug
+            instructor {
+              profile {
+                github
+              }
+            }
             tags {
               tagName
             }
@@ -57,6 +66,10 @@ exports.createPages = async ({ actions, graphql }) => {
       }
     }
   `)
+
+  const instructors = uniq(
+    courses.map(course => course.node.instructor.profile.github)
+  )
 
   courses.forEach(edge => {
     const {
@@ -120,6 +133,16 @@ exports.createPages = async ({ actions, graphql }) => {
       path: `/languages/${language}`,
       context: {
         language,
+      },
+    })
+  })
+
+  instructors.forEach(instructor => {
+    createPage({
+      component: instructorViewTemplate,
+      path: `/instructors/${instructor}`,
+      context: {
+        instructor,
       },
     })
   })
