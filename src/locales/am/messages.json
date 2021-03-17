@@ -82,6 +82,8 @@
   "url": "URL",
   "preferedLanguage": "Default language",
   "choosePreferedLanguage": "Choose you prefered language",
+  "importFromYoutube": "Import from YouTube",
+  "noCourse": "No courses for the selected filters",
   "validation": {
     "required": "ይሄ ቦታ አስፈላጊ ነው"
   },
@@ -94,7 +96,7 @@
     "allLanguages": "ሁሉም ቋንቋዎች",
     "allTags": "ሁሉም መለያዎች",
     "allLevels": "All Levels"
-  },  
+  },
   "landingPage": {
     "heroText": "ፕሮግራሚንግ በራሴ ቋንቋ",
     "heroSubtitle": "በአማርኛ፣ በአረብኛ፣ ስዋሂሊ እናም በሌሎች ቋንቋዎች ኮድ መጻፍን ይማሩ",

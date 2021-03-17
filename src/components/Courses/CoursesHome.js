@@ -46,6 +46,9 @@ const CoursesHome = ({
           </Link>
         )}
       </div>
+      {courses.length === 0 && (
+        <div className="text-center mt-5 text-xl">{t('noCourse')}</div>
+      )}
     </>
   )
 }
