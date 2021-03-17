@@ -28,8 +28,6 @@ jobs:
       - name: Build website
         run: yarn build
         env:
-          GATSBY_MAILCHIMP_ACCOUNT_ID: ${{ secrets.GATSBY_MAILCHIMP_ACCOUNT_ID }}
-          GATSBY_MAILCHIMP_AUDIENCE_ID: ${{ secrets.GATSBY_MAILCHIMP_AUDIENCE_ID }}
           GATSBY_STRAPI_API_URL: ${{ secrets.GATSBY_STRAPI_API_URL }}
           GATSBY_S3_BUCKET: ${{ secrets.S3_BUCKET_PROD }}
           GATSBY_SITE_URL: 'https://barmaga.io'

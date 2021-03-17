@@ -63,6 +63,14 @@ export const resetPassword = async values => {
   return data
 }
 
+export const subscribeToMailingList = async values => {
+  const { data } = await axiosInstance().post(
+    `https://barmga-lambda.nyaladev.com/email-subscribe`,
+    values
+  )
+  return data
+}
+
 /**
  * Upload file to strapi media
  * @param {*} file The file object
