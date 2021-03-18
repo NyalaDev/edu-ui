@@ -15,6 +15,16 @@ import useLanguage from '../hooks/useLanguage'
 const Layout = ({ children, pageTitle, fullPage, modalOpen }) => {
   const { isRtl, language } = useLanguage()
   const { t } = useTranslation()
+  // this is to avoid this issue: https://joshwcomeau.com/react/the-perils-of-rehydration/
+  const [hasMounted, setHasMounted] = React.useState(false)
+  React.useEffect(() => {
+    setHasMounted(true)
+  }, [])
+
+  if (!hasMounted) {
+    return null
+  }
+
   const wrappedChildren = fullPage ? (
     children
   ) : (
