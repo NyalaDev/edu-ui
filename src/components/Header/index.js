@@ -21,12 +21,23 @@ const navBarItems = [
 ]
 
 const Header = () => {
+  // this is to avoid this issue: https://joshwcomeau.com/react/the-perils-of-rehydration/
+  const [hasMounted, setHasMounted] = React.useState(false)
+
   const { isLoggedIn } = useContext(AuthContext)
   const { t } = useTranslation()
   const [mobileNavbarOpen, setMobileNavbarOpen] = useState(false)
 
+  React.useEffect(() => {
+    setHasMounted(true)
+  }, [])
+
   const toggleMobileNavBarOpen = () => {
     setMobileNavbarOpen(!mobileNavbarOpen)
+  }
+
+  if (!hasMounted) {
+    return null
   }
 
   return (
