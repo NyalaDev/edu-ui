@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import addToMailchimp from 'gatsby-plugin-mailchimp'
 import { toast } from 'react-toastify'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
@@ -8,6 +7,7 @@ import Input from '../Input'
 import Button from '../General/Button'
 import Spinner from '../Spinner'
 import useLanguage from '../../hooks/useLanguage'
+import { subscribeToMailingList } from '../../services/api'
 
 const SubscribeEmail = () => {
   const { t } = useTranslation()
@@ -26,7 +26,8 @@ const SubscribeEmail = () => {
     onSubmit: async values => {
       try {
         setLoading(true)
-        const { result } = await addToMailchimp(values.email, {
+        const { result } = await subscribeToMailingList({
+          email: values.email,
           LANGUAGE: language,
         })
         if (result === 'error') {

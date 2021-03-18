@@ -10,24 +10,33 @@ const Modal = ({
   closeLabel,
   confirmLabel,
   withActions,
+  titleCentered,
 }) => {
   const { t } = useTranslation()
   return (
     <>
-      <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
+      <div className="justify-center mt-16 sm:mt-64 flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
         <div className="w-9/12">
-          <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+          <div className="border-0 rounded-lg shadow-2xl relative flex flex-col w-full bg-white outline-none focus:outline-none">
             <div className="flex flex-row items-start justify-between p-5 border-b border-solid border-gray-300 rounded-t">
-              <h3 className="text-3xl font-semibold">{title}</h3>
-              <button
-                type="button"
-                className="p-1 bg-transparent border-0 text-black opacity-5 text-3xl leading-none font-semibold outline-none focus:outline-none"
-                onClick={onDismiss}
+              <h3
+                className={`text-lg sm:text-2xl title flex-1 ${
+                  titleCentered ? 'text-center' : ''
+                }`}
               >
-                <span className="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
-                  ×
-                </span>
-              </button>
+                {title}
+              </h3>
+              {onDismiss && (
+                <button
+                  type="button"
+                  className="p-1 bg-transparent border-0 text-black opacity-5 text-3xl leading-none font-semibold outline-none focus:outline-none"
+                  onClick={onDismiss}
+                >
+                  <span className="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
+                    ×
+                  </span>
+                </button>
+              )}
             </div>
 
             <div className="flex-auto">{children}</div>
@@ -60,11 +69,12 @@ const Modal = ({
 
 Modal.propTypes = {
   title: PropTypes.string,
-  onDismiss: PropTypes.func.isRequired,
+  onDismiss: PropTypes.func,
   onAction: PropTypes.func,
   closeLabel: PropTypes.string,
   confirmLabel: PropTypes.string,
   withActions: PropTypes.bool,
+  titleCentered: PropTypes.bool,
 }
 
 Modal.defaultProps = {
@@ -73,6 +83,8 @@ Modal.defaultProps = {
   confirmLabel: 'save',
   withActions: true,
   onAction: () => {},
+  onDismiss: null,
+  titleCentered: false,
 }
 
 export default Modal
