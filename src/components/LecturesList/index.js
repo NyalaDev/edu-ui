@@ -21,6 +21,7 @@ const LectureList = ({
   courseSlug,
   currentLecture,
   courseStrapiId,
+  language,
 }) => {
   const getNumber = index => {
     const value = index + 1
@@ -28,6 +29,8 @@ const LectureList = ({
   }
   const isCourseInProgress = useCourseProgress(courseStrapiId)
   const sortedLectures = orderBy(lectures, 'position', 'asc')
+  const isRtl = language === 'Arabic'
+
   return (
     <StyledLectureList>
       {sortedLectures.map((lecture, index) => (
@@ -49,7 +52,7 @@ const LectureList = ({
             </StyledCount>
             <StyledListBody>
               <StyledVideoIcon />
-              <p>
+              <p className={`${isRtl ? 'rtl' : 'ltr'}`}>
                 <StyledLink
                   to={`/courses/${courseSlug}/lectures/${lecture.id}`}
                 >
@@ -82,6 +85,7 @@ LectureList.propTypes = {
   }),
   courseSlug: PropTypes.string.isRequired,
   courseStrapiId: PropTypes.number.isRequired,
+  language: PropTypes.string.isRequired,
 }
 
 LectureList.defaultProps = {

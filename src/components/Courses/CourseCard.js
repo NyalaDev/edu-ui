@@ -28,11 +28,17 @@ const CourseCard = ({
     level,
   } = course
 
+  const isRtl = language.name === 'Arabic'
   const cardLink = forDashboard
     ? `/dashboard/manage/${slug}`
     : `/courses/${slug}`
+
   return (
-    <div className="max-w-sm rounded overflow-hidden shadow-lg">
+    <div
+      className={`max-w-sm rounded overflow-hidden shadow-lg ${
+        isRtl ? 'rtl' : 'ltr'
+      }`}
+    >
       <Link to={cardLink}>
         <img className="w-full" src={image} alt={title} />
       </Link>

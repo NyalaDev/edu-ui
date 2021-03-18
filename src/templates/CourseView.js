@@ -31,6 +31,7 @@ const CourseView = ({ data, location }) => {
     created_at: createdAt,
     instructor,
     strapiId: courseStrapiId,
+    language,
   } = strapiCourse
 
   const sortedLectures = orderBy(lectures, 'position', 'asc')
@@ -99,7 +100,7 @@ const CourseView = ({ data, location }) => {
 
           <CourseMeta lectures={sortedLectures} createdAt={createdAt} />
 
-          <CourseTags tags={tags} />
+          {tags.length !== 0 && <CourseTags tags={tags} />}
 
           <InstructorBio instructor={instructor} photo={instructorPhoto} />
         </div>
@@ -113,6 +114,7 @@ const CourseView = ({ data, location }) => {
               courseSlug={slug}
               lectures={sortedLectures}
               courseStrapiId={courseStrapiId}
+              language={language.name}
             />
           </div>
         </div>
