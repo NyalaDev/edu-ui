@@ -37,11 +37,11 @@ const Layout = ({ children, pageTitle, fullPage }) => {
         <meta property="og:url" content="https://barmaga.io" />
         <meta
           property="og:image"
-          content="https://cdn.nyaladev.com/barmaga.io/barmaga_logo_sm.svg"
+          content="https://cdn.nyaladev.com/barmaga.io/barmaga_logo_sm.png"
         />
         <meta
           name="twitter:image"
-          content="https://cdn.nyaladev.com/barmaga.io/barmaga_logo_sm.svg"
+          content="https://cdn.nyaladev.com/barmaga.io/barmaga_logo_sm.png"
         />
         <meta name="twitter:card" content="summary_large_image" />
         <meta charset="utf-8" />
