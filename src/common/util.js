@@ -1,6 +1,7 @@
-import moment from 'moment'
 import { isEmpty } from 'lodash'
 import PropTypes from 'prop-types'
+
+import { parse, sum, normalize } from 'duration-fns'
 import { DEFAULT_PROFILE_PIC } from './constants'
 
 /**
@@ -9,8 +10,9 @@ import { DEFAULT_PROFILE_PIC } from './constants'
  * @param {*} format Optional - The format value. Default is HH:mm:ss
  * @return Formated duration - eg 00:23:11
  */
-export const formatDuration = (duration, format = 'HH:mm:ss') => {
-  return moment.utc(moment.duration(duration).as('milliseconds')).format(format)
+export const formatDuration = duration => {
+  const durationObj = parse(duration)
+  return `${durationObj.hours}:${durationObj.minutes}:${durationObj.seconds}`
 }
 
 /**
@@ -40,14 +42,13 @@ export const calculateVideosDuration = (lectures = []) => {
   if (isEmpty(lectures)) {
     return ''
   }
-  const { duration = 0 } = lectures[0] || {}
-  const totalDuration = lectures
-    .slice(1)
-    .reduce(
-      (prev, cur) => moment.duration(cur.duration).add(prev),
-      moment.duration(duration)
-    )
-  return moment.utc(totalDuration.asMilliseconds()).format('HH:mm:ss')
+
+  // let duration = ''
+  const y = lectures.map(lecture => {
+    return parse(lecture.duration)
+  })
+  const totalDuration = normalize(sum(...y))
+  return `${totalDuration.hours}:${totalDuration.minutes}:${totalDuration.seconds}`
 }
 
 /**
