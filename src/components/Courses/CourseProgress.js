@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { getPercentage } from '../../services/util'
+import { getPercentage } from '../../common/util'
 
 const CourseProgress = ({ isCourseInProgress, lecturesCount }) => {
   const calculateCourseProgress = () => {
