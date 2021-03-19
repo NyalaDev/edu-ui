@@ -34,7 +34,7 @@ const CourseCard = ({
   return (
     <div className="max-w-sm rounded overflow-hidden shadow-lg">
       <Link to={cardLink}>
-        <img className="w-full" src={image} alt={title} />
+        <img className="w-full h-56" src={image} alt={title} />
       </Link>
       <div className="px-6 py-4">
         <div className="title text-xl mb-2">

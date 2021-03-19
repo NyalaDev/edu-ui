@@ -108,5 +108,13 @@
     "subscribeSuccess": "Your email was added successfully.",
     "subscribeError": "Something went wrong, please try again or contact us directly through email or Twitter."
   },
-  "moreCourses": "See More"
+  "moreCourses": "See More",
+  "upcomingCourse": {
+    "interestedInCourse": "Interested in this course?",
+    "courseComingSoon": "Course coming soon",
+    "notifyMe": "Notify me of new courses",
+    "feedbackReceived": "👍🏿 Thanks for the feedback."
+  },
+  "yes": "yes",
+  "no": "no"
 }

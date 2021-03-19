@@ -6,6 +6,8 @@ import { CoursePropType, getYoutubeThumbnail } from '../../common/util'
 import { AppContext } from '../../contexts/AppContext'
 import CourseCard from './CourseCard'
 import Filters from './Filters'
+import CourseCardUpcoming from './CourseCardUpcoming'
+import SubscribeEmail from '../LandingPage/SubscribeEmail'
 
 const CoursesHome = ({
   courses: coursesList,
@@ -24,10 +26,13 @@ const CoursesHome = ({
       {!hidleFilters && <Filters />}
       <div className="grid md:grid-cols-3 sm:grid-cols-1 gap-4">
         {courses.map(course => {
-          const {
-            lectures: [firstLecture],
-          } = course
+          const { lectures: [firstLecture = {}] = [] } = course
           const { url: imageUrl } = firstLecture
+
+          if (course.status === 'Upcoming') {
+            return <CourseCardUpcoming key={course.id} course={course} />
+          }
+
           return (
             <CourseCard
               key={course.id}
@@ -45,6 +50,9 @@ const CoursesHome = ({
             </div>
           </Link>
         )}
+      </div>
+      <div className="mt-6 px-6 py-2">
+        <SubscribeEmail title={t('upcomingCourse.notifyMe')} />
       </div>
     </>
   )

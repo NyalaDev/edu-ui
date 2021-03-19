@@ -28,6 +28,7 @@ exports.createPages = async ({ actions, graphql }) => {
           node {
             id
             slug
+            status
             tags {
               tagName
             }
@@ -43,6 +44,7 @@ exports.createPages = async ({ actions, graphql }) => {
             course {
               id
               slug
+              status
             }
           }
         }
@@ -60,11 +62,14 @@ exports.createPages = async ({ actions, graphql }) => {
 
   courses.forEach(edge => {
     const {
-      node: { id, slug, tags: courseTags },
+      node: { id, status, slug, tags: courseTags },
     } = edge
+
+    if (status === 'UpcomingCourse') return
 
     const [firstTag = {}] = courseTags
     const { tagName = '' } = firstTag
+
     createPage({
       component: courseViewTemplate,
       path: `/courses/${slug}`,
