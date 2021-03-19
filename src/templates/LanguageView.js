@@ -4,6 +4,7 @@ import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
 import CourseCard from '../components/Courses/CourseCard'
 import { getYoutubeThumbnail } from '../common/util'
+import CourseCardUpcoming from '../components/Courses/CourseCardUpcoming'
 
 const LanguageView = ({ data, pageContext }) => {
   const {
@@ -20,8 +21,14 @@ const LanguageView = ({ data, pageContext }) => {
       </div>
       <div className="grid md:grid-cols-3 sm:grid-cols-1 gap-4">
         {courses.map(course => {
-          const { lectures } = course.node
+          const { lectures, status } = course.node
           const { url: imageUrl } = lectures[0] || {}
+
+          if (status === 'Upcoming') {
+            return (
+              <CourseCardUpcoming key={course.node.id} course={course.node} />
+            )
+          }
 
           return (
             <CourseCard
@@ -55,6 +62,7 @@ export const pageQuery = graphql`
           description
           slug
           level
+          status
           lectures {
             url
           }

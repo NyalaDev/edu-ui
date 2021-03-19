@@ -74,7 +74,11 @@ export default IndexPage
 
 export const pageQuery = graphql`
   query LandingQuery {
-    allStrapiCourse(sort: { fields: created_at, order: DESC }, limit: 5) {
+    allStrapiCourse(
+      sort: { fields: created_at, order: DESC }
+      filter: { status: { eq: "Published" } }
+      limit: 5
+    ) {
       edges {
         node {
           id
