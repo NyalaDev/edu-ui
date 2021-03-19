@@ -33,6 +33,7 @@ jobs:
           GATSBY_SITE_URL: 'https://barmaga.io'
           GATSBY_ALGOLIA_APP_ID: ${{ secrets.GATSBY_ALGOLIA_APP_ID }}
           GATSBY_ALGOLIA_SEARCH_KEY: ${{ secrets.GATSBY_ALGOLIA_SEARCH_KEY }}
+          GATSBY_GOOGLE_ANALYTICS_ID: ${{ secrets.GATSBY_GOOGLE_ANALYTICS_ID }}
       - name: Deploy website
         run: yarn deploy
   invalidate:

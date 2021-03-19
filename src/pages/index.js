@@ -81,6 +81,7 @@ export const pageQuery = graphql`
           title
           description
           slug
+          status
           tags {
             tagName
           }

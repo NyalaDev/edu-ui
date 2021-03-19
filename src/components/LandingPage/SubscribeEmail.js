@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 import { toast } from 'react-toastify'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
@@ -9,7 +10,7 @@ import Spinner from '../Spinner'
 import useLanguage from '../../hooks/useLanguage'
 import { subscribeToMailingList } from '../../services/api'
 
-const SubscribeEmail = () => {
+const SubscribeEmail = ({ title }) => {
   const { t } = useTranslation()
   const { language } = useLanguage()
   const [loading, setLoading] = useState()
@@ -46,7 +47,7 @@ const SubscribeEmail = () => {
   return (
     <form onSubmit={formik.handleSubmit}>
       <label className="title font-bold text-blue-900" htmlFor="email">
-        {t('landingPage.notifyMeWhenLaunch')}
+        {title || t('landingPage.notifyMeWhenLaunch')}
       </label>
       <div className="flex items-center w-full sm:w-1/2">
         <div className="flex-1">
@@ -72,5 +73,10 @@ const SubscribeEmail = () => {
     </form>
   )
 }
-
+SubscribeEmail.propTypes = {
+  title: PropTypes.string,
+}
+SubscribeEmail.defaultProps = {
+  title: '',
+}
 export default SubscribeEmail

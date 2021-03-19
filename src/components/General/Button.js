@@ -46,11 +46,11 @@ const Button = props => {
 }
 
 Button.propTypes = {
-  mode: PropTypes.oneOf('info', 'error', 'success').isRequired,
+  mode: PropTypes.oneOf(['info', 'error', 'success']).isRequired,
   link: PropTypes.bool,
   extraClasses: PropTypes.string,
   small: PropTypes.bool,
-  type: PropTypes.oneOf('submit', ''),
+  type: PropTypes.oneOf(['submit', '']),
 }
 
 Button.defaultProps = {
