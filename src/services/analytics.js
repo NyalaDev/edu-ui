@@ -1,5 +1,5 @@
-export const sendEvent = (event, value, data = {}) => {
+export const sendEvent = (event, data = {}) => {
   if (typeof window !== 'undefined' && window.gtag) {
-    window.gtag(event, value, { ...data })
+    window.gtag('event', event, { ...data })
   }
 }

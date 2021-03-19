@@ -47,10 +47,9 @@ const UpcomingCourseFeedback = ({ course }) => {
     }
   }, [])
   const interested = isInterested => {
-    const event = isInterested ? 'Course Interest' : 'Course No Interest'
-
     setFeedbackSent(true)
-    sendEvent(event, isInterested, {
+    sendEvent('Course Interest', {
+      isInterested,
       course: course.title,
       language,
     })
