@@ -83,6 +83,7 @@
   "preferedLanguage": "اللغة المفضلة",
   "choosePreferedLanguage": "اختار لغتك المفضلة:",
   "importFromYoutube": "جلب من اليوتيوب",
+  "noCourse": "لا توجد كورسات",
   "validation": {
     "required": "هذ الحقل مطلوب",
     "email": "الرجاء ادخال بريد الكتروني صحيح"
