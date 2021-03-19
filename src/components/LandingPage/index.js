@@ -2,7 +2,6 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import useLanguage from '../../hooks/useLanguage'
 import Button from '../General/Button'
-import SubscribeEmail from './SubscribeEmail'
 
 const LandingPage = () => {
   const { t } = useTranslation()
@@ -45,11 +44,6 @@ const LandingPage = () => {
             </div>
           </div>
         </main>
-      </div>
-      <div className="bg-green-400 p-2 py-4">
-        <div className="mx-auto max-w-6xl">
-          <SubscribeEmail />
-        </div>
       </div>
     </>
   )

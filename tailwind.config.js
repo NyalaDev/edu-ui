@@ -8,6 +8,12 @@ module.exports = {
         'ar-title': ['NotoKufi'],
         am: ['NotoEthio'],
       },
+      colors: {
+        'language-ar': '#064E3B',
+        'language-am': '#DC2626',
+        'language-sw': '#78350F',
+        'language-en': '#4B5563',
+      },
     },
     opacity: {
       '0': '0',

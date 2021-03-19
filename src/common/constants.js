@@ -29,3 +29,8 @@ export const appLanguages = [
     icon: 'sw.svg',
   },
 ]
+
+export const getOriginalLanguageName = locale => {
+  const language = appLanguages.find(lang => lang.locale === locale) || {}
+  return language.label
+}

@@ -4,6 +4,7 @@ import HtmlViewer from '../HtmlViewer'
 import Badge from '../Badge'
 import { CoursePropType } from '../../common/util'
 import CourseFeedback from './Feedback/CourseFeedback'
+import { getOriginalLanguageName } from '../../common/constants'
 
 const CourseCardUpcoming = ({ course }) => {
   const { t } = useTranslation()
@@ -19,8 +20,8 @@ const CourseCardUpcoming = ({ course }) => {
 
         <div className="flex flex-wrap my-2">
           <Badge
-            text={language.name}
-            color="gray-900"
+            text={getOriginalLanguageName(language.iso2) || language.name}
+            languageBadge={language.iso2}
             link={`/languages/${language.name}`}
           />
         </div>

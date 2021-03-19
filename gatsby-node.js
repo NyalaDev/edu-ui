@@ -69,10 +69,6 @@ exports.createPages = async ({ actions, graphql }) => {
     }
   `)
 
-  const instructors = uniq(
-    courses.map(course => course.node.instructor.profile.github)
-  )
-
   courses.forEach(edge => {
     const {
       node: { id, status, slug, tags: courseTags },
@@ -141,6 +137,12 @@ exports.createPages = async ({ actions, graphql }) => {
       },
     })
   })
+
+  const coursesWithInstructors = courses.filter(c => !!c.node.instructor)
+
+  const instructors = uniq(
+    coursesWithInstructors.map(course => course.node.instructor.profile.github)
+  )
 
   instructors.forEach(instructor => {
     createPage({
