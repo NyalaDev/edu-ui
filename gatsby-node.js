@@ -74,7 +74,7 @@ exports.createPages = async ({ actions, graphql }) => {
       node: { id, status, slug, tags: courseTags },
     } = edge
 
-    if (status === 'UpcomingCourse') return
+    if (status === 'UpcomingCourse' || !lectures || !lectures.length) return
 
     const [firstTag = {}] = courseTags
     const { tagName = '' } = firstTag
