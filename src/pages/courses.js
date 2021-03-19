@@ -40,6 +40,7 @@ export const pageQuery = graphql`
           description
           slug
           level
+          status
           tags {
             tagName
           }

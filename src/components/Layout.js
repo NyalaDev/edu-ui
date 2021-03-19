@@ -15,6 +15,16 @@ import useLanguage from '../hooks/useLanguage'
 const Layout = ({ children, pageTitle, fullPage, modalOpen }) => {
   const { isRtl, language } = useLanguage()
   const { t } = useTranslation()
+  // this is to avoid this issue: https://joshwcomeau.com/react/the-perils-of-rehydration/
+  const [hasMounted, setHasMounted] = React.useState(false)
+  React.useEffect(() => {
+    setHasMounted(true)
+  }, [])
+
+  if (!hasMounted) {
+    return null
+  }
+
   const wrappedChildren = fullPage ? (
     children
   ) : (
@@ -27,6 +37,7 @@ const Layout = ({ children, pageTitle, fullPage, modalOpen }) => {
 
   return (
     <div className={modalOpen ? 'opacity-40' : ''}>
+
       <Helmet titleTemplate="%s | barmaga.io">
         <meta property="og:type" content="website" />
         <meta property="og:title" content={t('landingPage.heroText')} />
@@ -37,13 +48,14 @@ const Layout = ({ children, pageTitle, fullPage, modalOpen }) => {
         <meta property="og:url" content="https://barmaga.io" />
         <meta
           property="og:image"
-          content="https://cdn.nyaladev.com/barmaga.io/barmaga_logo_sm.svg"
+          content="https://cdn.nyaladev.com/barmaga.io/barmaga_logo_sm.png"
         />
         <meta
           name="twitter:image"
-          content="https://cdn.nyaladev.com/barmaga.io/barmaga_logo_sm.svg"
+          content="https://cdn.nyaladev.com/barmaga.io/barmaga_logo_sm.png"
         />
-        <meta name="twitter:card" content={t('landingPage.heroText')} />
+        <meta name="twitter:card" content="summary_large_image" />
+                   
         <meta charset="utf-8" />
       </Helmet>
       <div
