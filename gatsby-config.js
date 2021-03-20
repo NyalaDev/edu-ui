@@ -2,7 +2,7 @@ module.exports = {
   siteMetadata: {
     title: `Barmaga.io`,
     description: `Learn coding in Arabic, Amharic and Swahili`,
-    author: `nyala.dev`,
+    author: `barmaga.io`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,

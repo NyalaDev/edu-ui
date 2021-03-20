@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
-import Helmet from 'react-helmet'
 import { graphql } from 'gatsby'
 import { useTranslation } from 'react-i18next'
 import { orderBy } from 'lodash'
@@ -61,15 +60,15 @@ const CourseView = ({ data, location }) => {
 
   return (
     <Layout>
-      <Seo title="Courses" />
-      <Helmet titleTemplate="%s | barmaga.io">
-        <title>{`${title}`}</title>
-        <meta property="og:type" content="article" />
-        <meta property="og:title" content={title} />
-        <meta property="og:description" content={description} />
-        <meta property="og:url" content={location.href} />
-        <meta property="og:image" content={thumbnail} />
-      </Helmet>
+      <Seo
+        title={title}
+        description={description}
+        image={thumbnail}
+        meta={[
+          { property: 'og:url', content: location.href },
+          { property: 'og:type', content: 'article' },
+        ]}
+      />
       <div className="grid md:grid-cols-3 sm:grid-col-1 gap-4">
         <div className="flex flex-col md:col-span-1 sm:col-span-1">
           {isCourseInProgress && (

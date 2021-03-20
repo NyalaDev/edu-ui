@@ -3,7 +3,14 @@ import PropTypes from 'prop-types'
 import { Helmet } from 'react-helmet'
 import { useStaticQuery, graphql } from 'gatsby'
 
-const SEO = ({ description, lang, meta, title }) => {
+const SEO = ({
+  description,
+  image,
+  lang,
+  meta,
+  title,
+  twitterCardType = 'summary_large_image',
+}) => {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -46,7 +53,7 @@ const SEO = ({ description, lang, meta, title }) => {
         },
         {
           name: `twitter:card`,
-          content: `summary`,
+          content: twitterCardType,
         },
         {
           name: `twitter:creator`,
@@ -59,6 +66,20 @@ const SEO = ({ description, lang, meta, title }) => {
         {
           name: `twitter:description`,
           content: metaDescription,
+        },
+        {
+          name: 'twitter:image',
+          content:
+            image || 'https://cdn.nyaladev.com/barmaga.io/barmaga_logo_sm.png',
+        },
+        {
+          property: 'og:image',
+          content:
+            image || 'https://cdn.nyaladev.com/barmaga.io/barmaga_logo_sm.png',
+        },
+        {
+          name: 'charset',
+          content: 'utf-8',
         },
       ].concat(meta)}
     >
@@ -124,6 +145,8 @@ SEO.defaultProps = {
   lang: `ar`,
   meta: [],
   description: ``,
+  twitterCardType: '',
+  image: 'https://cdn.nyaladev.com/barmaga.io/barmaga_logo_sm.png',
 }
 
 SEO.propTypes = {
@@ -131,6 +154,8 @@ SEO.propTypes = {
   lang: PropTypes.string,
   meta: PropTypes.arrayOf(PropTypes.object),
   title: PropTypes.string.isRequired,
+  twitterCardType: PropTypes.string,
+  image: PropTypes.string,
 }
 
 export default SEO

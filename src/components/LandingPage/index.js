@@ -20,10 +20,7 @@ const LandingPage = () => {
               {t('landingPage.heroSubtitle')}
             </p>
             <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
-              <div className="rounded-md shadow">
-                <Button mode="error">{t('landingPage.comingSoon')}</Button>
-              </div>
-              <div className={`mt-3 sm:mt-0 sm:m${isRtl ? 'r' : 'l'}-3`}>
+              <div className={`mt-3 sm:mt-0 sm:m${isRtl ? 'l' : 'r'}-3`}>
                 <Button
                   link
                   mode="info"
@@ -34,12 +31,27 @@ const LandingPage = () => {
                   {t('landingPage.followOnTwitter')}
                 </Button>
               </div>
+              <div className="rounded-md shadow">
+                <Button
+                  link
+                  href="https://chuffed.org/project/nyala-dev"
+                  rel="noreferrer"
+                  target="_blank"
+                  extraClasses={[
+                    'bg-yellow-500 hover:bg-yellow-400 text-gray-800',
+                  ]}
+                >
+                  {t('landingPage.supportUs')}
+                </Button>
+              </div>
             </div>
 
             <div className="mt-10 text-sm text-white sm:justify-center lg:justify-start">
               {t('landingPage.getIntouch')}{' '}
               <span className="font-bold">
-                <a href="mailto:info@nyala.dev">info@nyala.dev</a>
+                <a rel="noreferrer" target="_blank" href="https://nyala.dev">
+                  info@nyala.dev
+                </a>
               </span>
             </div>
           </div>
