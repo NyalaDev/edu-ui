@@ -31,7 +31,7 @@ const LandingPage = () => {
                   {t('landingPage.followOnTwitter')}
                 </Button>
               </div>
-              <div className="rounded-md shadow">
+              <div className="rounded-md shadow mt-2 sm:mt-0">
                 <Button
                   link
                   href="https://chuffed.org/project/nyala-dev"

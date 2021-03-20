@@ -8,7 +8,7 @@ import SocialButton from '../../components/SocialButton'
 import formEnhancer from './enhancedForm'
 import formikProps from '../../common/formik-props'
 
-const providers = ['GitHub', 'Google']
+const providers = ['GitHub']
 
 const Signup = ({
   getFieldProps,

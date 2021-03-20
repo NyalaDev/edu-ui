@@ -10,7 +10,7 @@ import { signin } from '../../services/api'
 import { AuthContext } from '../../contexts/AuthContext'
 import ActivityIndicator from '../../components/ActivityIndicator'
 
-const providers = ['GitHub', 'Google']
+const providers = ['GitHub']
 
 const SiginPage = () => {
   const { isLoggedIn, setCurrentUser, setAuthToken } = useContext(AuthContext)

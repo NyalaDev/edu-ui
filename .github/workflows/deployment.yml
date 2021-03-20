@@ -10,7 +10,6 @@ on:
   push:
     branches:
       - master
-      - seo
 
 jobs:
   deploy:

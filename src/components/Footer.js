@@ -16,8 +16,8 @@ const quotes = [
   {
     id: 3,
     text:
-      'Education is what remains after one has forgotten what one has learned in school',
-    author: 'Albert Einstein',
+      'If you talk to a person in a language he understands, that goes to his head. If you talk to them in their own language, that goes to their heart.',
+    author: 'Nelson Mandela',
   },
 ]
 
