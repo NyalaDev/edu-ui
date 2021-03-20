@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Helmet } from 'react-helmet'
 import { useStaticQuery, graphql } from 'gatsby'
+import useLanguage from '../hooks/useLanguage'
 
 const SEO = ({
   description,
@@ -25,6 +26,64 @@ const SEO = ({
     `
   )
 
+  const fontsMap = {
+    ar: `
+        @font-face {
+          font-family: Noto;
+          src: url('/fonts/NotoSansArabicUI-Regular.woff') format('woff'),
+                url('/fonts/NotoSansArabicUI-Regular.ttf') format('truetype');
+        }
+        @font-face {
+            font-family: Noto;
+            font-weight: 700;
+            src: url('/fonts/NotoSansArabicUI-Bold.woff') format('woff'),
+                  url('/fonts/NotoSansArabicUI-Bold.ttf') format('truetype');
+        }
+        @font-face {
+            font-family: Noto;
+            font-weight: 300;
+            src: url('/fonts/NotoSansArabicUI-Light.woff') format('woff'),
+                  url('/fonts/NotoSansArabicUI-Light.ttf') format('truetype');
+        }
+        @font-face {
+          font-family: NotoKufi;
+          src: url('/fonts/NotoKufiArabic-Regular.woff') format('woff'),
+                url('/fonts/NotoKufiArabic-Regular.ttf') format('truetype');
+        }
+        @font-face {
+          font-family: NotoKufi;
+          font-weight: 700;
+          src: url('/fonts/NotoKufiArabic-Bold.woff') format('woff'),
+                url('/fonts/NotoKufiArabic-Bold.ttf') format('truetype');
+        }`,
+    am: `@font-face {
+      font-family: NotoEthio;
+      src: url('/fonts/NotoSansEthiopic-Regular.woff') format('woff'),
+            url('/fonts/NotoSansEthiopic-Regular.ttf') format('truetype');
+    }
+    @font-face {
+      font-family: NotoEthio;
+      font-weight: 700;
+      src: url('/fonts/NotoSansEthiopic-Bold.woff') format('woff'),
+            url('/fonts/NotoSansEthiopic-Bold.ttf') format('truetype');
+    }`,
+  }
+
+  const defaultFont = `
+    @font-face {
+      font-family: NotoSwahili;
+      src: url('/fonts/NotoSans-Regular.woff') format('woff'),
+            url('/fonts/NotoSans-Regular.ttf') format('truetype');
+    }
+    @font-face {
+      font-family: NotoSwahili;
+      font-weight: 700;
+      src: url('/fonts/NotoSans-Bold.woff') format('woff'),
+            url('/fonts/NotoSans-Bold.ttf') format('truetype');
+    }
+  `
+  const { language } = useLanguage()
+  const fonts = fontsMap[language] || defaultFont
   const metaDescription = description || site.siteMetadata.description
 
   return (
@@ -33,6 +92,7 @@ const SEO = ({
         lang,
       }}
       title={title}
+      defer={false}
       titleTemplate={`%s | ${site.siteMetadata.title}`}
       meta={[
         {
@@ -57,7 +117,11 @@ const SEO = ({
         },
         {
           name: `twitter:creator`,
-          content: site.siteMetadata.author,
+          content: '@BarmagaIO',
+        },
+        {
+          name: `twitter:site`,
+          content: '@BarmagaIO',
         },
         {
           name: `twitter:title`,
@@ -70,12 +134,12 @@ const SEO = ({
         {
           name: 'twitter:image',
           content:
-            image || 'https://cdn.nyaladev.com/barmaga.io/barmaga_logo_sm.png',
+            image || 'https://cdn.nyaladev.com/barmaga.io/barmaga_slogan.jpg',
         },
         {
           property: 'og:image',
           content:
-            image || 'https://cdn.nyaladev.com/barmaga.io/barmaga_logo_sm.png',
+            image || 'https://cdn.nyaladev.com/barmaga.io/barmaga_slogan.jpg',
         },
         {
           name: 'charset',
@@ -83,60 +147,7 @@ const SEO = ({
         },
       ].concat(meta)}
     >
-      <style type="text/css">
-        {`
-          @font-face {
-            font-family: Noto;
-            src: url('/fonts/NotoSansArabicUI-Regular.woff') format('woff'),
-                  url('/fonts/NotoSansArabicUI-Regular.ttf') format('truetype');
-          }
-          @font-face {
-              font-family: Noto;
-              font-weight: 700;
-              src: url('/fonts/NotoSansArabicUI-Bold.woff') format('woff'),
-                    url('/fonts/NotoSansArabicUI-Bold.ttf') format('truetype');
-          }
-          @font-face {
-              font-family: Noto;
-              font-weight: 300;
-              src: url('/fonts/NotoSansArabicUI-Light.woff') format('woff'),
-                    url('/fonts/NotoSansArabicUI-Light.ttf') format('truetype');
-          }
-          @font-face {
-            font-family: NotoKufi;
-            src: url('/fonts/NotoKufiArabic-Regular.woff') format('woff'),
-                  url('/fonts/NotoKufiArabic-Regular.ttf') format('truetype');
-          }
-          @font-face {
-            font-family: NotoKufi;
-            font-weight: 700;
-            src: url('/fonts/NotoKufiArabic-Bold.woff') format('woff'),
-                  url('/fonts/NotoKufiArabic-Bold.ttf') format('truetype');
-          }
-          @font-face {
-            font-family: NotoEthio;
-            src: url('/fonts/NotoSansEthiopic-Regular.woff') format('woff'),
-                  url('/fonts/NotoSansEthiopic-Regular.ttf') format('truetype');
-          }
-          @font-face {
-            font-family: NotoEthio;
-            font-weight: 700;
-            src: url('/fonts/NotoSansEthiopic-Bold.woff') format('woff'),
-                  url('/fonts/NotoSansEthiopic-Bold.ttf') format('truetype');
-          }
-          @font-face {
-            font-family: NotoSwahili;
-            src: url('/fonts/NotoSans-Regular.woff') format('woff'),
-                  url('/fonts/NotoSans-Regular.ttf') format('truetype');
-          }
-          @font-face {
-            font-family: NotoSwahili;
-            font-weight: 700;
-            src: url('/fonts/NotoSans-Bold.woff') format('woff'),
-                  url('/fonts/NotoSans-Bold.ttf') format('truetype');
-          }
-        `}
-      </style>
+      <style type="text/css">{fonts}</style>
     </Helmet>
   )
 }
@@ -145,8 +156,8 @@ SEO.defaultProps = {
   lang: `ar`,
   meta: [],
   description: ``,
-  twitterCardType: '',
-  image: 'https://cdn.nyaladev.com/barmaga.io/barmaga_logo_sm.png',
+  twitterCardType: 'summary_large_image',
+  image: 'https://cdn.nyaladev.com/barmaga.io/barmaga_slogan.jpg',
 }
 
 SEO.propTypes = {

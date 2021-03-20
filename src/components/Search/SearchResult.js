@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'gatsby'
+import { Link } from 'gatsby-plugin-react-i18next'
 import Spinner from '../Spinner'
 import { getYoutubeThumbnail } from '../../common/util'
 

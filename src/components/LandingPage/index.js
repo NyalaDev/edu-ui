@@ -1,5 +1,5 @@
 import React from 'react'
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'gatsby-plugin-react-i18next'
 import useLanguage from '../../hooks/useLanguage'
 import Button from '../General/Button'
 
@@ -31,7 +31,7 @@ const LandingPage = () => {
                   {t('landingPage.followOnTwitter')}
                 </Button>
               </div>
-              <div className="rounded-md shadow">
+              <div className="rounded-md shadow mt-2 sm:mt-0">
                 <Button
                   link
                   href="https://chuffed.org/project/nyala-dev"

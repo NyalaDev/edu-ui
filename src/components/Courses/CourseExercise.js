@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'gatsby-plugin-react-i18next'
 import { toast } from 'react-toastify'
 import { uniqueId } from 'lodash'
 import { addPRToReview } from '../../services/api'

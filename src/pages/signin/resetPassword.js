@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import { useFormik } from 'formik'
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'gatsby-plugin-react-i18next'
 import * as Yup from 'yup'
 import { toast } from 'react-toastify'
+import { graphql } from 'gatsby'
 import Layout from '../../components/Layout'
 import { resetPassword } from '../../services/api'
 
@@ -100,5 +101,11 @@ const ResetPassword = () => {
     </Layout>
   )
 }
-
+export const query = graphql`
+  query($language: String!) {
+    locales: allLocale(filter: { language: { eq: $language } }) {
+      ...LanguageInfo
+    }
+  }
+`
 export default ResetPassword
