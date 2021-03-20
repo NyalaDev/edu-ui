@@ -20,9 +20,8 @@ const axiosInstance = () => {
  * Sign the user up
  * @param values The user information
  */
-export const signUp = async values => {
-  return axiosInstance().post('/auth/local/register', values)
-}
+export const signUp = async values =>
+  axiosInstance().post('/auth/local/register', values)
 
 export const signin = async ({ identifier, password }) => {
   const { data } = await axiosInstance().post(`/auth/local`, {
@@ -32,17 +31,13 @@ export const signin = async ({ identifier, password }) => {
   return data
 }
 
-export const getProfile = async () => {
-  return axiosInstance().get(`/profiles/`)
-}
+export const getProfile = async () => axiosInstance().get(`/profiles/`)
 
 /**
  * Get a single profile by its id
  * @param {*} id the profile id
  */
-export const getProfileById = async id => {
-  return axiosInstance().get(`/profiles/${id}`)
-}
+export const getProfileById = async id => axiosInstance().get(`/profiles/${id}`)
 
 export const addProfile = async values => {
   const { data } = await axiosInstance().put(`/profiles`, values)

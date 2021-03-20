@@ -7,8 +7,8 @@ const LectureNavigationButton = ({
   children,
   courseSlug,
   nextLecturePosition,
-}) => {
-  return isEdge ? (
+}) =>
+  isEdge ? (
     <div className="px-3 py-1 text-xl text-gray-600 leading-snug">
       {children}
     </div>
@@ -20,7 +20,6 @@ const LectureNavigationButton = ({
       {children}
     </Link>
   )
-}
 
 LectureNavigationButton.propTypes = {
   isEdge: PropTypes.bool.isRequired,

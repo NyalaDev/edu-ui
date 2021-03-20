@@ -12,14 +12,12 @@ export default withFormik({
       .oneOf([Yup.ref('password'), null], 'Passwords should match!')
       .required(),
   }),
-  mapPropsToValues: () => {
-    return {
-      username: '',
-      email: '',
-      password: '',
-      passwordConfirmation: '',
-    }
-  },
+  mapPropsToValues: () => ({
+    username: '',
+    email: '',
+    password: '',
+    passwordConfirmation: '',
+  }),
   handleSubmit: async (values, bag) => {
     try {
       await signUp(values)

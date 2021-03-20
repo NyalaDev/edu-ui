@@ -28,6 +28,5 @@ export const getUserFromLocaleStorageIfAny = () => {
 /**
  * Helper function to get jwt from locale storage if exists
  */
-export const getTokenFromLocaleStorageIfAny = () => {
-  return getLocalStorage(LOCALE_STORAGE_TOKEN) || ''
-}
+export const getTokenFromLocaleStorageIfAny = () =>
+  getLocalStorage(LOCALE_STORAGE_TOKEN) || ''

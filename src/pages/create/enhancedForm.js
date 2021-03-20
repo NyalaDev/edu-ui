@@ -9,14 +9,12 @@ export default withFormik({
     url: Yup.string().url().required(),
     course: Yup.number().min(1).required(),
   }),
-  mapPropsToValues: () => {
-    return {
-      title: '',
-      description: '',
-      url: '',
-      course: '',
-    }
-  },
+  mapPropsToValues: () => ({
+    title: '',
+    description: '',
+    url: '',
+    course: '',
+  }),
   handleSubmit: async (values, bag) => {
     try {
       await axios.post(`${process.env.GATSBY_STRAPI_API_URL}/lectures`, values)

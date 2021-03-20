@@ -27,9 +27,8 @@ export const getYoutubeThumbnail = url => {
  * @param {*} format Optional - The format value. Default is HH:mm:ss
  * @return Formated duration - eg 00:23:11
  */
-export const formatDuration = (duration, format = 'hh:mm:ss') => {
-  return Duration.fromISO(duration).toFormat(format)
-}
+export const formatDuration = (duration, format = 'hh:mm:ss') =>
+  Duration.fromISO(duration).toFormat(format)
 
 /**
  * Calculation total duration of lecutes
@@ -42,9 +41,12 @@ export const calculateVideosDuration = (lectures = []) => {
   }
   const { duration = 0 } = lectures[0] || {}
 
-  const totalDuration = lectures.slice(1).reduce((prev, cur) => {
-    return Duration.fromISO(cur.duration).plus(prev)
-  }, Duration.fromISO(duration))
+  const totalDuration = lectures
+    .slice(1)
+    .reduce(
+      (prev, cur) => Duration.fromISO(cur.duration).plus(prev),
+      Duration.fromISO(duration)
+    )
 
   return totalDuration.toFormat('hh:mm:ss')
 }
