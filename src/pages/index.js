@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { graphql } from 'gatsby'
 import PropTypes from 'prop-types'
+import { useTranslation } from 'react-i18next'
 import Layout from '../components/Layout'
 import Seo from '../components/Seo'
 import { getLocalStorage } from '../services/localStorage'
@@ -20,6 +21,8 @@ const IndexPage = ({ data }) => {
 
   const [open, setOpen] = useState(false)
 
+  const { t } = useTranslation()
+
   useEffect(() => {
     if (!getLocalStorage('siteLang')) {
       setOpen(true)
@@ -29,7 +32,10 @@ const IndexPage = ({ data }) => {
   return (
     <>
       <Layout modalOpen={open} fullPage>
-        <Seo title="Home" />
+        <Seo
+          title={t('landingPage.heroSubtitle')}
+          description={t('landingPage.title')}
+        />
         <LandingPage />
         <div className="container max-w-6xl w-full mx-auto pt-10">
           <div className="w-full md:mt-2 mb-16 text-black-800 leading-normal">

@@ -2,7 +2,6 @@ import React from 'react'
 import { ToastContainer } from 'react-toastify'
 import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
-import Helmet from 'react-helmet'
 import Header from './Header'
 import PageTitle from './PageTitle'
 import Footer from './Footer'
@@ -11,6 +10,7 @@ import '../i18n'
 import 'react-toastify/dist/ReactToastify.css'
 import './layout.css'
 import useLanguage from '../hooks/useLanguage'
+import SEO from './Seo'
 
 const Layout = ({ children, pageTitle, fullPage, modalOpen }) => {
   const { isRtl, language } = useLanguage()
@@ -37,27 +37,7 @@ const Layout = ({ children, pageTitle, fullPage, modalOpen }) => {
 
   return (
     <div className={modalOpen ? 'opacity-40' : ''}>
-
-      <Helmet titleTemplate="%s | barmaga.io">
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content={t('landingPage.heroText')} />
-        <meta
-          property="og:description"
-          content={t('landingPage.heroSubtitle')}
-        />
-        <meta property="og:url" content="https://barmaga.io" />
-        <meta
-          property="og:image"
-          content="https://cdn.nyaladev.com/barmaga.io/barmaga_logo_sm.png"
-        />
-        <meta
-          name="twitter:image"
-          content="https://cdn.nyaladev.com/barmaga.io/barmaga_logo_sm.png"
-        />
-        <meta name="twitter:card" content="summary_large_image" />
-                   
-        <meta charset="utf-8" />
-      </Helmet>
+      <SEO title={t('landingPage.heroSubtitle')} />
       <div
         className={`${isRtl ? 'rtl' : ''} ${
           language === 'am' ? 'amharic' : ''

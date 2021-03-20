@@ -8,8 +8,9 @@ import LecturesList from '../../components/LecturesList'
 import Seo from '../../components/Seo'
 import LectureNavigationButton from './LectureNavigationButton'
 import VideoPlayer from './VideoPlayer'
+import { getYoutubeThumbnail } from '../../common/util'
 
-const LectureView = ({ data }) => {
+const LectureView = ({ data, location }) => {
   const { strapiLecture = {}, strapiCourse = {} } = data
   if (!strapiCourse) {
     return <div />
@@ -29,9 +30,20 @@ const LectureView = ({ data }) => {
     return lecture ? lecture.id : ''
   }
 
+  const thumbnail = getYoutubeThumbnail(lectures[0].url)
+
   return (
     <Layout>
-      <Seo title="Lectures" />
+      <Seo
+        title={`${courseTitle} | ${lectureTitle} `}
+        description={lectureTitle}
+        image={thumbnail}
+        meta={[
+          { property: 'og:url', content: location.href },
+          { property: 'og:type', content: 'article' },
+        ]}
+      />
+
       <div className="flex flex-col-reverse">
         <div className="py-5">
           <LecturesList
@@ -89,6 +101,9 @@ LectureView.propTypes = {
   data: PropTypes.shape({
     strapiCourse: PropTypes.objectOf(PropTypes.any),
     strapiLecture: PropTypes.objectOf(PropTypes.any),
+  }).isRequired,
+  location: PropTypes.shape({
+    href: PropTypes.string.isRequired,
   }).isRequired,
 }
 

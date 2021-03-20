@@ -3,14 +3,14 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const colors = {
-  info: 'text-indigo-700 bg-indigo-100 hover:bg-indigo-200',
+  info: 'text-indigo-800 bg-indigo-100 hover:bg-indigo-200',
   error: 'text-white bg-red-600',
   success: 'text-white bg-green-600',
 }
 
 const getClasses = props => {
   const classes = []
-  const { mode = 'info', extraClasses, type, small } = props
+  const { mode, extraClasses, type, small } = props
   if (type === 'submit') {
     classes.push(
       'w-full bg-gray-800 text-white text-center hover:bg-gray-900 font-bold uppercase text-md px-4 py-1 rounded shadow hover:shadow-md outline-none focus:outline-none my-3'

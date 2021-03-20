@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
-import Helmet from 'react-helmet'
 import Seo from '../components/Seo'
 import Layout from '../components/Layout'
 import CourseCard from '../components/Courses/CourseCard'
@@ -12,12 +11,10 @@ const TagView = ({ data, location }) => {
 
   return (
     <Layout>
-      <Seo title="Tags" />
-      <Helmet titleTemplate="%s | barmaga.io">
-        <title>{`${tagName}`}</title>
-        <meta property="og:title" content={tagName} />
-        <meta property="og:url" content={location.href} />
-      </Helmet>
+      <Seo
+        title={tagName}
+        meta={[{ property: 'og:url', content: location.href }]}
+      />
       <div>
         <div className="bg-gray-800 text-white text-center font-bold uppercase text-md px-4 py-4 my-8 rounded shadow hover:shadow-md outline-none focus:outline-none">
           {`${tagName} courses`}
