@@ -1,8 +1,8 @@
 import React, { useContext, useEffect } from 'react'
 import { useFormik } from 'formik'
-import { Link, useTranslation } from 'gatsby-plugin-react-i18next'
+import { useTranslation } from 'react-i18next'
 import * as Yup from 'yup'
-import { graphql, navigate } from 'gatsby'
+import { Link, navigate } from 'gatsby'
 import { toast } from 'react-toastify'
 import Layout from '../../components/Layout'
 import SocialButton from '../../components/SocialButton'
@@ -10,7 +10,7 @@ import { signin } from '../../services/api'
 import { AuthContext } from '../../contexts/AuthContext'
 import ActivityIndicator from '../../components/ActivityIndicator'
 
-const providers = ['GitHub']
+const providers = ['GitHub', 'Google']
 
 const SiginPage = () => {
   const { isLoggedIn, setCurrentUser, setAuthToken } = useContext(AuthContext)
@@ -138,11 +138,5 @@ const SiginPage = () => {
     </Layout>
   )
 }
-export const query = graphql`
-  query($language: String!) {
-    locales: allLocale(filter: { language: { eq: $language } }) {
-      ...LanguageInfo
-    }
-  }
-`
+
 export default SiginPage

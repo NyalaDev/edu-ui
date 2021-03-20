@@ -85,8 +85,7 @@
   "importFromYoutube": "Import from YouTube",
   "noCourse": "No courses for the selected filters",
   "validation": {
-    "required": "ይሄ ቦታ አስፈላጊ ነው",
-    "email": "Please enter a valid email"
+    "required": "ይሄ ቦታ አስፈላጊ ነው"
   },
   "errors": {
     "generic": "አንድ ስህተት ተከስቷል። እባክዎ ዳግም ይሞክሩ",
@@ -103,20 +102,6 @@
     "heroSubtitle": "በአማርኛ፣ በአረብኛ፣ ስዋሂሊ እናም በሌሎች ቋንቋዎች ኮድ መጻፍን ይማሩ",
     "comingSoon": "በቅርበ ቀን ይጠብቁን",
     "followOnTwitter": "ትዊተር ላይ ይከተሉን",
-    "getIntouch": "ስልጠናን ለመቅረጽ ፣ ፕሮጀክቱንም ስፖንሰር ለማድረግ ወይም ውይይት ካስፈለጎዎ በ",
-    "subscribe": "Subscribe",
-    "notifyMeWhenLaunch": "Notify me when Barmaga is launched",
-    "subscribeSuccess": "Your email was added successfully.",
-    "subscribeError": "Something went wrong, please try again or contact us directly through email or Twitter.",
-    "supportUs": "Support Barmaga"
-  },
-  "moreCourses": "See More",
-  "upcomingCourse": {
-    "interestedInCourse": "Interested in this course?",
-    "courseComingSoon": "Course coming soon",
-    "notifyMe": "Notify me of new courses",
-    "feedbackReceived": "👍🏿 Thanks for the feedback."
-  },
-  "yes": "yes",
-  "no": "no"
+    "getIntouch": "ስልጠናን ለመቅረጽ ፣ ፕሮጀክቱንም ስፖንሰር ለማድረግ ወይም ውይይት ካስፈለጎዎ በ"
+  }
 }

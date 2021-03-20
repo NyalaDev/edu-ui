@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { useTranslation } from 'gatsby-plugin-react-i18next'
+import { useTranslation } from 'react-i18next'
 import { FaRegClock, FaRegCalendarAlt, FaInfoCircle } from 'react-icons/fa'
 import { DateTime } from 'luxon'
 import { calculateVideosDuration } from '../../common/util'

@@ -1,14 +1,13 @@
 import React from 'react'
 
-import { useTranslation, Link } from 'gatsby-plugin-react-i18next'
-
-import { graphql } from 'gatsby'
+import { useTranslation } from 'react-i18next'
+import { Link } from 'gatsby'
 import Layout from '../../components/Layout'
 import SocialButton from '../../components/SocialButton'
 import formEnhancer from './enhancedForm'
 import formikProps from '../../common/formik-props'
 
-const providers = ['GitHub']
+const providers = ['GitHub', 'Google']
 
 const Signup = ({
   getFieldProps,
@@ -135,11 +134,5 @@ const Signup = ({
 Signup.propTypes = {
   ...formikProps,
 }
-export const query = graphql`
-  query($language: String!) {
-    locales: allLocale(filter: { language: { eq: $language } }) {
-      ...LanguageInfo
-    }
-  }
-`
+
 export default formEnhancer(Signup)

@@ -1,7 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { useTranslation, Link } from 'gatsby-plugin-react-i18next'
+import { useTranslation } from 'react-i18next'
 import { FaUserAlt } from 'react-icons/fa'
+import { Link } from 'gatsby'
 
 const InstructorBio = ({ instructor, photo }) => {
   const { t } = useTranslation()

@@ -1,10 +1,11 @@
 import React from 'react'
 import { ToastContainer } from 'react-toastify'
 import PropTypes from 'prop-types'
-import { useTranslation } from 'gatsby-plugin-react-i18next'
+import { useTranslation } from 'react-i18next'
 import Header from './Header'
 import PageTitle from './PageTitle'
 import Footer from './Footer'
+import '../i18n'
 
 import 'react-toastify/dist/ReactToastify.css'
 import './layout.css'

@@ -33,7 +33,7 @@ const LectureView = ({ data, location }) => {
   const thumbnail = getYoutubeThumbnail(lectures[0].url)
 
   return (
-    <>
+    <Layout>
       <Seo
         title={`${courseTitle} | ${lectureTitle} `}
         description={lectureTitle}
@@ -43,58 +43,57 @@ const LectureView = ({ data, location }) => {
           { property: 'og:type', content: 'article' },
         ]}
       />
-      <Layout>
-        <div className="flex flex-col-reverse">
-          <div className="py-5">
-            <LecturesList
-              lectures={lectures}
-              courseSlug={slug}
-              currentLecture={strapiLecture}
-              courseStrapiId={courseStrapiId}
-            />
-          </div>
-          <div>
-            <div className="bg-gray-900 px-4 py-3 mb-3 flex flex-col items-end md:flex-row-reverse justify-between ">
-              <div className="text-white flex flex-col items-end md:flex-row-reverse md:items-center ">
-                <Link
-                  className="text-sm font-bold leading-relaxed inline-block py-2 whitespace-no-wrap text-white hover:opacity-75"
-                  to={`/courses/${slug}`}
-                >
-                  {courseTitle}
-                </Link>
-                <span className="text-sm mx-2">/</span>
-                <span className="text-sm text-gray-400">{lectureTitle}</span>
-              </div>
-              <div className="text-white">
-                <div className="flex">
-                  <LectureNavigationButton
-                    isEdge={isLastLecture}
-                    courseSlug={slug}
-                    nextLecturePosition={findLectureByPosition(1)}
-                  >
-                    <AiFillForward />
-                  </LectureNavigationButton>
 
-                  <LectureNavigationButton
-                    isEdge={isFirstLecture}
-                    courseSlug={slug}
-                    nextLecturePosition={findLectureByPosition(-1)}
-                  >
-                    <AiFillBackward />
-                  </LectureNavigationButton>
-                </div>
+      <div className="flex flex-col-reverse">
+        <div className="py-5">
+          <LecturesList
+            lectures={lectures}
+            courseSlug={slug}
+            currentLecture={strapiLecture}
+            courseStrapiId={courseStrapiId}
+          />
+        </div>
+        <div>
+          <div className="bg-gray-900 px-4 py-3 mb-3 flex flex-col items-end md:flex-row-reverse justify-between ">
+            <div className="text-white flex flex-col items-end md:flex-row-reverse md:items-center ">
+              <Link
+                className="text-sm font-bold leading-relaxed inline-block py-2 whitespace-no-wrap text-white hover:opacity-75"
+                to={`/courses/${slug}`}
+              >
+                {courseTitle}
+              </Link>
+              <span className="text-sm mx-2">/</span>
+              <span className="text-sm text-gray-400">{lectureTitle}</span>
+            </div>
+            <div className="text-white">
+              <div className="flex">
+                <LectureNavigationButton
+                  isEdge={isLastLecture}
+                  courseSlug={slug}
+                  nextLecturePosition={findLectureByPosition(1)}
+                >
+                  <AiFillForward />
+                </LectureNavigationButton>
+
+                <LectureNavigationButton
+                  isEdge={isFirstLecture}
+                  courseSlug={slug}
+                  nextLecturePosition={findLectureByPosition(-1)}
+                >
+                  <AiFillBackward />
+                </LectureNavigationButton>
               </div>
             </div>
-
-            <VideoPlayer
-              url={url}
-              lectureStrapiId={strapiId}
-              courseStrapiId={courseStrapiId}
-            />
           </div>
+
+          <VideoPlayer
+            url={url}
+            lectureStrapiId={strapiId}
+            courseStrapiId={courseStrapiId}
+          />
         </div>
-      </Layout>
-    </>
+      </div>
+    </Layout>
   )
 }
 
@@ -112,10 +111,7 @@ export default LectureView
 
 // FIXME: We might need only one query
 export const pageQuery = graphql`
-  query LectureByID($id: String!, $courseSlug: String!, $language: String!) {
-    locales: allLocale(filter: { language: { eq: $language } }) {
-      ...LanguageInfo
-    }
+  query LectureByID($id: String!, $courseSlug: String!) {
     strapiLecture(id: { eq: $id }) {
       id
       strapiId

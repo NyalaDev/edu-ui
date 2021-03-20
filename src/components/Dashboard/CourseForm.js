@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { useFormik } from 'formik'
-import { useTranslation } from 'gatsby-plugin-react-i18next'
+import { useTranslation } from 'react-i18next'
 import * as Yup from 'yup'
 import { toast } from 'react-toastify'
 import { navigate } from 'gatsby'

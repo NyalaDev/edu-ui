@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react'
-import { navigate } from 'gatsby'
-import { Link, useTranslation } from 'gatsby-plugin-react-i18next'
+import { Link, navigate } from 'gatsby'
+import { useTranslation } from 'react-i18next'
 import { AuthContext } from '../../contexts/AuthContext'
 import { getProfilePicuteUrlFromUserObject } from '../../common/util'
 

@@ -1,6 +1,5 @@
-import { useCallback } from 'react'
-import { useI18next } from 'gatsby-plugin-react-i18next'
-
+import { useCallback, useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { setLocalStorage } from '../services/localStorage'
 import { DEFAULT_LANGUAGE } from '../common/constants'
 
@@ -8,18 +7,23 @@ import { DEFAULT_LANGUAGE } from '../common/constants'
  * Custom hook to handle language switching
  */
 const useLanguage = () => {
-  const { languages, language, changeLanguage } = useI18next()
+  const { i18n } = useTranslation()
+
+  const [language, setLanguage] = useState(i18n.language)
 
   const isRtl = language === 'ar'
 
+  useEffect(() => {
+    setLanguage(i18n.language)
+  }, [i18n.language])
+
   const setCurrentLanguage = useCallback(languageToSet => {
-    changeLanguage(languageToSet)
-    setLocalStorage(DEFAULT_LANGUAGE, languageToSet)
+    i18n.changeLanguage(languageToSet)
+    setLocalStorage(DEFAULT_LANGUAGE, i18n.language)
   })
 
   return {
-    changeLanguage: setCurrentLanguage,
-    languages,
+    setCurrentLanguage,
     language,
     isRtl,
   }

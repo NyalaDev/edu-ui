@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react'
-import { Link, useTranslation } from 'gatsby-plugin-react-i18next'
-
+import { Link } from 'gatsby'
+import { useTranslation } from 'react-i18next'
 import LanguageSwitcher from '../LanguageSwitcher'
 import UserMenu from './UserMenu'
 import Search from '../Search'

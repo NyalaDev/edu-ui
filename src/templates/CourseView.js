@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
-import { useTranslation } from 'gatsby-plugin-react-i18next'
+import { useTranslation } from 'react-i18next'
 import { orderBy } from 'lodash'
 import Layout from '../components/Layout'
 import Seo from '../components/Seo'
@@ -60,7 +60,7 @@ const CourseView = ({ data, location }) => {
   }, [])
 
   return (
-    <>
+    <Layout>
       <Seo
         title={title}
         description={description}
@@ -70,82 +70,80 @@ const CourseView = ({ data, location }) => {
           { property: 'og:type', content: 'article' },
         ]}
       />
-      <Layout>
-        <div className="grid md:grid-cols-3 sm:grid-col-1 gap-4">
-          <div className="flex flex-col md:col-span-1 sm:col-span-1">
-            {isCourseInProgress && (
-              <CourseProgress
-                isCourseInProgress={isCourseInProgress}
-                lecturesCount={lectures.length}
-              />
-            )}
-
-            <CourseCard
-              courseViewMode
-              course={strapiCourse}
-              image={thumbnail}
-              lectureId={sortedLectures[0].id}
+      <div className="grid md:grid-cols-3 sm:grid-col-1 gap-4">
+        <div className="flex flex-col md:col-span-1 sm:col-span-1">
+          {isCourseInProgress && (
+            <CourseProgress
               isCourseInProgress={isCourseInProgress}
-              showTags={false}
+              lecturesCount={lectures.length}
             />
+          )}
 
-            <CourseResources course={strapiCourse} />
+          <CourseCard
+            courseViewMode
+            course={strapiCourse}
+            image={thumbnail}
+            lectureId={sortedLectures[0].id}
+            isCourseInProgress={isCourseInProgress}
+            showTags={false}
+          />
 
-            {exercises.length > 0 && (
-              <CourseExercises
-                exercises={exercises}
-                courseId={strapiCourse.strapiId}
-              />
-            )}
+          <CourseResources course={strapiCourse} />
 
-            <CourseMeta lectures={sortedLectures} createdAt={createdAt} />
+          {exercises.length > 0 && (
+            <CourseExercises
+              exercises={exercises}
+              courseId={strapiCourse.strapiId}
+            />
+          )}
 
-            {tags.length !== 0 && <CourseTags tags={tags} />}
+          <CourseMeta lectures={sortedLectures} createdAt={createdAt} />
 
-            <InstructorBio instructor={instructor} photo={instructorPhoto} />
-          </div>
+          {tags.length !== 0 && <CourseTags tags={tags} />}
 
-          <div className="md:col-span-2 sm:col-span-1">
-            <div>
-              <h4 className="bg-gray-700 rounded-tl-md rounded-tr-md py-2 px-3 text-white">
-                {t('lectures')}
-              </h4>
-              <LecturesList
-                courseSlug={slug}
-                lectures={sortedLectures}
-                courseStrapiId={courseStrapiId}
-                language={language.name}
-              />
-            </div>
-          </div>
+          <InstructorBio instructor={instructor} photo={instructorPhoto} />
         </div>
 
-        {allStrapiCourse.edges.length !== 0 && (
-          <div className="rounded shadow-lg bg-gray-200 my-6 py-2">
-            <div className=" px-6 py-3 bg-gray-800">
-              <h1 className="text-white font-semibold text-lg text-center">
-                {t('relatedCourses')}
-              </h1>
-            </div>
-            <div className="grid md:grid-cols-3 sm:grid-cols-1 gap-4 my-6 mx-3">
-              {allStrapiCourse.edges.map(({ node: course }) => {
-                const {
-                  lectures: [firstLecture],
-                } = course
-                const { url: imageUrl } = firstLecture
-                return (
-                  <CourseCard
-                    key={course.id}
-                    course={course}
-                    image={getYoutubeThumbnail(imageUrl)}
-                  />
-                )
-              })}
-            </div>
+        <div className="md:col-span-2 sm:col-span-1">
+          <div>
+            <h4 className="bg-gray-700 rounded-tl-md rounded-tr-md py-2 px-3 text-white">
+              {t('lectures')}
+            </h4>
+            <LecturesList
+              courseSlug={slug}
+              lectures={sortedLectures}
+              courseStrapiId={courseStrapiId}
+              language={language.name}
+            />
           </div>
-        )}
-      </Layout>
-    </>
+        </div>
+      </div>
+
+      {allStrapiCourse.edges.length !== 0 && (
+        <div className="rounded shadow-lg bg-gray-200 my-6 py-2">
+          <div className=" px-6 py-3 bg-gray-800">
+            <h1 className="text-white font-semibold text-lg text-center">
+              {t('relatedCourses')}
+            </h1>
+          </div>
+          <div className="grid md:grid-cols-3 sm:grid-cols-1 gap-4 my-6 mx-3">
+            {allStrapiCourse.edges.map(({ node: course }) => {
+              const {
+                lectures: [firstLecture],
+              } = course
+              const { url: imageUrl } = firstLecture
+              return (
+                <CourseCard
+                  key={course.id}
+                  course={course}
+                  image={getYoutubeThumbnail(imageUrl)}
+                />
+              )
+            })}
+          </div>
+        </div>
+      )}
+    </Layout>
   )
 }
 
@@ -159,10 +157,7 @@ CourseView.propTypes = {
 export default CourseView
 
 export const pageQuery = graphql`
-  query CourseByID($id: String!, $tagName: String!, $language: String!) {
-    locales: allLocale(filter: { language: { eq: $language } }) {
-      ...LanguageInfo
-    }
+  query CourseByID($id: String!, $tagName: String!) {
     strapiCourse(id: { eq: $id }) {
       id
       strapiId

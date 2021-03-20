@@ -1,7 +1,7 @@
 import React from 'react'
-import { Link, useTranslation } from 'gatsby-plugin-react-i18next'
+import { Link } from 'gatsby'
 import PropTypes from 'prop-types'
-
+import { useTranslation } from 'react-i18next'
 import Search from '../Search'
 import LanguageSwitcher from '../LanguageSwitcher'
 

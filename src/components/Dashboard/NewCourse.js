@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { useTranslation } from 'gatsby-plugin-react-i18next'
+import { useTranslation } from 'react-i18next'
 import Layout from '../Layout'
 import SEO from '../Seo'
 import CourseForm from './CourseForm'

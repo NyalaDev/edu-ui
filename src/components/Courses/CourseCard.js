@@ -1,8 +1,8 @@
 import React from 'react'
-import { Link, useTranslation } from 'gatsby-plugin-react-i18next'
+import { Link } from 'gatsby'
 import PropTypes from 'prop-types'
 import { DiGithubBadge } from 'react-icons/di'
-
+import { useTranslation } from 'react-i18next'
 import HtmlViewer from '../HtmlViewer'
 import Badge from '../Badge'
 import { CoursePropType } from '../../common/util'

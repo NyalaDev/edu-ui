@@ -4,7 +4,7 @@ import useLanguage from '../hooks/useLanguage'
 import { appLanguages } from '../common/constants'
 
 const DefaultLanguage = ({ onDismiss }) => {
-  const { language, changeLanguage } = useLanguage()
+  const { language, setCurrentLanguage } = useLanguage()
 
   const onLanguageButtonClick = e => {
     e.preventDefault()
@@ -13,7 +13,7 @@ const DefaultLanguage = ({ onDismiss }) => {
         dataset: { locale = 'en' },
       },
     } = e
-    changeLanguage(locale)
+    setCurrentLanguage(locale)
     onDismiss()
   }
 
