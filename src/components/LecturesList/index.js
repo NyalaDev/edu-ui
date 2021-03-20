@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { orderBy } from 'lodash'
 import { FcCheckmark } from 'react-icons/fc'
-import { Link } from 'gatsby'
+import { Link } from 'gatsby-plugin-react-i18next'
 import { formatDuration } from '../../common/util'
 
 import {

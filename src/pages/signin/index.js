@@ -1,8 +1,8 @@
 import React, { useContext, useEffect } from 'react'
 import { useFormik } from 'formik'
-import { useTranslation } from 'react-i18next'
+import { Link, useTranslation } from 'gatsby-plugin-react-i18next'
 import * as Yup from 'yup'
-import { Link, navigate } from 'gatsby'
+import { graphql, navigate } from 'gatsby'
 import { toast } from 'react-toastify'
 import Layout from '../../components/Layout'
 import SocialButton from '../../components/SocialButton'
@@ -138,5 +138,11 @@ const SiginPage = () => {
     </Layout>
   )
 }
-
+export const query = graphql`
+  query($language: String!) {
+    locales: allLocale(filter: { language: { eq: $language } }) {
+      ...LanguageInfo
+    }
+  }
+`
 export default SiginPage

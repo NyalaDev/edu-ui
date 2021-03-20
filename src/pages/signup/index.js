@@ -1,7 +1,8 @@
 import React from 'react'
 
-import { useTranslation } from 'react-i18next'
-import { Link } from 'gatsby'
+import { useTranslation, Link } from 'gatsby-plugin-react-i18next'
+
+import { graphql } from 'gatsby'
 import Layout from '../../components/Layout'
 import SocialButton from '../../components/SocialButton'
 import formEnhancer from './enhancedForm'
@@ -134,5 +135,11 @@ const Signup = ({
 Signup.propTypes = {
   ...formikProps,
 }
-
+export const query = graphql`
+  query($language: String!) {
+    locales: allLocale(filter: { language: { eq: $language } }) {
+      ...LanguageInfo
+    }
+  }
+`
 export default formEnhancer(Signup)

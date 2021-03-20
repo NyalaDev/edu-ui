@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useContext } from 'react'
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'gatsby-plugin-react-i18next'
 import { navigate } from 'gatsby'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'

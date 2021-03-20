@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'gatsby-plugin-react-i18next'
 import Layout from '../components/Layout'
 import Seo from '../components/Seo'
 import { AppProvider } from '../contexts/AppContext'
@@ -16,12 +16,14 @@ const CoursesPage = ({ data }) => {
   const coursesList = edges.map(edge => edge.node)
   const { t } = useTranslation()
   return (
-    <Layout>
+    <>
       <Seo title={t('courses')} />
-      <AppProvider initialCoursesList={coursesList}>
-        <CoursesHome courses={coursesList} />
-      </AppProvider>
-    </Layout>
+      <Layout>
+        <AppProvider initialCoursesList={coursesList}>
+          <CoursesHome courses={coursesList} />
+        </AppProvider>
+      </Layout>
+    </>
   )
 }
 
@@ -31,7 +33,10 @@ CoursesPage.propTypes = {
 export default CoursesPage
 
 export const pageQuery = graphql`
-  query IndexQuery {
+  query IndexQuery($language: String!) {
+    locales: allLocale(filter: { language: { eq: $language } }) {
+      ...LanguageInfo
+    }
     allStrapiCourse(sort: { fields: created_at, order: DESC }) {
       edges {
         node {

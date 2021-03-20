@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'gatsby-plugin-react-i18next'
 import { CoursePropType } from '../../../common/util'
 import useLanguage from '../../../hooks/useLanguage'
 import { sendEvent } from '../../../services/analytics'

@@ -3,7 +3,8 @@ import useLanguage from '../hooks/useLanguage'
 import { appLanguages } from '../common/constants'
 
 const LanguageSwitcher = () => {
-  const { language, isRtl, setCurrentLanguage } = useLanguage()
+  const { language, changeLanguage } = useLanguage()
+  const { isRtl } = useLanguage()
 
   const [open, setOpen] = useState(false)
 
@@ -18,7 +19,7 @@ const LanguageSwitcher = () => {
         dataset: { locale = 'ar' },
       },
     } = e
-    setCurrentLanguage(locale)
+    changeLanguage(locale)
     setOpen(false)
   }
 

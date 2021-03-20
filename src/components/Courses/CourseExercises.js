@@ -1,9 +1,9 @@
 import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
-import { useTranslation } from 'react-i18next'
+import { useTranslation, Link } from 'gatsby-plugin-react-i18next'
 import { uniqueId } from 'lodash'
 import { BiTask } from 'react-icons/bi'
-import { Link } from 'gatsby'
+
 import { AuthContext } from '../../contexts/AuthContext'
 import CourseExercise from './CourseExercise'
 
