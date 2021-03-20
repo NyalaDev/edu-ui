@@ -33,6 +33,7 @@ const SEO = ({
         lang,
       }}
       title={title}
+      defer={false}
       titleTemplate={`%s | ${site.siteMetadata.title}`}
       meta={[
         {
@@ -57,7 +58,11 @@ const SEO = ({
         },
         {
           name: `twitter:creator`,
-          content: site.siteMetadata.author,
+          content: '@BarmagaIO',
+        },
+        {
+          name: `twitter:site`,
+          content: '@BarmagaIO',
         },
         {
           name: `twitter:title`,
@@ -70,12 +75,12 @@ const SEO = ({
         {
           name: 'twitter:image',
           content:
-            image || 'https://cdn.nyaladev.com/barmaga.io/barmaga_logo_sm.png',
+            image || 'https://cdn.nyaladev.com/barmaga.io/barmaga_slogan.png',
         },
         {
           property: 'og:image',
           content:
-            image || 'https://cdn.nyaladev.com/barmaga.io/barmaga_logo_sm.png',
+            image || 'https://cdn.nyaladev.com/barmaga.io/barmaga_slogan.png',
         },
         {
           name: 'charset',
@@ -145,8 +150,8 @@ SEO.defaultProps = {
   lang: `ar`,
   meta: [],
   description: ``,
-  twitterCardType: '',
-  image: 'https://cdn.nyaladev.com/barmaga.io/barmaga_logo_sm.png',
+  twitterCardType: 'summary_large_image',
+  image: 'https://cdn.nyaladev.com/barmaga.io/barmaga_slogan.png',
 }
 
 SEO.propTypes = {

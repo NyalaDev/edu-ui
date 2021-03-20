@@ -33,8 +33,8 @@ const IndexPage = ({ data }) => {
     <>
       <Layout modalOpen={open} fullPage>
         <Seo
+          description={t('landingPage.heroText')}
           title={t('landingPage.heroSubtitle')}
-          description={t('landingPage.title')}
         />
         <LandingPage />
         <div className="container max-w-6xl w-full mx-auto pt-10">

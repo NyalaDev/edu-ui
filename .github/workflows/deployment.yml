@@ -4,12 +4,13 @@ on:
   workflow_dispatch:
     inputs:
       reason:
-        description: 'Manual Deployment Reson'
+        description: 'Manual Deployment Reason'
         required: false
         default: 'Rebuild gatsby'
   push:
     branches:
       - master
+      - seo
 
 jobs:
   deploy:
