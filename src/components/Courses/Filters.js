@@ -53,8 +53,8 @@ const Filters = () => {
   }
 
   return (
-    <div className="mb-6">
-      <div className="flex w-3/4 items-center">
+    <div className="mb-6 mx-5">
+      <div className="flex flex-col md:flex-row w-3/4 items-center">
         <h1>{t('filters.title')}</h1>
         <select
           className="mx-4 placeholder-gray-500 focus:outline-none focus:bg-white"

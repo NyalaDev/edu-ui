@@ -5,17 +5,16 @@ import Layout from '../components/Layout'
 import CourseCard from '../components/Courses/CourseCard'
 import { getYoutubeThumbnail } from '../common/util'
 
-const InstructorView = ({ data, pageContext }) => {
+const InstructorView = ({ data }) => {
   const {
     allStrapiCourse: { edges: courses = [] },
   } = data
-  const { instructor } = pageContext
 
   return (
     <Layout>
       <div>
         <div className="bg-gray-800 text-white text-center font-bold uppercase text-md px-4 py-4 my-8 rounded shadow hover:shadow-md outline-none focus:outline-none">
-          {`${instructor} courses`}
+          {courses[0].node.instructor.profile.name}
         </div>
       </div>
       <div className="grid md:grid-cols-3 sm:grid-cols-1 gap-4">
@@ -40,7 +39,6 @@ InstructorView.propTypes = {
   data: PropTypes.shape({
     allStrapiCourse: PropTypes.objectOf(PropTypes.any),
   }).isRequired,
-  pageContext: PropTypes.objectOf.isRequired,
 }
 
 export default InstructorView
@@ -66,7 +64,7 @@ export const pageQuery = graphql`
           }
           instructor {
             profile {
-              github
+              name
             }
           }
         }

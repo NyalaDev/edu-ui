@@ -142,7 +142,7 @@ exports.createPages = async ({ actions, graphql }) => {
 
   const instructors = uniq(
     coursesWithInstructors.map(
-      course => course.node.instructor?.profile?.github || ''
+      course => course.node.instructor.profile.github || ''
     )
   )
 

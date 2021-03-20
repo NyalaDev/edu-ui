@@ -24,7 +24,7 @@ const CoursesHome = ({
   return (
     <>
       {!hidleFilters && <Filters />}
-      <div className="grid md:grid-cols-3 sm:grid-cols-1 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-4">
         {courses.map(course => {
           const { lectures: [firstLecture = {}] = [] } = course
           const { url: imageUrl } = firstLecture
@@ -43,7 +43,7 @@ const CoursesHome = ({
         })}
         {showMoreCard && (
           <Link to="/courses">
-            <div className="max-w-sm h-full items-center justify-center flex rounded overflow-hidden shadow-lg">
+            <div className="mx-5 h-full items-center justify-center flex rounded overflow-hidden shadow-lg">
               <div className="px-6 py-4 text-gray-600 text-3xl">
                 {t('moreCourses')}
               </div>

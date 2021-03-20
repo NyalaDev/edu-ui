@@ -36,7 +36,7 @@ const CourseCard = ({
 
   return (
     <div
-      className={`max-w-sm rounded overflow-hidden shadow-lg ${
+      className={`mx-5 rounded overflow-hidden shadow-lg ${
         isRtl ? 'rtl' : 'ltr'
       }`}
     >
