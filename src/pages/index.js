@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 import Layout from '../components/Layout'
 import Seo from '../components/Seo'
 import { getLocalStorage } from '../services/localStorage'
-import Spinner from '../components/Spinner'
 import Modal from '../components/Modal'
 import DefaultLanguage from '../components/DefaultLanguage'
 import LandingPage from '../components/LandingPage'
@@ -44,8 +43,6 @@ const IndexPage = ({ data }) => {
             </AppProvider>
           </div>
         </div>
-
-        <Spinner />
       </Layout>
       {open && (
         <div style={{ direction: 'ltr' }}>

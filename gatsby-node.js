@@ -141,7 +141,9 @@ exports.createPages = async ({ actions, graphql }) => {
   const coursesWithInstructors = courses.filter(c => !!c.node.instructor)
 
   const instructors = uniq(
-    coursesWithInstructors.map(course => course.node.instructor.profile.github)
+    coursesWithInstructors.map(
+      course => course.node.instructor?.profile?.github || ''
+    )
   )
 
   instructors.forEach(instructor => {

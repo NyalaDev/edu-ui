@@ -9,16 +9,14 @@ import {
 } from '../components/Dashboard'
 import { AdminProvider } from '../contexts/AdminContext'
 
-const Dashboard = () => {
-  return (
-    <AdminProvider>
-      <Router basepath="/dashboard">
-        <TeacherRoute path="/manage/:slug" component={ManageCourse} />
-        <TeacherRoute path="/new-course" component={NewCourse} />
-        <TeacherRoute path="/" component={CoursesList} />
-      </Router>
-    </AdminProvider>
-  )
-}
+const Dashboard = () => (
+  <AdminProvider>
+    <Router basepath="/dashboard">
+      <TeacherRoute path="/manage/:slug" component={ManageCourse} />
+      <TeacherRoute path="/new-course" component={NewCourse} />
+      <TeacherRoute path="/" component={CoursesList} />
+    </Router>
+  </AdminProvider>
+)
 
 export default Dashboard

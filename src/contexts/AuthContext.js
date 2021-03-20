@@ -16,9 +16,8 @@ const getUserFromLocaleStorageIfAny = () => {
 /**
  * Helper function to get jwt from locale storage if exists
  */
-const getTokenFromLocaleStorageIfAny = () => {
-  return getLocalStorage(LOCALE_STORAGE_TOKEN) || ''
-}
+const getTokenFromLocaleStorageIfAny = () =>
+  getLocalStorage(LOCALE_STORAGE_TOKEN) || ''
 
 export const AuthContext = createContext({
   isLoggedIn: false,

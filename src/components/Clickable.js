@@ -12,19 +12,17 @@ const StyledButton = styled.button`
   outline: 0 !important;
 `
 
-const Clickable = ({ onClick, children, readOnly, ...rest }) => {
-  return (
-    <StyledButton
-      type="button"
-      onClick={onClick}
-      disabled={readOnly}
-      readOnly={readOnly}
-      {...rest}
-    >
-      {children}
-    </StyledButton>
-  )
-}
+const Clickable = ({ onClick, children, readOnly, ...rest }) => (
+  <StyledButton
+    type="button"
+    onClick={onClick}
+    disabled={readOnly}
+    readOnly={readOnly}
+    {...rest}
+  >
+    {children}
+  </StyledButton>
+)
 
 Clickable.propTypes = {
   onClick: PropTypes.func.isRequired,

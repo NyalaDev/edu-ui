@@ -2,8 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
 import { FaRegClock, FaRegCalendarAlt, FaInfoCircle } from 'react-icons/fa'
-import moment from 'moment'
-
+import { DateTime } from 'luxon'
 import { calculateVideosDuration } from '../../common/util'
 
 const CourseMeta = ({ lectures, createdAt }) => {
@@ -29,7 +28,7 @@ const CourseMeta = ({ lectures, createdAt }) => {
         <div className="flex items-center mt-4 text-gray-700">
           <div className="font-bold pl-1 pr-4">{t('released')}</div>
           <div className="px-2 text-sm ">
-            {moment.utc(createdAt).format('DD/MM/YYYY')}
+            {DateTime.fromISO(createdAt).toLocaleString(DateTime.DATE_FULL)}
           </div>
           <FaRegCalendarAlt />
         </div>

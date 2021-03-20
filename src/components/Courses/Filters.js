@@ -63,13 +63,11 @@ const Filters = () => {
           onChange={updateList}
         >
           <option value="-1">{t('filters.allLanguages')}</option>
-          {appLanguages.map(({ locale, label }) => {
-            return (
-              <option key={locale} value={locale}>
-                {label}
-              </option>
-            )
-          })}
+          {appLanguages.map(({ locale, label }) => (
+            <option key={locale} value={locale}>
+              {label}
+            </option>
+          ))}
         </select>
         <select
           className="mx-4 placeholder-gray-500 focus:outline-none focus:bg-white"
@@ -78,13 +76,11 @@ const Filters = () => {
           onChange={updateList}
         >
           <option value="-1">{t('filters.allTags')}</option>
-          {tags.map(tag => {
-            return (
-              <option key={tag} value={tag}>
-                {tag}
-              </option>
-            )
-          })}
+          {tags.map(tag => (
+            <option key={tag} value={tag}>
+              {tag}
+            </option>
+          ))}
         </select>
         <select
           className="mx-4 placeholder-gray-500 focus:outline-none focus:bg-white"
@@ -93,13 +89,11 @@ const Filters = () => {
           onChange={updateList}
         >
           <option value="-1">{t('filters.allLevels')}</option>
-          {levels.map(level => {
-            return (
-              <option key={level} value={level}>
-                {level}
-              </option>
-            )
-          })}
+          {levels.map(level => (
+            <option key={level} value={level}>
+              {level}
+            </option>
+          ))}
         </select>
       </div>
     </div>
