@@ -1,4 +1,4 @@
-name: Build and Deploy
+name: Build and Deploy to Production
 
 on:
   workflow_dispatch:
@@ -13,7 +13,7 @@ on:
 
 jobs:
   deploy:
-    name: Build and Deploy to AWS S3
+    name: Build and Deploy to Production
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -34,6 +34,7 @@ jobs:
           GATSBY_ALGOLIA_APP_ID: ${{ secrets.GATSBY_ALGOLIA_APP_ID }}
           GATSBY_ALGOLIA_SEARCH_KEY: ${{ secrets.GATSBY_ALGOLIA_SEARCH_KEY }}
           GATSBY_GOOGLE_ANALYTICS_ID: ${{ secrets.GATSBY_GOOGLE_ANALYTICS_ID }}
+          GATSBY_ALGOLIA_INDEX_NAME: ${{ secrets.GATSBY_ALGOLIA_INDEX_NAME }}
       - name: Deploy website
         run: yarn deploy
   invalidate:
