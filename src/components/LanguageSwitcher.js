@@ -3,7 +3,8 @@ import useLanguage from '../hooks/useLanguage'
 import { appLanguages } from '../common/constants'
 
 const LanguageSwitcher = () => {
-  const { language, isRtl, setCurrentLanguage } = useLanguage()
+  const { language, changeLanguage } = useLanguage()
+  const { isRtl } = useLanguage()
 
   const [open, setOpen] = useState(false)
 
@@ -18,7 +19,7 @@ const LanguageSwitcher = () => {
         dataset: { locale = 'ar' },
       },
     } = e
-    setCurrentLanguage(locale)
+    changeLanguage(locale)
     setOpen(false)
   }
 
@@ -28,7 +29,7 @@ const LanguageSwitcher = () => {
   return (
     <div className="relative group">
       <button
-        className="p-1 border-2 border-transparent text-gray-400 flex items-center  hover:text-white focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out"
+        className="p-1 border-2 border-transparent text-white flex items-center  hover:text-gray-300 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out"
         type="button"
         onClick={toggleOpen}
       >

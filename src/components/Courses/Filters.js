@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'gatsby-plugin-react-i18next'
 import { flatten, uniq, find } from 'lodash'
 import { appLanguages } from '../../common/constants'
 import { AppContext } from '../../contexts/AppContext'

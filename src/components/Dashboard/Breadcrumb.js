@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'gatsby'
-import { useTranslation } from 'react-i18next'
+import { Link, useTranslation } from 'gatsby-plugin-react-i18next'
 
 const Breadcrumbs = ({ name }) => {
   const { t } = useTranslation()

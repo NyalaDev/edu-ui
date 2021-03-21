@@ -54,6 +54,9 @@ export default LanguageView
 
 export const pageQuery = graphql`
   query CoursesByLanguage($language: String!) {
+    locales: allLocale(filter: { language: { eq: $language } }) {
+      ...LanguageInfo
+    }
     allStrapiCourse(filter: { language: { name: { eq: $language } } }) {
       edges {
         node {

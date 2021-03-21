@@ -13,6 +13,42 @@ module.exports = {
         path: `${__dirname}/src/assets/images`,
       },
     },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/src/locales`,
+        name: `locale`,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-react-i18next`,
+      options: {
+        localeJsonSourceName: `locale`, // name given to `gatsby-source-filesystem` plugin.
+        languages: [`en`, `ar`, `am`, 'sw'],
+        defaultLanguage: `en`,
+        ns: ['messages'],
+        defaultNS: 'messages',
+        // if you are using Helmet, you must include siteUrl, and make sure you add http:https
+        siteUrl: `https://barmaga.io/`,
+        // you can pass any i18next options
+        // pass following options to allow message content as a key
+        i18nextOptions: {
+          lng: 'en',
+          fallbackLng: 'en',
+        },
+        pages: [
+          // {
+          //   matchPath: '/:lang?/blog/:uid',
+          //   getLanguageFromPath: true,
+          //   // excludeLanguages: ['es']
+          // },
+          // {
+          //   matchPath: '/preview',
+          //   languages: ['en']
+          // }
+        ],
+      },
+    },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {

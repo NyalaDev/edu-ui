@@ -10,8 +10,7 @@ const searchClient = algoliasearch(
   process.env.GATSBY_ALGOLIA_SEARCH_KEY
 )
 
-const indexName =
-  process.env.NODE_ENV === 'production' ? `course` : 'dev_course'
+const indexName = process.env.GATSBY_ALGOLIA_INDEX_NAME || 'dev_course'
 
 const Search = () => {
   const rootRef = createRef()

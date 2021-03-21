@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react'
 import PropTypes from 'prop-types'
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'gatsby-plugin-react-i18next'
 import styled from 'styled-components'
 import Layout from '../Layout'
 import Seo from '../Seo'

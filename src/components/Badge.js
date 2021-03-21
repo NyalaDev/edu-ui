@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { AiOutlineClose } from 'react-icons/ai'
-import { Link } from 'gatsby'
+import { Link } from 'gatsby-plugin-react-i18next'
 import Clickable from './Clickable'
 
 const Badge = ({
