@@ -37,7 +37,9 @@ export const pageQuery = graphql`
     locales: allLocale(filter: { language: { eq: $language } }) {
       ...LanguageInfo
     }
-    allStrapiCourse(sort: { fields: created_at, order: DESC }) {
+    allStrapiCourse(
+      sort: { fields: [status, created_at], order: [ASC, DESC] }
+    ) {
       edges {
         node {
           id
