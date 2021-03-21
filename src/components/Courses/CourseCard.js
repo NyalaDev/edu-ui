@@ -36,9 +36,7 @@ const CourseCard = ({
 
   return (
     <div
-      className={`mx-5 rounded overflow-hidden shadow-lg ${
-        isRtl ? 'rtl' : 'ltr'
-      }`}
+      className={`rounded overflow-hidden shadow-lg ${isRtl ? 'rtl' : 'ltr'}`}
     >
       <Link to={cardLink}>
         <img className="w-full h-56" src={image} alt={title} />

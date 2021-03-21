@@ -21,7 +21,9 @@ const Filters = () => {
 
   const levels = ['Beginner', 'Intermediate', 'Advanced']
 
-  useEffect(() => setValues({ ...values, language }), [])
+  const initialLanguage = language === 'en' ? '-1' : language
+
+  useEffect(() => setValues({ ...values, language: initialLanguage }), [])
 
   useEffect(() => {
     let filteredList = [...initialCoursesList]
@@ -53,8 +55,8 @@ const Filters = () => {
   }
 
   return (
-    <div className="mb-6 mx-5">
-      <div className="flex flex-col md:flex-row w-3/4 items-center">
+    <div className="mb-6 sm:mx-5">
+      <div className="flex flex-col md:flex-row w-full items-center">
         <h1>{t('filters.title')}</h1>
         <select
           className="mx-4 placeholder-gray-500 focus:outline-none focus:bg-white"
