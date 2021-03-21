@@ -76,7 +76,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-s3`,
       options: {
-        bucketName: process.env.GATSBY_S3_BUCKET,
+        bucketName: process.env.GATSBY_S3_BUCKET || 's3://s3-bucket',
+        generateRoutingRules: false,
       },
     },
     `gatsby-plugin-styled-components`,
