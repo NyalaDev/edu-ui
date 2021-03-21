@@ -83,7 +83,6 @@
   "preferedLanguage": "Default language",
   "choosePreferedLanguage": "Choose you prefered language",
   "importFromYoutube": "Import from YouTube",
-  "noCourse": "No courses for the selected filters",
   "validation": {
     "required": "This field is required",
     "email": "Please enter a valid email"
@@ -103,20 +102,14 @@
     "heroSubtitle": "Learn coding in Arabic, Amharic, Swahili and more.",
     "comingSoon": "Coming Soon",
     "followOnTwitter": "Follow us on Twitter",
-    "getIntouch": "Get in touch to record a tutorial, sponsor the project or just for a chat:",
+    "getIntouch": "Get in touch to record a tutorial, support the project or just for a chat:",
     "subscribe": "Subscribe",
     "notifyMeWhenLaunch": "Notify me when Barmaga is launched",
     "subscribeSuccess": "Your email was added successfully.",
-    "subscribeError": "Something went wrong, please try again or contact us directly through email or Twitter.",
-    "supportUs": "Support Barmaga"
+    "subscribeError": "Something went wrong, please try again or contact us directly through email or Twitter."
   },
   "moreCourses": "See More",
-  "upcomingCourse": {
-    "interestedInCourse": "Interested in this course?",
-    "courseComingSoon": "Course coming soon",
-    "notifyMe": "Notify me of new courses",
-    "feedbackReceived": "👍🏿 Thanks for the feedback."
-  },
-  "yes": "yes",
-  "no": "no"
+  "quote1": "Education is the most powerful weapon which you can use to change the world.",
+  "quote2": "Education is the passport to the future, for tomorrow belongs to those who prepare for it today.",
+  "quote3": "If you talk to a person in a language he understands, that goes to his head. If you talk to them in their own language, that goes to their heart."
 }

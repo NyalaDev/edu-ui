@@ -82,11 +82,8 @@
   "url": "URL",
   "preferedLanguage": "Default language",
   "choosePreferedLanguage": "Choose you prefered language",
-  "importFromYoutube": "Import from YouTube",
-  "noCourse": "No courses for the selected filters",
   "validation": {
-    "required": "Taarifa hii inahitajika",
-    "email": "Please enter a valid email"
+    "required": "Taarifa hii inahitajika"
   },
   "errors": {
     "generic": "Tatizo limetokea. Tafadhali jaribu tena",
@@ -103,20 +100,9 @@
     "heroSubtitle": "Jifunze coding Kwa kiarabu, kiamrahiki, kiswahili na zaidi",
     "comingSoon": " Inakuja hivi karibuni",
     "followOnTwitter": "Tufuate katika Twitter",
-    "getIntouch": "Wasiliana nasi kwa ajili ya  kurekodi vipindi, kufadhili mradi au kuchati nasi:",
-    "subscribe": "Subscribe",
-    "notifyMeWhenLaunch": "Notify me when Barmaga is launched",
-    "subscribeSuccess": "Your email was added successfully.",
-    "subscribeError": "Something went wrong, please try again or contact us directly through email or Twitter.",
-    "supportUs": "Support Barmaga"
+    "getIntouch": "Wasiliana nasi kwa ajili ya  kurekodi vipindi, kufadhili mradi au kuchati nasi:"
   },
-  "moreCourses": "See More",
-  "upcomingCourse": {
-    "interestedInCourse": "Interested in this course?",
-    "courseComingSoon": "Course coming soon",
-    "notifyMe": "Notify me of new courses",
-    "feedbackReceived": "👍🏿 Thanks for the feedback."
-  },
-  "yes": "yes",
-  "no": "no"
+  "quote1": "Elimu ni silaha kubwa ambayo unaweza kuitumia kubadili dunia.",
+  "quote2": "Elimu ni pasipoti kwa siku zijazo, maana kesho ni kwa ajili ya wale wanaoiandaa leo hii.",
+  "quote3": "Kama ukiongea na mtu kwa lugha ambayo anaielewa basi itakaa kichwani. Ila ukiongea nao kwa lugha ya kwao basi itakaa moyoni."
 }
