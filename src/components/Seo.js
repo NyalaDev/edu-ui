@@ -134,12 +134,14 @@ const SEO = ({
         {
           name: 'twitter:image',
           content:
-            image || 'https://cdn.nyaladev.com/barmaga.io/barmaga_slogan.jpg',
+            image ||
+            'https://cdn.nyaladev.com/barmaga.io/barmaga_social_media.png',
         },
         {
           property: 'og:image',
           content:
-            image || 'https://cdn.nyaladev.com/barmaga.io/barmaga_slogan.jpg',
+            image ||
+            'https://cdn.nyaladev.com/barmaga.io/barmaga_social_media.png',
         },
         {
           name: 'charset',
@@ -157,7 +159,7 @@ SEO.defaultProps = {
   meta: [],
   description: ``,
   twitterCardType: 'summary_large_image',
-  image: 'https://cdn.nyaladev.com/barmaga.io/barmaga_slogan.jpg',
+  image: 'https://cdn.nyaladev.com/barmaga.io/barmaga_social_media.png',
 }
 
 SEO.propTypes = {
