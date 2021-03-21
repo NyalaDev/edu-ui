@@ -22,7 +22,7 @@ const CoursesHome = ({
   }, [])
 
   return (
-    <>
+    <div className="mx-2 sm:mx-0">
       {!hidleFilters && <Filters />}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-4">
         {courses.map(course => {
@@ -57,7 +57,7 @@ const CoursesHome = ({
       <div className="mt-6 px-6 py-2">
         <SubscribeEmail title={t('upcomingCourse.notifyMe')} />
       </div>
-    </>
+    </div>
   )
 }
 

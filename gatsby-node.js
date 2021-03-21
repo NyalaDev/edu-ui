@@ -4,7 +4,6 @@ const { uniq } = require('lodash')
 exports.createPages = async ({ actions, graphql }) => {
   const { createPage } = actions
 
-  const courseLanguages = ['Arabic', 'Swahili', 'English', 'Amharic']
   const CourseLevels = ['Beginner', 'Intermediate', 'Advanced']
 
   const templatesBase = './src/templates'
@@ -128,12 +127,13 @@ exports.createPages = async ({ actions, graphql }) => {
     })
   })
 
+  const courseLanguages = ['Arabic', 'Swahili', 'English', 'Amharic']
   courseLanguages.forEach(language => {
     createPage({
       component: languageViewTemplate,
       path: `/languages/${language}`,
       context: {
-        language,
+        languageToDisplay: language,
       },
     })
   })
