@@ -23,13 +23,14 @@ module.exports = {
     {
       resolve: `gatsby-plugin-react-i18next`,
       options: {
+        redirect: false,
         localeJsonSourceName: `locale`, // name given to `gatsby-source-filesystem` plugin.
         languages: [`en`, `ar`, `am`, 'sw'],
         defaultLanguage: `en`,
         ns: ['messages'],
         defaultNS: 'messages',
         // if you are using Helmet, you must include siteUrl, and make sure you add http:https
-        siteUrl: `https://barmaga.io/`,
+        siteUrl: process.env.GATSBY_SITE_URL || `https://barmaga.io/`,
         // you can pass any i18next options
         // pass following options to allow message content as a key
         i18nextOptions: {
@@ -75,7 +76,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-s3`,
       options: {
-        bucketName: process.env.GATSBY_S3_BUCKET || 'https://barmaga.io',
+        bucketName: process.env.GATSBY_S3_BUCKET,
       },
     },
     `gatsby-plugin-styled-components`,
