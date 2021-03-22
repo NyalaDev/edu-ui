@@ -84,6 +84,7 @@
   "choosePreferedLanguage": "Choose you prefered language",
   "importFromYoutube": "Import from YouTube",
   "noCourse": "No courses for the selected filters",
+  "shareCourse": "Share the course",
   "validation": {
     "required": "This field is required",
     "email": "Please enter a valid email"

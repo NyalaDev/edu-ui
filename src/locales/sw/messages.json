@@ -84,6 +84,7 @@
   "choosePreferedLanguage": "Choose you prefered language",
   "importFromYoutube": "Import from YouTube",
   "noCourse": "No courses for the selected filters",
+  "shareCourse": "",
   "validation": {
     "required": "Taarifa hii inahitajika"
   },

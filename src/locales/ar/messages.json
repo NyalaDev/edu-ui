@@ -84,6 +84,7 @@
   "choosePreferedLanguage": "اختار لغتك المفضلة:",
   "importFromYoutube": "جلب من اليوتيوب",
   "noCourse": "لا توجد كورسات",
+  "shareCourse": "شارك الكورس",
   "validation": {
     "required": "هذ الحقل مطلوب",
     "email": "الرجاء ادخال بريد الكتروني صحيح"
