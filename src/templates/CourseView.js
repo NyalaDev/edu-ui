@@ -100,7 +100,7 @@ const CourseView = ({ data, location }) => {
                 </h1>
               </div>
               <ShareButtons
-                url={Location.href}
+                url={location.href}
                 slug={slug}
                 title={`${title} by ${profile.name} @Barmaga.io `}
                 course={strapiCourse}
