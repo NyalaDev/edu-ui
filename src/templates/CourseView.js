@@ -88,10 +88,8 @@ const CourseView = ({ data, location }) => {
               isCourseInProgress={isCourseInProgress}
               showTags={false}
             />
-
-            <CourseResources course={strapiCourse} />
-
             <CourseMeta lectures={sortedLectures} createdAt={createdAt} />
+            <CourseResources course={strapiCourse} />
 
             <div className="max-w-sm rounded overflow-hidden shadow-lg my-5 h-40 ">
               <div className="px-6 py-3 bg-purple-800 mb-7">
