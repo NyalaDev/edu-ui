@@ -1,54 +1,51 @@
 import React, { useState, useEffect, Suspense } from 'react'
-// import { useTranslation } from 'react-i18next'
-import { useTranslation } from 'gatsby-plugin-react-i18next'
+import useLanguage from '../hooks/useLanguage'
 
-const quotes = [
-  {
-    en: [
-      {
-        id: 1,
-        text: 'quote1',
-        author: 'Nelson Mandela',
-      },
-      {
-        id: 2,
-        text: 'quote2',
-        author: 'Malcolm X',
-      },
-      {
-        id: 3,
-        text: 'quote3',
-        author: 'Nelson Mandela',
-      },
-    ],
-    sw: [
-      {
-        id: 1,
-        text: 'quote1',
-        author: 'Nelson Mandela',
-      },
-      {
-        id: 1,
-        text: 'quote2',
-        author: 'Malcom X',
-      },
-      {
-        id: 3,
-        text: 'quote3',
-        author: 'Nelson Mandela',
-      },
-    ],
-  },
-]
+const quotes = {
+  en: [
+    {
+      text:
+        'Education is the most powerful weapon which you can use to change the world.',
+      author: 'Nelson Mandela',
+    },
+    {
+      text:
+        'Education is the passport to the future, for tomorrow belongs to those who prepare for it today.',
+      author: 'Malcolm X',
+    },
+    {
+      text:
+        'If you talk to a person in a language he understands, that goes to his head. If you talk to them in their own language, that goes to their heart.',
+      author: 'Nelson Mandela',
+    },
+  ],
+  sw: [
+    {
+      text: 'Elimu ni silaha kubwa ambayo unaweza kuitumia kubadili dunia.',
+      author: 'Nelson Mandela',
+    },
+    {
+      text:
+        'Elimu ni pasipoti kwa siku zijazo, maana kesho ni kwa ajili ya wale wanaoiandaa leo hii.',
+      author: 'Malcom X',
+    },
+    {
+      text:
+        'Kama ukiongea na mtu kwa lugha ambayo anaielewa basi itakaa kichwani. Ila ukiongea nao kwa lugha ya kwao basi itakaa moyoni.',
+      author: 'Nelson Mandela',
+    },
+  ],
+}
+
 const Footer = () => {
   const [randomQuote, setRandomQuote] = useState(null)
-  const { t } = useTranslation()
+  const { language } = useLanguage()
+  const quotesInLanguage = quotes[language]
+  console.log(language)
 
   useEffect(() => {
-    // console.log(quotes[0]['sw'])
     setRandomQuote(
-      quotes[0].en[Math.floor(Math.random() * quotes[0].en.length)]
-      // quotes[Math.floor(Math.random() * quotes.length)]
+      quotesInLanguage[Math.floor(Math.random() * quotesInLanguage.length)]
     )
   }, [])
 
@@ -63,7 +60,7 @@ const Footer = () => {
             {randomQuote && (
               <div className="flex flex-col items-center w-1/2">
                 <h1 className="text-center title text-lg lg:text-2xl">
-                  {t(randomQuote.text)}
+                  {randomQuote.text}
                 </h1>
                 <h4 className="font-light">{randomQuote.author}</h4>
               </div>
