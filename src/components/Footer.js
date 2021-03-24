@@ -40,8 +40,9 @@ const quotes = {
 const Footer = () => {
   const [randomQuote, setRandomQuote] = useState(null)
   const { language } = useLanguage()
-  const quotesInLanguage = quotes[language]
-  console.log(language)
+  const quoteLanguage = language === 'am' || language === 'ar' ? 'en' : language
+  const quotesInLanguage = quotes[quoteLanguage]
+  // const quotesInLanguage = quotes[language]
 
   useEffect(() => {
     setRandomQuote(
