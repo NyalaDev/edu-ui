@@ -17,6 +17,7 @@ import { DEFAULT_PROFILE_PIC } from '../common/constants'
 import { getProfileById } from '../services/api'
 import useCourseProgress from '../hooks/useCourseProgress'
 import CourseExercises from '../components/Courses/CourseExercises'
+import ShareButtons from '../components/ShareButtons'
 
 const CourseView = ({ data, location }) => {
   const [instructorPhoto, setInstructorPhoto] = useState(DEFAULT_PROFILE_PIC)
@@ -41,11 +42,10 @@ const CourseView = ({ data, location }) => {
   const thumbnail = getYoutubeThumbnail(sortedLectures[0].url)
   const { t } = useTranslation()
   const isCourseInProgress = useCourseProgress(courseStrapiId)
-
+  const { profile } = instructor
   useEffect(() => {
     const fetchPhoto = async () => {
       try {
-        const { profile } = instructor
         if (!profile.id) return
         const { data: profileData } = await getProfileById(profile.id)
         if (profileData.profilepicture) {
@@ -89,7 +89,23 @@ const CourseView = ({ data, location }) => {
               showTags={false}
             />
 
+            <CourseMeta lectures={sortedLectures} createdAt={createdAt} />
+
             <CourseResources course={strapiCourse} />
+
+            <div className="max-w-sm rounded overflow-hidden shadow-lg my-5 h-40 ">
+              <div className="px-6 py-3 bg-purple-800 mb-7">
+                <h1 className="text-white title text-lg items-center justify-center flex">
+                  <span className="mx-1">{t('shareCourse')}</span>
+                </h1>
+              </div>
+              <ShareButtons
+                url={location.href}
+                slug={slug}
+                title={`${title} by ${profile.name} @Barmaga.io `}
+                course={strapiCourse}
+              />
+            </div>
 
             {exercises.length > 0 && (
               <CourseExercises
@@ -97,8 +113,6 @@ const CourseView = ({ data, location }) => {
                 courseId={strapiCourse.strapiId}
               />
             )}
-
-            <CourseMeta lectures={sortedLectures} createdAt={createdAt} />
 
             {tags.length !== 0 && <CourseTags tags={tags} />}
 
