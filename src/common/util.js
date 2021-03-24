@@ -10,7 +10,6 @@ const getYoutubeVideoId = url => {
   if (match && match[7].length === 11) {
     return match[7]
   }
-
   return null
 }
 
