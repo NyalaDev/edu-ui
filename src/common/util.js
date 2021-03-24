@@ -3,6 +3,17 @@ import PropTypes from 'prop-types'
 import { Duration } from 'luxon'
 import { DEFAULT_PROFILE_PIC } from './constants'
 
+const getYoutubeVideoId = url => {
+  // eslint-disable-next-line no-useless-escape
+  const EXTRACT_YOUTUBE_REGEX = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/
+  const match = url.match(EXTRACT_YOUTUBE_REGEX)
+  if (match && match[7].length === 11) {
+    return match[7]
+  }
+
+  return null
+}
+
 /**
  * Get Youtube Video Thumnail
  * @param {*} url The youtube vido URL
@@ -10,12 +21,10 @@ import { DEFAULT_PROFILE_PIC } from './constants'
  */
 export const getYoutubeThumbnail = url => {
   try {
-    const VALIDATE_YOUTUBE_REGEX = /^(?:https?:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\/watch\?v=([^&]+)/m
-    if (url && VALIDATE_YOUTUBE_REGEX.test(url) && url.match(/youtube/)) {
-      const id = url.match(/v=(.+)$/)[1]
-      return id ? `https://i.ytimg.com/vi/${id}/mqdefault.jpg` : ''
-    }
-    return 'https://cdn.nyaladev.com/barmaga.io/nyala-placeholder.png'
+    const videoId = getYoutubeVideoId(url)
+    return videoId
+      ? `https://i.ytimg.com/vi/${videoId}/mqdefault.jpg`
+      : 'https://cdn.nyaladev.com/barmaga.io/nyala-placeholder.png'
   } catch (e) {
     return 'https://cdn.nyaladev.com/barmaga.io/nyala-placeholder.png'
   }
