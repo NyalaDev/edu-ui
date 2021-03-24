@@ -42,7 +42,6 @@ const Footer = () => {
   const { language } = useLanguage()
   const quoteLanguage = language === 'am' || language === 'ar' ? 'en' : language
   const quotesInLanguage = quotes[quoteLanguage]
-  // const quotesInLanguage = quotes[language]
 
   useEffect(() => {
     setRandomQuote(
