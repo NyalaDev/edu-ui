@@ -18,9 +18,17 @@ describe('calculateVideosDuration', () => {
 })
 
 describe('getYoutubeThumbnail', () => {
-  it('Should return thumbnail URL when youtube URL is valid', () => {
-    const youtubeURL = 'https://www.youtube.com/watch?v=123'
-    const expected = 'https://i.ytimg.com/vi/123/mqdefault.jpg'
+  it('Should return thumbnail URL when youtube long URL format is used', () => {
+    const videoId = 'J3UynuivVy4'
+    const youtubeURL = `https://www.youtube.com/watch?v=${videoId}`
+    const expected = `https://i.ytimg.com/vi/${videoId}/mqdefault.jpg`
+    expect(getYoutubeThumbnail(youtubeURL)).toBe(expected)
+  })
+
+  it('Should return thumbnail URL when  youtube short URL format is used', () => {
+    const videoId = 'J3UynuivVy4'
+    const youtubeURL = `https://youtu.be/${videoId}`
+    const expected = `https://i.ytimg.com/vi/${videoId}/mqdefault.jpg`
     expect(getYoutubeThumbnail(youtubeURL)).toBe(expected)
   })
 
