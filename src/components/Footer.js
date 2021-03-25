@@ -19,6 +19,7 @@ const quotes = {
       author: 'Nelson Mandela',
     },
   ],
+
   sw: [
     {
       text: 'Elimu ni silaha kubwa ambayo unaweza kuitumia kubadili dunia.',
