@@ -150,6 +150,17 @@ const SEO = ({
       ].concat(meta)}
     >
       <style type="text/css">{fonts}</style>
+      <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async="" />
+      <script>
+        {`
+        window.OneSignal = window.OneSignal || [];
+        OneSignal.push(function() {
+          OneSignal.init({
+            appId: "0e1e509b-4f7d-4863-805f-30a72c61b42b",
+          })
+        });
+        `}
+      </script>
     </Helmet>
   )
 }
