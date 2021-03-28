@@ -7,7 +7,6 @@ exports.createPages = async ({ actions, graphql }) => {
   const CourseLevels = ['Beginner', 'Intermediate', 'Advanced']
 
   const templatesBase = './src/templates'
-  const courseViewTemplate = path.resolve(`${templatesBase}/CourseView.js`)
   const lectureViewTemplate = path.resolve(
     `${templatesBase}/LectureView/index.js`
   )
@@ -36,6 +35,11 @@ exports.createPages = async ({ actions, graphql }) => {
               profile {
                 github
               }
+            }
+            language {
+              id
+              name
+              iso2
             }
             tags {
               tagName
@@ -79,11 +83,12 @@ exports.createPages = async ({ actions, graphql }) => {
     const { tagName = '' } = firstTag
 
     createPage({
-      component: courseViewTemplate,
+      component: lectureViewTemplate,
       path: `/courses/${slug}`,
       context: {
         id,
         tagName,
+        courseSlug: slug,
       },
     })
   })

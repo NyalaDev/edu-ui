@@ -4,7 +4,7 @@ import { useTranslation, Link } from 'gatsby-plugin-react-i18next'
 import { uniqueId } from 'lodash'
 import { BiTask } from 'react-icons/bi'
 
-import { AuthContext } from '../../contexts/AuthContext'
+import { AuthContext } from '../../../contexts/AuthContext'
 import CourseExercise from './CourseExercise'
 
 const CourseExercises = ({ courseId, exercises }) => {

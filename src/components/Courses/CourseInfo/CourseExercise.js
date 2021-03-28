@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { useTranslation } from 'gatsby-plugin-react-i18next'
 import { toast } from 'react-toastify'
 import { uniqueId } from 'lodash'
-import { addPRToReview } from '../../services/api'
+import { addPRToReview } from '../../../services/api'
 
 const CourseExercise = ({ exercise, courseId }) => {
   const { t } = useTranslation()
