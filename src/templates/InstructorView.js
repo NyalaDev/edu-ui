@@ -44,7 +44,7 @@ InstructorView.propTypes = {
 export default InstructorView
 
 export const pageQuery = graphql`
-  query CoursesByInstructor($instructor: String!) {
+  query CoursesByInstructor() {
     allStrapiCourse(
       filter: { instructor: { profile: { github: { eq: $instructor } } } }
     ) {
