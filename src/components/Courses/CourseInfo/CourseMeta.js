@@ -3,9 +3,10 @@ import PropTypes from 'prop-types'
 import { useTranslation } from 'gatsby-plugin-react-i18next'
 import { FaRegClock, FaRegCalendarAlt, FaInfoCircle } from 'react-icons/fa'
 import { DateTime } from 'luxon'
-import { calculateVideosDuration } from '../../common/util'
+import { calculateVideosDuration } from '../../../common/util'
+import Badge from '../../Badge'
 
-const CourseMeta = ({ lectures, createdAt }) => {
+const CourseMeta = ({ lectures, createdAt, tags }) => {
   const { t } = useTranslation()
   return (
     <div className="max-w-sm rounded overflow-hidden shadow-lg my-5 ">
@@ -32,6 +33,19 @@ const CourseMeta = ({ lectures, createdAt }) => {
           </div>
           <FaRegCalendarAlt />
         </div>
+        <div className=" mt-4 text-gray-700">
+          <div className="font-bold pl-1 pr-4">{t('courseTags')}</div>
+          <div className="flex items-center font-bold mt-2">
+            {tags.map(tag => (
+              <Badge
+                key={tag.id}
+                text={tag.tagName}
+                color="purple-800"
+                link={`/tags/${tag.tagName}`}
+              />
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   )
@@ -44,6 +58,12 @@ CourseMeta.propTypes = {
     })
   ).isRequired,
   createdAt: PropTypes.string.isRequired,
+  tags: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      tagName: PropTypes.string,
+    })
+  ).isRequired,
 }
 
 export default CourseMeta

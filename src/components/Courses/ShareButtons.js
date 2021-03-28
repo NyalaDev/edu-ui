@@ -12,8 +12,8 @@ import {
   FaWhatsappSquare,
   FaLinkedin,
 } from 'react-icons/fa'
-import { sendEvent } from '../services/analytics'
-import useLanguage from '../hooks/useLanguage'
+import { sendEvent } from '../../services/analytics'
+import useLanguage from '../../hooks/useLanguage'
 
 const ShareButtons = ({ title, url, course }) => {
   const { language } = useLanguage()

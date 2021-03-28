@@ -18,6 +18,7 @@ const CourseCard = ({
   showTags,
 }) => {
   const { t } = useTranslation()
+  const { isRtl } = useTranslation()
   const {
     language,
     title,
@@ -29,14 +30,15 @@ const CourseCard = ({
     level,
   } = course
 
-  const isRtl = language.name === 'Arabic'
   const cardLink = forDashboard
     ? `/dashboard/manage/${slug}`
     : `/courses/${slug}`
 
   return (
     <div
-      className={`rounded overflow-hidden shadow-lg ${isRtl ? 'rtl' : 'ltr'}`}
+      className={`rounded max-w-sm overflow-hidden shadow-lg ${
+        isRtl ? 'rtl' : 'ltr'
+      }`}
     >
       <Link to={cardLink}>
         <img className="w-full h-56" src={image} alt={title} />
