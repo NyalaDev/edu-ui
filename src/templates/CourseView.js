@@ -33,7 +33,7 @@ const CourseView = ({ data, location }) => {
     strapiId: courseStrapiId,
     language,
   } = strapiCourse
-
+  console.log(strapiCourse)
   const sortedLectures = orderBy(lectures, 'position', 'asc')
 
   const resources = strapiCourse.resources || []
