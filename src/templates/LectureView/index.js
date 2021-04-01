@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
 import { graphql, Link } from 'gatsby'
 import { AiFillForward, AiFillBackward } from 'react-icons/ai'
@@ -12,11 +12,13 @@ import VideoPlayer from './VideoPlayer'
 import { CoursePropType, getYoutubeThumbnail } from '../../common/util'
 import CourseInfoCards from '../../components/Courses/CourseInfoCards'
 import CourseCard from '../../components/Courses/CourseCard'
+import Modal from '../../components/Modal'
+import { AuthContext } from '../../contexts/AuthContext'
 
 const LectureView = ({ data, location }) => {
   const { strapiLecture = {}, strapiCourse = {}, relatedCourses = [] } = data
   const lecture = !strapiLecture ? strapiCourse.lectures[0] : strapiLecture
-
+  const { isLoggedIn } = useContext(AuthContext)
   if (!strapiCourse) {
     return <div />
   }
@@ -135,6 +137,24 @@ const LectureView = ({ data, location }) => {
               })}
             </div>
           </div>
+        )}
+
+        {lectures.length > 2 && strapiId === lectures[2].id && !isLoggedIn && (
+          <Modal
+            title="Please signup or signin to continue to see the course"
+            withActions={false}
+          >
+            <div className="text-center h-40">
+              <span>Please </span>
+              <Link to="/signup" className="no-underline text-blue font-bold">
+                {t('createAccount')}
+              </Link>
+              <span> Or </span>
+              <Link to="/signin" className="no-underline text-blue font-bold">
+                {t('signIn')}
+              </Link>
+            </div>
+          </Modal>
         )}
       </Layout>
     </>
