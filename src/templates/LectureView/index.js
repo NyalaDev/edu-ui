@@ -149,7 +149,7 @@ const LectureView = ({ data, location }) => {
               <Link to="/signup" className="no-underline text-blue font-bold">
                 {t('createAccount')}
               </Link>
-              <span> Or </span>
+              <span> or </span>
               <Link to="/signin" className="no-underline text-blue font-bold">
                 {t('signIn')}
               </Link>
