@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { orderBy } from 'lodash'
 import { FcCheckmark } from 'react-icons/fc'
-import { Link } from 'gatsby-plugin-react-i18next'
 import { formatDuration } from '../../common/util'
 
 import {
@@ -10,7 +9,6 @@ import {
   StyledLectureListItem,
   StyledCount,
   StyledListBody,
-  StyledLink,
   StyledVideoIcon,
   StyledDuration,
 } from './styles'
@@ -18,10 +16,10 @@ import useCourseProgress from '../../hooks/useCourseProgress'
 
 const LectureList = ({
   lectures,
-  courseSlug,
   currentLecture,
   courseStrapiId,
   language,
+  x,
 }) => {
   const getNumber = index => {
     const value = index + 1
@@ -34,37 +32,26 @@ const LectureList = ({
   return (
     <StyledLectureList>
       {sortedLectures.map((lecture, index) => (
-        <Link
+        <StyledLectureListItem
+          active={currentLecture && currentLecture.strapiId === lecture.id}
           key={lecture.id}
-          to={`/courses/${courseSlug}/lectures/${lecture.id}`}
+          onClick={() => x(lecture.url, lecture.id)}
         >
-          <StyledLectureListItem
-            active={currentLecture && currentLecture.strapiId === lecture.id}
-          >
-            <StyledCount>
-              <span>
-                {getNumber(index)}
-                {isCourseInProgress &&
-                  isCourseInProgress.includes(lecture.id) && (
-                    <FcCheckmark className="m-auto" />
-                  )}
-              </span>
-            </StyledCount>
-            <StyledListBody>
-              <StyledVideoIcon />
-              <p className={`${isRtl ? 'rtl' : 'ltr'}`}>
-                <StyledLink
-                  to={`/courses/${courseSlug}/lectures/${lecture.id}`}
-                >
-                  {lecture.title}
-                </StyledLink>
-              </p>
-              <StyledDuration>
-                {formatDuration(lecture.duration)}
-              </StyledDuration>
-            </StyledListBody>
-          </StyledLectureListItem>
-        </Link>
+          <StyledCount>
+            <span>
+              {getNumber(index)}
+              {isCourseInProgress &&
+                isCourseInProgress.includes(lecture.id) && (
+                  <FcCheckmark className="m-auto" />
+                )}
+            </span>
+          </StyledCount>
+          <StyledListBody>
+            <StyledVideoIcon />
+            <p className={`${isRtl ? 'rtl' : 'ltr'}`}>{lecture.title}</p>
+            <StyledDuration>{formatDuration(lecture.duration)}</StyledDuration>
+          </StyledListBody>
+        </StyledLectureListItem>
       ))}
     </StyledLectureList>
   )
@@ -83,7 +70,6 @@ LectureList.propTypes = {
   currentLecture: PropTypes.shape({
     strapiId: PropTypes.number,
   }),
-  courseSlug: PropTypes.string.isRequired,
   courseStrapiId: PropTypes.number.isRequired,
   language: PropTypes.string.isRequired,
 }

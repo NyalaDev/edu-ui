@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { graphql, Link } from 'gatsby'
 import { AiFillForward, AiFillBackward } from 'react-icons/ai'
@@ -20,7 +20,7 @@ const LectureView = ({ data, location }) => {
   if (!strapiCourse) {
     return <div />
   }
-  const { url, title: lectureTitle, position, strapiId } = lecture
+  const { title: lectureTitle, position } = lecture
   const {
     title: courseTitle,
     slug,
@@ -29,7 +29,10 @@ const LectureView = ({ data, location }) => {
   } = strapiCourse
   const isLastLecture = position === lectures.length
   const isFirstLecture = position === 1
-
+  const [lectureToPlay, setLectureToPlay] = useState({
+    url: lectures[0].url,
+    lectureId: lectures[0].id,
+  })
   const findLectureByPosition = index => {
     const lectureByPosition = lectures.find(
       item => item.position === position + index
@@ -96,8 +99,8 @@ const LectureView = ({ data, location }) => {
               </div>
 
               <VideoPlayer
-                url={url}
-                lectureStrapiId={strapiId}
+                url={lectureToPlay.url}
+                lectureStrapiId={lectureToPlay.id}
                 courseStrapiId={courseStrapiId}
               />
             </div>
@@ -107,6 +110,12 @@ const LectureView = ({ data, location }) => {
                 courseSlug={slug}
                 currentLecture={lecture}
                 courseStrapiId={courseStrapiId}
+                x={(url, id) =>
+                  setLectureToPlay({
+                    url,
+                    lectureId: id,
+                  })
+                }
               />
             </div>
           </div>
