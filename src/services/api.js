@@ -89,5 +89,7 @@ export const teacher = {
   patchCourse: async (data, courseId) =>
     axiosInstance().put(`/courses/${courseId}`, data),
   saveLecture: async lecture => axiosInstance().post('/lectures', lecture),
+  importFromYoutube: async lecture =>
+    axiosInstance().post('/lectures/import', lecture),
   deleteLecture: async id => axiosInstance().delete(`/lectures/${id}`),
 }

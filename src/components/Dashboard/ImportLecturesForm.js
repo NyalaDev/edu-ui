@@ -29,7 +29,7 @@ const ImportLecturesForm = ({ course, onSaveComplete }) => {
     }),
     onSubmit: async values => {
       try {
-        await teacher.saveLecture({ ...values, course: course.id })
+        await teacher.importFromYoutube({ ...values, course: course.id })
         onSaveComplete()
       } catch (e) {
         const message = extractErrorMessage(e)

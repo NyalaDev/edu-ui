@@ -44,6 +44,10 @@ exports.createPages = async ({ actions, graphql }) => {
             tags {
               tagName
             }
+            resources {
+              type
+              text
+            }
           }
         }
       }
@@ -57,6 +61,10 @@ exports.createPages = async ({ actions, graphql }) => {
               id
               slug
               status
+              resources {
+                type
+                text
+              }
             }
           }
         }

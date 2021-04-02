@@ -64,9 +64,11 @@ const CourseInfoCards = ({ course, location }) => {
         showTags={false}
       />
 
-      <CourseMeta tags={tags} lectures={sortedLectures} createdAt={createdAt} />
-
       <CourseResources course={course} />
+      {exercises.length > 0 && (
+        <CourseExercises exercises={exercises} courseId={course.strapiId} />
+      )}
+      <CourseMeta tags={tags} lectures={sortedLectures} createdAt={createdAt} />
 
       <div className="max-w-sm rounded overflow-hidden shadow-lg my-5 h-40 ">
         <div className="px-6 py-3 bg-purple-800 mb-7">
@@ -81,10 +83,6 @@ const CourseInfoCards = ({ course, location }) => {
           course={course}
         />
       </div>
-
-      {exercises.length > 0 && (
-        <CourseExercises exercises={exercises} courseId={course.strapiId} />
-      )}
 
       <InstructorBio instructor={instructor} photo={instructorPhoto} />
     </>

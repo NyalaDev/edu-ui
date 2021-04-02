@@ -6,8 +6,11 @@ import { FaPaperclip } from 'react-icons/fa'
 
 const CourseResources = ({ course }) => {
   const { t } = useTranslation()
-  const { resources } = course
-  if (!resources) return null
+  const { resources = [] } = course
+
+  const linkResources = resources.filter(r => r.type === 'link')
+
+  if (!linkResources || !linkResources.length) return null
 
   return (
     <div className="max-w-sm rounded overflow-hidden shadow-lg my-5 ">
