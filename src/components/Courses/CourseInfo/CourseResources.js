@@ -8,7 +8,9 @@ const CourseResources = ({ course }) => {
   const { t } = useTranslation()
   const { resources = [] } = course
 
-  const linkResources = resources.filter(r => r.type === 'link')
+  const linkResources = resources
+    ? resources.filter(r => r.type === 'link')
+    : []
 
   if (!linkResources || !linkResources.length) return null
 
