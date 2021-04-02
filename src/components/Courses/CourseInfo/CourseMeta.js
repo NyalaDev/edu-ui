@@ -5,9 +5,16 @@ import { FaRegClock, FaRegCalendarAlt, FaInfoCircle } from 'react-icons/fa'
 import { DateTime } from 'luxon'
 import { calculateVideosDuration } from '../../../common/util'
 import Badge from '../../Badge'
+import useLanguage from '../../../hooks/useLanguage'
 
-const CourseMeta = ({ lectures, createdAt, tags }) => {
+const CourseMeta = ({ lectures, tags }) => {
   const { t } = useTranslation()
+  const { language } = useLanguage()
+  const courseCreatedDate = DateTime.fromISO(lectures[0].created_at)
+  const courseDate =
+    language === 'ar'
+      ? courseCreatedDate.setLocale('ar').toLocaleString(DateTime.DATE_FULL)
+      : courseCreatedDate.toLocaleString(DateTime.DATE_FULL)
   return (
     <div className="max-w-sm rounded overflow-hidden shadow-lg my-5 ">
       <div className="px-6 py-3 bg-purple-800">
@@ -28,9 +35,7 @@ const CourseMeta = ({ lectures, createdAt, tags }) => {
 
         <div className="flex items-center mt-4 text-gray-700">
           <div className="font-bold pl-1 pr-4">{t('released')}</div>
-          <div className="px-2 text-sm ">
-            {DateTime.fromISO(createdAt).toLocaleString(DateTime.DATE_FULL)}
-          </div>
+          <div className="px-2 text-sm ">{courseDate}</div>
           <FaRegCalendarAlt />
         </div>
         <div className=" mt-4 text-gray-700">
@@ -57,7 +62,6 @@ CourseMeta.propTypes = {
       duration: PropTypes.string.isRequired,
     })
   ).isRequired,
-  createdAt: PropTypes.string.isRequired,
   tags: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number,

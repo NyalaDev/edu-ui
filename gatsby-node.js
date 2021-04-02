@@ -107,6 +107,14 @@ exports.createPages = async ({ actions, graphql }) => {
         toPath: `/${language}/courses/${slug}/lectures/${firstLecture.node.strapiId}`,
       })
     })
+
+    // add a redirect for the case no language is selected (i.e default language)
+    createRedirect({
+      fromPath: `/courses/${slug}`,
+      isPermanent: false,
+      redirectInBrowser: true,
+      toPath: `/courses/${slug}/lectures/${firstLecture.node.strapiId}`,
+    })
   })
 
   lectures.forEach(edge => {

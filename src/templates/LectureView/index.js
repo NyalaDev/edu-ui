@@ -201,6 +201,7 @@ export const pageQuery = graphql`
         position
         duration
         url
+        created_at
       }
       resources {
         type
