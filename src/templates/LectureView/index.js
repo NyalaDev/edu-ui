@@ -140,24 +140,28 @@ const LectureView = ({ data, location }) => {
           </div>
         )}
 
-        {Number(strapiId) % 2 === 0 && isOpened && !isLoggedIn && (
-          <Modal
-            title="Please signup or signin to continue to see the course"
-            withActions={false}
-            onDismiss={() => setIsOpened(false)}
-          >
-            <div className="text-center h-40">
-              <span>Please </span>
-              <Link to="/signup" className="no-underline text-blue font-bold">
-                {t('createAccount')}
-              </Link>
-              <span> or </span>
-              <Link to="/signin" className="no-underline text-blue font-bold">
-                {t('signIn')}
-              </Link>
-            </div>
-          </Modal>
-        )}
+        {lectures.length > 2 &&
+          position !== 1 &&
+          position !== 2 &&
+          isOpened &&
+          !isLoggedIn && (
+            <Modal
+              title="Please signup or signin to continue to see the course"
+              withActions={false}
+              onDismiss={() => setIsOpened(false)}
+            >
+              <div className="text-center h-40">
+                <span>Please </span>
+                <Link to="/signup" className="no-underline text-blue font-bold">
+                  {t('createAccount')}
+                </Link>
+                <span> or </span>
+                <Link to="/signin" className="no-underline text-blue font-bold">
+                  {t('signIn')}
+                </Link>
+              </div>
+            </Modal>
+          )}
       </Layout>
     </>
   )
