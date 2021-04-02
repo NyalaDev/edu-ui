@@ -59,6 +59,7 @@ exports.createPages = async ({ actions, graphql }) => {
           node {
             id
             strapiId
+            position
             course {
               id
               slug
@@ -97,14 +98,18 @@ exports.createPages = async ({ actions, graphql }) => {
     if (status === 'Upcoming' || !courseLectures || !courseLectures.length)
       return
 
-    const [firstLecture] = orderBy(courseLectures, 'position', 'asc')
+    const [firstLecture] = orderBy(
+      courseLectures.map(c => c.node),
+      'position',
+      'asc'
+    )
 
     siteLanguages.forEach(language => {
       createRedirect({
         fromPath: `/${language}/courses/${slug}`,
         isPermanent: false,
         redirectInBrowser: true,
-        toPath: `/${language}/courses/${slug}/lectures/${firstLecture.node.strapiId}`,
+        toPath: `/${language}/courses/${slug}/lectures/${firstLecture.strapiId}`,
       })
     })
 
@@ -113,7 +118,7 @@ exports.createPages = async ({ actions, graphql }) => {
       fromPath: `/courses/${slug}`,
       isPermanent: false,
       redirectInBrowser: true,
-      toPath: `/courses/${slug}/lectures/${firstLecture.node.strapiId}`,
+      toPath: `/courses/${slug}/lectures/${firstLecture.strapiId}`,
     })
   })
 
