@@ -202,6 +202,10 @@ export const pageQuery = graphql`
         duration
         url
       }
+      resources {
+        type
+        text
+      }
     }
 
     relatedCourses: allStrapiCourse(
