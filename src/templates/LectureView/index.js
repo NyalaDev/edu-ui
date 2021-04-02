@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import PropTypes from 'prop-types'
 import { graphql, Link } from 'gatsby'
 import { AiFillForward, AiFillBackward } from 'react-icons/ai'
@@ -19,6 +19,7 @@ const LectureView = ({ data, location }) => {
   const { strapiLecture = {}, strapiCourse = {}, relatedCourses = [] } = data
   const lecture = !strapiLecture ? strapiCourse.lectures[0] : strapiLecture
   const { isLoggedIn } = useContext(AuthContext)
+  const [isOpened, setIsOpened] = useState(true)
   if (!strapiCourse) {
     return <div />
   }
@@ -139,10 +140,11 @@ const LectureView = ({ data, location }) => {
           </div>
         )}
 
-        {lectures.length > 2 && strapiId === lectures[2].id && !isLoggedIn && (
+        {Number(strapiId) % 2 === 0 && isOpened && !isLoggedIn && (
           <Modal
             title="Please signup or signin to continue to see the course"
             withActions={false}
+            onDismiss={() => setIsOpened(false)}
           >
             <div className="text-center h-40">
               <span>Please </span>
