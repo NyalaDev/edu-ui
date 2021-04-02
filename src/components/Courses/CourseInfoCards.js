@@ -33,7 +33,9 @@ const CourseInfoCards = ({ course, location }) => {
 
   const { profile } = instructor
   const resources = course.resources || []
-  const exercises = resources.filter(resourse => resourse.type === 'exercise')
+  const exercises = resources
+    ? resources.filter(resourse => resourse.type === 'exercise')
+    : []
 
   useEffect(() => {
     const fetchPhoto = async () => {
