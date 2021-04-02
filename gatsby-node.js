@@ -1,8 +1,10 @@
 const path = require('path')
-const { uniq } = require('lodash')
+const { uniq, orderBy } = require('lodash')
+
+const siteLanguages = [`en`, `ar`, `am`, 'sw']
 
 exports.createPages = async ({ actions, graphql }) => {
-  const { createPage } = actions
+  const { createPage, createRedirect } = actions
 
   const CourseLevels = ['Beginner', 'Intermediate', 'Advanced']
 
@@ -82,22 +84,28 @@ exports.createPages = async ({ actions, graphql }) => {
 
   courses.forEach(edge => {
     const {
-      node: { id, status, slug, tags: courseTags },
+      node: { status, slug },
     } = edge
 
-    if (status === 'Upcoming' || !lectures || !lectures.length) return
+    const courseLectures = lectures.filter(lecture => {
+      const {
+        node: { course },
+      } = lecture
+      return course.slug === slug
+    })
 
-    const [firstTag = {}] = courseTags
-    const { tagName = '' } = firstTag
+    if (status === 'Upcoming' || !courseLectures || !courseLectures.length)
+      return
 
-    createPage({
-      component: lectureViewTemplate,
-      path: `/courses/${slug}`,
-      context: {
-        id,
-        tagName,
-        courseSlug: slug,
-      },
+    const [firstLecture] = orderBy(courseLectures, 'position', 'asc')
+
+    siteLanguages.forEach(language => {
+      createRedirect({
+        fromPath: `/${language}/courses/${slug}`,
+        isPermanent: false,
+        redirectInBrowser: true,
+        toPath: `/${language}/courses/${slug}/lectures/${firstLecture.node.strapiId}`,
+      })
     })
   })
 

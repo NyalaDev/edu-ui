@@ -53,8 +53,6 @@ const CourseInfoCards = ({ course, location }) => {
     fetchPhoto()
   }, [])
 
-  console.log('::::', location)
-
   return (
     <>
       <CourseCard
