@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'gatsby-plugin-react-i18next'
 import { orderBy } from 'lodash'
 import PropTypes from 'prop-types'
 import CourseResources from './CourseInfo/CourseResources'

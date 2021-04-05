@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
+import { useTranslation } from 'gatsby-plugin-react-i18next'
 import Layout from '../components/Layout'
 import CourseCard from '../components/Courses/CourseCard'
 import { getYoutubeThumbnail } from '../common/util'
@@ -9,12 +10,14 @@ const InstructorView = ({ data }) => {
   const {
     allStrapiCourse: { edges: courses = [] },
   } = data
+  const { t } = useTranslation()
 
+  const instructorName = courses[0].node.instructor.profile.name
   return (
-    <Layout>
+    <Layout title={`${t('courses')} | ${instructorName}`}>
       <div>
         <div className="bg-gray-800 text-white text-center font-bold uppercase text-md px-4 py-4 my-8 rounded shadow hover:shadow-md outline-none focus:outline-none">
-          {courses[0].node.instructor.profile.name}
+          {instructorName}
         </div>
       </div>
       <div className="grid md:grid-cols-3 sm:grid-cols-1 gap-4">
@@ -44,7 +47,10 @@ InstructorView.propTypes = {
 export default InstructorView
 
 export const pageQuery = graphql`
-  query CoursesByInstructor($instructor: String!) {
+  query CoursesByInstructor($language: String!, $instructor: String!) {
+    locales: allLocale(filter: { language: { eq: $language } }) {
+      ...LanguageInfo
+    }
     allStrapiCourse(
       filter: { instructor: { profile: { github: { eq: $instructor } } } }
     ) {
