@@ -26,9 +26,10 @@ module.exports = {
         redirect: false,
         localeJsonSourceName: `locale`, // name given to `gatsby-source-filesystem` plugin.
         languages: [`en`, `ar`, `am`, 'sw'],
-        defaultLanguage: `en`,
+        defaultLanguage: `ar`,
         ns: ['messages'],
         defaultNS: 'messages',
+        generateDefaultLanguagePage: true,
         // if you are using Helmet, you must include siteUrl, and make sure you add http:https
         siteUrl: process.env.GATSBY_SITE_URL || `https://barmaga.io/`,
         // you can pass any i18next options

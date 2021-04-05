@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { graphql, Link } from 'gatsby'
 import { AiFillForward, AiFillBackward } from 'react-icons/ai'
 
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'gatsby-plugin-react-i18next'
 import Layout from '../../components/Layout'
 import LecturesList from '../../components/LecturesList'
 import Seo from '../../components/Seo'

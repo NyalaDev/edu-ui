@@ -1,7 +1,6 @@
 import React from 'react'
 import { ToastContainer } from 'react-toastify'
 import PropTypes from 'prop-types'
-import { useTranslation } from 'gatsby-plugin-react-i18next'
 import Header from './Header'
 import PageTitle from './PageTitle'
 import Footer from './Footer'
@@ -11,9 +10,8 @@ import './layout.css'
 import useLanguage from '../hooks/useLanguage'
 import SEO from './Seo'
 
-const Layout = ({ children, pageTitle, fullPage, modalOpen }) => {
+const Layout = ({ children, pageTitle, fullPage, modalOpen, title }) => {
   const { isRtl, language } = useLanguage()
-  const { t } = useTranslation()
   // this is to avoid this issue: https://joshwcomeau.com/react/the-perils-of-rehydration/
   const [hasMounted, setHasMounted] = React.useState(false)
   React.useEffect(() => {
@@ -36,7 +34,7 @@ const Layout = ({ children, pageTitle, fullPage, modalOpen }) => {
 
   return (
     <div className={modalOpen ? 'opacity-40' : ''}>
-      <SEO title={t('landingPage.heroSubtitle')} />
+      {title && <SEO title={title} />}
       <div
         className={`${isRtl ? 'rtl' : ''} ${
           language === 'am' ? 'amharic' : ''
@@ -59,12 +57,14 @@ Layout.propTypes = {
   pageTitle: PropTypes.string,
   fullPage: PropTypes.bool,
   modalOpen: PropTypes.bool,
+  title: PropTypes.string,
 }
 
 Layout.defaultProps = {
   pageTitle: '',
   fullPage: false,
   modalOpen: false,
+  title: '',
 }
 
 export default Layout
