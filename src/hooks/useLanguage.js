@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import { useCallback } from 'react'
 import { useI18next } from 'gatsby-plugin-react-i18next'
 
@@ -15,6 +16,14 @@ const useLanguage = () => {
   const setCurrentLanguage = useCallback(languageToSet => {
     changeLanguage(languageToSet)
     setLocalStorage(DEFAULT_LANGUAGE, languageToSet)
+
+    try {
+      OneSignal.push(() => {
+        OneSignal.sendTag('language', languageToSet)
+      })
+    } catch (err) {
+      console.error(err)
+    }
   })
 
   return {
