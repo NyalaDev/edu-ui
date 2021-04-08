@@ -18,7 +18,7 @@ import { AuthContext } from '../../contexts/AuthContext'
 const LectureView = ({ data, location }) => {
   const { strapiLecture = {}, strapiCourse = {}, relatedCourses = [] } = data
   const lecture = !strapiLecture ? strapiCourse.lectures[0] : strapiLecture
-  const { isLoggedIn } = useContext(AuthContext)
+  const { isLoggedIn, currentUser } = useContext(AuthContext)
   const [isOpened, setIsOpened] = useState(true)
   if (!strapiCourse) {
     return <div />
@@ -32,6 +32,13 @@ const LectureView = ({ data, location }) => {
   } = strapiCourse
   const isLastLecture = position === lectures.length
   const isFirstLecture = position === 1
+  const completedLectures =
+    isLoggedIn &&
+    currentUser &&
+    currentUser.profile &&
+    currentUser.profile.completedlectures
+      ? currentUser.profile.completedlectures
+      : {}
 
   const findLectureByPosition = index => {
     const lectureByPosition = lectures.find(
@@ -62,6 +69,7 @@ const LectureView = ({ data, location }) => {
               location={location}
               course={strapiCourse}
               instructor={strapiCourse.instructor}
+              completedLectures={completedLectures}
             />
           </div>
           <div className="flex-grow mx-3 order-1 lg:order-2">
