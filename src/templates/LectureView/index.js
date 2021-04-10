@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
 import { graphql, Link } from 'gatsby'
 import { AiFillForward, AiFillBackward } from 'react-icons/ai'
@@ -12,10 +12,12 @@ import VideoPlayer from './VideoPlayer'
 import { CoursePropType, getYoutubeThumbnail } from '../../common/util'
 import CourseInfoCards from '../../components/Courses/CourseInfoCards'
 import CourseCard from '../../components/Courses/CourseCard'
+import { AuthContext } from '../../contexts/AuthContext'
 
 const LectureView = ({ data, location }) => {
   const { strapiLecture = {}, strapiCourse = {}, relatedCourses = [] } = data
   const lecture = !strapiLecture ? strapiCourse.lectures[0] : strapiLecture
+  const { isLoggedIn, currentUser } = useContext(AuthContext)
 
   if (!strapiCourse) {
     return <div />
@@ -29,6 +31,13 @@ const LectureView = ({ data, location }) => {
   } = strapiCourse
   const isLastLecture = position === lectures.length
   const isFirstLecture = position === 1
+  const completedLectures =
+    isLoggedIn &&
+    currentUser &&
+    currentUser.profile &&
+    currentUser.profile.completedlectures
+      ? currentUser.profile.completedlectures
+      : {}
 
   const findLectureByPosition = index => {
     const lectureByPosition = lectures.find(
@@ -59,6 +68,7 @@ const LectureView = ({ data, location }) => {
               location={location}
               course={strapiCourse}
               instructor={strapiCourse.instructor}
+              completedLectures={completedLectures}
             />
           </div>
           <div className="flex-grow mx-3 order-1 lg:order-2">

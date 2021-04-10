@@ -13,7 +13,7 @@ import { getProfileById } from '../../services/api'
 import CourseCard from './CourseCard'
 import useCourseProgress from '../../hooks/useCourseProgress'
 
-const CourseInfoCards = ({ course, location }) => {
+const CourseInfoCards = ({ course, location, completedLectures }) => {
   const [instructorPhoto, setInstructorPhoto] = useState(DEFAULT_PROFILE_PIC)
   const {
     title,
@@ -25,8 +25,16 @@ const CourseInfoCards = ({ course, location }) => {
   } = course
 
   const isCourseInProgress = useCourseProgress(courseStrapiId)
-
   const sortedLectures = orderBy(lectures, 'position', 'asc')
+
+  let lectureToPlayNext = sortedLectures[0]
+  if (completedLectures && completedLectures[courseStrapiId]) {
+    const [lectureNotPlayed] = sortedLectures.filter(
+      lecture => !completedLectures[courseStrapiId].includes(lecture.id)
+    )
+    lectureToPlayNext = lectureNotPlayed // eslint rule (prefer destructuring)
+  }
+
   const thumbnail = getYoutubeThumbnail(sortedLectures[0].url)
   const { t } = useTranslation()
 
@@ -61,6 +69,7 @@ const CourseInfoCards = ({ course, location }) => {
         lectureId={sortedLectures[0].id}
         isCourseInProgress={isCourseInProgress}
         showTags={false}
+        lectureToPlayNext={lectureToPlayNext}
       />
 
       <CourseResources course={course} />
@@ -91,6 +100,7 @@ const CourseInfoCards = ({ course, location }) => {
 CourseInfoCards.propTypes = {
   course: CoursePropType.isRequired,
   location: PropTypes.objectOf.isRequired,
+  completedLectures: PropTypes.objectOf.isRequired,
 }
 
 export default CourseInfoCards

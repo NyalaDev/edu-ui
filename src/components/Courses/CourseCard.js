@@ -16,6 +16,7 @@ const CourseCard = ({
   isCourseInProgress,
   forDashboard,
   showTags,
+  lectureToPlayNext,
 }) => {
   const { t } = useTranslation()
   const { isRtl } = useTranslation()
@@ -70,7 +71,7 @@ const CourseCard = ({
             <Link
               className="block bg-purple-800 text-white text-center hover:bg-purple-900 uppercase text-md px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1"
               style={{ transition: 'all .15s ease' }}
-              to={`/courses/${slug}/lectures/${lectureId}`}
+              to={`/courses/${slug}/lectures/${lectureToPlayNext.id}`}
             >
               {isCourseInProgress && isCourseInProgress.length > 0
                 ? t('continue')
@@ -122,6 +123,7 @@ CourseCard.propTypes = {
   isCourseInProgress: PropTypes.arrayOf(PropTypes.number),
   forDashboard: PropTypes.bool,
   showTags: PropTypes.bool,
+  lectureToPlayNext: PropTypes.shape({ id: PropTypes.number }),
 }
 
 CourseCard.defaultProps = {
@@ -130,6 +132,7 @@ CourseCard.defaultProps = {
   isCourseInProgress: [],
   forDashboard: false,
   showTags: true,
+  lectureToPlayNext: {},
 }
 
 export default CourseCard
