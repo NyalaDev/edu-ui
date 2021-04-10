@@ -6,12 +6,22 @@ import { appConfig } from '../common/config'
 import { AuthContext } from '../contexts/AuthContext'
 import { isBrowser } from './localStorage'
 
-export const handleAuthentication = async (provider = 'github') => {
+export const handleAuthentication = async (
+  provider = 'github',
+  language = 'ar'
+) => {
   if (!isBrowser) {
     return
   }
   const { setCurrentUser, setAuthToken } = useContext(AuthContext)
   const callBackParams = queryString.parse(window.location.search)
+
+  // If callback error or user canceled then redirect the user back to the login screen
+  if (callBackParams.error) {
+    navigate(`/${language}/signin`)
+    return
+  }
+
   const requestURL = `${appConfig.strapiURL}/auth/${provider}/callback`
 
   try {

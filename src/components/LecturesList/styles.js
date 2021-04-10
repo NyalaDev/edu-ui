@@ -1,6 +1,5 @@
 import styled from 'styled-components'
-import { Link } from 'gatsby-plugin-react-i18next'
-import { FaVideo } from 'react-icons/fa'
+import { FaVideo, FaLock } from 'react-icons/fa'
 
 export const StyledLectureList = styled.ul`
   border-bottom: 1px solid #d4d4d4;
@@ -45,6 +44,7 @@ export const StyledListBody = styled.div`
   :hover {
     background-color: #fff;
   }
+  width: 100%;
 `
 
 export const StyledDuration = styled.div`
@@ -53,14 +53,16 @@ export const StyledDuration = styled.div`
   margin-top: 10px;
 `
 
-export const StyledLink = styled(Link)`
-  color: #666;
-  :hover {
-    text-decoration: underline;
-  }
+export const StyledVideoIcon = styled(FaVideo)`
+  position: absolute;
+  font-size: 12px;
+  color: #a6a6a6;
+  left: 68px;
+  top: 50%;
+  transform: translateY(-50%);
 `
 
-export const StyledVideoIcon = styled(FaVideo)`
+export const StyledLockIcon = styled(FaLock)`
   position: absolute;
   font-size: 12px;
   color: #a6a6a6;
