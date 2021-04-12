@@ -1,9 +1,11 @@
 import React from 'react'
 import { handleAuthentication } from '../../services/auth'
 import Spinner from '../../components/Spinner'
+import useLanguage from '../../hooks/useLanguage'
 
 const Github = () => {
-  handleAuthentication('github')
+  const { language } = useLanguage()
+  handleAuthentication('github', language)
 
   return (
     <div className="container section has-text-centered">
