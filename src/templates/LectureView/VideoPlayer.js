@@ -4,7 +4,13 @@ import PropTypes from 'prop-types'
 import { AuthContext } from '../../contexts/AuthContext'
 import { addProfile } from '../../services/api'
 
-const VideoPlayer = ({ url, lectureStrapiId, courseStrapiId }) => {
+const VideoPlayer = ({
+  url,
+  lectureStrapiId,
+  courseStrapiId,
+  // eslint-disable-next-line react/prop-types
+  isLastLecture,
+}) => {
   const DEFENITION_OF_COMPLETED = 0.8
   const { currentUser, isLoggedIn, setCurrentUser } = useContext(AuthContext)
 
@@ -51,6 +57,11 @@ const VideoPlayer = ({ url, lectureStrapiId, courseStrapiId }) => {
         controls
         onProgress={isLoggedIn ? handleProgress : () => {}}
       />
+      {isLastLecture && (
+        <div className="absolute top-0 right-0 w-full h-full bg-red-600">
+          als
+        </div>
+      )}
     </div>
   )
 }

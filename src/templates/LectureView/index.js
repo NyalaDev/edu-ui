@@ -109,6 +109,7 @@ const LectureView = ({ data, location }) => {
                 url={url}
                 lectureStrapiId={strapiId}
                 courseStrapiId={courseStrapiId}
+                isLastLecture={isLastLecture}
               />
             </div>
             <div className="py-5">
