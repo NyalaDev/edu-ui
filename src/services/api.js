@@ -93,3 +93,9 @@ export const teacher = {
     axiosInstance().post('/lectures/import', lecture),
   deleteLecture: async id => axiosInstance().delete(`/lectures/${id}`),
 }
+
+// quotes api's
+export const getQuotes = async () => {
+  const { data } = await axiosInstance().get(`/settings`)
+  return data
+}
