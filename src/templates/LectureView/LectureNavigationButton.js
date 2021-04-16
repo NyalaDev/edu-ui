@@ -6,7 +6,7 @@ const LectureNavigationButton = ({
   isEdge,
   children,
   courseSlug,
-  nextLecturePosition,
+  lectureSlug,
 }) =>
   isEdge ? (
     <div className="px-3 py-1 text-xl text-gray-600 leading-snug">
@@ -14,7 +14,7 @@ const LectureNavigationButton = ({
     </div>
   ) : (
     <Link
-      to={`/courses/${courseSlug}/lectures/${nextLecturePosition}`}
+      to={`/courses/${courseSlug}/lectures/${lectureSlug}`}
       className=" px-3 py-1 text-xl text-white hover:opacity-75 leading-snug"
     >
       {children}
@@ -24,8 +24,7 @@ const LectureNavigationButton = ({
 LectureNavigationButton.propTypes = {
   isEdge: PropTypes.bool.isRequired,
   courseSlug: PropTypes.string.isRequired,
-  nextLecturePosition: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
-    .isRequired,
+  lectureSlug: PropTypes.string.isRequired,
 }
 
 export default LectureNavigationButton

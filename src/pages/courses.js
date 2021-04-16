@@ -52,6 +52,7 @@ export const pageQuery = graphql`
             tagName
           }
           lectures {
+            slug
             url
           }
           language {

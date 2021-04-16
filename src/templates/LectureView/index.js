@@ -2,8 +2,9 @@ import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
 import { graphql, Link } from 'gatsby'
 import { AiFillForward, AiFillBackward } from 'react-icons/ai'
-
 import { useTranslation } from 'gatsby-plugin-react-i18next'
+import { orderBy } from 'lodash'
+
 import Layout from '../../components/Layout'
 import LecturesList from '../../components/LecturesList'
 import Seo from '../../components/Seo'
@@ -13,10 +14,13 @@ import { CoursePropType, getYoutubeThumbnail } from '../../common/util'
 import CourseInfoCards from '../../components/Courses/CourseInfoCards'
 import CourseCard from '../../components/Courses/CourseCard'
 import { AuthContext } from '../../contexts/AuthContext'
+import { ALLOWED_LECTURES_WHEN_NOT_LOGGED_IN } from '../../common/constants'
 
 const LectureView = ({ data, location }) => {
   const { strapiLecture = {}, strapiCourse = {}, relatedCourses = [] } = data
-  const lecture = !strapiLecture ? strapiCourse.lectures[0] : strapiLecture
+
+  const sortedLectures = orderBy(strapiCourse.lectures, 'position', 'asc')
+  const lecture = !strapiLecture ? sortedLectures[0] : strapiLecture
   const { isLoggedIn, currentUser } = useContext(AuthContext)
 
   if (!strapiCourse) {
@@ -29,8 +33,8 @@ const LectureView = ({ data, location }) => {
     lectures,
     strapiId: courseStrapiId,
   } = strapiCourse
-  const isLastLecture = position === lectures.length
-  const isFirstLecture = position === 1
+  const isLastLecture = position === lectures.length - 1
+  const isFirstLecture = position === 0
   const completedLectures =
     isLoggedIn &&
     currentUser &&
@@ -43,7 +47,18 @@ const LectureView = ({ data, location }) => {
     const lectureByPosition = lectures.find(
       item => item.position === position + index
     )
-    return lectureByPosition ? lectureByPosition.id : ''
+    return lectureByPosition ? lectureByPosition.slug : ''
+  }
+
+  /**
+   * Prevent the user from navigate next lecture when not logged in
+   * @returns {boolean}
+   */
+  const canNavigateToNext = () => {
+    if (isLoggedIn) return true
+    const lectureIndex = sortedLectures.findIndex(l => l.slug === lecture.slug)
+
+    return lectureIndex + 1 < ALLOWED_LECTURES_WHEN_NOT_LOGGED_IN
   }
 
   const thumbnail = getYoutubeThumbnail(lectures[0].url)
@@ -87,9 +102,9 @@ const LectureView = ({ data, location }) => {
                 <div className="text-white">
                   <div className="flex">
                     <LectureNavigationButton
-                      isEdge={isLastLecture}
+                      isEdge={isLastLecture || !canNavigateToNext()}
                       courseSlug={slug}
-                      nextLecturePosition={findLectureByPosition(1)}
+                      lectureSlug={findLectureByPosition(1)}
                     >
                       <AiFillForward />
                     </LectureNavigationButton>
@@ -97,7 +112,7 @@ const LectureView = ({ data, location }) => {
                     <LectureNavigationButton
                       isEdge={isFirstLecture}
                       courseSlug={slug}
-                      nextLecturePosition={findLectureByPosition(-1)}
+                      lectureSlug={findLectureByPosition(-1)}
                     >
                       <AiFillBackward />
                     </LectureNavigationButton>
@@ -172,6 +187,7 @@ export const pageQuery = graphql`
     }
     strapiLecture(id: { eq: $id }) {
       id
+      slug
       strapiId
       url
       updated_at
@@ -207,6 +223,7 @@ export const pageQuery = graphql`
       }
       lectures {
         id
+        slug
         title
         position
         duration
@@ -231,6 +248,7 @@ export const pageQuery = graphql`
           slug
           lectures {
             id
+            slug
             title
             position
             duration
