@@ -1,5 +1,6 @@
 import React, { useState, useEffect, Suspense } from 'react'
 import useLanguage from '../hooks/useLanguage'
+import { getQuotes } from '../services/api'
 
 const quotes = {
   en: [
@@ -44,7 +45,9 @@ const Footer = () => {
   const quoteLanguage = language === 'am' || language === 'ar' ? 'en' : language
   const quotesInLanguage = quotes[quoteLanguage]
 
-  useEffect(() => {
+  useEffect(async () => {
+    const data = await getQuotes()
+    console.log(data, 'settings')
     setRandomQuote(
       quotesInLanguage[Math.floor(Math.random() * quotesInLanguage.length)]
     )

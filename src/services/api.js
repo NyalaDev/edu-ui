@@ -33,6 +33,12 @@ export const signin = async ({ identifier, password }) => {
 
 export const getProfile = async () => axiosInstance().get(`/profiles/`)
 
+// get quotes from backend
+export const getQuotes = async () => {
+  const { data } = await axiosInstance().get(`/settings`)
+  return data
+}
+
 /**
  * Get a single profile by its id
  * @param {*} id the profile id
