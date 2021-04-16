@@ -31,9 +31,7 @@ const CourseCard = ({
     level,
   } = course
 
-  const cardLink = forDashboard
-    ? `/dashboard/manage/${slug}`
-    : `/courses/${slug}`
+  const cardLink = `/courses/${slug}/lectures/${lectureToPlayNext.slug}`
 
   return (
     <div
@@ -71,7 +69,7 @@ const CourseCard = ({
             <Link
               className="block bg-purple-800 text-white text-center hover:bg-purple-900 uppercase text-md px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1"
               style={{ transition: 'all .15s ease' }}
-              to={`/courses/${slug}/lectures/${lectureToPlayNext.id}`}
+              to={`/courses/${slug}/lectures/${lectureToPlayNext.slug}`}
             >
               {isCourseInProgress && isCourseInProgress.length > 0
                 ? t('continue')
@@ -116,14 +114,13 @@ const CourseCard = ({
 
 CourseCard.propTypes = {
   course: CoursePropType.isRequired,
-
   image: PropTypes.string.isRequired,
   lectureId: PropTypes.number,
   courseViewMode: PropTypes.bool,
   isCourseInProgress: PropTypes.arrayOf(PropTypes.number),
   forDashboard: PropTypes.bool,
   showTags: PropTypes.bool,
-  lectureToPlayNext: PropTypes.shape({ id: PropTypes.number }),
+  lectureToPlayNext: PropTypes.shape({ slug: PropTypes.string }),
 }
 
 CourseCard.defaultProps = {

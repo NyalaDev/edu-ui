@@ -60,6 +60,7 @@ exports.createPages = async ({ actions, graphql }) => {
             id
             strapiId
             position
+            slug
             course {
               id
               slug
@@ -109,11 +110,27 @@ exports.createPages = async ({ actions, graphql }) => {
         fromPath: `/${language}/courses/${slug}`,
         isPermanent: false,
         redirectInBrowser: true,
+        toPath: `/${language}/courses/${slug}/lectures/${firstLecture.slug}`,
+      })
+
+      // FIXME: Keep the old url using the ID for now. Remove this after indexing the new url
+      createRedirect({
+        fromPath: `/${language}/courses/${slug}`,
+        isPermanent: false,
+        redirectInBrowser: true,
         toPath: `/${language}/courses/${slug}/lectures/${firstLecture.strapiId}`,
       })
     })
 
     // add a redirect for the case no language is selected (i.e default language)
+    createRedirect({
+      fromPath: `/courses/${slug}`,
+      isPermanent: false,
+      redirectInBrowser: true,
+      toPath: `/courses/${slug}/lectures/${firstLecture.slug}`,
+    })
+
+    // FIXME: Keep the old url using the ID for now. Remove this after indexing the new url
     createRedirect({
       fromPath: `/courses/${slug}`,
       isPermanent: false,
@@ -124,9 +141,19 @@ exports.createPages = async ({ actions, graphql }) => {
 
   lectures.forEach(edge => {
     const {
-      node: { id, strapiId, course },
+      node: { id, strapiId, slug, course },
     } = edge
 
+    createPage({
+      component: lectureViewTemplate,
+      path: `/courses/${course.slug}/lectures/${slug}`,
+      context: {
+        id,
+        courseSlug: course.slug,
+      },
+    })
+
+    // FIXME: Keep the old url using the ID for now. Remove this after indexing the new url
     createPage({
       component: lectureViewTemplate,
       path: `/courses/${course.slug}/lectures/${strapiId}`,
@@ -191,6 +218,7 @@ exports.createPages = async ({ actions, graphql }) => {
   })
 }
 
+// TODO: Remove this when switch to the new dashboard app
 exports.onCreatePage = async ({ page, actions }) => {
   const { createPage } = actions
   if (page.path.match(/^\/dashboard/)) {
