@@ -45,9 +45,17 @@ const Footer = () => {
   const quoteLanguage = language === 'am' || language === 'ar' ? 'en' : language
   const quotesInLanguage = quotes[quoteLanguage]
 
-  useEffect(async () => {
-    const data = await getQuotes()
-    console.log(data, 'settings')
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getQuotes()
+        console.log(data, 'settings')
+      } catch (e) {
+        console.log(e)
+      }
+    }
+    fetchData()
+
     setRandomQuote(
       quotesInLanguage[Math.floor(Math.random() * quotesInLanguage.length)]
     )
