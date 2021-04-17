@@ -1,18 +1,22 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import ReactPlayer from 'react-player'
 import PropTypes from 'prop-types'
 import { AuthContext } from '../../contexts/AuthContext'
 import { addProfile } from '../../services/api'
+import CourseRating from '../../components/Courses/CourseRating'
 
 const VideoPlayer = ({
   url,
   lectureStrapiId,
   courseStrapiId,
-  // eslint-disable-next-line react/prop-types
-  isLastLecture,
+  lecturesLength,
+  position,
 }) => {
   const DEFENITION_OF_COMPLETED = 0.8
   const { currentUser, isLoggedIn, setCurrentUser } = useContext(AuthContext)
+  const showFeedback = (position * 10) % lecturesLength === 0
+
+  const [open, setOpen] = useState(false)
 
   const lectures =
     isLoggedIn &&
@@ -36,6 +40,9 @@ const VideoPlayer = ({
     const isLectureCompleted =
       lectures[courseStrapiId] &&
       lectures[courseStrapiId].includes(lectureStrapiId)
+    if (state.played === 1) {
+      setOpen(true)
+    }
     if (!isCourseInProgress || !isLectureCompleted) {
       if (state.played > DEFENITION_OF_COMPLETED) {
         const updatedLectures = {
@@ -48,7 +55,7 @@ const VideoPlayer = ({
   }
 
   return (
-    <div className="relative" style={{ paddingTop: '56.25%' }}>
+    <div className="relative " style={{ paddingTop: '56.25%' }}>
       <ReactPlayer
         className="absolute top-0 right-0"
         url={url}
@@ -57,10 +64,13 @@ const VideoPlayer = ({
         controls
         onProgress={isLoggedIn ? handleProgress : () => {}}
       />
-      {isLastLecture && (
-        <div className="absolute top-0 right-0 w-full h-full bg-red-600">
-          als
-        </div>
+
+      {showFeedback && open && (
+        <CourseRating
+          onDismiss={() => setOpen(false)}
+          courseId={courseStrapiId}
+          lectureId={lectureStrapiId}
+        />
       )}
     </div>
   )
@@ -70,6 +80,8 @@ VideoPlayer.propTypes = {
   url: PropTypes.string.isRequired,
   lectureStrapiId: PropTypes.number.isRequired,
   courseStrapiId: PropTypes.number.isRequired,
+  lecturesLength: PropTypes.number.isRequired,
+  position: PropTypes.number.isRequired,
 }
 
 export default VideoPlayer
