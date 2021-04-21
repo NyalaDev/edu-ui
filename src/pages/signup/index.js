@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import { useTranslation, Link } from 'gatsby-plugin-react-i18next'
 
@@ -7,6 +7,7 @@ import Layout from '../../components/Layout'
 import SocialButton from '../../components/SocialButton'
 import formEnhancer from './enhancedForm'
 import formikProps from '../../common/formik-props'
+import useLanguage from '../../hooks/useLanguage'
 
 const providers = ['GitHub']
 
@@ -16,8 +17,12 @@ const Signup = ({
   touched,
   errors,
   isSubmitting,
+  setFieldValue,
 }) => {
   const { t } = useTranslation()
+  const { language } = useLanguage()
+
+  useEffect(() => setFieldValue('LANGUAGE', language), [])
 
   return (
     <Layout title={t('signUp')}>
@@ -92,6 +97,15 @@ const Signup = ({
               {touched.passwordConfirmation && errors.passwordConfirmation && (
                 <span>{errors.passwordConfirmation}</span>
               )}
+            </div>
+
+            <div className="mt-4 w-full">
+              <input
+                name="emailSubscription"
+                type="checkbox"
+                {...getFieldProps('emailSubscription')}
+              />
+              <span className=" mx-2">{t('emailSubscription')}</span>
             </div>
 
             <div className="flex justify-between items-center mt-6">

@@ -84,6 +84,7 @@
   "importFromYoutube": "Import from YouTube",
   "noCourse": "No courses for the selected filters",
   "shareCourse": "",
+  "emailSubscription": "Subscribe to our mailing list",
   "validation": {
     "required": "ይሄ ቦታ አስፈላጊ ነው",
     "email": "Please enter a valid email"

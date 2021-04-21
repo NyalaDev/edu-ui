@@ -84,6 +84,7 @@
   "importFromYoutube": "Import from YouTube",
   "noCourse": "No courses for the selected filters",
   "shareCourse": "Share the course",
+  "emailSubscription": "Subscribe to our mailing list",
   "validation": {
     "required": "This field is required",
     "email": "Please enter a valid email"
