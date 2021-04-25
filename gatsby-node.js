@@ -217,11 +217,3 @@ exports.createPages = async ({ actions, graphql }) => {
     })
   })
 }
-
-// TODO: Remove this when switch to the new dashboard app
-exports.onCreatePage = async ({ page, actions }) => {
-  const { createPage } = actions
-  if (page.path.match(/^\/dashboard/)) {
-    createPage({ ...page, matchPath: '/dashboard/*' })
-  }
-}

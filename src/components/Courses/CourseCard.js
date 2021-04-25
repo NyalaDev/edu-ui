@@ -14,7 +14,6 @@ const CourseCard = ({
   lectureId,
   courseViewMode,
   isCourseInProgress,
-  forDashboard,
   showTags,
   lectureToPlayNext,
 }) => {
@@ -25,7 +24,6 @@ const CourseCard = ({
     title,
     description,
     slug,
-    status,
     tags,
     github_repo: githubRepo,
     level,
@@ -53,12 +51,6 @@ const CourseCard = ({
             languageBadge={language.iso2}
             link={`/languages/${language.name}`}
           />
-          {forDashboard && status && (
-            <Badge
-              text={status}
-              color={`${status === 'Published' ? 'green' : 'red'}-600`}
-            />
-          )}
         </div>
 
         <HtmlViewer className="text-gray-700 text-base" data={description} />
@@ -118,7 +110,6 @@ CourseCard.propTypes = {
   lectureId: PropTypes.number,
   courseViewMode: PropTypes.bool,
   isCourseInProgress: PropTypes.arrayOf(PropTypes.number),
-  forDashboard: PropTypes.bool,
   showTags: PropTypes.bool,
   lectureToPlayNext: PropTypes.shape({ slug: PropTypes.string }),
 }
@@ -127,7 +118,6 @@ CourseCard.defaultProps = {
   lectureId: 0,
   courseViewMode: false,
   isCourseInProgress: [],
-  forDashboard: false,
   showTags: true,
   lectureToPlayNext: {},
 }
