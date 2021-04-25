@@ -22,7 +22,7 @@ const Signup = ({
   const { t } = useTranslation()
   const { language } = useLanguage()
 
-  useEffect(() => setFieldValue('LANGUAGE', language), [])
+  useEffect(() => setFieldValue('language', language), [])
 
   return (
     <Layout title={t('signUp')}>

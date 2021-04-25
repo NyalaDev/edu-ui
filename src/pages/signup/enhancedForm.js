@@ -18,7 +18,7 @@ export default withFormik({
     password: '',
     passwordConfirmation: '',
     emailSubscription: false,
-    LANGUAGE: '',
+    language: '',
   }),
   handleSubmit: async (values, bag) => {
     try {
