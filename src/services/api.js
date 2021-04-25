@@ -76,20 +76,3 @@ export const uploadFile = async file => {
   const { data } = await axiosInstance().post(`/upload`, formData)
   return data
 }
-
-export const teacher = {
-  getTags: async () => axiosInstance().get('/tags'),
-  listLanguages: async () => axiosInstance().get('/languages'),
-  listCourses: async () =>
-    axiosInstance().get('/teacher?_sort=status,created_at:desc'),
-  getCourseDetails: async slug => axiosInstance().get(`/teacher/${slug}`),
-  saveCourse: async course => axiosInstance().post(`/courses`, course),
-  updateCourse: async (course, courseId) =>
-    axiosInstance().put(`/courses/${courseId}`, course),
-  patchCourse: async (data, courseId) =>
-    axiosInstance().put(`/courses/${courseId}`, data),
-  saveLecture: async lecture => axiosInstance().post('/lectures', lecture),
-  importFromYoutube: async lecture =>
-    axiosInstance().post('/lectures/import', lecture),
-  deleteLecture: async id => axiosInstance().delete(`/lectures/${id}`),
-}

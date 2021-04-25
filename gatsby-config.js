@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: `Barmaga.io`,
-    description: `Learn coding in Arabic, Amharic and Swahili`,
+    description: `Learn coding in Amharic, Arabic and Swahili`,
     author: `barmaga.io`,
   },
   plugins: [

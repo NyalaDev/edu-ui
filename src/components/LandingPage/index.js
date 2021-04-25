@@ -1,5 +1,6 @@
 import React from 'react'
 import { useTranslation } from 'gatsby-plugin-react-i18next'
+import { AiOutlineTwitter } from 'react-icons/ai'
 import useLanguage from '../../hooks/useLanguage'
 import Button from '../General/Button'
 
@@ -29,19 +30,7 @@ const LandingPage = () => {
                   target="_blank"
                 >
                   {t('landingPage.followOnTwitter')}
-                </Button>
-              </div>
-              <div className="rounded-md shadow mt-2 sm:mt-0">
-                <Button
-                  link
-                  href="https://chuffed.org/project/nyala-dev"
-                  rel="noreferrer"
-                  target="_blank"
-                  extraClasses={[
-                    'bg-yellow-500 hover:bg-yellow-400 text-gray-800',
-                  ]}
-                >
-                  {t('landingPage.supportUs')}
+                  <AiOutlineTwitter />
                 </Button>
               </div>
             </div>
@@ -50,7 +39,7 @@ const LandingPage = () => {
               {t('landingPage.getIntouch')}{' '}
               <span className="font-bold">
                 <a rel="noreferrer" target="_blank" href="https://nyala.dev">
-                  info@nyala.dev
+                  info@barmaga.io
                 </a>
               </span>
             </div>

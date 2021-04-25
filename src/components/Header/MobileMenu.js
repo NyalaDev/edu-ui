@@ -20,6 +20,14 @@ const MobileMenu = ({ open, navBarItems }) => {
             {t(navItem.label)}
           </Link>
         ))}
+        <a
+          rel="noreferrer"
+          target="_blank"
+          className="block px-3 py-2 rounded-md text-base font-medium text-yellow-500 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out"
+          href="https://chuffed.org/project/barmagaio"
+        >
+          {t('landingPage.supportUs')}
+        </a>
       </div>
       <div className="px-4 py-2">
         <Search />
