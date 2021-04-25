@@ -40,6 +40,7 @@ jobs:
           GATSBY_STRAPI_API_URL: ${{ secrets.GATSBY_STRAPI_DEV_API_URL }}
           GATSBY_S3_BUCKET: ${{ secrets.S3_BUCKET_DEV }}
           GATSBY_SITE_URL: 'https://edu.nyaladev.com'
+          GATSBY_DASHBOARD_URL: 'https://edu-dashboard.nyaladev.com'
           GATSBY_ALGOLIA_APP_ID: ${{ secrets.GATSBY_ALGOLIA_APP_ID }}
           GATSBY_ALGOLIA_SEARCH_KEY: ${{ secrets.GATSBY_ALGOLIA_SEARCH_KEY }}
           GATSBY_GOOGLE_ANALYTICS_ID: ${{ secrets.GATSBY_GOOGLE_ANALYTICS_ID }}
