@@ -100,7 +100,7 @@ const LectureView = ({ data, location }) => {
                   <span className="text-sm text-gray-400">{lectureTitle}</span>
                 </div>
                 <div className="text-white">
-                  <div className="flex">
+                  <div className="flex rtl">
                     <LectureNavigationButton
                       isEdge={isLastLecture || !canNavigateToNext()}
                       courseSlug={slug}
