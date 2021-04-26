@@ -38,6 +38,7 @@ const CoursesHome = ({
               key={course.id}
               course={course}
               image={getYoutubeThumbnail(imageUrl)}
+              lectureToPlayNext={firstLecture}
             />
           )
         })}

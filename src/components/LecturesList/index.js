@@ -18,9 +18,7 @@ import {
   StyledDuration,
   StyledLockIcon,
 } from './styles'
-
-// Number of lectures can watch if not logged in
-const CAN_WATCH_N_LECTURES = 2
+import { ALLOWED_LECTURES_WHEN_NOT_LOGGED_IN } from '../../common/constants'
 
 const StyledButton = styled.button`
   background: none;
@@ -53,12 +51,13 @@ const LectureList = ({
   const sortedLectures = orderBy(lectures, 'position', 'asc')
 
   const lectureIcon = index => {
-    if (isLoggedIn || index < CAN_WATCH_N_LECTURES) return <StyledVideoIcon />
+    if (isLoggedIn || index < ALLOWED_LECTURES_WHEN_NOT_LOGGED_IN)
+      return <StyledVideoIcon />
     return <StyledLockIcon />
   }
 
   const canWatch = index =>
-    isLoggedIn || (!isLoggedIn && index < CAN_WATCH_N_LECTURES)
+    isLoggedIn || (!isLoggedIn && index < ALLOWED_LECTURES_WHEN_NOT_LOGGED_IN)
 
   return (
     <>
@@ -66,12 +65,12 @@ const LectureList = ({
         {sortedLectures.map((lecture, index) => {
           const WrapperComponent = canWatch(index) ? Link : StyledButton
           const wrapperComponentProps = canWatch(index)
-            ? { to: `/courses/${courseSlug}/lectures/${lecture.id}` }
+            ? { to: `/courses/${courseSlug}/lectures/${lecture.slug}` }
             : { onClick: () => setOpen(true), isRtl }
           return (
             <StyledLectureListItem
               active={currentLecture && currentLecture.strapiId === lecture.id}
-              key={lecture.id}
+              key={lecture.slug}
             >
               <WrapperComponent {...wrapperComponentProps}>
                 <StyledCount>
@@ -132,6 +131,7 @@ LectureList.propTypes = {
   lectures: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number,
+      slug: PropTypes.string,
       url: PropTypes.string,
       title: PropTypes.string,
       duration: PropTypes.string,

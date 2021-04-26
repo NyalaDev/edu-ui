@@ -106,6 +106,14 @@ const Header = () => {
                     {t(navItem.label)}
                   </Link>
                 ))}
+                <a
+                  rel="noreferrer"
+                  target="_blank"
+                  className="mx-2 px-3 py-2 rounded-md leading-5 text-xl text-yellow-500  focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out"
+                  href="https://chuffed.org/project/barmagaio"
+                >
+                  {t('landingPage.supportUs')}
+                </a>
               </div>
             </div>
           </div>

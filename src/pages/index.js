@@ -17,17 +17,36 @@ const IndexPage = ({ data }) => {
     allStrapiCourse: { edges },
   } = data
 
+  const numberOfCoursesToDisplay = 5
   const coursesList = edges.map(edge => edge.node)
+
+  const [coursesToDisplay, setCoursesToDisplay] = useState(
+    coursesList.slice(0, numberOfCoursesToDisplay)
+  )
 
   const [open, setOpen] = useState(false)
 
   const { t } = useTranslation()
 
   useEffect(() => {
-    if (!getLocalStorage('siteLang')) {
+    const siteLang = getLocalStorage('siteLang')
+
+    if (!siteLang) {
       setOpen(true)
     }
-  }, [])
+
+    if (siteLang && siteLang !== 'en') {
+      setCoursesToDisplay(
+        coursesList
+          .filter(course => course.language.iso2 === siteLang)
+          .slice(0, numberOfCoursesToDisplay)
+      )
+    }
+
+    if (siteLang && siteLang === 'en') {
+      setCoursesToDisplay(coursesList.slice(0, numberOfCoursesToDisplay))
+    }
+  }, [open])
 
   return (
     <>
@@ -39,12 +58,12 @@ const IndexPage = ({ data }) => {
         <LandingPage />
         <div className="container max-w-6xl w-full mx-auto pt-10">
           <div className="w-full md:mt-2 mb-16 text-black-800 leading-normal">
-            <AppProvider initialCoursesList={coursesList}>
+            <AppProvider initialCoursesList={coursesToDisplay}>
               <CoursesHome
                 showMoreCard
                 hidleFilters
                 noFilter
-                courses={coursesList}
+                courses={coursesToDisplay}
               />
             </AppProvider>
           </div>
@@ -94,7 +113,6 @@ export const pageQuery = graphql`
     allStrapiCourse(
       sort: { fields: created_at, order: DESC }
       filter: { status: { eq: "Published" } }
-      limit: 5
     ) {
       edges {
         node {
@@ -107,6 +125,7 @@ export const pageQuery = graphql`
             tagName
           }
           lectures {
+            slug
             url
           }
           language {

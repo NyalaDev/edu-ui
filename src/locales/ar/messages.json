@@ -85,6 +85,7 @@
   "noCourse": "لا توجد كورسات",
   "shareCourse": "شارك الكورس",
   "rateCourse": "قيم الكورس",
+  "emailSubscription": "التسجيل في قائمتنا البريدية",
   "validation": {
     "required": "هذ الحقل مطلوب",
     "email": "الرجاء ادخال بريد الكتروني صحيح"

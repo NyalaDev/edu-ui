@@ -3,6 +3,7 @@ import { navigate } from 'gatsby'
 import { Link, useTranslation } from 'gatsby-plugin-react-i18next'
 import { AuthContext } from '../../contexts/AuthContext'
 import { getProfilePicuteUrlFromUserObject } from '../../common/util'
+import { getTokenFromLocaleStorageIfAny } from '../../services/localStorage'
 
 const UserMenu = () => {
   const { currentUser, isTeacher, logout } = useContext(AuthContext)
@@ -20,6 +21,10 @@ const UserMenu = () => {
 
   const profilePictureUrl = getProfilePicuteUrlFromUserObject(currentUser)
 
+  const token = getTokenFromLocaleStorageIfAny()
+  const dashboardUrl = `${
+    process.env.GATSBY_DASHBOARD_URL || 'https://edu-dashboard.barmaga.io'
+  }/auth?authToken=${token}`
   // FIXME: Change Dropdown on desktop to open right
   return (
     <div className="ml-3 relative">
@@ -52,13 +57,13 @@ const UserMenu = () => {
           aria-labelledby="user-menu"
         >
           {isTeacher && (
-            <Link
-              to="/dashboard"
+            <a
+              href={dashboardUrl}
               className="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out"
               role="menuitem"
             >
               {t('dashboard')}
-            </Link>
+            </a>
           )}
           <Link
             to="/profile"

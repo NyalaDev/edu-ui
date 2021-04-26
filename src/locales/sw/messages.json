@@ -83,8 +83,9 @@
   "choosePreferedLanguage": "Choose you prefered language",
   "importFromYoutube": "Import from YouTube",
   "noCourse": "No courses for the selected filters",
-  "shareCourse": "",
-  "rateCourse": "",
+  "shareCourse": "Share course",
+  "rateCourse": "Rate the course",
+  "emailSubscription": "Subscribe to our mailing list",
   "validation": {
     "required": "Taarifa hii inahitajika",
     "email": "Please enter a valid email"

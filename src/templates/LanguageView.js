@@ -36,6 +36,7 @@ const LanguageView = ({ data, pageContext }) => {
             <CourseCard
               key={course.node.id}
               course={course.node}
+              lectureToPlayNext={lectures[0]}
               image={getYoutubeThumbnail(imageUrl)}
             />
           )
@@ -72,6 +73,7 @@ export const pageQuery = graphql`
           status
           lectures {
             url
+            slug
           }
           language {
             id
