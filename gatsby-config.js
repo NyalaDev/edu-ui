@@ -26,7 +26,7 @@ module.exports = {
         redirect: false,
         localeJsonSourceName: `locale`, // name given to `gatsby-source-filesystem` plugin.
         languages: [`en`, `ar`, `am`, 'sw'],
-        defaultLanguage: `ar`,
+        defaultLanguage: `en`,
         ns: ['messages'],
         defaultNS: 'messages',
         generateDefaultLanguagePage: true,
