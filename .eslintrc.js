@@ -1,5 +1,5 @@
 module.exports = {
-  parser: 'babel-eslint',
+  parser: '@typescript-eslint/parser',
   parserOptions: {
     sourceType: 'module',
     ecmaVersion: 2018,
@@ -20,6 +20,7 @@ module.exports = {
   plugins: ['react', 'import'],
   extends: [
     'airbnb',
+    'plugin:import/typescript',
     'eslint:recommended',
     'plugin:react/recommended',
     'prettier',
@@ -30,9 +31,13 @@ module.exports = {
     'no-console': 'warn',
     'react/prop-types': ['warn', { ignore: ['children'] }],
     'jsx-a11y/anchor-is-valid': 'off',
-    'react/jsx-filename-extension': ['error', { extensions: ['.js', '.jsx'] }],
+    'react/jsx-filename-extension': [
+      'error',
+      { extensions: ['.js', '.jsx', 'tsx', 'ts'] },
+    ],
     'react/jsx-props-no-spreading': 'off',
     'import/prefer-default-export': 'off',
+    'import/extensions': 'off',
     'jsx-a11y/no-onchange': 'warn',
     'func-style': ['error', 'expression'],
   },
