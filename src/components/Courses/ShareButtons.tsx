@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import {
   FacebookShareButton,
   LinkedinShareButton,
@@ -14,11 +13,18 @@ import {
 } from 'react-icons/fa'
 import { sendEvent } from '../../services/analytics'
 import useLanguage from '../../hooks/useLanguage'
+import { Course } from '../../types/api.types'
 
-const ShareButtons = ({ title, url, course }) => {
+type Props = {
+  course: Course
+  url: string
+  title: string
+}
+
+const ShareButtons: React.FC<Props> = ({ title, url, course }) => {
   const { language } = useLanguage()
 
-  const handleClick = name =>
+  const handleClick = (name: string) =>
     sendEvent('Course Shares', {
       course: course.title,
       language,
@@ -60,14 +66,6 @@ const ShareButtons = ({ title, url, course }) => {
       </WhatsappShareButton>
     </div>
   )
-}
-
-ShareButtons.propTypes = {
-  course: PropTypes.shape({
-    title: PropTypes.string,
-  }).isRequired,
-  title: PropTypes.string.isRequired,
-  url: PropTypes.string.isRequired,
 }
 
 export default ShareButtons

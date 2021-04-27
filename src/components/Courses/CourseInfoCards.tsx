@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'gatsby-plugin-react-i18next'
 import { orderBy } from 'lodash'
-import PropTypes from 'prop-types'
 import CourseResources from './CourseInfo/CourseResources'
 import CourseMeta from './CourseInfo/CourseMeta'
 import InstructorBio from './CourseInfo/InstructorBio'
@@ -12,8 +11,19 @@ import { CoursePropType, getYoutubeThumbnail } from '../../common/util'
 import { getProfileById } from '../../services/api'
 import CourseCard from './CourseCard'
 import useCourseProgress from '../../hooks/useCourseProgress'
+import { Course } from '../../types/api.types'
 
-const CourseInfoCards = ({ course, location, completedLectures }) => {
+type Props = {
+  course: Course
+  location: any
+  completedLectures: any
+}
+
+const CourseInfoCards: React.FC<Props> = ({
+  course,
+  location,
+  completedLectures,
+}) => {
   const [instructorPhoto, setInstructorPhoto] = useState(DEFAULT_PROFILE_PIC)
   const {
     title,
@@ -86,7 +96,6 @@ const CourseInfoCards = ({ course, location, completedLectures }) => {
         </div>
         <ShareButtons
           url={location.href}
-          slug={slug}
           title={`${title} by ${profile.name} @BarmagaIo `}
           course={course}
         />
@@ -95,12 +104,6 @@ const CourseInfoCards = ({ course, location, completedLectures }) => {
       <InstructorBio instructor={instructor} photo={instructorPhoto} />
     </>
   )
-}
-
-CourseInfoCards.propTypes = {
-  course: CoursePropType.isRequired,
-  location: PropTypes.objectOf.isRequired,
-  completedLectures: PropTypes.objectOf.isRequired,
 }
 
 export default CourseInfoCards

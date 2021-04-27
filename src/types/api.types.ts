@@ -2,10 +2,8 @@ export type User = {
   id: number
   email: string
   provider: 'local' | 'github'
-  role: {
-    name: string
-    type: string
-  }
+  role: UserRole
+  profile: Profile
 }
 
 export type Profile = {
@@ -62,6 +60,11 @@ type CourseLevel = 'Beginner' | 'Intermediate' | 'Advanced'
 
 type ResourceType = 'link' | 'exercise'
 
+type UserRole = {
+  name: string
+  type: string
+}
+
 export type UserSubscribeToMailingList = {
   email: string
   LANGUAGE: Language
@@ -96,14 +99,15 @@ export type Lecture = {
 }
 
 export type Course = {
-  id: number
+  id: string
+  strapiId: number
   title: string
   level: CourseLevel
   slug: string
   status: CourseStatus
   description: string
   github_repo: string
-  instructor: Profile
+  instructor: User
   lectures: Lecture[]
   language: LanguageResponse
   tags: Tag[]
