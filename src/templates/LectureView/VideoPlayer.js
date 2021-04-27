@@ -9,15 +9,12 @@ const VideoPlayer = ({
   url,
   lectureStrapiId,
   courseStrapiId,
-  lecturesLength,
-  position,
+  showFeedback,
 }) => {
   const DEFENITION_OF_COMPLETED = 0.8
   const { currentUser, isLoggedIn, setCurrentUser } = useContext(AuthContext)
-  const middle = Math.round((lecturesLength - 1) / 2)
-  const showFeedback = position === middle || position === lecturesLength - 1
 
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(showFeedback)
 
   const lectures =
     isLoggedIn &&
@@ -41,9 +38,7 @@ const VideoPlayer = ({
     const isLectureCompleted =
       lectures[courseStrapiId] &&
       lectures[courseStrapiId].includes(lectureStrapiId)
-    if (state.played === 1) {
-      setOpen(true)
-    }
+
     if (!isCourseInProgress || !isLectureCompleted) {
       if (state.played > DEFENITION_OF_COMPLETED) {
         const updatedLectures = {
@@ -63,6 +58,7 @@ const VideoPlayer = ({
         width="100%"
         height="100%"
         controls
+        onPlay={() => setOpen(false)}
         onProgress={isLoggedIn ? handleProgress : () => {}}
       />
 
@@ -81,8 +77,7 @@ VideoPlayer.propTypes = {
   url: PropTypes.string.isRequired,
   lectureStrapiId: PropTypes.number.isRequired,
   courseStrapiId: PropTypes.number.isRequired,
-  lecturesLength: PropTypes.number.isRequired,
-  position: PropTypes.number.isRequired,
+  showFeedback: PropTypes.bool.isRequired,
 }
 
 export default VideoPlayer
