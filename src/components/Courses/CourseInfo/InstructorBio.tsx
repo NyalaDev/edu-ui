@@ -1,9 +1,14 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { useTranslation, Link } from 'gatsby-plugin-react-i18next'
 import { FaUserAlt } from 'react-icons/fa'
+import { User } from '../../../types/api.types'
 
-const InstructorBio = ({ instructor, photo }) => {
+type Props = {
+  instructor: User
+  photo: string
+}
+
+const InstructorBio: React.FC<Props> = ({ instructor, photo }) => {
   const { t } = useTranslation()
 
   return (
@@ -32,17 +37,6 @@ const InstructorBio = ({ instructor, photo }) => {
       </div>
     </div>
   )
-}
-
-InstructorBio.propTypes = {
-  instructor: PropTypes.shape({
-    profile: PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      bio: PropTypes.string,
-      github: PropTypes.string.isRequired,
-    }).isRequired,
-  }).isRequired,
-  photo: PropTypes.string.isRequired,
 }
 
 export default InstructorBio

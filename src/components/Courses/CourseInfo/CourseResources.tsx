@@ -1,10 +1,14 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { useTranslation } from 'gatsby-plugin-react-i18next'
 import { uniqueId } from 'lodash'
 import { FaPaperclip } from 'react-icons/fa'
+import { Course } from '../../../types/api.types'
 
-const CourseResources = ({ course }) => {
+type Props = {
+  course: Course
+}
+
+const CourseResources: React.FC<Props> = ({ course }) => {
   const { t } = useTranslation()
   const { resources = [] } = course
 
@@ -48,19 +52,6 @@ const CourseResources = ({ course }) => {
       </div>
     </div>
   )
-}
-
-CourseResources.propTypes = {
-  course: PropTypes.shape({
-    id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    resources: PropTypes.arrayOf(
-      PropTypes.shape({
-        type: PropTypes.string,
-        url: PropTypes.string,
-        text: PropTypes.string,
-      })
-    ),
-  }).isRequired,
 }
 
 export default CourseResources
