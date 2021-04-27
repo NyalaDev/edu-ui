@@ -43,6 +43,12 @@ const LectureView = ({ data, location }) => {
       ? currentUser.profile.completedlectures
       : {}
 
+  const lectureIndex = sortedLectures.findIndex(l => l.slug === lecture.slug)
+
+  const showFeedback =
+    lectureIndex === sortedLectures.length - 1 ||
+    lectureIndex === Math.floor(sortedLectures.length / 2)
+
   const findLectureByPosition = index => {
     const lectureByPosition = lectures.find(
       item => item.position === position + index
@@ -56,7 +62,6 @@ const LectureView = ({ data, location }) => {
    */
   const canNavigateToNext = () => {
     if (isLoggedIn) return true
-    const lectureIndex = sortedLectures.findIndex(l => l.slug === lecture.slug)
 
     return lectureIndex + 1 < ALLOWED_LECTURES_WHEN_NOT_LOGGED_IN
   }
@@ -124,6 +129,9 @@ const LectureView = ({ data, location }) => {
                 url={url}
                 lectureStrapiId={strapiId}
                 courseStrapiId={courseStrapiId}
+                position={position}
+                showFeedback={showFeedback}
+                lecturesLength={lectures.length}
               />
             </div>
             <div className="py-5">

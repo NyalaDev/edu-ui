@@ -35,4 +35,4 @@ export const getOriginalLanguageName = locale => {
   return language.label
 }
 
-export const ALLOWED_LECTURES_WHEN_NOT_LOGGED_IN = 2
+export const ALLOWED_LECTURES_WHEN_NOT_LOGGED_IN = 4

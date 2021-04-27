@@ -66,6 +66,11 @@ export const subscribeToMailingList = async values => {
   return data
 }
 
+export const addRating = async values => {
+  const { data } = await axiosInstance().post(`/ratings`, values)
+  return data
+}
+
 /**
  * Upload file to strapi media
  * @param {*} file The file object
