@@ -14,7 +14,8 @@ const VideoPlayer = ({
 }) => {
   const DEFENITION_OF_COMPLETED = 0.8
   const { currentUser, isLoggedIn, setCurrentUser } = useContext(AuthContext)
-  const showFeedback = (position * 10) % lecturesLength === 0
+  const middle = Math.round((lecturesLength - 1) / 2)
+  const showFeedback = position === middle || position === lecturesLength - 1
 
   const [open, setOpen] = useState(false)
 
