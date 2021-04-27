@@ -1,13 +1,18 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { useTranslation } from 'gatsby-plugin-react-i18next'
 import { FaRegClock, FaRegCalendarAlt, FaInfoCircle } from 'react-icons/fa'
 import { DateTime } from 'luxon'
 import { calculateVideosDuration } from '../../../common/util'
 import Badge from '../../Badge'
 import useLanguage from '../../../hooks/useLanguage'
+import { Lecture, Tag } from '../../../types/api.types'
 
-const CourseMeta = ({ lectures, tags }) => {
+type Props = {
+  lectures: Lecture[]
+  tags: Tag[]
+}
+
+const CourseMeta: React.FC<Props> = ({ lectures, tags }) => {
   const { t } = useTranslation()
   const { language } = useLanguage()
   const courseCreatedDate = DateTime.fromISO(lectures[0].created_at)
@@ -54,20 +59,6 @@ const CourseMeta = ({ lectures, tags }) => {
       </div>
     </div>
   )
-}
-
-CourseMeta.propTypes = {
-  lectures: PropTypes.arrayOf(
-    PropTypes.shape({
-      duration: PropTypes.string.isRequired,
-    })
-  ).isRequired,
-  tags: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number,
-      tagName: PropTypes.string,
-    })
-  ).isRequired,
 }
 
 export default CourseMeta

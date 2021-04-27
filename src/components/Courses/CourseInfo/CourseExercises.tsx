@@ -1,13 +1,17 @@
 import React, { useContext } from 'react'
-import PropTypes from 'prop-types'
 import { useTranslation, Link } from 'gatsby-plugin-react-i18next'
 import { uniqueId } from 'lodash'
 import { BiTask } from 'react-icons/bi'
-
 import { AuthContext } from '../../../contexts/AuthContext'
 import CourseExercise from './CourseExercise'
+import { Resource } from '../../../types/api.types'
 
-const CourseExercises = ({ courseId, exercises }) => {
+type Props = {
+  exercises: Resource[]
+  courseId: number
+}
+
+const CourseExercises: React.FC<Props> = ({ courseId, exercises }) => {
   const { t } = useTranslation()
   const { isLoggedIn } = useContext(AuthContext)
 
@@ -50,17 +54,6 @@ const CourseExercises = ({ courseId, exercises }) => {
       </div>
     </div>
   )
-}
-
-CourseExercises.propTypes = {
-  exercises: PropTypes.arrayOf(
-    PropTypes.shape({
-      type: PropTypes.string,
-      url: PropTypes.string,
-      text: PropTypes.string,
-    })
-  ).isRequired,
-  courseId: PropTypes.number.isRequired,
 }
 
 export default CourseExercises

@@ -1,5 +1,4 @@
 import React, { useContext, useEffect } from 'react'
-import PropTypes from 'prop-types'
 import { Link, useTranslation } from 'gatsby-plugin-react-i18next'
 
 import { CoursePropType, getYoutubeThumbnail } from '../../common/util'
@@ -8,8 +7,15 @@ import CourseCard from './CourseCard'
 import Filters from './Filters'
 import CourseCardUpcoming from './CourseCardUpcoming'
 import SubscribeEmail from '../LandingPage/SubscribeEmail'
+import { Course } from '../../types/api.types'
 
-const CoursesHome = ({
+type Props = {
+  courses: Course[]
+  hidleFilters: boolean
+  showMoreCard: boolean
+}
+
+const CoursesHome: React.FC<Props> = ({
   courses: coursesList,
   hidleFilters = false,
   showMoreCard = false,
@@ -26,7 +32,8 @@ const CoursesHome = ({
       {!hidleFilters && <Filters />}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-4">
         {courses.map(course => {
-          const { lectures: [firstLecture = {}] = [] } = course
+          const { lectures = [] } = course
+          const firstLecture = lectures[0] || {}
           const { url: imageUrl } = firstLecture
 
           if (course.status === 'Upcoming') {
@@ -60,17 +67,6 @@ const CoursesHome = ({
       </div>
     </div>
   )
-}
-
-CoursesHome.propTypes = {
-  courses: PropTypes.arrayOf(CoursePropType).isRequired,
-  hidleFilters: PropTypes.bool,
-  showMoreCard: PropTypes.bool,
-}
-
-CoursesHome.defaultProps = {
-  hidleFilters: false,
-  showMoreCard: false,
 }
 
 export default CoursesHome
