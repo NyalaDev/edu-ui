@@ -10,10 +10,10 @@ import { Course, Lecture } from '../../types/api.types'
 type Props = {
   course: Course
   image: string
-  lectureId: number
-  courseViewMode: boolean
-  isCourseInProgress: any
-  showTags: boolean
+  lectureId?: number
+  courseViewMode?: boolean
+  isCourseInProgress?: any
+  showTags?: boolean
   lectureToPlayNext: Lecture
 }
 

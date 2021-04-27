@@ -96,6 +96,7 @@ export type Lecture = {
   duration: string
   position: number
   slug: string
+  created_at: string
 }
 
 export type Course = {
