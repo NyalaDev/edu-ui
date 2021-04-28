@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useContext } from 'react'
 import { useTranslation } from 'gatsby-plugin-react-i18next'
-import { navigate } from 'gatsby'
+import { navigate, graphql } from 'gatsby'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { isEmpty } from 'lodash'
@@ -226,5 +226,13 @@ const MyProfile = () => {
     </Layout>
   )
 }
+
+export const query = graphql`
+  query($language: String!) {
+    locales: allLocale(filter: { language: { eq: $language } }) {
+      ...LanguageInfo
+    }
+  }
+`
 
 export default MyProfile
