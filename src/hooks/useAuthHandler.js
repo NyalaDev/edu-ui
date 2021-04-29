@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { setLocalStorage, clearLocalStorage } from '../services/localStorage'
-import { LOCALE_STORAGE_USER, LOCALE_STORAGE_TOKEN } from '../common/constants'
+import { LOCALE_STORAGE_USER } from '../common/constants'
+import { saveTokenToCookie, removeAuthCookie } from '../services/cookie.service'
 
 /**
  * Custom hook used as a helper to handle authentication status
@@ -31,10 +32,11 @@ const useAuthHandler = (initialUser = {}, initialToken = '') => {
    */
   const setAuthToken = (authToken = null) => {
     if (!authToken) {
-      clearLocalStorage(LOCALE_STORAGE_TOKEN)
+      removeAuthCookie()
       setToken('')
+      return
     }
-    setLocalStorage(LOCALE_STORAGE_TOKEN, authToken)
+    saveTokenToCookie(authToken)
     setToken(authToken)
   }
 

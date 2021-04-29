@@ -32,6 +32,7 @@ jobs:
           GATSBY_S3_BUCKET: ${{ secrets.S3_BUCKET_PROD }}
           GATSBY_SITE_URL: 'https://barmaga.io'
           GATSBY_DASHBOARD_URL: 'https://edu-dashboard.barmaga.io'
+          GATSBY_COOKIE_DOMAIN: ${{ secrets.PROD_GATSBY_COOKIE_DOMAIN }}
           GATSBY_ALGOLIA_APP_ID: ${{ secrets.GATSBY_ALGOLIA_APP_ID }}
           GATSBY_ALGOLIA_SEARCH_KEY: ${{ secrets.GATSBY_ALGOLIA_SEARCH_KEY }}
           GATSBY_GOOGLE_ANALYTICS_ID: ${{ secrets.GATSBY_GOOGLE_ANALYTICS_ID }}

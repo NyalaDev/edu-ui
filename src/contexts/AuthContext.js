@@ -1,9 +1,13 @@
 import React, { createContext } from 'react'
 import { isEmpty } from 'lodash'
 import useAuthHandler from '../hooks/useAuthHandler'
-import { getLocalStorage } from '../services/localStorage'
-import { LOCALE_STORAGE_USER, LOCALE_STORAGE_TOKEN } from '../common/constants'
+import { getLocalStorage, clearLocalStorage } from '../services/localStorage'
+import { LOCALE_STORAGE_USER } from '../common/constants'
 import { isTeacher } from '../common/util'
+import {
+  getTokenFromCookie,
+  removeAuthCookie,
+} from '../services/cookie.service'
 
 /**
  * Helper function to get user from locale storage if exists
@@ -12,12 +16,6 @@ const getUserFromLocaleStorageIfAny = () => {
   const user = getLocalStorage(LOCALE_STORAGE_USER)
   return user ? JSON.parse(user) : {}
 }
-
-/**
- * Helper function to get jwt from locale storage if exists
- */
-const getTokenFromLocaleStorageIfAny = () =>
-  getLocalStorage(LOCALE_STORAGE_TOKEN) || ''
 
 export const AuthContext = createContext({
   isLoggedIn: false,
@@ -38,14 +36,13 @@ export const AuthProvider = ({ children }) => {
     setCurrentUser,
     authToken,
     setAuthToken,
-  } = useAuthHandler(
-    getUserFromLocaleStorageIfAny(),
-    getTokenFromLocaleStorageIfAny()
-  )
+  } = useAuthHandler(getUserFromLocaleStorageIfAny(), getTokenFromCookie())
 
   const logUserOut = () => {
     setCurrentUser({})
     setAuthToken('')
+    clearLocalStorage(LOCALE_STORAGE_USER)
+    removeAuthCookie()
   }
 
   return (
