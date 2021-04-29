@@ -70,6 +70,11 @@ export const resetPassword = async (values: UserResetPasswordData) => {
   return data
 }
 
+export const addRating = async values => {
+  const { data } = await axiosInstance().post(`/ratings`, values)
+  return data
+}
+
 export const subscribeToMailingList = async (
   values: UserSubscribeToMailingList
 ) => {
