@@ -1,16 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'gatsby-plugin-react-i18next'
-import { CoursePropType } from '../../../common/util'
 import useLanguage from '../../../hooks/useLanguage'
 import { sendEvent } from '../../../services/analytics'
 import {
   getLocalStorage,
   setLocalStorage,
 } from '../../../services/localStorage'
+import { Course } from '../../../types/api.types'
 
 const LOCAL_STORAGE_COURSE_FEEDBACK = 'course_feedback'
 
-const getCourseFeedbackGiven = courseId => {
+type UpcomingCourseFeedbackProps = {
+  course: Course
+}
+
+const getCourseFeedbackGiven = (courseId: string) => {
   try {
     const feedback = JSON.parse(
       getLocalStorage(LOCAL_STORAGE_COURSE_FEEDBACK) || '{}'
@@ -21,7 +25,7 @@ const getCourseFeedbackGiven = courseId => {
     return false
   }
 }
-const setCourseFeedbackGiven = courseId => {
+const setCourseFeedbackGiven = (courseId: string) => {
   try {
     const feedback = JSON.parse(
       getLocalStorage(LOCAL_STORAGE_COURSE_FEEDBACK) || '{}'
@@ -35,7 +39,9 @@ const setCourseFeedbackGiven = courseId => {
   }
 }
 
-const UpcomingCourseFeedback = ({ course }) => {
+const UpcomingCourseFeedback: React.FC<UpcomingCourseFeedbackProps> = ({
+  course,
+}) => {
   const { t } = useTranslation()
   const { language } = useLanguage()
   const [feedbackSent, setFeedbackSent] = useState(false)
@@ -46,7 +52,7 @@ const UpcomingCourseFeedback = ({ course }) => {
       setFeedbackAlreadyGiven(true)
     }
   }, [])
-  const interested = isInterested => {
+  const interested = (isInterested: boolean) => {
     setFeedbackSent(true)
     sendEvent('Course Interest', {
       isInterested,
@@ -87,10 +93,6 @@ const UpcomingCourseFeedback = ({ course }) => {
       </button>
     </div>
   )
-}
-
-UpcomingCourseFeedback.propTypes = {
-  course: CoursePropType.isRequired,
 }
 
 export default UpcomingCourseFeedback

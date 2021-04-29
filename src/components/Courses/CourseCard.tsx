@@ -1,14 +1,23 @@
 import React from 'react'
 import { Link, useTranslation } from 'gatsby-plugin-react-i18next'
-import PropTypes from 'prop-types'
 import { DiGithubBadge } from 'react-icons/di'
-
+import useLanguage from '../../hooks/useLanguage'
 import HtmlViewer from '../HtmlViewer'
 import Badge from '../Badge'
-import { CoursePropType } from '../../common/util'
 import { getOriginalLanguageName } from '../../common/constants'
+import { Course, Lecture } from '../../types/api.types'
 
-const CourseCard = ({
+type Props = {
+  course: Course
+  image: string
+  lectureId?: number
+  courseViewMode?: boolean
+  isCourseInProgress?: any
+  showTags?: boolean
+  lectureToPlayNext: Lecture
+}
+
+const CourseCard: React.FC<Props> = ({
   course,
   image,
   lectureId,
@@ -18,7 +27,7 @@ const CourseCard = ({
   lectureToPlayNext,
 }) => {
   const { t } = useTranslation()
-  const { isRtl } = useTranslation()
+  const { isRtl } = useLanguage()
   const {
     language,
     title,
@@ -102,24 +111,6 @@ const CourseCard = ({
       </div>
     </div>
   )
-}
-
-CourseCard.propTypes = {
-  course: CoursePropType.isRequired,
-  image: PropTypes.string.isRequired,
-  lectureId: PropTypes.number,
-  courseViewMode: PropTypes.bool,
-  isCourseInProgress: PropTypes.arrayOf(PropTypes.number),
-  showTags: PropTypes.bool,
-  lectureToPlayNext: PropTypes.shape({ slug: PropTypes.string }),
-}
-
-CourseCard.defaultProps = {
-  lectureId: 0,
-  courseViewMode: false,
-  isCourseInProgress: [],
-  showTags: true,
-  lectureToPlayNext: {},
 }
 
 export default CourseCard

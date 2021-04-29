@@ -5,8 +5,13 @@ import Badge from '../Badge'
 import { CoursePropType } from '../../common/util'
 import CourseFeedback from './Feedback/CourseFeedback'
 import { getOriginalLanguageName } from '../../common/constants'
+import { Course } from '../../types/api.types'
 
-const CourseCardUpcoming = ({ course }) => {
+type Props = {
+  course: Course
+}
+
+const CourseCardUpcoming: React.FC<Props> = ({ course }) => {
   const { t } = useTranslation()
   const { language, title, description } = course
 
@@ -31,10 +36,6 @@ const CourseCardUpcoming = ({ course }) => {
       <CourseFeedback course={course} type="UpcomingCourse" />
     </div>
   )
-}
-
-CourseCardUpcoming.propTypes = {
-  course: CoursePropType.isRequired,
 }
 
 export default CourseCardUpcoming

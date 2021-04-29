@@ -2,7 +2,15 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { getPercentage } from '../../common/util'
 
-const CourseProgress = ({ isCourseInProgress, lecturesCount }) => {
+type Props = {
+  isCourseInProgress: any
+  lecturesCount: number
+}
+
+const CourseProgress: React.FC<Props> = ({
+  isCourseInProgress,
+  lecturesCount,
+}) => {
   const calculateCourseProgress = () => {
     const completed = isCourseInProgress && isCourseInProgress.length
     return getPercentage(completed, lecturesCount)

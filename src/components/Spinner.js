@@ -2,29 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-const Spinner = ({ size }) => (
-  <StyledContainer>
-    <StyledSpinner viewBox="0 0 50 50" size={size}>
-      <circle
-        className="path"
-        cx="25"
-        cy="25"
-        r="20"
-        fill="none"
-        strokeWidth="4"
-      />
-    </StyledSpinner>
-  </StyledContainer>
-)
-
-Spinner.propTypes = {
-  size: PropTypes.number,
-}
-
-Spinner.defaultProps = {
-  size: 25,
-}
-
 const StyledContainer = styled.div`
   display: flex;
   align-items: center;
@@ -63,5 +40,28 @@ const StyledSpinner = styled.svg`
     }
   }
 `
+
+const Spinner = ({ size }) => (
+  <StyledContainer>
+    <StyledSpinner viewBox="0 0 50 50" size={size}>
+      <circle
+        className="path"
+        cx="25"
+        cy="25"
+        r="20"
+        fill="none"
+        strokeWidth="4"
+      />
+    </StyledSpinner>
+  </StyledContainer>
+)
+
+Spinner.propTypes = {
+  size: PropTypes.number,
+}
+
+Spinner.defaultProps = {
+  size: 25,
+}
 
 export default Spinner

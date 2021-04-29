@@ -1,10 +1,15 @@
 import React, { useState } from 'react'
-import PropTypes from 'prop-types'
 import { useTranslation } from 'gatsby-plugin-react-i18next'
 import { toast } from 'react-toastify'
 import { addPRToReview } from '../../../services/api'
+import { Resource } from '../../../types/api.types'
 
-const CourseExercise = ({ exercise, courseId }) => {
+type Props = {
+  exercise: Resource
+  courseId: number
+}
+
+const CourseExercise: React.FC<Props> = ({ exercise, courseId }) => {
   const { t } = useTranslation()
   const [inputValue, setInputValue] = useState('')
 
@@ -54,15 +59,6 @@ const CourseExercise = ({ exercise, courseId }) => {
       </div>
     </div>
   )
-}
-
-CourseExercise.propTypes = {
-  exercise: PropTypes.shape({
-    type: PropTypes.string,
-    url: PropTypes.string,
-    text: PropTypes.string,
-  }).isRequired,
-  courseId: PropTypes.number.isRequired,
 }
 
 export default CourseExercise

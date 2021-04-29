@@ -1,13 +1,15 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import UpcomingCourseFeedback from './UpcomingCourseFeedback'
+import { Course } from '../../../types/api.types'
 
-const CourseFeedback = ({ type, ...rest }) => {
+type Props = {
+  type: string
+  course: Course
+}
+
+const CourseFeedback: React.FC<Props> = ({ type, ...rest }) => {
   if (type === 'UpcomingCourse') return <UpcomingCourseFeedback {...rest} />
   return null
 }
 
-CourseFeedback.propTypes = {
-  type: PropTypes.oneOf(['UpcomingCourse']).isRequired,
-}
 export default CourseFeedback
