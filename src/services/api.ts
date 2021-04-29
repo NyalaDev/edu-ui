@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios, { AxiosRequestConfig } from 'axios'
 import { appConfig } from '../common/config'
 import { getLocalStorage } from './localStorage'
 import { LOCALE_STORAGE_TOKEN } from '../common/constants'
@@ -11,12 +11,13 @@ import {
   UserResetPasswordData,
   UserSubscribeToMailingList,
   UserPrToReviewData,
+  CourseRating,
 } from '../types/api.types'
 
 const axiosInstance = () => {
   const token = getLocalStorage(LOCALE_STORAGE_TOKEN)
   const headers = token ? { Authorization: `Bearer ${token}` } : undefined
-  const params = {
+  const params: AxiosRequestConfig = {
     baseURL: appConfig.strapiURL,
     timeout: 10000,
   }
@@ -30,7 +31,7 @@ const axiosInstance = () => {
  * Sign the user up
  * @param values The user information
  */
-export const signUp = async (values: UserSignupData) => {
+export const signUp = async (values: UserSignupData): Promise<void> => {
   axiosInstance().post('/auth/local/register', values)
 }
 
@@ -48,10 +49,12 @@ export const getProfile = async (): Promise<Profile> =>
  * Get a single profile by its id
  * @param {*} id the profile id
  */
-export const getProfileById = async (id: number) =>
+export const getProfileById = async (id: number): Promise<Profile> =>
   axiosInstance().get(`/profiles/${id}`)
 
-export const addProfile = async (values: Partial<Profile>) => {
+export const addProfile = async (
+  values: Partial<Profile>
+): Promise<Profile> => {
   const { data } = await axiosInstance().put(`/profiles`, values)
   return data
 }
@@ -70,7 +73,7 @@ export const resetPassword = async (values: UserResetPasswordData) => {
   return data
 }
 
-export const addRating = async values => {
+export const addRating = async (values: CourseRating) => {
   const { data } = await axiosInstance().post(`/ratings`, values)
   return data
 }
@@ -94,21 +97,4 @@ export const uploadFile = async (file: any) => {
   formData.append('files', file)
   const { data } = await axiosInstance().post(`/upload`, formData)
   return data
-}
-
-export const teacher = {
-  getTags: async () => axiosInstance().get('/tags'),
-  listLanguages: async () => axiosInstance().get('/languages'),
-  listCourses: async () =>
-    axiosInstance().get('/teacher?_sort=status,created_at:desc'),
-  getCourseDetails: async slug => axiosInstance().get(`/teacher/${slug}`),
-  saveCourse: async course => axiosInstance().post(`/courses`, course),
-  updateCourse: async (course, courseId) =>
-    axiosInstance().put(`/courses/${courseId}`, course),
-  patchCourse: async (data, courseId) =>
-    axiosInstance().put(`/courses/${courseId}`, data),
-  saveLecture: async lecture => axiosInstance().post('/lectures', lecture),
-  importFromYoutube: async lecture =>
-    axiosInstance().post('/lectures/import', lecture),
-  deleteLecture: async id => axiosInstance().delete(`/lectures/${id}`),
 }

@@ -14,7 +14,7 @@ type Props = {
   courseViewMode?: boolean
   isCourseInProgress?: any
   showTags?: boolean
-  lectureToPlayNext: Lecture
+  lectureToPlayNext?: Lecture
 }
 
 const CourseCard: React.FC<Props> = ({

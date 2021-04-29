@@ -14,6 +14,9 @@ export type Profile = {
   github: string | null
   twitter: string | null
   user: User
+  profilepicture: {
+    url: string
+  }
 }
 
 export type UserSigninData = {
@@ -41,6 +44,12 @@ export type UserForgotPasswordData = {
   email: string
 }
 
+export type CourseRating = {
+  courseId: number
+  rating: number
+  text: string
+  lectureId: number
+}
 export type UserResetPasswordData = {
   password: string
   passwordConfirmation: string
@@ -52,7 +61,7 @@ export type UserPrToReviewData = {
   exercise: string
 }
 
-type Language = 'en' | 'ar' | 'am' | 'sw'
+export type AppLocale = 'en' | 'ar' | 'am' | 'sw'
 
 type CourseStatus = 'Published' | 'Draft' | 'Upcoming'
 
@@ -67,7 +76,7 @@ type UserRole = {
 
 export type UserSubscribeToMailingList = {
   email: string
-  LANGUAGE: Language
+  LANGUAGE: AppLocale
 }
 
 export type Tag = {

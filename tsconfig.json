@@ -1,5 +1,6 @@
 {
-  "include": ["./src/**/*"],
+  "include": ["./src/**/*.ts*"],
+  "exclude": ["./src/**/*.js"],
   "compilerOptions": {
     "target": "esnext",
     "module": "esnext",

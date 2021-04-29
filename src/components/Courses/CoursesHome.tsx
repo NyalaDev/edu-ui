@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 import { Link, useTranslation } from 'gatsby-plugin-react-i18next'
 
-import { CoursePropType, getYoutubeThumbnail } from '../../common/util'
+import { getYoutubeThumbnail } from '../../common/util'
 import { AppContext } from '../../contexts/AppContext'
 import CourseCard from './CourseCard'
 import Filters from './Filters'
