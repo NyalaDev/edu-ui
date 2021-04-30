@@ -6,7 +6,7 @@ type LectureNavigationButtonProps = {
   courseSlug: string
   lectureSlug: string
 }
-const LectureNavigationButton: React.SFC<LectureNavigationButtonProps> = ({
+const LectureNavigationButton: React.FC<LectureNavigationButtonProps> = ({
   isEdge,
   children,
   courseSlug,

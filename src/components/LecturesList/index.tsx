@@ -39,7 +39,7 @@ type LectureListProps = {
   courseSlug: string
   courseStrapiId: number
 }
-const LectureList: React.SFC<LectureListProps> = ({
+const LectureList: React.FC<LectureListProps> = ({
   lectures,
   courseSlug,
   currentLecture,

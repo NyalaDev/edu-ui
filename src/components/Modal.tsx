@@ -11,7 +11,7 @@ type ModalProps = {
   titleCentered?: boolean
   large?: boolean
 }
-const Modal: React.SFC<ModalProps> = ({
+const Modal: React.FC<ModalProps> = ({
   title,
   onDismiss,
   onAction,

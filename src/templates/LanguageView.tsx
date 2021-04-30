@@ -4,7 +4,6 @@ import Layout from '../components/Layout'
 import CourseCard from '../components/Courses/CourseCard'
 import { getYoutubeThumbnail } from '../common/util'
 import CourseCardUpcoming from '../components/Courses/CourseCardUpcoming'
-import { appLanguages } from '../common/constants'
 import { Course } from '../types/api.types'
 
 type LanguageViewProps = {
@@ -12,20 +11,20 @@ type LanguageViewProps = {
     allStrapiCourse: { edges: { node: Course }[] }
   }
   pageContext: {
-    language: string
+    languageToDisplay: string
   }
 }
-const LanguageView: React.SFC<LanguageViewProps> = ({ data, pageContext }) => {
+const LanguageView: React.FC<LanguageViewProps> = ({ data, pageContext }) => {
   const {
     allStrapiCourse: { edges: courses = [] },
   } = data
-  const { language } = pageContext
-  const { label } = appLanguages.find(lang => lang.locale === language) || {}
+  const { languageToDisplay } = pageContext
+
   return (
     <Layout>
       <div>
         <div className="bg-gray-800 text-white text-center font-bold uppercase text-md px-4 py-4 my-8 rounded shadow hover:shadow-md outline-none focus:outline-none">
-          {`${label}`}
+          {`${languageToDisplay}`}
         </div>
       </div>
       <div className="grid md:grid-cols-3 sm:grid-cols-1 gap-4">

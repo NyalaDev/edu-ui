@@ -11,7 +11,7 @@ type MobileMenuProps = {
     to?: string
   }[]
 }
-const MobileMenu: React.SFC<MobileMenuProps> = ({ open, navBarItems }) => {
+const MobileMenu: React.FC<MobileMenuProps> = ({ open, navBarItems }) => {
   const { t } = useTranslation()
   // const activeClass = 'bg-gray-900'
   return (

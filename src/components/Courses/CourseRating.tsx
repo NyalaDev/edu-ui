@@ -9,7 +9,7 @@ type CourseRatingProps = {
   courseId: number
   lectureId: number
 }
-const CourseRating: React.SFC<CourseRatingProps> = ({
+const CourseRating: React.FC<CourseRatingProps> = ({
   onDismiss,
   courseId,
   lectureId,

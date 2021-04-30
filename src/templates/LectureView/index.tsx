@@ -25,7 +25,7 @@ type LectureViewProps = {
     href: string
   }
 }
-const LectureView: React.SFC<LectureViewProps> = ({ data, location }) => {
+const LectureView: React.FC<LectureViewProps> = ({ data, location }) => {
   const { strapiLecture, strapiCourse, relatedCourses } = data
   const sortedLectures = orderBy(strapiCourse.lectures, 'position', 'asc')
   const lecture = !strapiLecture ? sortedLectures[0] : strapiLecture

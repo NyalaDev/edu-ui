@@ -12,7 +12,7 @@ type CoursesPageProps = {
     allStrapiCourse: { edges: { node: Course }[] }
   }
 }
-const CoursesPage: React.SFC<CoursesPageProps> = ({ data }) => {
+const CoursesPage: React.FC<CoursesPageProps> = ({ data }) => {
   const {
     allStrapiCourse: { edges },
   } = data

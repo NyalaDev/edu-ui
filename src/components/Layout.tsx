@@ -14,7 +14,7 @@ type LayoutProps = {
   modalOpen?: boolean
   title?: string
 }
-const Layout: React.SFC<LayoutProps> = ({
+const Layout: React.FC<LayoutProps> = ({
   children,
   pageTitle,
   fullPage,

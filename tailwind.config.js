@@ -1,7 +1,7 @@
 module.exports = {
   purge: {
     enabled: process.env.NODE_ENV !== 'development',
-    content: ['./src/**/*.html', './src/**/*.jsx', './src/**/*.js'],
+    content: ['./src/**/*.html', './src/**/*.tsx', './src/**/*.ts'],
     options: {
       safelist: [
         'sm:ml-3',

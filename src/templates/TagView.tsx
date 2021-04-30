@@ -17,7 +17,7 @@ type TagViewProps = {
     href: string
   }
 }
-const TagView: React.SFC<TagViewProps> = ({ data, location }) => {
+const TagView: React.FC<TagViewProps> = ({ data, location }) => {
   const { courses = [], tagName } = data.strapiTag
   return (
     <>
