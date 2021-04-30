@@ -25,13 +25,7 @@ const CourseInfoCards: React.FC<Props> = ({
   completedLectures,
 }) => {
   const [instructorPhoto, setInstructorPhoto] = useState(DEFAULT_PROFILE_PIC)
-  const {
-    title,
-    tags,
-    lectures,
-    instructor,
-    strapiId: courseStrapiId,
-  } = course
+  const { title, tags, lectures, instructor, strapiId: courseStrapiId } = course
 
   const coursesInProgress = useCourseProgress(courseStrapiId)
   const sortedLectures = orderBy(lectures, 'position', 'asc')
@@ -76,7 +70,9 @@ const CourseInfoCards: React.FC<Props> = ({
         course={course}
         image={thumbnail}
         lectureId={sortedLectures[0].id}
-        isCourseInProgress={Boolean(coursesInProgress && coursesInProgress.length > 0)}
+        isCourseInProgress={Boolean(
+          coursesInProgress && coursesInProgress.length > 0
+        )}
         showTags={false}
         lectureToPlayNext={lectureToPlayNext}
       />

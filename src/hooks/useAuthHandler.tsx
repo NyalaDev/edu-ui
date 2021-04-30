@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { setLocalStorage, clearLocalStorage } from '../services/localStorage'
-import { LOCALE_STORAGE_USER, LOCALE_STORAGE_TOKEN } from '../common/constants'
 import { User } from '../types/api.types'
+import { LOCALE_STORAGE_USER } from '../common/constants'
+import { saveTokenToCookie, removeAuthCookie } from '../services/cookie.service'
 
 type AuthHandlerHook = {
   currentUser: User | null
@@ -39,12 +40,12 @@ const useAuthHandler = (
    */
   const setAuthToken = (authToken: string | null = null) => {
     if (!authToken) {
-      clearLocalStorage(LOCALE_STORAGE_TOKEN)
+      removeAuthCookie()
       setToken('')
-    } else {
-      setLocalStorage(LOCALE_STORAGE_TOKEN, authToken)
-      setToken(authToken)
+      return
     }
+    saveTokenToCookie(authToken)
+    setToken(authToken)
   }
   return {
     currentUser: user,

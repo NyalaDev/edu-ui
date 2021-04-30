@@ -20,7 +20,7 @@ import {
 import { ALLOWED_LECTURES_WHEN_NOT_LOGGED_IN } from '../../common/constants'
 import { Lecture } from '../../types/api.types'
 
-const StyledButton = styled.button<{isRtl: boolean}>`
+const StyledButton = styled.button<{ isRtl: boolean }>`
   background: none;
   color: inherit;
   border: none;
@@ -67,9 +67,9 @@ const LectureList: React.SFC<LectureListProps> = ({
       <StyledLectureList>
         {sortedLectures.map((lecture, index) => {
           const WrapperComponent: any = canWatch(index) ? Link : StyledButton
-          const wrapperComponentProps = (canWatch(index)
+          const wrapperComponentProps = canWatch(index)
             ? { to: `/courses/${courseSlug}/lectures/${lecture.slug}` }
-            : { onClick: () => setOpen(true), isRtl })
+            : { onClick: () => setOpen(true), isRtl }
           return (
             <StyledLectureListItem
               active={currentLecture && currentLecture.strapiId === lecture.id}

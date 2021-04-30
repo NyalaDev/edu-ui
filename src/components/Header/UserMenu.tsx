@@ -3,7 +3,6 @@ import { navigate } from 'gatsby'
 import { Link, useTranslation } from 'gatsby-plugin-react-i18next'
 import { AuthContext } from '../../contexts/AuthContext'
 import { getProfilePicuteUrlFromUserObject } from '../../common/util'
-import { getTokenFromLocaleStorageIfAny } from '../../services/localStorage'
 
 const UserMenu: React.FC = () => {
   const { currentUser, isTeacher, logout } = useContext(AuthContext)
@@ -17,10 +16,8 @@ const UserMenu: React.FC = () => {
     navigate('/')
   }
   const profilePictureUrl = getProfilePicuteUrlFromUserObject(currentUser)
-  const token = getTokenFromLocaleStorageIfAny()
-  const dashboardUrl = `${
+  const dashboardUrl =
     process.env.GATSBY_DASHBOARD_URL || 'https://edu-dashboard.barmaga.io'
-  }/auth?authToken=${token}`
   // FIXME: Change Dropdown on desktop to open right
   return (
     <div className="ml-3 relative">

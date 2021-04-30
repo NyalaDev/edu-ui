@@ -1,56 +1,53 @@
-import React, { useContext, useEffect } from "react";
-import { useFormik } from "formik";
-import { Link, useTranslation } from "gatsby-plugin-react-i18next";
-import * as Yup from "yup";
-import { graphql, navigate } from "gatsby";
-import { toast } from "react-toastify";
-import Layout from "../../components/Layout";
-import SocialButton from "../../components/SocialButton";
-import { signin } from "../../services/api";
-import { AuthContext } from "../../contexts/AuthContext";
-import ActivityIndicator from "../../components/ActivityIndicator";
+import React, { useContext, useEffect } from 'react'
+import { useFormik } from 'formik'
+import { Link, useTranslation } from 'gatsby-plugin-react-i18next'
+import * as Yup from 'yup'
+import { graphql, navigate } from 'gatsby'
+import { toast } from 'react-toastify'
+import Layout from '../../components/Layout'
+import SocialButton from '../../components/SocialButton'
+import { signin } from '../../services/api'
+import { AuthContext } from '../../contexts/AuthContext'
+import ActivityIndicator from '../../components/ActivityIndicator'
 
-const providers: ('GitHub' | 'Google')[] = ["GitHub"];
+const providers: ('GitHub' | 'Google')[] = ['GitHub']
 
 const SiginPage = () => {
-  const { isLoggedIn, setCurrentUser, setAuthToken } = useContext(AuthContext);
-  const { t } = useTranslation();
-  useEffect(
-    () => {
-      if (isLoggedIn) {
-        navigate("/");
-      }
-    },
-    [isLoggedIn]
-  );
+  const { isLoggedIn, setCurrentUser, setAuthToken } = useContext(AuthContext)
+  const { t } = useTranslation()
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate('/')
+    }
+  }, [isLoggedIn])
   const formik = useFormik({
     initialValues: {
-      identifier: "",
-      password: ""
+      identifier: '',
+      password: '',
     },
     validationSchema: Yup.object({
-      identifier: Yup.string().required("Please provide username or email"),
-      password: Yup.string().required("Please provide password")
+      identifier: Yup.string().required('Please provide username or email'),
+      password: Yup.string().required('Please provide password'),
     }),
     onSubmit: async values => {
       try {
-        const data = await signin(values);
-        setAuthToken(data.jwt);
-        setCurrentUser(data.user);
-        navigate("/");
+        const data = await signin(values)
+        setAuthToken(data.jwt)
+        setCurrentUser(data.user)
+        navigate('/')
       } catch (err) {
         const message = err.message.match(/(403|400)/)
-          ? "errors.invalid_auth"
-          : "errors.generic";
-        toast.error(t(message));
+          ? 'errors.invalid_auth'
+          : 'errors.generic'
+        toast.error(t(message))
       }
-    }
-  });
+    },
+  })
   return (
-    <Layout title={t("signIn")}>
+    <Layout title={t('signIn')}>
       <div className="bg-white w-full max-w-lg rounded-lg shadow-md overflow-hidden mx-auto">
         <div className="py-4 px-6">
-          <h2 className="text-center text-gray-700 text-3xl">{t("signIn")}</h2>
+          <h2 className="text-center text-gray-700 text-3xl">{t('signIn')}</h2>
           <div className="border-teal p-8 border-t-12 bg-white mb-6 rounded-lg  mt-3">
             <form onSubmit={formik.handleSubmit}>
               <div className="mb-4">
@@ -58,14 +55,14 @@ const SiginPage = () => {
                   htmlFor="identifier"
                   className="text-grey-darker block mb-2"
                 >
-                  {t("userOrEmail")}
+                  {t('userOrEmail')}
                 </label>
                 <input
                   id="identifier"
-                  {...formik.getFieldProps("identifier")}
+                  {...formik.getFieldProps('identifier')}
                   type="text"
                   className="block appearance-none w-full bg-white border border-grey-light hover:border-grey px-2 py-2 rounded shadow"
-                  placeholder={t("userOrEmail")}
+                  placeholder={t('userOrEmail')}
                 />
                 {formik.touched.identifier && formik.errors.identifier ? (
                   <div className="text-red-600 mt-1">
@@ -79,14 +76,14 @@ const SiginPage = () => {
                   htmlFor="password"
                   className="text-grey-darker block mb-2"
                 >
-                  {t("password")}
+                  {t('password')}
                 </label>
                 <input
-                  {...formik.getFieldProps("password")}
+                  {...formik.getFieldProps('password')}
                   id="password"
                   type="password"
                   className="block appearance-none w-full bg-white border border-grey-light hover:border-grey px-2 py-2 rounded shadow"
-                  placeholder={t("passPlaceholder")}
+                  placeholder={t('passPlaceholder')}
                 />
                 {formik.touched.password && formik.errors.password ? (
                   <div className="text-red-600 mt-1">
@@ -101,13 +98,13 @@ const SiginPage = () => {
                     className="py-2 px-4 bg-gray-700 text-white rounded hover:bg-gray-600 focus:outline-none"
                     type="submit"
                   >
-                    {t("signIn")}
+                    {t('signIn')}
                   </button>
                 </ActivityIndicator>
               </div>
               <div className="text-center">
                 <h1 className="font-bold text-grey-darker block mb-2 mt-5">
-                  {t("or")}
+                  {t('or')}
                 </h1>
               </div>
             </form>
@@ -121,22 +118,22 @@ const SiginPage = () => {
 
           <div className="text-center">
             <p className="text-grey-dark text-sm">
-              {`${t("noAccount")} `}
+              {`${t('noAccount')} `}
               <Link to="/signup" className="no-underline text-blue font-bold">
-                {t("createAccount")}
+                {t('createAccount')}
               </Link>
             </p>
           </div>
         </div>
       </div>
     </Layout>
-  );
-};
+  )
+}
 export const query = graphql`
   query($language: String!) {
     locales: allLocale(filter: { language: { eq: $language } }) {
       ...LanguageInfo
     }
   }
-`;
-export default SiginPage;
+`
+export default SiginPage
