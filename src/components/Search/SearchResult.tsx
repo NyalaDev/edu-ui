@@ -4,6 +4,7 @@ import Spinner from '../Spinner'
 import { getYoutubeThumbnail } from '../../common/util'
 
 export type AlgoliaSearchResult = {
+  id: number
   title: string
   slug: string
   lectures: {
@@ -13,7 +14,7 @@ export type AlgoliaSearchResult = {
 
 type SearchResultProps = {
   searching: boolean
-  result?: AlgoliaSearchResult
+  result: AlgoliaSearchResult
 }
 const SearchResult: React.FC<SearchResultProps> = ({ searching, result }) => {
   if (!searching && !result?.length) return null

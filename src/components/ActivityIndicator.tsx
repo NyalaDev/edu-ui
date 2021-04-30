@@ -1,14 +1,19 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const StyledSpinner = styled.div<{ size: string; margin: string }>`
+type StyledSpinnerProps = {
+  size: number | undefined
+  margin: number | undefined
+}
+
+const StyledSpinner = styled.div<StyledSpinnerProps>`
   border: 5px solid #fbf1e6;
   border-top: 5px solid #2d3747;
   border-radius: 50%;
-  width: ${({ size }: { size: string }) => size}px;
+  width: ${({ size }) => size}px;
   height: ${({ size }) => size}px;
   animation: spin 1s linear infinite;
-  margin: ${({ margin }: { margin: string }) => margin};
+  margin: ${({ margin }) => margin}px;
 
   @keyframes spin {
     0% {
@@ -22,7 +27,7 @@ const StyledSpinner = styled.div<{ size: string; margin: string }>`
 type ActivityIndicatorProps = {
   active?: boolean
   size?: number
-  margin?: string
+  margin?: number
 }
 const ActivityIndicator: React.FunctionComponent<ActivityIndicatorProps> = ({
   active,

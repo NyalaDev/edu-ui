@@ -11,8 +11,8 @@ import { Course } from '../../types/api.types'
 
 type Props = {
   courses: Course[]
-  hidleFilters: boolean
-  showMoreCard: boolean
+  hidleFilters?: boolean
+  showMoreCard?: boolean
 }
 
 const CoursesHome: React.FC<Props> = ({

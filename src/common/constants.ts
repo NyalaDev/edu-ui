@@ -30,7 +30,7 @@ export const appLanguages: Array<AppLanguage> = [
     icon: 'sw.svg',
   },
 ]
-export const getOriginalLanguageName = (locale: AppLocale) => {
+export const getOriginalLanguageName = (locale: string): string | undefined => {
   const language = appLanguages.find(lang => lang.locale === locale)
   return language?.label
 }

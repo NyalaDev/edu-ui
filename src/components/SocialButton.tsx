@@ -5,12 +5,12 @@ import { appConfig } from '../common/config'
 import useLanguage from '../hooks/useLanguage'
 
 const COLORS = {
-  github: {
+  GitHub: {
     background: 'bg-gray-900',
     className: 'text-white',
     Icon: FaGithub,
   },
-  google: {
+  Google: {
     background: 'bg-red-700',
     className: 'text-white',
     Icon: FaGoogle,
@@ -20,7 +20,7 @@ type SocialButtonProps = {
   provider: 'Google' | 'GitHub'
 }
 const SocialButton: React.FC<SocialButtonProps> = ({ provider }) => {
-  const { background, className, Icon } = COLORS[provider.toLowerCase()]
+  const { background, className, Icon } = COLORS[provider]
   const { t } = useTranslation()
   const { isRtl } = useLanguage()
   return (

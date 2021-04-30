@@ -1,37 +1,32 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { graphql } from 'gatsby'
-
-import { useTranslation } from 'gatsby-plugin-react-i18next'
-import Layout from '../components/Layout'
-import Seo from '../components/Seo'
-import { AppProvider } from '../contexts/AppContext'
-import CoursesHome from '../components/Courses/CoursesHome'
-
-const CoursesPage = ({ data }) => {
-  const {
-    allStrapiCourse: { edges },
-  } = data
-
-  const coursesList = edges.map(edge => edge.node)
-  const { t } = useTranslation()
+import React from "react";
+import { graphql } from "gatsby";
+import { useTranslation } from "gatsby-plugin-react-i18next";
+import Layout from "../components/Layout";
+import Seo from "../components/Seo";
+import { AppProvider } from "../contexts/AppContext";
+import CoursesHome from "../components/Courses/CoursesHome";
+import { Course } from "../types/api.types";
+type CoursesPageProps = {
+  data: {
+    allStrapiCourse: { edges: { node: Course}[] }
+  }
+};
+const CoursesPage: React.SFC<CoursesPageProps> = ({ data }) => {
+  const { allStrapiCourse: { edges } } = data;
+  const coursesList = edges.map(edge => edge.node);
+  const { t } = useTranslation();
   return (
     <>
-      <Seo title={t('courses')} />
+      <Seo title={t("courses")} />
       <Layout>
         <AppProvider initialCoursesList={coursesList}>
           <CoursesHome courses={coursesList} />
         </AppProvider>
       </Layout>
     </>
-  )
-}
-
-CoursesPage.propTypes = {
-  data: PropTypes.objectOf(PropTypes.any).isRequired,
-}
-export default CoursesPage
-
+  );
+};
+export default CoursesPage;
 export const pageQuery = graphql`
   query IndexQuery($language: String!) {
     locales: allLocale(filter: { language: { eq: $language } }) {
@@ -64,4 +59,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;

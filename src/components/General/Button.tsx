@@ -28,19 +28,22 @@ const getClasses = (props: Partial<ButtonProps>) => {
   return classes
 }
 type ButtonProps = {
-  mode: 'info' | 'error' | 'success'
+  mode?: 'info' | 'error' | 'success'
   link?: boolean
   extraClasses?: string
   small?: boolean
   type?: 'submit' | undefined
-} & React.AnchorHTMLAttributes<HTMLAnchorElement>
+} & React.AnchorHTMLAttributes<HTMLButtonElement>
 
 const Button: React.FC<ButtonProps> = props => {
   const { link, children } = props
   const classNames = getClasses(props).join(' ')
   if (link) {
     return (
-      <a className={classNames} {...props}>
+      <a
+        className={classNames}
+        {...(props as React.AnchorHTMLAttributes<HTMLAnchorElement>)}
+      >
         {children}
       </a>
     )

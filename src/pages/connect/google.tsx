@@ -1,10 +1,8 @@
-import React from 'react'
-import { handleAuthentication } from '../../services/auth'
-import Spinner from '../../components/Spinner'
-
+import React from "react";
+import { handleAuthentication } from "../../services/auth";
+import Spinner from "../../components/Spinner";
 const Google = () => {
-  handleAuthentication('google')
-
+  handleAuthentication("google");
   return (
     <div className="container section has-text-centered">
       <div className="columns is-centered">
@@ -15,7 +13,6 @@ const Google = () => {
         </div>
       </div>
     </div>
-  )
-}
-
-export default Google
+  );
+};
+export default Google;

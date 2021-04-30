@@ -22,9 +22,9 @@ type AuthContextType = {
   isLoggedIn: boolean
   isTeacher: boolean
   currentUser: User | null
-  setCurrentUser: React.Dispatch<React.SetStateAction<User | null>>
-  authToken: ''
-  setAuthToken: React.Dispatch<React.SetStateAction<string | null>>
+  setCurrentUser: (authUser?: User | null) => void
+  authToken: string | null
+  setAuthToken: (authToken?: string | null) => void
   logout: VoidFunction
 }
 

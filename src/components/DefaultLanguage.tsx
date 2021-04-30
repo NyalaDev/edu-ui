@@ -1,6 +1,7 @@
 import React from 'react'
 import useLanguage from '../hooks/useLanguage'
 import { appLanguages } from '../common/constants'
+import { AppLocale } from '../types/api.types'
 
 type DefaultLanguageProps = {
   onDismiss: (...args: any[]) => any

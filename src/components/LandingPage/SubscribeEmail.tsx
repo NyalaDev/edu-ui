@@ -31,6 +31,7 @@ const SubscribeEmail: React.FC<SubscribeEmailProps> = ({ title = '' }) => {
     onSubmit: async values => {
       try {
         setLoading(true)
+
         const { result } = await subscribeToMailingList({
           email: values.email,
           LANGUAGE: language,
@@ -57,7 +58,6 @@ const SubscribeEmail: React.FC<SubscribeEmailProps> = ({ title = '' }) => {
         <div className="flex-1">
           <Input
             wrapperClasses="mt-0"
-            name="email"
             {...formik.getFieldProps('email')}
             type="text"
             placeholder={t('email')}

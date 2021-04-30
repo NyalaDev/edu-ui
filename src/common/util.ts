@@ -61,7 +61,9 @@ export const getPercentage = (number: number, total: number): number =>
  * Helper function to get profile picture from the user object
  * @param {*} user the current user
  */
-export const getProfilePicuteUrlFromUserObject = (user: User): string => {
+export const getProfilePicuteUrlFromUserObject = (
+  user: User | null
+): string => {
   if (!user || isEmpty(user)) {
     return DEFAULT_PROFILE_PIC
   }

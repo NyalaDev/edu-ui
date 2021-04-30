@@ -18,8 +18,9 @@ import {
   StyledLockIcon,
 } from './styles'
 import { ALLOWED_LECTURES_WHEN_NOT_LOGGED_IN } from '../../common/constants'
+import { Lecture } from '../../types/api.types'
 
-const StyledButton = styled.button`
+const StyledButton = styled.button<{isRtl: boolean}>`
   background: none;
   color: inherit;
   border: none;
@@ -31,14 +32,7 @@ const StyledButton = styled.button`
   text-align: ${props => (props.isRtl ? 'right' : 'left')};
 `
 type LectureListProps = {
-  lectures: {
-    id?: number
-    slug?: string
-    url?: string
-    title?: string
-    duration?: string
-    position?: number
-  }[]
+  lectures: Lecture[]
   currentLecture?: {
     strapiId?: number
   }
@@ -55,27 +49,27 @@ const LectureList: React.SFC<LectureListProps> = ({
   const { isRtl } = useLanguage()
   const { isLoggedIn } = useContext(AuthContext)
   const [open, setOpen] = useState(false)
-  const getNumber = index => {
+  const getNumber = (index: number) => {
     const value = index + 1
     return value
   }
   const isCourseInProgress = useCourseProgress(courseStrapiId)
   const sortedLectures = orderBy(lectures, 'position', 'asc')
-  const lectureIcon = index => {
+  const lectureIcon = (index: number) => {
     if (isLoggedIn || index < ALLOWED_LECTURES_WHEN_NOT_LOGGED_IN)
       return <StyledVideoIcon />
     return <StyledLockIcon />
   }
-  const canWatch = index =>
+  const canWatch = (index: number) =>
     isLoggedIn || (!isLoggedIn && index < ALLOWED_LECTURES_WHEN_NOT_LOGGED_IN)
   return (
     <>
       <StyledLectureList>
         {sortedLectures.map((lecture, index) => {
-          const WrapperComponent = canWatch(index) ? Link : StyledButton
-          const wrapperComponentProps = canWatch(index)
+          const WrapperComponent: any = canWatch(index) ? Link : StyledButton
+          const wrapperComponentProps = (canWatch(index)
             ? { to: `/courses/${courseSlug}/lectures/${lecture.slug}` }
-            : { onClick: () => setOpen(true), isRtl }
+            : { onClick: () => setOpen(true), isRtl })
           return (
             <StyledLectureListItem
               active={currentLecture && currentLecture.strapiId === lecture.id}

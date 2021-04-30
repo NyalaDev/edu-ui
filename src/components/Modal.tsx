@@ -5,8 +5,8 @@ type ModalProps = {
   title?: string
   onDismiss?: (...args: any[]) => any
   onAction?: (...args: any[]) => any
-  closeLabel: string
-  confirmLabel: string
+  closeLabel?: string
+  confirmLabel?: string
   withActions?: boolean
   titleCentered?: boolean
   large?: boolean
@@ -58,14 +58,14 @@ const Modal: React.SFC<ModalProps> = ({
                   type="button"
                   onClick={onDismiss}
                 >
-                  {t(closeLabel)}
+                  {t(closeLabel || '')}
                 </button>
                 <button
                   className="bg-gray-800 text-white active:bg-green-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
                   type="button"
                   onClick={onAction}
                 >
-                  {t(confirmLabel)}
+                  {t(confirmLabel || '')}
                 </button>
               </div>
             )}

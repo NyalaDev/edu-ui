@@ -20,7 +20,7 @@ const Badge: React.FC<BadgeProps> = ({
   onClose,
 }) => {
   const Wrapper = link ? Link : React.Fragment
-  const WrapperProps = link ? { to: link } : {}
+  const WrapperProps: any = link ? { to: link } : {}
   const color =
     (languageBadge ? `language-${languageBadge}` : colorToUse) || 'gray-400'
   return (

@@ -1,8 +1,12 @@
 import React from 'react'
 import { Link } from 'gatsby-plugin-react-i18next'
-import PropTypes from 'prop-types'
 
-const LectureNavigationButton = ({
+type LectureNavigationButtonProps = {
+  isEdge: boolean
+  courseSlug: string
+  lectureSlug: string
+}
+const LectureNavigationButton: React.SFC<LectureNavigationButtonProps> = ({
   isEdge,
   children,
   courseSlug,
@@ -20,11 +24,4 @@ const LectureNavigationButton = ({
       {children}
     </Link>
   )
-
-LectureNavigationButton.propTypes = {
-  isEdge: PropTypes.bool.isRequired,
-  courseSlug: PropTypes.string.isRequired,
-  lectureSlug: PropTypes.string.isRequired,
-}
-
 export default LectureNavigationButton

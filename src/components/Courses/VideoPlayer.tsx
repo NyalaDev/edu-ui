@@ -1,11 +1,17 @@
 import React, { useContext, useState } from 'react'
 import ReactPlayer from 'react-player'
-import PropTypes from 'prop-types'
 import { AuthContext } from '../../contexts/AuthContext'
 import { addProfile } from '../../services/api'
-import CourseRating from '../../components/Courses/CourseRating'
+import CourseRating from './CourseRating'
 
-const VideoPlayer = ({
+type VideoPlayerProps = {
+  url: string
+  lectureStrapiId: number
+  courseStrapiId: number
+  showFeedback: boolean
+}
+
+const VideoPlayer: React.FC<VideoPlayerProps> = ({
   url,
   lectureStrapiId,
   courseStrapiId,
@@ -13,9 +19,7 @@ const VideoPlayer = ({
 }) => {
   const DEFENITION_OF_COMPLETED = 0.8
   const { currentUser, isLoggedIn, setCurrentUser } = useContext(AuthContext)
-
   const [open, setOpen] = useState(showFeedback)
-
   const lectures =
     isLoggedIn &&
     currentUser &&
@@ -23,22 +27,22 @@ const VideoPlayer = ({
     currentUser.profile.completedlectures
       ? currentUser.profile.completedlectures
       : {}
-
-  const updateCompletedLectures = async updatedLectures => {
+  const updateCompletedLectures = async (updatedLectures: {
+    course: number
+    lecture: number
+  }) => {
     try {
       const response = await addProfile({ completedlectures: updatedLectures })
-      setCurrentUser({ ...currentUser, profile: response })
+      setCurrentUser({ ...currentUser!, profile: response })
     } catch (err) {
       // FIXME: error handling
     }
   }
-
-  const handleProgress = state => {
+  const handleProgress = (state: { played: number }) => {
     const isCourseInProgress = lectures[courseStrapiId]
     const isLectureCompleted =
       lectures[courseStrapiId] &&
       lectures[courseStrapiId].includes(lectureStrapiId)
-
     if (!isCourseInProgress || !isLectureCompleted) {
       if (state.played > DEFENITION_OF_COMPLETED) {
         const updatedLectures = {
@@ -49,7 +53,6 @@ const VideoPlayer = ({
       }
     }
   }
-
   return (
     <div className="relative " style={{ paddingTop: '56.25%' }}>
       <ReactPlayer
@@ -72,12 +75,4 @@ const VideoPlayer = ({
     </div>
   )
 }
-
-VideoPlayer.propTypes = {
-  url: PropTypes.string.isRequired,
-  lectureStrapiId: PropTypes.number.isRequired,
-  courseStrapiId: PropTypes.number.isRequired,
-  showFeedback: PropTypes.bool.isRequired,
-}
-
 export default VideoPlayer

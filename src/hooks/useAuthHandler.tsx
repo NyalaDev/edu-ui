@@ -2,11 +2,21 @@ import { useState } from 'react'
 import { setLocalStorage, clearLocalStorage } from '../services/localStorage'
 import { LOCALE_STORAGE_USER, LOCALE_STORAGE_TOKEN } from '../common/constants'
 import { User } from '../types/api.types'
+
+type AuthHandlerHook = {
+  currentUser: User | null
+  setCurrentUser: (authUser?: User | null) => void
+  authToken: string | null
+  setAuthToken: (authToken?: string | null) => void
+}
 /**
  * Custom hook used as a helper to handle authentication status
  * @param {*} initialUser user object can be passed
  */
-const useAuthHandler = (initialUser = null, initialToken = null) => {
+const useAuthHandler = (
+  initialUser: User | null = null,
+  initialToken: string | null = null
+): AuthHandlerHook => {
   const [user, setUser] = useState<User | null>(initialUser)
   const [token, setToken] = useState<string | null>(initialToken)
   /**
@@ -14,7 +24,7 @@ const useAuthHandler = (initialUser = null, initialToken = null) => {
    * Presist the user to the locale storage
    * @param {*} user The user object
    */
-  const setCurrentUser = (authUser = null) => {
+  const setCurrentUser = (authUser: User | null = null) => {
     if (!authUser) {
       clearLocalStorage(LOCALE_STORAGE_USER)
       setUser(null)
@@ -27,13 +37,14 @@ const useAuthHandler = (initialUser = null, initialToken = null) => {
    * Store/Clear JWT
    * @param {*} authToken The token
    */
-  const setAuthToken = (authToken = null) => {
+  const setAuthToken = (authToken: string | null = null) => {
     if (!authToken) {
       clearLocalStorage(LOCALE_STORAGE_TOKEN)
       setToken('')
+    } else {
+      setLocalStorage(LOCALE_STORAGE_TOKEN, authToken)
+      setToken(authToken)
     }
-    setLocalStorage(LOCALE_STORAGE_TOKEN, authToken)
-    setToken(authToken)
   }
   return {
     currentUser: user,

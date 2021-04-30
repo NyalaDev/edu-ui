@@ -12,7 +12,7 @@ type Props = {
   image: string
   lectureId?: number
   courseViewMode?: boolean
-  isCourseInProgress?: any
+  isCourseInProgress?: boolean
   showTags?: boolean
   lectureToPlayNext?: Lecture
 }
@@ -24,7 +24,7 @@ const CourseCard: React.FC<Props> = ({
   courseViewMode,
   isCourseInProgress,
   showTags,
-  lectureToPlayNext,
+  lectureToPlayNext = course.lectures[0],
 }) => {
   const { t } = useTranslation()
   const { isRtl } = useLanguage()
@@ -72,9 +72,7 @@ const CourseCard: React.FC<Props> = ({
               style={{ transition: 'all .15s ease' }}
               to={`/courses/${slug}/lectures/${lectureToPlayNext.slug}`}
             >
-              {isCourseInProgress && isCourseInProgress.length > 0
-                ? t('continue')
-                : t('start')}
+              {isCourseInProgress ? t('continue') : t('start')}
             </Link>
             {githubRepo && (
               <div className="py-4">

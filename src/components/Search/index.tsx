@@ -10,7 +10,7 @@ const searchClient = algoliasearch(
 )
 const indexName = process.env.GATSBY_ALGOLIA_INDEX_NAME || 'dev_course'
 const Search: React.FC = () => {
-  const rootRef = createRef()
+  const rootRef = createRef<HTMLDivElement>()
   const [searching, setSearching] = useState(false)
   const [result, setResult] = useState<AlgoliaSearchResult>([])
   const algoliaIndex = searchClient.initIndex(indexName)

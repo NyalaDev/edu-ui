@@ -1,12 +1,10 @@
-import React from 'react'
-import { handleAuthentication } from '../../services/auth'
-import Spinner from '../../components/Spinner'
-import useLanguage from '../../hooks/useLanguage'
-
+import React from "react";
+import { handleAuthentication } from "../../services/auth";
+import Spinner from "../../components/Spinner";
+import useLanguage from "../../hooks/useLanguage";
 const Github = () => {
-  const { language } = useLanguage()
-  handleAuthentication('github', language)
-
+  const { language } = useLanguage();
+  handleAuthentication("github", language);
   return (
     <div className="container section has-text-centered">
       <div className="columns is-centered">
@@ -16,7 +14,6 @@ const Github = () => {
         </div>
       </div>
     </div>
-  )
-}
-
-export default Github
+  );
+};
+export default Github;

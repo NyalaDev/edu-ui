@@ -41,7 +41,7 @@ const CourseRating: React.SFC<CourseRatingProps> = ({
         <h1 className="text-xl mb-3 border-b-2"> {t('rateCourse')}</h1>
 
         <div className="flex mb-2">
-          {[...Array(totalStars)].map((n, i) => (
+          {[...Array(totalStars)].map((_n: number, i: number) => (
             <Star
               key={uniqueId('rating-')}
               selected={i < rating}
@@ -52,10 +52,9 @@ const CourseRating: React.SFC<CourseRatingProps> = ({
 
         <textarea
           className="p-1 w-full mb-2 border border-gray-400 rounded placeholder-gray-600 focus:outline-none focus:border-purple-800"
-          type="text"
           placeholder="Your review"
           value={textValue}
-          rows="4"
+          rows={4}
           onChange={e => setTextValue(e.target.value)}
         />
 

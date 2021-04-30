@@ -5,6 +5,7 @@ const useCourseProgress = (courseStrapiId: number) => {
   const { currentUser, isLoggedIn } = useContext(AuthContext)
   const isCourseInProgress =
     isLoggedIn &&
+    currentUser &&
     currentUser.profile &&
     currentUser.profile.completedlectures &&
     currentUser.profile.completedlectures[courseStrapiId]

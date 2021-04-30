@@ -6,6 +6,9 @@ export type User = {
   profile: Profile
 }
 
+type CourseId = number
+type LectureId = number
+
 export type Profile = {
   id: number
   name: string | null
@@ -17,6 +20,7 @@ export type Profile = {
   profilepicture: {
     url: string
   }
+  completedlectures?: Record<CourseId, LectureId[]>
 }
 
 export type UserSigninData = {
@@ -76,7 +80,7 @@ type UserRole = {
 
 export type UserSubscribeToMailingList = {
   email: string
-  LANGUAGE: AppLocale
+  LANGUAGE: string
 }
 
 export type Tag = {
@@ -99,6 +103,7 @@ export type Resource = {
 
 export type Lecture = {
   id: number
+  strapiId: number
   title: string
   description?: string
   url: string

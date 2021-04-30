@@ -39,9 +39,9 @@ const StyledSpinner = styled.svg<{ size: number }>`
   }
 `
 type SpinnerProps = {
-  size: number
+  size?: number
 }
-const Spinner: React.FC<SpinnerProps> = ({ size }) => (
+const Spinner: React.FC<SpinnerProps> = ({ size = 25 }) => (
   <StyledContainer>
     <StyledSpinner viewBox="0 0 50 50" size={size}>
       <circle
