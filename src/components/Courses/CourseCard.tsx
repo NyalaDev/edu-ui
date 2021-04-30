@@ -24,7 +24,7 @@ const CourseCard: React.FC<Props> = ({
   courseViewMode,
   isCourseInProgress,
   showTags,
-  lectureToPlayNext,
+  lectureToPlayNext = course.lectures[0]
 }) => {
   const { t } = useTranslation()
   const { isRtl } = useLanguage()
@@ -35,7 +35,7 @@ const CourseCard: React.FC<Props> = ({
     slug,
     tags,
     github_repo: githubRepo,
-    level,
+    level
   } = course
 
   const cardLink = `/courses/${slug}/lectures/${lectureToPlayNext.slug}`
