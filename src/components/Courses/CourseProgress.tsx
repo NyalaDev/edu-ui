@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { getPercentage } from '../../common/util'
 
 type Props = {
@@ -43,11 +42,6 @@ const CourseProgress: React.FC<Props> = ({
       </div>
     </div>
   )
-}
-
-CourseProgress.propTypes = {
-  lecturesCount: PropTypes.number.isRequired,
-  isCourseInProgress: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 }
 
 export default CourseProgress

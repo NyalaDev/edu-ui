@@ -50,7 +50,10 @@ const TagView: React.FC<TagViewProps> = ({ data, location }) => {
 }
 export default TagView
 export const pageQuery = graphql`
-  query TagByID($id: String!) {
+  query TagByID($id: String!, $language: String!) {
+    locales: allLocale(filter: { language: { eq: $language } }) {
+      ...LanguageInfo
+    }
     strapiTag(id: { eq: $id }) {
       id
       tagName
@@ -61,6 +64,7 @@ export const pageQuery = graphql`
         slug
         lectures {
           url
+          slug
         }
         language {
           id
