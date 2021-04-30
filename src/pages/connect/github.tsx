@@ -2,7 +2,8 @@ import React from 'react'
 import { handleAuthentication } from '../../services/auth'
 import Spinner from '../../components/Spinner'
 import useLanguage from '../../hooks/useLanguage'
-const Github = () => {
+
+const Github: React.FC = () => {
   const { language } = useLanguage()
   handleAuthentication('github', language)
   return (

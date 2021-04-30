@@ -11,6 +11,7 @@ import InputWithAddOn from '../../components/InputWithAddOn'
 import { AuthContext } from '../../contexts/AuthContext'
 import { addProfile, uploadFile } from '../../services/api'
 import { getProfilePicuteUrlFromUserObject } from '../../common/util'
+
 const MyProfile = () => {
   const { t } = useTranslation()
   const { currentUser, setCurrentUser } = useContext(AuthContext)

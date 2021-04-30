@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { ChangeEvent } from 'react'
 import useLanguage from '../hooks/useLanguage'
 
 type InputProps = {
   type?: string
   label?: string
   name: string
-  onChange: VoidFunction
+  onChange: (e: string | ChangeEvent<any>) => void
   placeholder?: string
   error?: string
   prefix?: string

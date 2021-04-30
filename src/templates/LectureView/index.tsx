@@ -14,6 +14,7 @@ import CourseCard from '../../components/Courses/CourseCard'
 import { AuthContext } from '../../contexts/AuthContext'
 import { ALLOWED_LECTURES_WHEN_NOT_LOGGED_IN } from '../../common/constants'
 import { Course, Lecture } from '../../types/api.types'
+
 type LectureViewProps = {
   data: {
     strapiCourse: Course

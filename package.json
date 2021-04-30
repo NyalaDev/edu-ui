@@ -43,6 +43,7 @@
     "yup": "^0.32.9"
   },
   "devDependencies": {
+    "@babel/preset-typescript": "^7.13.0",
     "@types/gtag.js": "^0.0.4",
     "@types/jest": "^26.0.23",
     "@types/luxon": "^1.26.5",

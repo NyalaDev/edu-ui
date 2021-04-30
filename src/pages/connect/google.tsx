@@ -1,7 +1,8 @@
 import React from 'react'
 import { handleAuthentication } from '../../services/auth'
 import Spinner from '../../components/Spinner'
-const Google = () => {
+
+const Google: React.FC = () => {
   handleAuthentication('google')
   return (
     <div className="container section has-text-centered">

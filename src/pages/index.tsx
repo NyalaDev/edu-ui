@@ -68,6 +68,7 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
           <Modal
             withActions={false}
             titleCentered
+            onDismiss={() => {}}
             title="Please Choose a Language"
           >
             <div className="flex justify-center items-center flex-col min-h-40">

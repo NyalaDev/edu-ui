@@ -6,6 +6,7 @@ import { toast } from 'react-toastify'
 import { graphql } from 'gatsby'
 import Layout from '../../components/Layout'
 import { forgotPassword } from '../../services/api'
+
 const ForgotPassword = () => {
   const [success, setSuccess] = useState(false)
   const { t } = useTranslation()
