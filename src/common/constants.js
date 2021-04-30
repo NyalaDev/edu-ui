@@ -3,8 +3,6 @@ export const DEFAULT_PROFILE_PIC =
 
 export const LOCALE_STORAGE_USER = 'AuthUser'
 
-export const LOCALE_STORAGE_TOKEN = 'AuthToken'
-
 export const DEFAULT_LANGUAGE = 'siteLang'
 
 export const appLanguages = [

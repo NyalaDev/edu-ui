@@ -1,4 +1,4 @@
-import { LOCALE_STORAGE_USER, LOCALE_STORAGE_TOKEN } from '../common/constants'
+import { LOCALE_STORAGE_USER } from '../common/constants'
 
 export const isBrowser = typeof window !== 'undefined'
 
@@ -24,9 +24,3 @@ export const getUserFromLocaleStorageIfAny = () => {
   const user = getLocalStorage(LOCALE_STORAGE_USER)
   return user ? JSON.parse(user) : {}
 }
-
-/**
- * Helper function to get jwt from locale storage if exists
- */
-export const getTokenFromLocaleStorageIfAny = () =>
-  getLocalStorage(LOCALE_STORAGE_TOKEN) || ''

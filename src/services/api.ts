@@ -1,7 +1,6 @@
 import axios from 'axios'
 import { appConfig } from '../common/config'
-import { getLocalStorage } from './localStorage'
-import { LOCALE_STORAGE_TOKEN } from '../common/constants'
+import { getTokenFromCookie } from './cookie.service'
 import {
   UserSignupData,
   UserSigninData,
@@ -14,7 +13,7 @@ import {
 } from '../types/api.types'
 
 const axiosInstance = () => {
-  const token = getLocalStorage(LOCALE_STORAGE_TOKEN)
+  const token = getTokenFromCookie()
   const headers = token ? { Authorization: `Bearer ${token}` } : undefined
   const params = {
     baseURL: appConfig.strapiURL,
