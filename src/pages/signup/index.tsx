@@ -1,17 +1,24 @@
 import React, { useEffect } from 'react'
-
 import { useTranslation, Link } from 'gatsby-plugin-react-i18next'
-
 import { graphql } from 'gatsby'
+import { FormikProps } from 'formik'
 import Layout from '../../components/Layout'
-import SocialButton from '../../components/SocialButton'
+import SocialButton, { SocialProvider } from '../../components/SocialButton'
 import formEnhancer from './enhancedForm'
-import formikProps from '../../common/formik-props'
 import useLanguage from '../../hooks/useLanguage'
 
-const providers = ['GitHub']
+const providers: SocialProvider[] = ['GitHub']
 
-const Signup = ({
+interface FormValues {
+  username: string
+  email: string
+  password: string
+  language: string
+  passwordConfirmation: string
+  emailSubscription: boolean
+}
+
+const Signup: React.FC<FormikProps<FormValues>> = ({
   getFieldProps,
   handleSubmit,
   touched,
@@ -21,9 +28,10 @@ const Signup = ({
 }) => {
   const { t } = useTranslation()
   const { language } = useLanguage()
-
-  useEffect(() => setFieldValue('language', language), [])
-
+  useEffect(() => setFieldValue('language', language), [
+    setFieldValue,
+    language,
+  ])
   return (
     <Layout title={t('signUp')}>
       <div className="bg-white w-full max-w-lg rounded-lg shadow-md overflow-hidden mx-auto">
@@ -40,7 +48,6 @@ const Signup = ({
                 type="text"
                 placeholder={t('name')}
                 aria-label="Name"
-                name="username"
                 {...getFieldProps('username')}
               />
               {touched.username && errors.username && (
@@ -56,7 +63,6 @@ const Signup = ({
                 type="email"
                 placeholder={t('email')}
                 aria-label="email"
-                name="email"
                 {...getFieldProps('email')}
               />
               {touched.email && errors.email && <span>{errors.email}</span>}
@@ -71,7 +77,6 @@ const Signup = ({
                 type="password"
                 placeholder={t('password')}
                 aria-label="password"
-                name="password"
                 {...getFieldProps('password')}
               />
               {touched.password && errors.password && (
@@ -91,7 +96,6 @@ const Signup = ({
                 type="password"
                 placeholder={t('passConfirm')}
                 aria-label="passwordConfirmation"
-                name="passwordConfirmation"
                 {...getFieldProps('passwordConfirmation')}
               />
               {touched.passwordConfirmation && errors.passwordConfirmation && (
@@ -100,11 +104,7 @@ const Signup = ({
             </div>
 
             <div className="mt-4 w-full">
-              <input
-                name="emailSubscription"
-                type="checkbox"
-                {...getFieldProps('emailSubscription')}
-              />
+              <input type="checkbox" {...getFieldProps('emailSubscription')} />
               <span className=" mx-2">{t('emailSubscription')}</span>
             </div>
 
@@ -144,10 +144,6 @@ const Signup = ({
       </div>
     </Layout>
   )
-}
-
-Signup.propTypes = {
-  ...formikProps,
 }
 export const query = graphql`
   query($language: String!) {

@@ -2,9 +2,9 @@ import React from 'react'
 import { useTranslation } from 'gatsby-plugin-react-i18next'
 
 type ModalProps = {
-  title?: string
-  onDismiss?: (...args: any[]) => any
-  onAction?: (...args: any[]) => any
+  title: string
+  onDismiss: VoidFunction
+  onAction?: VoidFunction
   closeLabel?: string
   confirmLabel?: string
   withActions?: boolean

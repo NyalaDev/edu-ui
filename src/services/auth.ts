@@ -9,10 +9,12 @@ import { isBrowser } from './localStorage'
 export const handleAuthentication = async (
   provider = 'github',
   language = 'ar'
-) => {
+): Promise<undefined> => {
   if (!isBrowser) {
     return
   }
+  // FixMe: investigate this component, it doesn't look it's working properly
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const { setCurrentUser, setAuthToken } = useContext(AuthContext)
   const callBackParams = queryString.parse(window.location.search)
   // If callback error or user canceled then redirect the user back to the login screen
@@ -32,7 +34,7 @@ export const handleAuthentication = async (
     //
   }
 }
-export const extractErrorMessage = (err: AxiosError) => {
+export const extractErrorMessage = (err: AxiosError): string => {
   try {
     const { response } = err
     const { data } = response as { data: { message: string } }

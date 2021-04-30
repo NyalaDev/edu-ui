@@ -1,28 +1,29 @@
-import React from "react";
-import { graphql } from "gatsby";
-import Seo from "../components/Seo";
-import Layout from "../components/Layout";
-import CourseCard from "../components/Courses/CourseCard";
-import { getYoutubeThumbnail } from "../common/util";
-import { Course } from "../types/api.types";
+import React from 'react'
+import { graphql } from 'gatsby'
+import Seo from '../components/Seo'
+import Layout from '../components/Layout'
+import CourseCard from '../components/Courses/CourseCard'
+import { getYoutubeThumbnail } from '../common/util'
+import { Course } from '../types/api.types'
+
 type TagViewProps = {
   data: {
     strapiTag: {
       courses: Course[]
       tagName: string
     }
-  },
+  }
   location: {
     href: string
   }
-};
+}
 const TagView: React.SFC<TagViewProps> = ({ data, location }) => {
-  const { courses = [], tagName } = data.strapiTag;
+  const { courses = [], tagName } = data.strapiTag
   return (
     <>
       <Seo
         title={tagName}
-        meta={[{ property: "og:url", content: location.href }]}
+        meta={[{ property: 'og:url', content: location.href }]}
       />
       <Layout>
         <div>
@@ -31,23 +32,23 @@ const TagView: React.SFC<TagViewProps> = ({ data, location }) => {
           </div>
           <div className="grid md:grid-cols-3 sm:grid-cols-1 gap-4">
             {courses.map(course => {
-              const { lectures } = course;
-              const { url: imageUrl } = lectures[0] || {};
+              const { lectures } = course
+              const { url: imageUrl } = lectures[0] || {}
               return (
                 <CourseCard
                   key={course.id}
                   course={course}
                   image={getYoutubeThumbnail(imageUrl)}
                 />
-              );
+              )
             })}
           </div>
         </div>
       </Layout>
     </>
-  );
-};
-export default TagView;
+  )
+}
+export default TagView
 export const pageQuery = graphql`
   query TagByID($id: String!) {
     strapiTag(id: { eq: $id }) {
@@ -68,4 +69,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`;
+`

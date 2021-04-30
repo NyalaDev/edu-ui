@@ -78,7 +78,7 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "deploy": "gatsby-plugin-s3 deploy",
-    "lint": "eslint src/**/*.{js,ts,tsx}",
+    "lint": "eslint src/**/*.{ts,tsx}",
     "tsc": "tsc --pretty --noEmit",
     "test": "jest",
     "test:watch": "jest --watch"

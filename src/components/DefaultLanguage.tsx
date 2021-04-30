@@ -1,10 +1,9 @@
 import React from 'react'
 import useLanguage from '../hooks/useLanguage'
 import { appLanguages } from '../common/constants'
-import { AppLocale } from '../types/api.types'
 
 type DefaultLanguageProps = {
-  onDismiss: (...args: any[]) => any
+  onDismiss: VoidFunction
 }
 const DefaultLanguage: React.FC<DefaultLanguageProps> = ({ onDismiss }) => {
   const { language, changeLanguage } = useLanguage()

@@ -2,10 +2,14 @@ import { useEffect } from 'react'
 
 const events = [`mousedown`, `touchstart`]
 
-export default (ref: any, onClickOutside: any): any => {
-  const isOutside = (element: any) =>
-    !ref.current || !ref.current.contains(element)
-  const onClick = (event: any) => {
+export default (
+  ref: React.RefObject<HTMLDivElement>,
+  onClickOutside: VoidFunction
+): void => {
+  const isOutside = (element: EventTarget | null) =>
+    !ref.current || !ref.current.contains(element as Node)
+
+  const onClick = (event: Event) => {
     if (isOutside(event.target)) {
       onClickOutside()
     }

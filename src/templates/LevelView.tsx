@@ -1,20 +1,23 @@
-import React from "react";
-import { graphql } from "gatsby";
-import Layout from "../components/Layout";
-import CourseCard from "../components/Courses/CourseCard";
-import { getYoutubeThumbnail } from "../common/util";
-import { Course } from "../types/api.types";
+import React from 'react'
+import { graphql } from 'gatsby'
+import Layout from '../components/Layout'
+import CourseCard from '../components/Courses/CourseCard'
+import { getYoutubeThumbnail } from '../common/util'
+import { Course } from '../types/api.types'
+
 type LevelViewProps = {
   data: {
-    allStrapiCourse: { edges: { node: Course}[] }
-  },
+    allStrapiCourse: { edges: { node: Course }[] }
+  }
   pageContext: {
     level: string
   }
-};
+}
 const LevelView: React.FC<LevelViewProps> = ({ data, pageContext }) => {
-  const { allStrapiCourse: { edges: courses = [] } } = data;
-  const { level } = pageContext;
+  const {
+    allStrapiCourse: { edges: courses = [] },
+  } = data
+  const { level } = pageContext
   return (
     <Layout>
       <div>
@@ -24,21 +27,21 @@ const LevelView: React.FC<LevelViewProps> = ({ data, pageContext }) => {
       </div>
       <div className="grid md:grid-cols-3 sm:grid-cols-1 gap-4">
         {courses.map(course => {
-          const { lectures } = course.node;
-          const { url: imageUrl } = lectures[0] || {};
+          const { lectures } = course.node
+          const { url: imageUrl } = lectures[0] || {}
           return (
             <CourseCard
               key={course.node.id}
               course={course.node}
               image={getYoutubeThumbnail(imageUrl)}
             />
-          );
+          )
         })}
       </div>
     </Layout>
-  );
-};
-export default LevelView;
+  )
+}
+export default LevelView
 export const pageQuery = graphql`
   query CoursesByLevel($level: String!) {
     allStrapiCourse(filter: { level: { eq: $level } }) {
@@ -60,4 +63,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`;
+`

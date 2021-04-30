@@ -5,7 +5,7 @@ type InputProps = {
   type?: string
   label?: string
   name: string
-  onChange: (...args: any[]) => any
+  onChange: VoidFunction
   placeholder?: string
   error?: string
   prefix?: string

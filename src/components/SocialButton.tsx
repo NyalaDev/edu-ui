@@ -16,8 +16,9 @@ const COLORS = {
     Icon: FaGoogle,
   },
 }
+export type SocialProvider = 'Google' | 'GitHub'
 type SocialButtonProps = {
-  provider: 'Google' | 'GitHub'
+  provider: SocialProvider
 }
 const SocialButton: React.FC<SocialButtonProps> = ({ provider }) => {
   const { background, className, Icon } = COLORS[provider]

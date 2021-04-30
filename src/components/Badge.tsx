@@ -7,7 +7,7 @@ type BadgeProps = {
   text: string
   color?: string
   closable?: boolean
-  onClose?: (...args: any[]) => any
+  onClose?: VoidFunction
   link?: string
   languageBadge?: string
 }
@@ -20,6 +20,7 @@ const Badge: React.FC<BadgeProps> = ({
   onClose,
 }) => {
   const Wrapper = link ? Link : React.Fragment
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const WrapperProps: any = link ? { to: link } : {}
   const color =
     (languageBadge ? `language-${languageBadge}` : colorToUse) || 'gray-400'

@@ -1,14 +1,14 @@
 import { useContext } from 'react'
 import { AuthContext } from '../contexts/AuthContext'
 
-const useCourseProgress = (courseStrapiId: number) => {
+const useCourseProgress = (courseStrapiId: number): number[] => {
   const { currentUser, isLoggedIn } = useContext(AuthContext)
-  const isCourseInProgress =
+  const coursesCompleted =
     isLoggedIn &&
     currentUser &&
     currentUser.profile &&
     currentUser.profile.completedlectures &&
     currentUser.profile.completedlectures[courseStrapiId]
-  return isCourseInProgress
+  return coursesCompleted || []
 }
 export default useCourseProgress

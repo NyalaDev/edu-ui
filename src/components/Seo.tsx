@@ -7,7 +7,7 @@ import { AppLocale } from '../types/api.types'
 type SEOProps = {
   description?: string
   lang?: string
-  meta?: any[]
+  meta?: (({ name: string } | { property: string }) & { content: string })[]
   title: string
   twitterCardType?: string
   image?: string
@@ -16,7 +16,7 @@ const SEO: React.FC<SEOProps> = ({
   description,
   image,
   lang,
-  meta,
+  meta = [],
   title,
   twitterCardType = 'summary_large_image',
 }) => {
@@ -150,7 +150,7 @@ const SEO: React.FC<SEOProps> = ({
           name: 'charset',
           content: 'utf-8',
         },
-      ].concat(meta as any[])}
+      ].concat(meta)}
     >
       <style type="text/css">{fonts}</style>
       <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async />

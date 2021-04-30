@@ -13,10 +13,10 @@ const StyledButton = styled.button<ButtonProps>`
   outline: 0 !important;
 `
 type ClickableProps = {
-  onClick: ((...args: any[]) => any) | undefined
+  onClick: VoidFunction | undefined
   readOnly?: boolean
 }
-const Clickable: React.SFC<ClickableProps> = ({
+const Clickable: React.FC<ClickableProps> = ({
   onClick,
   children,
   readOnly,
