@@ -10,13 +10,13 @@ exports.createPages = async ({ actions, graphql }) => {
 
   const templatesBase = './src/templates'
   const lectureViewTemplate = path.resolve(
-    `${templatesBase}/LectureView/index.js`
+    `${templatesBase}/LectureView/index.tsx`
   )
-  const tagViewTemplate = path.resolve(`${templatesBase}/TagView.js`)
-  const levelViewTemplate = path.resolve(`${templatesBase}/LevelView.js`)
-  const languageViewTemplate = path.resolve(`${templatesBase}/LanguageView.js`)
+  const tagViewTemplate = path.resolve(`${templatesBase}/TagView.tsx`)
+  const levelViewTemplate = path.resolve(`${templatesBase}/LevelView.tsx`)
+  const languageViewTemplate = path.resolve(`${templatesBase}/LanguageView.tsx`)
   const instructorViewTemplate = path.resolve(
-    `${templatesBase}/InstructorView.js`
+    `${templatesBase}/InstructorView.tsx`
   )
 
   const {

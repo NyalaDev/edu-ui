@@ -6,6 +6,9 @@ export type User = {
   profile: Profile
 }
 
+type CourseId = number
+type LectureId = number
+
 export type Profile = {
   id: number
   name: string | null
@@ -14,6 +17,10 @@ export type Profile = {
   github: string | null
   twitter: string | null
   user: User
+  profilepicture: {
+    url: string
+  }
+  completedlectures?: Record<CourseId, LectureId[]>
 }
 
 export type UserSigninData = {
@@ -41,6 +48,12 @@ export type UserForgotPasswordData = {
   email: string
 }
 
+export type CourseRating = {
+  courseId: number
+  rating: number
+  text: string
+  lectureId: number
+}
 export type UserResetPasswordData = {
   password: string
   passwordConfirmation: string
@@ -52,7 +65,7 @@ export type UserPrToReviewData = {
   exercise: string
 }
 
-type Language = 'en' | 'ar' | 'am' | 'sw'
+export type AppLocale = 'en' | 'ar' | 'am' | 'sw'
 
 type CourseStatus = 'Published' | 'Draft' | 'Upcoming'
 
@@ -67,7 +80,7 @@ type UserRole = {
 
 export type UserSubscribeToMailingList = {
   email: string
-  LANGUAGE: Language
+  LANGUAGE: string
 }
 
 export type Tag = {
@@ -90,6 +103,7 @@ export type Resource = {
 
 export type Lecture = {
   id: number
+  strapiId: number
   title: string
   description?: string
   url: string

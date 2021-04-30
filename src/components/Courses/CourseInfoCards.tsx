@@ -7,11 +7,11 @@ import InstructorBio from './CourseInfo/InstructorBio'
 import CourseExercises from './CourseInfo/CourseExercises'
 import ShareButtons from './ShareButtons'
 import { DEFAULT_PROFILE_PIC } from '../../common/constants'
-import { CoursePropType, getYoutubeThumbnail } from '../../common/util'
+import { getYoutubeThumbnail } from '../../common/util'
 import { getProfileById } from '../../services/api'
 import CourseCard from './CourseCard'
 import useCourseProgress from '../../hooks/useCourseProgress'
-import { Course } from '../../types/api.types'
+import { Course, User } from '../../types/api.types'
 
 type Props = {
   course: Course
@@ -25,16 +25,9 @@ const CourseInfoCards: React.FC<Props> = ({
   completedLectures,
 }) => {
   const [instructorPhoto, setInstructorPhoto] = useState(DEFAULT_PROFILE_PIC)
-  const {
-    title,
-    tags,
-    lectures,
-    slug,
-    instructor,
-    strapiId: courseStrapiId,
-  } = course
+  const { title, tags, lectures, instructor, strapiId: courseStrapiId } = course
 
-  const isCourseInProgress = useCourseProgress(courseStrapiId)
+  const coursesInProgress = useCourseProgress(courseStrapiId)
   const sortedLectures = orderBy(lectures, 'position', 'asc')
 
   let lectureToPlayNext = sortedLectures[0]
@@ -59,11 +52,11 @@ const CourseInfoCards: React.FC<Props> = ({
       try {
         if (!profile.id) return
         const { data: profileData } = await getProfileById(profile.id)
-        if (profileData.profilepicture) {
+        if (profileData?.profilepicture) {
           setInstructorPhoto(profileData.profilepicture.url)
         }
       } catch (e) {
-        //
+        // To Do
       }
     }
 
@@ -77,7 +70,9 @@ const CourseInfoCards: React.FC<Props> = ({
         course={course}
         image={thumbnail}
         lectureId={sortedLectures[0].id}
-        isCourseInProgress={isCourseInProgress}
+        isCourseInProgress={Boolean(
+          coursesInProgress && coursesInProgress.length > 0
+        )}
         showTags={false}
         lectureToPlayNext={lectureToPlayNext}
       />
