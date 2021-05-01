@@ -30,8 +30,11 @@ const axiosInstance = () => {
  * Sign the user up
  * @param values The user information
  */
-export const signUp = async (values: UserSignupData): Promise<void> => {
-  axiosInstance().post('/auth/local/register', values)
+export const signUp = async (
+  values: UserSignupData
+): Promise<UserSigninResponse> => {
+  const { data } = await axiosInstance().post('/auth/local/register', values)
+  return data
 }
 
 export const signin = async (

@@ -1,11 +1,15 @@
-import React, { useEffect } from 'react'
+import React, { useState, useContext } from 'react'
+import { useFormik, FormikProps } from 'formik'
+import * as Yup from 'yup'
 import { useTranslation, Link } from 'gatsby-plugin-react-i18next'
-import { graphql } from 'gatsby'
-import { FormikProps } from 'formik'
+import { toast } from 'react-toastify'
+import { graphql, navigate } from 'gatsby'
+import { AuthContext } from '../../contexts/AuthContext'
 import Layout from '../../components/Layout'
 import SocialButton, { SocialProvider } from '../../components/SocialButton'
 import formEnhancer from './enhancedForm'
 import useLanguage from '../../hooks/useLanguage'
+import { signUp } from '../../services/api'
 
 const providers: SocialProvider[] = ['GitHub']
 
@@ -18,27 +22,54 @@ interface FormValues {
   emailSubscription: boolean
 }
 
-const Signup: React.FC<FormikProps<FormValues>> = ({
-  getFieldProps,
-  handleSubmit,
-  touched,
-  errors,
-  isSubmitting,
-  setFieldValue,
-}) => {
+const Signup: React.FC<FormikProps<FormValues>> = () => {
   const { t } = useTranslation()
+
+  const { setCurrentUser, setAuthToken } = useContext(AuthContext)
   const { language } = useLanguage()
-  useEffect(() => setFieldValue('language', language), [
-    setFieldValue,
-    language,
-  ])
+
+  const formik = useFormik({
+    initialValues: {
+      username: '',
+      email: '',
+      password: '',
+      passwordConfirmation: '',
+      emailSubscription: false,
+      language,
+    },
+    validationSchema: Yup.object().shape({
+      username: Yup.string().required(),
+      email: Yup.string().email().required(),
+      password: Yup.string().min(6).required(),
+      passwordConfirmation: Yup.string()
+        .oneOf([Yup.ref('password'), null], 'Passwords should match!')
+        .required(),
+    }),
+    onSubmit: async (values, bag) => {
+      try {
+        bag.setSubmitting(true)
+        const data = await signUp(values)
+        toast.success('Success! You can login now')
+        setAuthToken(data.jwt)
+        setCurrentUser(data.user)
+        bag.setSubmitting(false)
+        bag.resetForm()
+        // navigate('/profile')
+      } catch (e) {
+        bag.setSubmitting(false)
+        // FIXME: Add proper massage handler
+        toast.error('Invalid Username OR Email. Please try again')
+      }
+    },
+  })
+
   return (
     <Layout title={t('signUp')}>
       <div className="bg-white w-full max-w-lg rounded-lg shadow-md overflow-hidden mx-auto">
         <div className="py-4 px-6">
           <h2 className="text-center text-gray-700 text-3xl">{t('signUp')}</h2>
 
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={formik.handleSubmit}>
             <div className="mt-4 w-full">
               <label htmlFor="name" className="text-grey-darker block mb-2">
                 {t('name')}
@@ -48,10 +79,10 @@ const Signup: React.FC<FormikProps<FormValues>> = ({
                 type="text"
                 placeholder={t('name')}
                 aria-label="Name"
-                {...getFieldProps('username')}
+                {...formik.getFieldProps('username')}
               />
-              {touched.username && errors.username && (
-                <span>{errors.username}</span>
+              {formik.touched.username && formik.errors.username && (
+                <span>{formik.errors.username}</span>
               )}
             </div>
             <div className="mt-4 w-full">
@@ -63,9 +94,11 @@ const Signup: React.FC<FormikProps<FormValues>> = ({
                 type="email"
                 placeholder={t('email')}
                 aria-label="email"
-                {...getFieldProps('email')}
+                {...formik.getFieldProps('email')}
               />
-              {touched.email && errors.email && <span>{errors.email}</span>}
+              {formik.touched.email && formik.errors.email && (
+                <span>{formik.errors.email}</span>
+              )}
             </div>
 
             <div className="mt-4 w-full">
@@ -77,10 +110,10 @@ const Signup: React.FC<FormikProps<FormValues>> = ({
                 type="password"
                 placeholder={t('password')}
                 aria-label="password"
-                {...getFieldProps('password')}
+                {...formik.getFieldProps('password')}
               />
-              {touched.password && errors.password && (
-                <span>{errors.password}</span>
+              {formik.touched.password && formik.errors.password && (
+                <span>{formik.errors.password}</span>
               )}
             </div>
 
@@ -96,20 +129,24 @@ const Signup: React.FC<FormikProps<FormValues>> = ({
                 type="password"
                 placeholder={t('passConfirm')}
                 aria-label="passwordConfirmation"
-                {...getFieldProps('passwordConfirmation')}
+                {...formik.getFieldProps('passwordConfirmation')}
               />
-              {touched.passwordConfirmation && errors.passwordConfirmation && (
-                <span>{errors.passwordConfirmation}</span>
-              )}
+              {formik.touched.passwordConfirmation &&
+                formik.errors.passwordConfirmation && (
+                  <span>{formik.errors.passwordConfirmation}</span>
+                )}
             </div>
 
             <div className="mt-4 w-full">
-              <input type="checkbox" {...getFieldProps('emailSubscription')} />
+              <input
+                type="checkbox"
+                {...formik.getFieldProps('emailSubscription')}
+              />
               <span className=" mx-2">{t('emailSubscription')}</span>
             </div>
 
             <div className="flex justify-between items-center mt-6">
-              {!isSubmitting && (
+              {!formik.isSubmitting && (
                 <button
                   className="py-2 px-4 bg-gray-700 text-white rounded hover:bg-gray-600 focus:outline-none"
                   type="submit"
@@ -117,7 +154,7 @@ const Signup: React.FC<FormikProps<FormValues>> = ({
                   {t('signUp')}
                 </button>
               )}
-              {isSubmitting && <span>One sec ...</span>}
+              {formik.isSubmitting && <span>One sec ...</span>}
             </div>
 
             <div className="text-center">
@@ -152,4 +189,4 @@ export const query = graphql`
     }
   }
 `
-export default formEnhancer(Signup)
+export default Signup
