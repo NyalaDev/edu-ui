@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react'
 import ReactPlayer from 'react-player'
+import { navigate } from 'gatsby'
 import { AuthContext } from '../../contexts/AuthContext'
 import { addProfile } from '../../services/api'
 import CourseRating from './CourseRating'
@@ -9,6 +10,9 @@ type VideoPlayerProps = {
   lectureStrapiId: number
   courseStrapiId: number
   showFeedback: boolean
+  courseSlug: string
+  lectureSlug: string
+  isLastLecture: boolean
 }
 
 const VideoPlayer: React.FC<VideoPlayerProps> = ({
@@ -16,6 +20,9 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
   lectureStrapiId,
   courseStrapiId,
   showFeedback,
+  courseSlug,
+  lectureSlug,
+  isLastLecture,
 }) => {
   const DEFENITION_OF_COMPLETED = 0.8
   const { currentUser, isLoggedIn, setCurrentUser } = useContext(AuthContext)
@@ -39,6 +46,9 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
     }
   }
   const handleProgress = (state: { played: number }) => {
+    if (state.played === 1 && !isLastLecture) {
+      navigate(`/courses/${courseSlug}/lectures/${lectureSlug}`)
+    }
     const isCourseInProgress = lectures[courseStrapiId]
     const isLectureCompleted =
       lectures[courseStrapiId] &&
@@ -57,6 +67,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
     <div className="relative " style={{ paddingTop: '56.25%' }}>
       <ReactPlayer
         className="absolute top-0 right-0"
+        playing
         url={url}
         width="100%"
         height="100%"

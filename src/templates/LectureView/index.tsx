@@ -26,6 +26,7 @@ type LectureViewProps = {
   }
 }
 const LectureView: React.FC<LectureViewProps> = ({ data, location }) => {
+  const { t } = useTranslation()
   const { strapiLecture, strapiCourse, relatedCourses } = data
   const sortedLectures = orderBy(strapiCourse.lectures, 'position', 'asc')
   const lecture = !strapiLecture ? sortedLectures[0] : strapiLecture
@@ -68,7 +69,7 @@ const LectureView: React.FC<LectureViewProps> = ({ data, location }) => {
     return lectureIndex + 1 < ALLOWED_LECTURES_WHEN_NOT_LOGGED_IN
   }
   const thumbnail = getYoutubeThumbnail(lectures[0].url)
-  const { t } = useTranslation()
+
   return (
     <>
       <Seo
@@ -128,6 +129,9 @@ const LectureView: React.FC<LectureViewProps> = ({ data, location }) => {
                 lectureStrapiId={strapiId}
                 courseStrapiId={courseStrapiId}
                 showFeedback={showFeedback}
+                courseSlug={slug}
+                lectureSlug={findLectureByPosition(1)}
+                isLastLecture
               />
             </div>
             <div className="py-5">
