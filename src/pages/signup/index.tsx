@@ -7,7 +7,6 @@ import { graphql, navigate } from 'gatsby'
 import { AuthContext } from '../../contexts/AuthContext'
 import Layout from '../../components/Layout'
 import SocialButton, { SocialProvider } from '../../components/SocialButton'
-import formEnhancer from './enhancedForm'
 import useLanguage from '../../hooks/useLanguage'
 import { signUp } from '../../services/api'
 
