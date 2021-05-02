@@ -27,6 +27,7 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
   )
   const [open, setOpen] = useState(false)
   const { t } = useTranslation()
+
   useEffect(() => {
     const siteLang = getLocalStorage('siteLang')
     if (!siteLang) {
@@ -42,7 +43,7 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
     if (siteLang && siteLang === 'en') {
       setCoursesToDisplay(coursesList.slice(0, numberOfCoursesToDisplay))
     }
-  }, [open, coursesList])
+  }, [open])
   return (
     <>
       <Seo
