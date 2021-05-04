@@ -13,7 +13,7 @@ import { signUp } from '../../services/api'
 const providers: SocialProvider[] = ['GitHub']
 
 interface FormValues {
-  username: string
+  name: string
   email: string
   password: string
   language: string
@@ -29,7 +29,7 @@ const Signup: React.FC<FormikProps<FormValues>> = () => {
 
   const formik = useFormik({
     initialValues: {
-      username: '',
+      name: '',
       email: '',
       password: '',
       passwordConfirmation: '',
@@ -37,7 +37,7 @@ const Signup: React.FC<FormikProps<FormValues>> = () => {
       language,
     },
     validationSchema: Yup.object().shape({
-      username: Yup.string().required(),
+      name: Yup.string().required(),
       email: Yup.string().email().required(),
       password: Yup.string().min(6).required(),
       passwordConfirmation: Yup.string()
@@ -47,17 +47,24 @@ const Signup: React.FC<FormikProps<FormValues>> = () => {
     onSubmit: async (values, bag) => {
       try {
         bag.setSubmitting(true)
-        const data = await signUp(values)
-        toast.success('Success! You can login now')
+        const data = await signUp({ ...values, username: values.email })
+        toast.success('You created your account sucessfully!')
         setAuthToken(data.jwt)
-        setCurrentUser(data.user)
+        setCurrentUser({
+          ...data.user,
+          profile: {
+            name: values.name,
+          },
+        })
         bag.setSubmitting(false)
         bag.resetForm()
-        // navigate('/profile')
+        setTimeout(() => {
+          navigate('/profile')
+        }, 3000)
       } catch (e) {
         bag.setSubmitting(false)
         // FIXME: Add proper massage handler
-        toast.error('Invalid Username OR Email. Please try again')
+        toast.error('Something went wrong. Please try again')
       }
     },
   })
@@ -78,10 +85,10 @@ const Signup: React.FC<FormikProps<FormValues>> = () => {
                 type="text"
                 placeholder={t('name')}
                 aria-label="Name"
-                {...formik.getFieldProps('username')}
+                {...formik.getFieldProps('name')}
               />
-              {formik.touched.username && formik.errors.username && (
-                <span>{formik.errors.username}</span>
+              {formik.touched.name && formik.errors.name && (
+                <span className="text-red-500">{formik.errors.name}</span>
               )}
             </div>
             <div className="mt-4 w-full">
@@ -96,7 +103,7 @@ const Signup: React.FC<FormikProps<FormValues>> = () => {
                 {...formik.getFieldProps('email')}
               />
               {formik.touched.email && formik.errors.email && (
-                <span>{formik.errors.email}</span>
+                <span className="text-red-500">{formik.errors.email}</span>
               )}
             </div>
 
@@ -112,7 +119,7 @@ const Signup: React.FC<FormikProps<FormValues>> = () => {
                 {...formik.getFieldProps('password')}
               />
               {formik.touched.password && formik.errors.password && (
-                <span>{formik.errors.password}</span>
+                <span className="text-red-500">{formik.errors.password}</span>
               )}
             </div>
 
@@ -132,7 +139,9 @@ const Signup: React.FC<FormikProps<FormValues>> = () => {
               />
               {formik.touched.passwordConfirmation &&
                 formik.errors.passwordConfirmation && (
-                  <span>{formik.errors.passwordConfirmation}</span>
+                  <span className="text-red-500">
+                    {formik.errors.passwordConfirmation}
+                  </span>
                 )}
             </div>
 
@@ -141,7 +150,7 @@ const Signup: React.FC<FormikProps<FormValues>> = () => {
                 type="checkbox"
                 {...formik.getFieldProps('emailSubscription')}
               />
-              <span className=" mx-2">{t('emailSubscription')}</span>
+              <span className="font-bold mx-2">{t('emailSubscription')}</span>
             </div>
 
             <div className="flex justify-between items-center mt-6">
