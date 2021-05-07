@@ -11,7 +11,10 @@ const InputWithAddOn: React.FC<InputWithAddOnProps> = ({
   placeholder,
   ...reset
 }) => (
-  <div className="flex flex-wrap items-stretch w-full mb-4 relative">
+  <div
+    className="flex flex-wrap items-stretch w-full mb-4 relative "
+    style={{ direction: 'ltr' }}
+  >
     <div className="flex -mr-px">
       <span className="flex items-center leading-normal bg-grey-lighter rounded rounded-r-none border border-r-0 border-grey-light px-3 whitespace-no-wrap text-grey-dark text-sm">
         {prefix}
