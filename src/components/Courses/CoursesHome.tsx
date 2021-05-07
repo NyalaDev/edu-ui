@@ -46,6 +46,7 @@ const CoursesHome: React.FC<Props> = ({
               course={course}
               image={getYoutubeThumbnail(imageUrl)}
               lectureToPlayNext={firstLecture}
+              showTags
             />
           )
         })}
