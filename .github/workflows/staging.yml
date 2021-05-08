@@ -44,7 +44,6 @@ jobs:
           GATSBY_COOKIE_DOMAIN: ${{ secrets.DEV_GATSBY_COOKIE_DOMAIN }}
           GATSBY_ALGOLIA_APP_ID: ${{ secrets.GATSBY_ALGOLIA_APP_ID }}
           GATSBY_ALGOLIA_SEARCH_KEY: ${{ secrets.GATSBY_ALGOLIA_SEARCH_KEY }}
-          GATSBY_GOOGLE_ANALYTICS_ID: ${{ secrets.GATSBY_GOOGLE_ANALYTICS_ID }}
       - name: Deploy website
         run: yarn deploy
   invalidate:
