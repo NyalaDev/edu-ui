@@ -3,6 +3,7 @@ import { graphql } from 'gatsby'
 import { useTranslation } from 'gatsby-plugin-react-i18next'
 import Layout from '../components/Layout'
 import CourseCard from '../components/Courses/CourseCard'
+import CourseCardUpcoming from '../components/Courses/CourseCardUpcoming'
 import { getYoutubeThumbnail } from '../common/util'
 import { Course } from '../types/api.types'
 
@@ -26,8 +27,12 @@ const InstructorView: React.FC<InstructorViewProps> = ({ data }) => {
       </div>
       <div className="grid md:grid-cols-3 sm:grid-cols-1 gap-4">
         {courses.map(course => {
+          if (course.node.status === 'Upcoming') {
+            return null
+          }
           const { lectures } = course.node
           const { url: imageUrl } = lectures[0] || {}
+
           return (
             <CourseCard
               key={course.node.id}
@@ -56,8 +61,10 @@ export const pageQuery = graphql`
           description
           slug
           level
+          status
           lectures {
             url
+            slug
           }
           language {
             id
