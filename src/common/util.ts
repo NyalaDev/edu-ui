@@ -69,10 +69,7 @@ export const getProfilePicuteUrlFromUserObject = (
   }
   // TODO: use the CDN link instead of the s3 ?
   try {
-    const { profile } = user
-    const {
-      profilepicture: { url },
-    } = profile
+    const url = user?.profile?.profilepicture?.url
     return url || DEFAULT_PROFILE_PIC
   } catch (error) {
     return DEFAULT_PROFILE_PIC

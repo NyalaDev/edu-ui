@@ -1,7 +1,6 @@
 import React from 'react'
 import { ToastContainer } from 'react-toastify'
 import Header from './Header'
-import PageTitle from './PageTitle'
 import Footer from './Footer'
 import 'react-toastify/dist/ReactToastify.css'
 import './layout.css'
@@ -9,14 +8,12 @@ import useLanguage from '../hooks/useLanguage'
 import SEO from './Seo'
 
 type LayoutProps = {
-  pageTitle?: string
   fullPage?: boolean
   modalOpen?: boolean
   title?: string
 }
 const Layout: React.FC<LayoutProps> = ({
   children,
-  pageTitle,
   fullPage,
   modalOpen,
   title,
@@ -48,8 +45,6 @@ const Layout: React.FC<LayoutProps> = ({
         } bg-gray-100 leading-normal tracking-normal`}
       >
         <Header />
-
-        {pageTitle && <PageTitle title={pageTitle} />}
 
         {wrappedChildren}
 
