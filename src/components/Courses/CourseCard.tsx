@@ -42,6 +42,7 @@ const CourseCard: React.FC<Props> = ({
 
   return (
     <div
+      data-testid="course-card"
       className={`rounded max-w-sm overflow-hidden shadow-lg ${
         isRtl ? 'rtl' : 'ltr'
       }`}

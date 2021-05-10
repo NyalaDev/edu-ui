@@ -37,3 +37,8 @@ If you only want to work with the front-end, and do not want to setup the back-e
 ```
 yarn develop
 ```
+
+## Tests
+
+- To run the unit tests, run `yarn test`
+- To run the end to end tests, run `yarn run cypress open`

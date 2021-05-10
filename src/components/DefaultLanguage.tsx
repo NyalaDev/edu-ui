@@ -31,6 +31,7 @@ const DefaultLanguage: React.FC<DefaultLanguageProps> = ({ onDismiss }) => {
           className="flex w-48 justify-center  items-center focus:outline-none border border-gray-800 px-4 py-2 m-3 rounded text-black hover:bg-purple-800 hover:text-white"
           onClick={onLanguageButtonClick}
           data-locale={lang.locale}
+          data-testid={lang.locale}
           type="button"
         >
           <img

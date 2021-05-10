@@ -1,12 +1,12 @@
 import React from 'react'
-import CourseCard from './CourseCard'
 import {
   render,
   getByText,
   fireEvent,
   waitFor,
-  screen
+  screen,
 } from '@testing-library/react'
+import CourseCard from './CourseCard'
 import { Course } from '../../types/api.types'
 
 describe('CourseCard', () => {
@@ -23,13 +23,13 @@ describe('CourseCard', () => {
         { slug: 'part-1', url: 'https://www.youtube.com/watch?v=0zKlQtUeXic' },
         { slug: 'part-2', url: 'https://www.youtube.com/watch?v=XgyZ2iSHtGc' },
         { slug: 'part-3', url: 'https://www.youtube.com/watch?v=Kt7T1u_OcNk' },
-        { slug: 'part-4', url: 'https://www.youtube.com/watch?v=TDHdTr4uKqw' }
+        { slug: 'part-4', url: 'https://www.youtube.com/watch?v=TDHdTr4uKqw' },
       ],
-      language: { id: 51, name: 'Arabic', iso2: 'ar' }
+      language: { id: 51, name: 'Arabic', iso2: 'ar' },
     } as Course
     const props = {
       course,
-      image: 'http://image.png'
+      image: 'http://image.png',
       // lectureId?: number
       // courseViewMode?: boolean
       // isCourseInProgress?: boolean

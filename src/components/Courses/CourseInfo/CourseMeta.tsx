@@ -21,7 +21,10 @@ const CourseMeta: React.FC<Props> = ({ lectures, tags }) => {
       ? courseCreatedDate.setLocale('ar').toLocaleString(DateTime.DATE_FULL)
       : courseCreatedDate.toLocaleString(DateTime.DATE_FULL)
   return (
-    <div className="max-w-sm rounded overflow-hidden shadow-lg my-5 ">
+    <div
+      data-testid="about-course"
+      className="max-w-sm rounded overflow-hidden shadow-lg my-5 "
+    >
       <div className="px-6 py-3 bg-purple-800">
         <h1 className="text-white title text-lg items-center justify-center flex">
           <FaInfoCircle />

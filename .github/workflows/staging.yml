@@ -60,3 +60,25 @@ jobs:
           aws-region: eu-central-1
       - name: Invalidate cache
         run: aws cloudfront create-invalidation --distribution-id "${{ secrets.CLOUD_FRONT_DEV_DISTRIBUTION }}" --paths "/*"
+  e2eTests:
+    name: Run End to End tests
+    runs-on: ubuntu-latest
+    needs: invalidate
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Run e2e tests
+        uses: cypress-io/github-action@v2
+        with:
+          config: baseUrl=https://edu.nyaladev.com
+      - uses: actions/upload-artifact@v1
+        if: failure()
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
+      # Test run video was always captured, so this action uses "always()" condition
+      - uses: actions/upload-artifact@v1
+        if: always()
+        with:
+          name: cypress-videos
+          path: cypress/videos
