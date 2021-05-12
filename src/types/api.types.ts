@@ -3,7 +3,7 @@ export type User = {
   email: string
   provider: 'local' | 'github'
   role: UserRole
-  profile: Profile
+  profile: Partial<Profile>
 }
 
 type CourseId = number
