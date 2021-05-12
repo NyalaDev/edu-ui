@@ -25,7 +25,7 @@ module.exports = {
         'bg-language-en',
         'bg-language-sw',
       ],
-      keyframes: true,
+      keyframes: false,
     },
   },
   theme: {
