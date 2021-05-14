@@ -131,7 +131,9 @@ const LectureView: React.FC<LectureViewProps> = ({ data, location }) => {
                 showFeedback={showFeedback}
                 courseSlug={slug}
                 lectureSlug={findLectureByPosition(1)}
-                isLastLecture
+                isLastLecture={isLastLecture}
+                isFirstLecture={isFirstLecture}
+                canNavigateToNext={canNavigateToNext()}
               />
             </div>
             <div className="py-5">

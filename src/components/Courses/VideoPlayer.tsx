@@ -13,6 +13,8 @@ type VideoPlayerProps = {
   courseSlug: string
   lectureSlug: string
   isLastLecture: boolean
+  isFirstLecture: boolean
+  canNavigateToNext: boolean
 }
 
 const VideoPlayer: React.FC<VideoPlayerProps> = ({
@@ -23,10 +25,12 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
   courseSlug,
   lectureSlug,
   isLastLecture,
+  isFirstLecture,
+  canNavigateToNext,
 }) => {
   const DEFENITION_OF_COMPLETED = 0.8
   const { currentUser, isLoggedIn, setCurrentUser } = useContext(AuthContext)
-  const [open, setOpen] = useState(showFeedback)
+  const [open, setOpen] = useState(showFeedback && isLoggedIn)
   const lectures =
     isLoggedIn &&
     currentUser &&
@@ -45,10 +49,14 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
       // FIXME: error handling
     }
   }
-  const handleProgress = (state: { played: number }) => {
-    if (state.played === 1 && !isLastLecture) {
+
+  const handleCompleteVideo = () => {
+    if (!isLastLecture && canNavigateToNext) {
       navigate(`/courses/${courseSlug}/lectures/${lectureSlug}`)
     }
+  }
+
+  const handleProgress = (state: { played: number }) => {
     const isCourseInProgress = lectures[courseStrapiId]
     const isLectureCompleted =
       lectures[courseStrapiId] &&
@@ -67,16 +75,16 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
     <div className="relative " style={{ paddingTop: '56.25%' }}>
       <ReactPlayer
         className="absolute top-0 right-0"
-        playing
+        playing={!open && !isFirstLecture}
         url={url}
         width="100%"
         height="100%"
         controls
-        onPlay={() => setOpen(false)}
         onProgress={isLoggedIn ? handleProgress : () => {}}
+        onEnded={handleCompleteVideo}
       />
 
-      {showFeedback && open && (
+      {open && (
         <CourseRating
           onDismiss={() => setOpen(false)}
           courseId={courseStrapiId}
