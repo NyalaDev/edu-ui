@@ -15,7 +15,7 @@ const quotes = {
     },
     {
       text:
-        'If you talk to a person in a language he understands, that goes to his head. If you talk to them in their own language, that goes to their heart.',
+        'If you talk to a person in a language they understand, that goes to their head. If you talk to them in their own language, that goes to their heart.',
       author: 'Nelson Mandela',
     },
   ],
@@ -42,8 +42,7 @@ const Footer: React.FC = () => {
     author: string
   } | null>(null)
   const { language } = useLanguage()
-  const quoteLanguage = language === 'am' || language === 'ar' ? 'en' : language
-  const quotesInLanguage = quotes[quoteLanguage as keyof typeof quotes]
+  const quotesInLanguage = quotes[language as keyof typeof quotes] || quotes.en
   useEffect(() => {
     setRandomQuote(
       quotesInLanguage[Math.floor(Math.random() * quotesInLanguage.length)]
