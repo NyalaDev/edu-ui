@@ -69,6 +69,7 @@ export const pageQuery = graphql`
         language {
           id
           name
+          iso2
         }
       }
     }

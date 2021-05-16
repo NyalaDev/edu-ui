@@ -43,7 +43,10 @@ const LevelView: React.FC<LevelViewProps> = ({ data, pageContext }) => {
 }
 export default LevelView
 export const pageQuery = graphql`
-  query CoursesByLevel($level: String!) {
+  query CoursesByLevel($level: String!, $language: String!) {
+    locales: allLocale(filter: { language: { eq: $language } }) {
+      ...LanguageInfo
+    }
     allStrapiCourse(filter: { level: { eq: $level } }) {
       edges {
         node {
@@ -58,6 +61,7 @@ export const pageQuery = graphql`
           language {
             id
             name
+            iso2
           }
         }
       }

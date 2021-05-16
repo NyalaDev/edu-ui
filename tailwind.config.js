@@ -24,6 +24,7 @@ module.exports = {
         'bg-language-am',
         'bg-language-en',
         'bg-language-sw',
+        'bg-pink-800',
       ],
       keyframes: false,
     },
