@@ -52,9 +52,6 @@ const Signup: React.FC<FormikProps<FormValues>> = () => {
         setAuthToken(data.jwt)
         setCurrentUser({
           ...data.user,
-          profile: {
-            name: values.name,
-          },
         })
         bag.setSubmitting(false)
         bag.resetForm()

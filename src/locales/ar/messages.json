@@ -86,6 +86,9 @@
   "shareCourse": "شارك الكورس",
   "rateCourse": "الرجاء تقييم الكورس حتى الآن",
   "emailSubscription": "التسجيل في قائمتنا البريدية",
+  "deleteUserData": "حذف كل بياناتي الشخصية",
+  "confirmUserDelete": "هل انت متأكد من حذف كل بياناتك الشخصية ؟",
+  "cancel": "الغاء",
   "validation": {
     "required": "هذ الحقل مطلوب",
     "email": "الرجاء ادخال بريد الكتروني صحيح"

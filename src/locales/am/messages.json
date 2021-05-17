@@ -86,6 +86,9 @@
   "shareCourse": "Share course",
   "rateCourse": "Please rate the course so far",
   "emailSubscription": "Subscribe to our mailing list",
+  "deleteUserData": "Delete My User Data",
+  "confirmUserDelete": "Are you sure you want to delete all your user data ?",
+  "cancel": "Cancel",
   "validation": {
     "required": "ይሄ ቦታ አስፈላጊ ነው",
     "email": "Please enter a valid email"
