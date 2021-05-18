@@ -68,13 +68,15 @@ const CourseCard: React.FC<Props> = ({
       <div className="px-6 py-2">
         {courseViewMode && (
           <>
-            <Link
-              className="block bg-purple-800 text-white text-center hover:bg-purple-900 uppercase text-md px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1"
-              style={{ transition: 'all .15s ease' }}
-              to={`/courses/${slug}/lectures/${lectureToPlayNext.slug}`}
-            >
-              {isCourseInProgress ? t('continue') : t('start')}
-            </Link>
+            {isCourseInProgress && (
+              <Link
+                className="block bg-purple-800 text-white text-center hover:bg-purple-900 uppercase text-md px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1"
+                style={{ transition: 'all .15s ease' }}
+                to={`/courses/${slug}/lectures/${lectureToPlayNext.slug}`}
+              >
+                {t('continue')}
+              </Link>
+            )}
             {githubRepo && (
               <div className="py-4">
                 <a
