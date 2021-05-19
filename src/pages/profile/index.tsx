@@ -90,7 +90,7 @@ const MyProfile = () => {
 
   const handleDeleteBtnClick = async () => {
     try {
-      await deleteProfile(currentUser?.profile.id)
+      await deleteProfile()
       toast.success('Deleted successfully')
       logout()
       setOpen(false)
