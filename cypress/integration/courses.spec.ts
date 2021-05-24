@@ -21,3 +21,5 @@ context('Courses', () => {
       .should('include.text', 'نشر بتاريخ')
   })
 })
+
+export {}

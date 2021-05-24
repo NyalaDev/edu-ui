@@ -1,6 +1,6 @@
 {
-  "include": ["src", "jest-setup.ts"],
-  "exclude": ["cypress"],
+  "include": ["src", "jest-setup.ts", "cypress"],
+  // "exclude": ["cypress"],
   "compilerOptions": {
     "target": "esnext",
     "module": "esnext",

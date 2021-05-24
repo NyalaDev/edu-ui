@@ -97,6 +97,7 @@ const SiginPage = () => {
                   <button
                     className="py-2 px-4 bg-gray-700 text-white rounded hover:bg-gray-600 focus:outline-none"
                     type="submit"
+                    id="signin"
                   >
                     {t('signIn')}
                   </button>
