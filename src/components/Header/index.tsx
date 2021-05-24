@@ -34,9 +34,9 @@ const Header: React.FC = () => {
     return null
   }
   return (
-    <nav className="bg-gray-800 title">
-      <div className="max-w-6xl mx-auto px-2 sm:px-6 lg:px-8">
-        <div className="relative flex items-center justify-between h-16">
+    <nav className="title">
+      <div className="brmg-container">
+        <div className="relative flex pt-16 items-center justify-between h-16">
           <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
             <button
               className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-700 focus:text-white transition duration-150 ease-in-out"
@@ -77,24 +77,19 @@ const Header: React.FC = () => {
             <div className="flex-shrink-0 ml-2">
               <Link to="/">
                 <img
-                  className="block lg:hidden h-8 w-auto"
-                  src="https://cdn.nyaladev.com/barmaga.io/barmaga_logo_sm.svg"
-                  alt="Barmaga"
-                />
-                <img
-                  className="hidden lg:block h-8 w-auto"
-                  src="https://cdn.nyaladev.com/barmaga.io/barmaga_logo.svg"
-                  alt="Barmaga"
+                  className="lg:block h-8 w-auto"
+                  src="/images/barmaga-logo.png"
+                  alt="Barmaga Logo"
                 />
               </Link>
             </div>
-            <div className="hidden sm:block sm:ml-6">
+            <div className="hidden flex-grow sm:block sm:ml-6">
               <div className="flex">
                 {navBarItems.map(navItem => (
                   <Link
                     key={navItem.id}
                     to={navItem.to}
-                    className="mx-2 px-3 py-2 rounded-md leading-5 text-xl text-white  focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out"
+                    className="mx-2 px-3 py-2 rounded-md leading-5 text-xl focus:outline-none transition duration-150 ease-in-out"
                   >
                     {t(navItem.label)}
                   </Link>
@@ -102,7 +97,7 @@ const Header: React.FC = () => {
                 <a
                   rel="noreferrer"
                   target="_blank"
-                  className="mx-2 px-3 py-2 rounded-md leading-5 text-xl text-yellow-500  focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out"
+                  className="mx-2 px-3 py-2 rounded-md leading-5 text-xl focus:outline-none transition duration-150 ease-in-out"
                   href="https://chuffed.org/project/barmagaio"
                 >
                   {t('landingPage.supportUs')}
@@ -110,22 +105,20 @@ const Header: React.FC = () => {
               </div>
             </div>
           </div>
-          <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-            <div className="hidden md:block sm:hidden">
+          <div className="w-2/5 right-0 flex items-center">
+            <div className="hidden w-1/2 md:block">
               <Search />
             </div>
-
-            {!isLoggedIn && (
-              <Link
-                to="/signin"
-                className="mx-2 px-3 py-2 rounded-md text-sm font-medium leading-5 text-white  focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out"
-              >
-                {t('signIn')}
-              </Link>
-            )}
-            {isLoggedIn && <UserMenu />}
-            <div className="hidden md:block">
-              <LanguageSwitcher />
+            <div className="flex text-white">
+              {!isLoggedIn && (
+                <Link to="/signin" className="px-3 w-2/3 py-2">
+                  {t('signIn')}
+                </Link>
+              )}
+              {isLoggedIn && <UserMenu />}
+              <div className="hidden md:block">
+                <LanguageSwitcher />
+              </div>
             </div>
           </div>
         </div>

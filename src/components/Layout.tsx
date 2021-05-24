@@ -30,7 +30,7 @@ const Layout: React.FC<LayoutProps> = ({
   const wrappedChildren = fullPage ? (
     children
   ) : (
-    <div className="container max-w-6xl w-full mx-auto pt-10">
+    <div className="brmg-container">
       <div className="w-full md:mt-2 mb-16 text-black-800 leading-normal">
         {children}
       </div>
@@ -44,8 +44,6 @@ const Layout: React.FC<LayoutProps> = ({
           language === 'am' ? 'amharic' : ''
         } bg-gray-100 leading-normal tracking-normal`}
       >
-        <Header />
-
         {wrappedChildren}
 
         <Footer />

@@ -39,9 +39,17 @@ module.exports = {
       },
       colors: {
         'language-ar': '#064E3B',
-        'language-am': '#DC2626',
+        'language-am': '#DD0A07',
         'language-sw': '#78350F',
         'language-en': '#4B5563',
+        'brmg-highlight': '#DD0A07',
+        'brmg-black': '#1F1F1F',
+        'brmg-primary': '#8E549B',
+        'brmg-secondary': '#47C2EC',
+        'brmg-success': '#32A491',
+        'brmg-warning': '#FFBE00',
+        'brmg-warning': '#FFBE00',
+        'brmg-disabled': '#383838',
       },
     },
     opacity: {

@@ -2,9 +2,9 @@
 import React from 'react'
 
 const colors = {
-  info: 'text-indigo-800 bg-indigo-100 hover:bg-indigo-200',
-  error: 'text-white bg-red-600',
-  success: 'text-white bg-green-600',
+  info: 'text-white bg-brmg-secondary',
+  error: 'text-white bg-brmg-highlight',
+  success: 'text-white bg-brmg-success',
 }
 const getClasses = (props: Partial<ButtonProps>) => {
   const classes = []

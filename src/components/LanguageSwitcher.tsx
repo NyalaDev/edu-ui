@@ -29,7 +29,7 @@ const LanguageSwitcher: React.FC = () => {
   return (
     <div className="relative group">
       <button
-        className="p-1 border-2 border-transparent text-white flex items-center  hover:text-gray-300 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out"
+        className="p-1 border-2 border-transparent text-white flex items-center focus:outline-none  transition duration-150 ease-in-out"
         type="button"
         onClick={toggleOpen}
       >
