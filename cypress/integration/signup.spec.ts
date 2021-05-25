@@ -18,7 +18,7 @@ context('signup', () => {
     cy.get('#passConfirm').type('testtest')
     cy.get('#signup').click()
 
-    cy.wait(4000)
+    cy.wait(5000)
 
     cy.get('#user-menu > .h-8').click({ force: true })
     cy.get('.origin-top-right').should('be.visible')
