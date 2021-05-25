@@ -13,6 +13,8 @@ context('signin', () => {
     cy.get('#identifier').type('test@test.test')
     cy.get('#password').type('testtest{enter}')
 
+    cy.wait(2000)
+
     cy.get('#user-menu > .h-8').click({ force: true })
     cy.get('.origin-top-right').should('be.visible')
     cy.get('[href="/en/profile"]').click()
