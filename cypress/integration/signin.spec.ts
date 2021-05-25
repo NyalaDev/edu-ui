@@ -2,23 +2,30 @@
 
 context('signin', () => {
   beforeEach(() => {
-    cy.visit('/signin')
+    cy.visit('/')
   })
 
   it('should signin', () => {
-    cy.get('#identifier').type('alaa')
-    cy.get('#password').type('alaaalaa{enter}')
-    cy.get('#user-menu > .h-8')
-    cy.visit('/profile')
-    cy.get('#name').clear().type('alaa')
+    cy.get('[data-testid="en"]').click()
+
+    cy.contains('Login').click({ force: true })
+
+    cy.get('#identifier').type('test@test.test')
+    cy.get('#password').type('testtest{enter}')
+
+    cy.get('#user-menu > .h-8').click({ force: true })
+    cy.get('.origin-top-right').should('be.visible')
+    cy.get('[href="/en/profile"]').click()
+
+    cy.get('#name').clear().type('test')
     cy.get('#bio')
       .clear()
       .type(
-        'alaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+        'testaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
       )
-    cy.get('#linkedin').clear().type('alaa')
-    cy.get('#github').clear().type('alaa')
-    cy.get('#twitter').clear().type('alaa')
+    cy.get('#linkedin').clear().type('test')
+    cy.get('#github').clear().type('test')
+    cy.get('#twitter').clear().type('test')
     cy.contains('Save').click()
   })
 })

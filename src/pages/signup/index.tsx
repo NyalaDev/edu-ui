@@ -82,6 +82,7 @@ const Signup: React.FC<FormikProps<FormValues>> = () => {
               </label>
               <input
                 className="w-full mt-2 py-2 px-4 bg-gray-100 text-gray-700 border border-gray-300 rounded  block appearance-none placeholder-gray-500 focus:outline-none focus:bg-white"
+                id="name"
                 type="text"
                 placeholder={t('name')}
                 aria-label="Name"
@@ -97,6 +98,7 @@ const Signup: React.FC<FormikProps<FormValues>> = () => {
               </label>
               <input
                 className="w-full mt-2 py-2 px-4 bg-gray-100 text-gray-700 border border-gray-300 rounded  block appearance-none placeholder-gray-500 focus:outline-none focus:bg-white"
+                id="email"
                 type="email"
                 placeholder={t('email')}
                 aria-label="email"
@@ -113,6 +115,7 @@ const Signup: React.FC<FormikProps<FormValues>> = () => {
               </label>
               <input
                 className="w-full mt-2 py-2 px-4 bg-gray-100 text-gray-700 border border-gray-300 rounded  block appearance-none placeholder-gray-500 focus:outline-none focus:bg-white"
+                id="password"
                 type="password"
                 placeholder={t('password')}
                 aria-label="password"
@@ -132,6 +135,7 @@ const Signup: React.FC<FormikProps<FormValues>> = () => {
               </label>
               <input
                 className="w-full mt-2 py-2 px-4 bg-gray-100 text-gray-700 border border-gray-300 rounded  block appearance-none placeholder-gray-500 focus:outline-none focus:bg-white"
+                id="passConfirm"
                 type="password"
                 placeholder={t('passConfirm')}
                 aria-label="passwordConfirmation"
@@ -157,6 +161,7 @@ const Signup: React.FC<FormikProps<FormValues>> = () => {
               {!formik.isSubmitting && (
                 <button
                   className="py-2 px-4 bg-gray-700 text-white rounded hover:bg-gray-600 focus:outline-none"
+                  id="signup"
                   type="submit"
                 >
                   {t('signUp')}
