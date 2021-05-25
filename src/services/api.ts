@@ -60,6 +60,10 @@ export const addProfile = async (
   const { data } = await axiosInstance().put(`/profiles`, values)
   return data
 }
+
+export const deleteProfile = async (): Promise<{ data: Profile }> =>
+  axiosInstance().delete(`/profiles`)
+
 export const addPRToReview = async (
   values: UserPrToReviewData
 ): Promise<UserPrToReviewData> => {

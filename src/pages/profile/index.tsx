@@ -5,17 +5,21 @@ import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { isEmpty } from 'lodash'
 import { toast } from 'react-toastify'
+import { AiFillDelete } from 'react-icons/ai'
 import Layout from '../../components/Layout'
 import Spinner from '../../components/Spinner'
 import InputWithAddOn from '../../components/InputWithAddOn'
 import { AuthContext } from '../../contexts/AuthContext'
-import { addProfile, uploadFile } from '../../services/api'
+import { addProfile, uploadFile, deleteProfile } from '../../services/api'
 import { getProfilePicuteUrlFromUserObject } from '../../common/util'
+import Modal from '../../components/Modal'
+import Clickable from '../../components/Clickable'
 
 const MyProfile = () => {
   const { t } = useTranslation()
-  const { currentUser, setCurrentUser } = useContext(AuthContext)
+  const { currentUser, setCurrentUser, logout } = useContext(AuthContext)
   const [uploading, setUploading] = useState(false)
+  const [open, setOpen] = useState(false)
   const fileInputEl = useRef<HTMLInputElement>(null)
   useEffect(() => {
     if (isEmpty(currentUser)) {
@@ -57,6 +61,7 @@ const MyProfile = () => {
       }
     },
   })
+
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault()
     const file = e.target.files && e.target.files[0]
@@ -82,6 +87,25 @@ const MyProfile = () => {
       }
     }
   }
+
+  const handleDeleteBtnClick = async () => {
+    try {
+      await deleteProfile()
+      toast.success('Deleted successfully')
+      logout()
+      setOpen(false)
+      setTimeout(() => {
+        navigate('/')
+      }, 4000)
+    } catch (err) {
+      setOpen(false)
+      const message = err.message.match(/(403|400)/)
+        ? 'errors.invalid_auth'
+        : 'errors.generic'
+      toast.error(t(message))
+    }
+  }
+
   const profilePictureUrl = getProfilePicuteUrlFromUserObject(currentUser)
   return (
     <Layout>
@@ -220,8 +244,39 @@ const MyProfile = () => {
                   {t('save')}
                 </button>
               )}
+              <Clickable onClick={() => setOpen(true)}>
+                <AiFillDelete size={30} />
+              </Clickable>
             </div>
           </form>
+
+          {open && (
+            <Modal
+              title={t('deleteUserData')}
+              onDismiss={() => setOpen(false)}
+              withActions={false}
+            >
+              <div className="m-3">
+                <div className="text-xl">{t('confirmUserDelete')}</div>
+                <div className="mt-5 flex justify-between">
+                  <button
+                    type="button"
+                    onClick={() => setOpen(false)}
+                    className=" bg-gray-800 text-white active:bg-white font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
+                  >
+                    {t('cancel')}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={handleDeleteBtnClick}
+                    className="text-red-600 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1"
+                  >
+                    {t('delete')}
+                  </button>
+                </div>
+              </div>
+            </Modal>
+          )}
         </div>
       </div>
     </Layout>
