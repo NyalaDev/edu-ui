@@ -17,8 +17,9 @@ const CourseCardUpcoming: React.FC<Props> = ({ course }) => {
 
   return (
     <div className="max-w-sm flex flex-col rounded overflow-hidden shadow-lg">
-      <div className="h-56 bg-green-400 text-blue-900 font-bold text-xl flex-none flex justify-center items-center">
-        <span>{t('upcomingCourse.courseComingSoon')}</span>
+      <div className="h-56 bg-green-400 text-blue-900 font-bold text-xl flex-none flex flex-col justify-center items-center">
+        <div>{t('upcomingCourse.courseComingSoon')}</div>
+        <div>{course.publish_date}</div>
       </div>
       <div className="flex-grow px-6 py-4">
         <div className="title text-xl mb-2">{title}</div>

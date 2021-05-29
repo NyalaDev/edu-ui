@@ -124,6 +124,8 @@ export type Lecture = {
   position: number
   slug: string
   created_at: string
+  upcoming: boolean | null
+  publish_date: string
 }
 
 export type Course = {
@@ -142,4 +144,5 @@ export type Course = {
   resources: Resource[]
   price: number
   thumbnail: string | null
+  publish_date: string
 }
