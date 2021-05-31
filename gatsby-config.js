@@ -70,7 +70,7 @@ module.exports = {
       resolve: `gatsby-source-strapi`,
       options: {
         apiURL: process.env.GATSBY_STRAPI_API_URL || 'http://localhost:1437',
-        contentTypes: ['course', 'lecture', 'tag'],
+        contentTypes: ['course', 'lecture', 'tag', 'settings'],
         queryLimit: 1000,
       },
     },

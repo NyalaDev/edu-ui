@@ -9,16 +9,18 @@ import DefaultLanguage from '../components/DefaultLanguage'
 import LandingPage from '../components/LandingPage'
 import CoursesHome from '../components/Courses/CoursesHome'
 import { AppProvider } from '../contexts/AppContext'
-import { Course } from '../types/api.types'
+import { Course, HomePageSettings } from '../types/api.types'
 
 type IndexPageProps = {
   data: {
     allStrapiCourse: { edges: { node: Course }[] }
+    strapiSettings: HomePageSettings
   }
 }
 const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
   const {
     allStrapiCourse: { edges },
+    strapiSettings: settings,
   } = data
   const numberOfCoursesToDisplay = 5
   const coursesList = edges.map(edge => edge.node)
@@ -51,7 +53,7 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
         title={t('landingPage.heroSubtitle')}
       />
       <Layout modalOpen={open} fullPage>
-        <LandingPage />
+        <LandingPage settings={settings} />
         <div className="container max-w-6xl w-full mx-auto pt-10">
           <div className="w-full md:mt-2 mb-16 text-black-800 leading-normal">
             <AppProvider initialCoursesList={coursesToDisplay}>
@@ -123,6 +125,24 @@ export const pageQuery = graphql`
             id
             name
             iso2
+          }
+        }
+      }
+    }
+    strapiSettings {
+      homeQuotes {
+        language
+        data {
+          text
+          author
+        }
+      }
+      homeSettings {
+        homeBullets {
+          language
+          data {
+            title
+            bullets
           }
         }
       }
