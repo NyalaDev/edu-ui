@@ -13,6 +13,17 @@
   font-family: NotoKufi;
 }
 
+.bg-top-header {
+  background-image: url(/images/hero-bg-ltr.png);
+  background-size: 50% 100%;
+  background-repeat: no-repeat;
+  background-position: right top;
+}
+
+.rtl .bg-top-header {
+  background-image: url(/images/hero-bg-rtl.png);
+  background-position: left top;
+}
 .amharic {
   @apply font-am;
 }

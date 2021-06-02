@@ -62,9 +62,11 @@ export const pageQuery = graphql`
         title
         description
         slug
+        level
         lectures {
           url
           slug
+          duration
         }
         language {
           id

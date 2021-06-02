@@ -200,6 +200,8 @@ export const pageQuery = graphql`
       title
       description
       github_repo
+      status
+      level
       instructor {
         username
         profile {

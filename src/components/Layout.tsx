@@ -10,13 +10,13 @@ import useLanguage from '../hooks/useLanguage'
 import SEO from './Seo'
 
 type LayoutProps = {
-  fullPage?: boolean
+  isHomePage?: boolean
   modalOpen?: boolean
   title?: string
 }
 const Layout: React.FC<LayoutProps> = ({
   children,
-  fullPage,
+  isHomePage,
   modalOpen,
   title,
 }) => {
@@ -30,22 +30,32 @@ const Layout: React.FC<LayoutProps> = ({
   if (!hasMounted) {
     return null
   }
-  const wrappedChildren = fullPage ? (
+  const wrappedChildren = isHomePage ? (
     children
   ) : (
-    <div className="brmg-container">
-      <div className="w-full md:mt-2 mb-16 text-black-800 leading-normal">
-        {children}
+    <>
+      <div className="bg-top-header bg-fixed">
+        <div
+          className={` ${
+            isRtl ? 'flex-row-reverse' : ''
+          } title md:pb-10 md:mb-10`}
+        >
+          <Header />
+        </div>
       </div>
-    </div>
+      <div className="brmg-container">
+        <div className="w-full md:mt-2 mb-16 leading-normal">{children}</div>
+      </div>
+    </>
   )
+
   return (
     <div className={modalOpen ? 'opacity-40' : ''}>
       {title && <SEO title={title} />}
       <div
         className={`${isRtl ? 'rtl' : ''} ${
           language === 'am' ? 'amharic' : ''
-        } bg-gray-100 leading-normal tracking-normal`}
+        } bg-white leading-normal tracking-normal`}
       >
         {wrappedChildren}
         <div className="">

@@ -28,7 +28,7 @@ const Badge: React.FC<BadgeProps> = ({
     <div className="m-1">
       <Wrapper {...WrapperProps}>
         <span
-          className={`px-2 bg- py-1 text-white bg-${color} rounded-md ${
+          className={`p-2 px-4 text-lg text-white bg-${color} rounded-md ${
             closable && 'flex items-center justify-between'
           }`}
         >

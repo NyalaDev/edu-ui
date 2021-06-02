@@ -114,7 +114,7 @@
     "subscribeSuccess": "Your email was added successfully.",
     "subscribeError": "Something went wrong, please try again or contact us directly through email or Twitter.",
     "supportUs": "Support Barmaga",
-    "callUs": "Call Us",
+    "contactUs": "Call Us",
     "applyAsInstructor": "Apply As Instructor"
   },
   "moreCourses": "See More",
@@ -131,5 +131,10 @@
     "title": "Sorry we couldn`t find this page.",
     "subTitle": "But dont worry, you can find plenty of other courses on our homepage.",
     "teaser": "How about this course?"
+  },
+  "levels": {
+    "Beginner": "For Beginners",
+    "Intermediate": "Intermediate Level",
+    "Advanced": "Advanced"
   }
 }

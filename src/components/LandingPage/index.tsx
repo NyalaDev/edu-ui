@@ -14,16 +14,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ settings }) => {
   const { isRtl } = useLanguage()
   return (
     <>
-      <div
-        style={{
-          backgroundImage: isRtl
-            ? 'url(/images/hero-bg-rtl.png)'
-            : 'url(/images/hero-bg-ltr.png)',
-          backgroundSize: '50% 100%',
-          backgroundRepeat: 'no-repeat',
-          backgroundPosition: isRtl ? 'left top' : 'right top',
-        }}
-      >
+      <div className="bg-top-header">
         <div className={` ${isRtl ? 'flex-row-reverse' : ''} title md:pb-24 `}>
           <Header />
           <HeroSection />

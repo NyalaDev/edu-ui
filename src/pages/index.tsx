@@ -52,10 +52,10 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
         description={t('landingPage.heroText')}
         title={t('landingPage.heroSubtitle')}
       />
-      <Layout modalOpen={open} fullPage>
+      <Layout modalOpen={open} isHomePage>
         <LandingPage settings={settings} />
-        <div className="container max-w-6xl w-full mx-auto pt-10">
-          <div className="w-full md:mt-2 text-black-800 leading-normal">
+        <div className="brmg-container w-full mx-auto pt-10">
+          <div className="w-full md:mt-2 text-brmg-black leading-normal">
             <AppProvider initialCoursesList={coursesToDisplay}>
               <CoursesHome
                 showMoreCard
@@ -120,6 +120,7 @@ export const pageQuery = graphql`
           lectures {
             slug
             url
+            duration
           }
           language {
             id

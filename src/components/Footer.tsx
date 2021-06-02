@@ -54,20 +54,35 @@ const Footer: React.FC = () => {
   }, [quotesInLanguage])
   return (
     <Suspense fallback="loading">
-      <footer className="flex justify-center px-4 text-brmg-text bg-brmg-disabled min-h-40 md:h-44 w-full">
-        <div className="flex justify-between flex-col md:flex-row w-5/6 px-3">
-          <ul className="flex items-center justify-center flex-col md:flex-row md:divide-x">
+      <footer className="flex justify-center px-4 text-brmg-text bg-brmg-disabled md:h-44 w-full">
+        <div className="brmg-container flex justify-between flex-col md:flex-row w-full">
+          <ul className="flex items-center justify-center flex-col md:flex-row ">
             <li className=" p-1">
               <a href="/courses">{t('courses')}</a>
             </li>
+            |
             <li className="p-1">
-              <a href="#">{t('landingPage.supportUs')}</a>
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="https://chuffed.org/project/barmagaio"
+              >
+                {t('landingPage.supportUs')}
+              </a>
             </li>
-            <li className=" p-1">
-              <a href="#">{t('landingPage.applyAsInstructor')}</a>
+            |
+            <li className="p-1">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="https://airtable.com/shrRBLxU74fcWhLxn"
+              >
+                {t('landingPage.applyAsInstructor')}
+              </a>
             </li>
+            |
             <li className=" p-1">
-              <a href="#">{t('landingPage.callUs')}</a>
+              <a href="mailto:info@barmaga.io">{t('landingPage.contactUs')}</a>
             </li>
           </ul>
 
@@ -92,16 +107,15 @@ const Footer: React.FC = () => {
                 </a>
               </li>
               <li>
-                <a href="#" target="_blank" rel="noreferrer">
+                <a
+                  href="https://www.facebook.com/nyala.dev"
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   <FaFacebookSquare
                     size={24}
                     className="text-brmg-text mx-1 p-0"
                   />
-                </a>
-              </li>
-              <li>
-                <a href="#" target="_blank" rel="noreferrer">
-                  <FaInstagram size={24} className="text-brmg-text mx-1 p-0" />
                 </a>
               </li>
             </ul>

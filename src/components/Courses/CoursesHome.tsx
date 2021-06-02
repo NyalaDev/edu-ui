@@ -5,7 +5,6 @@ import { getYoutubeThumbnail } from '../../common/util'
 import { AppContext } from '../../contexts/AppContext'
 import CourseCard from './CourseCard'
 import Filters from './Filters'
-import CourseCardUpcoming from './CourseCardUpcoming'
 import SubscribeEmail from '../LandingPage/SubscribeEmail'
 import { Course } from '../../types/api.types'
 
@@ -30,15 +29,11 @@ const CoursesHome: React.FC<Props> = ({
   return (
     <div className="mx-2 sm:mx-0">
       {!hidleFilters && <Filters />}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-2">
         {courses.map(course => {
           const { lectures = [] } = course
           const firstLecture = lectures[0] || {}
           const { url: imageUrl } = firstLecture
-
-          if (course.status === 'Upcoming') {
-            return <CourseCardUpcoming key={course.id} course={course} />
-          }
 
           return (
             <CourseCard
