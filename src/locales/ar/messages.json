@@ -113,7 +113,9 @@
     "notifyMeWhenLaunch": "اعلمني عند اطلاق الموقع",
     "subscribeSuccess": "تم اضافة الايميل بنجاح.",
     "subscribeError": "حدث خطأ عند تسجيل الايميل. الرجاء مراسلتنا مباشرة أو المحاولة مرة أخرى.",
-    "supportUs": "ادعموا مشروعنا"
+    "supportUs": "ادعموا مشروعنا",
+    "callUs": "اتصل بنا",
+    "applyAsInstructor": "تقدم بطلب كمحاضر"
   },
   "moreCourses": "مشاهدة البقية",
   "upcomingCourse": {

@@ -113,7 +113,9 @@
     "notifyMeWhenLaunch": "Notify me when Barmaga is launched",
     "subscribeSuccess": "Your email was added successfully.",
     "subscribeError": "Something went wrong, please try again or contact us directly through email or Twitter.",
-    "supportUs": "Support Barmaga"
+    "supportUs": "Support Barmaga",
+    "callUs": "Call Us",
+    "applyAsInstructor": "Apply As Instructor"
   },
   "moreCourses": "See More",
   "upcomingCourse": {

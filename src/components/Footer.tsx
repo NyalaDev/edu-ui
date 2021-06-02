@@ -1,4 +1,6 @@
 import React, { useState, useEffect, Suspense } from 'react'
+import { Link, useTranslation } from 'gatsby-plugin-react-i18next'
+import { FaTwitter, FaFacebookSquare, FaInstagram } from 'react-icons/fa'
 import useLanguage from '../hooks/useLanguage'
 
 const quotes = {
@@ -37,11 +39,13 @@ const quotes = {
   ],
 }
 const Footer: React.FC = () => {
+  const { t } = useTranslation()
   const [randomQuote, setRandomQuote] = useState<{
     text: string
     author: string
   } | null>(null)
   const { language } = useLanguage()
+
   const quotesInLanguage = quotes[language as keyof typeof quotes] || quotes.en
   useEffect(() => {
     setRandomQuote(
@@ -50,43 +54,57 @@ const Footer: React.FC = () => {
   }, [quotesInLanguage])
   return (
     <Suspense fallback="loading">
-      <footer className="flex justify-center px-4 text-gray-100 bg-gray-800">
-        <div className="container py-6">
-          <div
-            style={{ direction: 'ltr' }}
-            className="flex items-center justify-center"
-          >
-            {randomQuote && (
-              <div className="flex flex-col items-center w-1/2">
-                <h1 className="text-center title text-lg lg:text-2xl">
-                  {randomQuote.text}
-                </h1>
-                <h4 className="font-light">{randomQuote.author}</h4>
-              </div>
-            )}
-          </div>
+      <footer className="flex justify-center px-4 text-brmg-text bg-brmg-disabled min-h-40 md:h-44 w-full">
+        <div className="flex justify-between flex-col md:flex-row w-5/6 px-3">
+          <ul className="flex items-center justify-center flex-col md:flex-row md:divide-x">
+            <li className=" p-1">
+              <a href="/courses">{t('courses')}</a>
+            </li>
+            <li className="p-1">
+              <a href="#">{t('landingPage.supportUs')}</a>
+            </li>
+            <li className=" p-1">
+              <a href="#">{t('landingPage.applyAsInstructor')}</a>
+            </li>
+            <li className=" p-1">
+              <a href="#">{t('landingPage.callUs')}</a>
+            </li>
+          </ul>
 
-          <hr className="h-px mt-6 bg-gray-700 border-none" />
-
-          <div
-            className="flex flex-col items-center justify-between mt-6 md:flex-row"
-            style={{ direction: 'ltr' }}
-          >
-            <div className="flex items-center justify-center">
-              <span className="mr-4">Developed By: </span>
-              <a
-                href="https://nyala.dev"
-                target="_blank"
-                rel="noreferrer"
-                className="text-xl font-bold"
-              >
+          <div className="flex flex-col-reverse md:flex-col justify-center items-center">
+            <div className="flex items-center justify-center flex-shrink-0">
+              <Link to="/">
                 <img
-                  src="https://cdn.nyaladev.com/logo/nyala-logo-dark-bg.png"
-                  alt="nayal"
-                  className="w-24"
+                  className="lg:block h-8 w-auto"
+                  src="/images/footer-barmaga-logo.png"
+                  alt="Barmaga Logo"
                 />
-              </a>
+              </Link>
             </div>
+            <ul className="flex mt-2">
+              <li>
+                <a
+                  href="https://twitter.com/BarmagaIO"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <FaTwitter size={24} className="text-brmg-text mx-1" />
+                </a>
+              </li>
+              <li>
+                <a href="#" target="_blank" rel="noreferrer">
+                  <FaFacebookSquare
+                    size={24}
+                    className="text-brmg-text mx-1 p-0"
+                  />
+                </a>
+              </li>
+              <li>
+                <a href="#" target="_blank" rel="noreferrer">
+                  <FaInstagram size={24} className="text-brmg-text mx-1 p-0" />
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
       </footer>
