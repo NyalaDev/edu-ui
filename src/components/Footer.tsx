@@ -54,44 +54,55 @@ const Footer: React.FC = () => {
   }, [quotesInLanguage])
   return (
     <Suspense fallback="loading">
-      <footer className="flex justify-center px-4 text-brmg-text bg-brmg-disabled h-40 w-full">
+      <footer className="flex justify-center px-4 text-brmg-text bg-brmg-disabled min-h-40 md:h-44 w-full">
         <div className="flex justify-between flex-col md:flex-row w-5/6 px-3">
-          <ul className="flex items-center justify-center flex-col md:flex-row">
-            <li className="border-x-2 px-2">
-              <a href="#">{t('courses')}</a>
+          <ul className="flex items-center justify-center flex-col md:flex-row md:divide-x">
+            <li className=" p-1">
+              <a href="/courses">{t('courses')}</a>
             </li>
-            <li className=" px-2">
+            <li className="p-1">
               <a href="#">{t('landingPage.supportUs')}</a>
             </li>
-            <li className=" px-2">
+            <li className=" p-1">
               <a href="#">{t('landingPage.applyAsInstructor')}</a>
             </li>
-            <li className=" px-2">
+            <li className=" p-1">
               <a href="#">{t('landingPage.callUs')}</a>
             </li>
           </ul>
 
-          <div className="flex flex-col justify-center items-center">
+          <div className="flex flex-col-reverse md:flex-col justify-center items-center">
             <div className="flex items-center justify-center flex-shrink-0">
               <Link to="/">
                 <img
                   className="lg:block h-8 w-auto"
-                  src="/images/barmaga-logo.png"
+                  src="/images/footer-barmaga-logo.png"
                   alt="Barmaga Logo"
                 />
               </Link>
             </div>
             <ul className="flex mt-2">
               <li>
-                <a href="#">
-                  <FaTwitter size={24} className="text-brmg-text px-2" />
+                <a
+                  href="https://twitter.com/BarmagaIO"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <FaTwitter size={24} className="text-brmg-text mx-1" />
                 </a>
               </li>
               <li>
-                <FaFacebookSquare size={24} className="text-brmg-text" />
+                <a href="#" target="_blank" rel="noreferrer">
+                  <FaFacebookSquare
+                    size={24}
+                    className="text-brmg-text mx-1 p-0"
+                  />
+                </a>
               </li>
               <li>
-                <FaInstagram size={24} className="text-brmg-text" />
+                <a href="#" target="_blank" rel="noreferrer">
+                  <FaInstagram size={24} className="text-brmg-text mx-1 p-0" />
+                </a>
               </li>
             </ul>
           </div>

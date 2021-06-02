@@ -63,9 +63,6 @@ const CoursesHome: React.FC<Props> = ({
       {courses.length === 0 && (
         <div className="text-center mt-5 text-xl">{t('noCourse')}</div>
       )}
-      <div className="mt-6 px-6 py-2">
-        <SubscribeEmail title={t('upcomingCourse.notifyMe')} />
-      </div>
     </div>
   )
 }

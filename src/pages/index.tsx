@@ -55,7 +55,7 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
       <Layout modalOpen={open} fullPage>
         <LandingPage settings={settings} />
         <div className="container max-w-6xl w-full mx-auto pt-10">
-          <div className="w-full md:mt-2 mb-16 text-black-800 leading-normal">
+          <div className="w-full md:mt-2 text-black-800 leading-normal">
             <AppProvider initialCoursesList={coursesToDisplay}>
               <CoursesHome
                 showMoreCard

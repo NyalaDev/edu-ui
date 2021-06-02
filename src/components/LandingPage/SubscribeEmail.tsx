@@ -50,14 +50,18 @@ const SubscribeEmail: React.FC<SubscribeEmailProps> = ({ title = '' }) => {
     },
   })
   return (
-    <form onSubmit={formik.handleSubmit}>
-      <label className="title font-bold text-blue-900" htmlFor="email">
-        {title || t('landingPage.notifyMeWhenLaunch')}
-      </label>
-      <div className="flex items-center w-full sm:w-1/2">
-        <div className="flex-1">
-          <Input
-            wrapperClasses="mt-0"
+    <>
+      <form
+        onSubmit={formik.handleSubmit}
+        className="bg-brmg-warning h-60 flex justify-center items-center flex-col"
+      >
+        <label className="title font-bold" htmlFor="email">
+          {title || t('landingPage.notifyMeWhenLaunch')}
+        </label>
+
+        <div>
+          <input
+            className="mt-3 rounded-2xl px-2 h-8 w-120"
             {...formik.getFieldProps('email')}
             type="text"
             placeholder={t('email')}
@@ -70,11 +74,21 @@ const SubscribeEmail: React.FC<SubscribeEmailProps> = ({ title = '' }) => {
             <Button type="submit">{t('landingPage.subscribe')}</Button>
           )}
         </div>
-      </div>
-      {formik.touched.email && formik.errors.email ? (
-        <div className="font-bold text-red-600 mt-1">{formik.errors.email}</div>
-      ) : null}
-    </form>
+        {formik.touched.email && formik.errors.email ? (
+          <div className="font-bold text-red-600 mt-1">
+            {formik.errors.email}
+          </div>
+        ) : null}
+      </form>
+      <div
+        className="w-full h-8"
+        style={{
+          backgroundImage: 'url(/images/subscribe-bg.png)',
+          backgroundSize: '40% 100%',
+          backgroundRepeat: 'repeat',
+        }}
+      />
+    </>
   )
 }
 

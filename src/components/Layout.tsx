@@ -1,6 +1,8 @@
 import React from 'react'
+import { useTranslation } from 'gatsby-plugin-react-i18next'
 import { ToastContainer } from 'react-toastify'
 import Header from './Header'
+import SubscribeEmail from './LandingPage/SubscribeEmail'
 import Footer from './Footer'
 import 'react-toastify/dist/ReactToastify.css'
 import './layout.css'
@@ -18,6 +20,7 @@ const Layout: React.FC<LayoutProps> = ({
   modalOpen,
   title,
 }) => {
+  const { t } = useTranslation()
   const { isRtl, language } = useLanguage()
   // this is to avoid this issue: https://joshwcomeau.com/react/the-perils-of-rehydration/
   const [hasMounted, setHasMounted] = React.useState(false)
@@ -45,7 +48,9 @@ const Layout: React.FC<LayoutProps> = ({
         } bg-gray-100 leading-normal tracking-normal`}
       >
         {wrappedChildren}
-
+        <div className="">
+          <SubscribeEmail title={t('upcomingCourse.notifyMe')} />
+        </div>
         <Footer />
         <ToastContainer />
       </div>
