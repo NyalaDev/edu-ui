@@ -50,6 +50,7 @@ module.exports = {
         'brmg-warning': '#FFBE00',
         'brmg-warning': '#FFBE00',
         'brmg-disabled': '#383838',
+        'brmg-text': '#FFFFFF',
       },
     },
     opacity: {
