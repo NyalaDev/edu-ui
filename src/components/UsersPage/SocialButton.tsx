@@ -1,8 +1,8 @@
 import React from 'react'
 import { FaGithub, FaGoogle } from 'react-icons/fa'
 import { useTranslation } from 'gatsby-plugin-react-i18next'
-import { appConfig } from '../common/config'
-import useLanguage from '../hooks/useLanguage'
+import { appConfig } from '../../common/config'
+import useLanguage from '../../hooks/useLanguage'
 
 const COLORS = {
   GitHub: {

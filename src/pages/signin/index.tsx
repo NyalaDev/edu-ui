@@ -5,10 +5,10 @@ import * as Yup from 'yup'
 import { graphql, navigate } from 'gatsby'
 import { toast } from 'react-toastify'
 import Layout from '../../components/Layout'
-import SocialButton from '../../components/SocialButton'
+import SocialButton from '../../components/UsersPage/SocialButton'
 import { signin } from '../../services/api'
 import { AuthContext } from '../../contexts/AuthContext'
-import ActivityIndicator from '../../components/ActivityIndicator'
+import ActivityIndicator from '../../components/General/ActivityIndicator'
 
 const providers: ('GitHub' | 'Google')[] = ['GitHub']
 

@@ -7,7 +7,7 @@ import Footer from './Footer'
 import 'react-toastify/dist/ReactToastify.css'
 import './layout.css'
 import useLanguage from '../hooks/useLanguage'
-import SEO from './Seo'
+import SEO from './General/Seo'
 
 type LayoutProps = {
   isHomePage?: boolean

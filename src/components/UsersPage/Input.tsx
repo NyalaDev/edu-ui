@@ -1,5 +1,5 @@
 import React, { ChangeEvent } from 'react'
-import useLanguage from '../hooks/useLanguage'
+import useLanguage from '../../hooks/useLanguage'
 
 type InputProps = {
   type?: string

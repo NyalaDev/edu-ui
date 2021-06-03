@@ -6,8 +6,8 @@ import {
   IoInformationCircle as InfoIcon,
 } from 'react-icons/io5'
 import useLanguage from '../../hooks/useLanguage'
-import HtmlViewer from '../HtmlViewer'
-import Badge from '../Badge'
+import HtmlViewer from './HtmlViewer'
+import Badge from '../General/Badge'
 import { getOriginalLanguageName } from '../../common/constants'
 import { Course, Lecture } from '../../types/api.types'
 import { calculateVideosDuration } from '../../common/util'

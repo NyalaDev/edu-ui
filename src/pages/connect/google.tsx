@@ -1,6 +1,6 @@
 import React from 'react'
 import { handleAuthentication } from '../../services/auth'
-import Spinner from '../../components/Spinner'
+import Spinner from '../../components/General/Spinner'
 
 const Google: React.FC = () => {
   handleAuthentication('google')

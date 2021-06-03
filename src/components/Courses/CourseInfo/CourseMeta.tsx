@@ -3,7 +3,7 @@ import { useTranslation } from 'gatsby-plugin-react-i18next'
 import { FaRegClock, FaRegCalendarAlt, FaInfoCircle } from 'react-icons/fa'
 import { DateTime } from 'luxon'
 import { calculateVideosDuration } from '../../../common/util'
-import Badge from '../../Badge'
+import Badge from '../../General/Badge'
 import useLanguage from '../../../hooks/useLanguage'
 import { Lecture, Tag } from '../../../types/api.types'
 

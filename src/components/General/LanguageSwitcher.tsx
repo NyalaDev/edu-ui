@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import useLanguage from '../hooks/useLanguage'
-import { appLanguages } from '../common/constants'
-import { AppLocale } from '../types/api.types'
+import useLanguage from '../../hooks/useLanguage'
+import { appLanguages } from '../../common/constants'
+import { AppLocale } from '../../types/api.types'
 
 const LanguageSwitcher: React.FC = () => {
   const { language, changeLanguage } = useLanguage()

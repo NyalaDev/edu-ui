@@ -7,13 +7,13 @@ import { isEmpty } from 'lodash'
 import { toast } from 'react-toastify'
 import { AiFillDelete } from 'react-icons/ai'
 import Layout from '../../components/Layout'
-import Spinner from '../../components/Spinner'
-import InputWithAddOn from '../../components/InputWithAddOn'
+import Spinner from '../../components/General/Spinner'
+import InputWithAddOn from '../../components/UsersPage/InputWithAddOn'
 import { AuthContext } from '../../contexts/AuthContext'
 import { addProfile, uploadFile, deleteProfile } from '../../services/api'
 import { getProfilePicuteUrlFromUserObject } from '../../common/util'
-import Modal from '../../components/Modal'
-import Clickable from '../../components/Clickable'
+import Modal from '../../components/General/Modal'
+import Clickable from '../../components/General/Clickable'
 
 const MyProfile = () => {
   const { t } = useTranslation()
