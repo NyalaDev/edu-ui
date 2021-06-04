@@ -39,10 +39,10 @@ module.exports = {
       },
       colors: {
         'language-ar': '#064E3B',
-        'language-am': '#DD0A07',
+        'language-am': '#cd1b19',
         'language-sw': '#78350F',
         'language-en': '#4B5563',
-        'brmg-highlight': '#DD0A07',
+        'brmg-highlight': '#cd1b19',
         'brmg-black': '#1F1F1F',
         'brmg-primary': '#8E549B',
         'brmg-subtle': '#47494D',

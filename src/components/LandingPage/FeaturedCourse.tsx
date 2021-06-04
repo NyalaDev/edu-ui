@@ -1,3 +1,4 @@
+import { Link } from 'gatsby-plugin-react-i18next'
 import React, { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import { getYoutubeThumbnail } from '../../common/util'
@@ -24,18 +25,20 @@ const FeaturedCourse: React.FC = () => {
     <>
       <h2 className="brmg-container title text-3xl mt-20">{t('newCourse')}</h2>
       <div className="brmg-container flex mb-16 mt-8 p-8 h-128 text-white title bg-brmg-success rounded-lg">
-        <div className="w-3/5">
+        <div className="w-1/2 md:w-3/5">
           <h2 className="text-3xl">{course.title}</h2>
-          <h2 className="text-base leading-loose w-1/2 mt-8">
+          <h2 className="text-base leading-loose md:w-1/2 mt-8">
             {course.description}
           </h2>
-          <div className="w-1/3 my-6">
-            <Button link href={cardLink} extraClasses="title" mode="primary">
-              {t('start')}
-            </Button>
+          <div className="w-4/5 md:w-1/3 my-6">
+            <Link to={cardLink}>
+              <Button extraClasses="title" mode="primary">
+                {t('start')}
+              </Button>
+            </Link>
           </div>
         </div>
-        <div className="w-2/5 relative">
+        <div className="w-1/2 md:w-2/5 relative">
           <div className="absolute top-0 -mt-24">
             <CourseCard
               showTags

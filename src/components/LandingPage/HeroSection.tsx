@@ -10,14 +10,14 @@ const HeroSection: React.FC = () => {
   const { isRtl } = useLanguage()
   return (
     <>
-      <div className="brmg-container flex flex-wrap">
+      <div className="brmg-container flex flex-wrap  mb:10 md:mb-0">
         <div className="w-full md:w-2/5 mt-16">
           <div
-            className={`text-center pt-24 lg:text-${
+            className={`text-center md:pt-24 lg:text-${
               isRtl ? 'right ml-2' : 'left mr-2'
             }`}
           >
-            <h1 className="text-3xl tracking-tight sm:text-4xl md:text-5xl">
+            <h1 className="text-5xl tracking-tight">
               <span className="block text-brmg-highlight xl:inline">
                 {t('landingPage.heroText')}
               </span>
@@ -40,7 +40,7 @@ const HeroSection: React.FC = () => {
               </div>
             </div>
 
-            <div className="mt-10 text-sm sm:justify-center lg:justify-start">
+            <div className="mt-6 mb-6 md:mb-0 md:mt-10  text-sm sm:justify-center lg:justify-start">
               {t('landingPage.getIntouch')}{' '}
               <span className="font-bold">
                 <a rel="noreferrer" target="_blank" href="https://nyala.dev">
@@ -50,7 +50,7 @@ const HeroSection: React.FC = () => {
             </div>
           </div>
         </div>
-        <div className="w-full md:w-3/5 mt-16">
+        <div className="w-full md:w-3/5 md:mt-16">
           <video
             className="w-auto h-96 rounded-xl"
             src="https://cdn.nyaladev.com/barmaga.io/barmaga-landing.mp4"
