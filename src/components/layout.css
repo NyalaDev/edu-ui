@@ -13,17 +13,30 @@
   font-family: NotoKufi;
 }
 
-.bg-top-header {
+.brmg-bg-top-header {
   background-image: url(/images/hero-bg-ltr.png);
   background-size: 50% 100%;
   background-repeat: no-repeat;
   background-position: right top;
 }
 
-.rtl .bg-top-header {
+.rtl .brmg-bg-top-header {
   background-image: url(/images/hero-bg-rtl.png);
   background-position: left top;
 }
+
+.brmg-bg-quote-section {
+  background-image: url(/images/quote-bg.png);
+  background-size: 50% 100%;
+  background-repeat: no-repeat;
+  background-position: left top;
+}
+
+.rtl .brmg-bg-quote-section {
+  background-image: url(/images/quote-bg-rtl.png);
+  background-position: right top;
+}
+
 .amharic {
   @apply font-am;
 }

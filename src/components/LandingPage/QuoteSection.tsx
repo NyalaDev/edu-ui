@@ -8,6 +8,10 @@ type QuoteSectionProps = {
 }
 const QuoteSection: React.FC<QuoteSectionProps> = ({ settings }) => {
   const { isRtl, language } = useLanguage()
+
+  // ToDo: Enable it when we have translations in Amharic and Swahili
+  if (language !== 'ar' && language !== 'en') return null
+
   const { homeQuotes, homeSettings } = settings
   const { homeBullets } = homeSettings
   const { data: selectedLanguagePoints } =
@@ -23,15 +27,7 @@ const QuoteSection: React.FC<QuoteSectionProps> = ({ settings }) => {
 
   return (
     <div className="flex flex-wrap title">
-      <div
-        className="w-full"
-        style={{
-          backgroundImage: 'url(/images/quote-bg.png)',
-          backgroundSize: '50% 100%',
-          backgroundRepeat: 'no-repeat',
-          backgroundPosition: isRtl ? 'right top' : 'left top',
-        }}
-      >
+      <div className="w-full brmg-bg-quote-section">
         <div className="brmg-container h-96 flex flex-wrap">
           <div className="w-1/2 h-full relative">
             <img
@@ -57,24 +53,26 @@ const QuoteSection: React.FC<QuoteSectionProps> = ({ settings }) => {
               }`}
             />
           </div>
-          <div className="w-1/2 px-4">
-            {selectedLanguagePoints?.map(({ title, bullets }) => {
-              return (
-                <>
-                  <div className="text-bold text-xl mt-1 mb-2">{title}</div>
-                  <ul>
-                    {bullets.map(bullet => {
-                      return (
-                        <li className="list-disc-none leading-loose font-light">
-                          <AiFillCheckCircle className="inline-block opacity-60 text-brmg-secondary mx-1" />
-                          {bullet}
-                        </li>
-                      )
-                    })}
-                  </ul>
-                </>
-              )
-            })}
+          <div className="w-1/2 px-4 text-brmg-subtle flex items-center">
+            <div>
+              {selectedLanguagePoints?.map(({ title, bullets }) => {
+                return (
+                  <>
+                    <div className="text-bold text-xl mt-1 mb-2">{title}</div>
+                    <ul>
+                      {bullets.map(bullet => {
+                        return (
+                          <li className="list-disc-none leading-loose font-light">
+                            <AiFillCheckCircle className="inline-block opacity-60 text-brmg-secondary mx-1" />
+                            {bullet}
+                          </li>
+                        )
+                      })}
+                    </ul>
+                  </>
+                )
+              })}
+            </div>
           </div>
         </div>
       </div>

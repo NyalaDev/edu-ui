@@ -48,24 +48,24 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
   }, [open])
   return (
     <>
-      <Seo
-        description={t('landingPage.heroText')}
-        title={t('landingPage.heroSubtitle')}
-      />
-      <Layout modalOpen={open} isHomePage>
-        <LandingPage settings={settings} />
-        <div className="brmg-container w-full mx-auto pt-10">
-          <div className="w-full md:mt-2 text-brmg-black leading-normal">
-            <AppProvider initialCoursesList={coursesToDisplay}>
+      <AppProvider initialCoursesList={coursesToDisplay}>
+        <Seo
+          description={t('landingPage.heroText')}
+          title={t('landingPage.heroSubtitle')}
+        />
+        <Layout modalOpen={open} isHomePage>
+          <LandingPage settings={settings} />
+          <div className="brmg-container w-full mx-auto pt-10">
+            <div className="w-full md:mt-2 text-brmg-black leading-normal">
               <CoursesHome
                 showMoreCard
                 hidleFilters
                 courses={coursesToDisplay}
               />
-            </AppProvider>
+            </div>
           </div>
-        </div>
-      </Layout>
+        </Layout>
+      </AppProvider>
       {open && (
         <div style={{ direction: 'ltr' }}>
           <Modal
