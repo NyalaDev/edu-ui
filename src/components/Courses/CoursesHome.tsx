@@ -56,7 +56,9 @@ const CoursesHome: React.FC<Props> = ({
         )}
       </div>
       {courses.length === 0 && (
-        <div className="text-center mt-5 text-xl">{t('noCourse')}</div>
+        <div className="text-center text-brmg-disabled mt-5 text-xl">
+          {t('noCourse')}
+        </div>
       )}
     </div>
   )

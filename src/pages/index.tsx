@@ -56,7 +56,7 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
         <Layout modalOpen={open} isHomePage>
           <LandingPage settings={settings} />
           <div className="brmg-container w-full mx-auto pt-10">
-            <div className="w-full md:mt-2 text-brmg-black leading-normal">
+            <div className="w-full  mb-6 md:mt-2 text-brmg-black leading-normal">
               <CoursesHome
                 showMoreCard
                 hidleFilters
