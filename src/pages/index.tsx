@@ -7,9 +7,11 @@ import { getLocalStorage } from '../services/localStorage'
 import Modal from '../components/General/Modal'
 import DefaultLanguage from '../components/LandingPage/DefaultLanguage'
 import LandingPage from '../components/LandingPage'
+import SubscribeEmail from '../components/LandingPage/SubscribeEmail'
 import CoursesHome from '../components/Courses/CoursesHome'
 import { AppProvider } from '../contexts/AppContext'
 import { Course, HomePageSettings } from '../types/api.types'
+import TwitterWidget from '../components/LandingPage/TwitterWidget'
 
 type IndexPageProps = {
   data: {
@@ -46,6 +48,7 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
       setCoursesToDisplay(coursesList.slice(0, numberOfCoursesToDisplay))
     }
   }, [open])
+
   return (
     <>
       <Seo
@@ -65,6 +68,10 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
             </AppProvider>
           </div>
         </div>
+
+        <TwitterWidget />
+
+        <SubscribeEmail title={t('upcomingCourse.notifyMe')} />
       </Layout>
       {open && (
         <div style={{ direction: 'ltr' }}>
