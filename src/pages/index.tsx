@@ -51,28 +51,30 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
 
   return (
     <>
-      <Seo
-        description={t('landingPage.heroText')}
-        title={t('landingPage.heroSubtitle')}
-      />
-      <Layout modalOpen={open} isHomePage>
-        <LandingPage settings={settings} />
-        <div className="brmg-container w-full mx-auto pt-10">
-          <div className="w-full md:mt-2 text-brmg-black leading-normal">
-            <AppProvider initialCoursesList={coursesToDisplay}>
+      <AppProvider initialCoursesList={coursesToDisplay}>
+        <Seo
+          description={t('landingPage.heroText')}
+          title={t('landingPage.heroSubtitle')}
+        />
+               <Layout modalOpen={open} isHomePage>
+          <LandingPage settings={settings} />
+          <div className="brmg-container w-full mx-auto pt-10">
+            <div className="w-full  mb-6 md:mt-2 text-brmg-black leading-normal">
               <CoursesHome
                 showMoreCard
                 hidleFilters
                 courses={coursesToDisplay}
               />
-            </AppProvider>
+            </div> 
+            
+            <TwitterWidget />
+            
+            <SubscribeEmail title={t('upcomingCourse.notifyMe')} />
           </div>
-        </div>
+                 
+        </Layout>
+      </AppProvider>
 
-        <TwitterWidget />
-
-        <SubscribeEmail title={t('upcomingCourse.notifyMe')} />
-      </Layout>
       {open && (
         <div style={{ direction: 'ltr' }}>
           <Modal

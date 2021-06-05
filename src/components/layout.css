@@ -13,17 +13,49 @@
   font-family: NotoKufi;
 }
 
-.bg-top-header {
-  background-image: url(/images/hero-bg-ltr.png);
-  background-size: 50% 100%;
+@screen md {
+  .brmg-bg-top-header {
+    background-image: url(/images/hero-bg-ltr.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: right top;
+  }
+  .rtl .brmg-bg-top-header {
+    background-image: url(/images/hero-bg-rtl.png);
+    background-position: left top;
+  }
+}
+@screen md {
+  .brmg-bg-top-header,
+  .rtl .brmg-bg-top-header {
+    background-size: 50% 100%;
+  }
+}
+
+.brmg-bg-quote-section {
+  background-image: url(/images/quote-bg.png);
+  background-size: 100% 100%;
+  /* background-size: contain; */
   background-repeat: no-repeat;
+  background-position: left top;
+}
+
+.rtl .brmg-bg-quote-section {
+  background-image: url(/images/quote-bg-rtl.png);
   background-position: right top;
 }
 
-.rtl .bg-top-header {
-  background-image: url(/images/hero-bg-rtl.png);
-  background-position: left top;
+@screen md {
+  .brmg-bg-quote-section,
+  .rtl .brmg-bg-quote-section {
+    background-size: 50% 100%;
+  }
 }
+
+.brmg-mobile-menu-item {
+  @apply block px-3 py-2 text-2xl title font-medium focus:outline-none transition duration-150 ease-in-out;
+}
+
 .amharic {
   @apply font-am;
 }

@@ -20,6 +20,7 @@ type Props = {
   courseViewMode?: boolean
   isCourseInProgress?: boolean
   showTags?: boolean
+  fluidHeight?: boolean
   lectureToPlayNext?: Lecture
 }
 
@@ -30,6 +31,7 @@ const CourseCard: React.FC<Props> = ({
   courseViewMode,
   isCourseInProgress,
   showTags,
+  fluidHeight,
   lectureToPlayNext = course.lectures[0],
 }) => {
   const { t } = useTranslation()
@@ -107,7 +109,13 @@ const CourseCard: React.FC<Props> = ({
             </Link>
           </div>
         </div>
-        <div className={`${!courseViewMode ? 'h-48 overflow-scroll' : ''}`}>
+        <div
+          className={`${
+            !courseViewMode && !fluidHeight
+              ? 'h-48 overflow-scroll'
+              : 'min-h-24 max-h-48 overflow-scroll'
+          }`}
+        >
           <HtmlViewer
             className="text-brmg-subtle text-base leading-relaxed"
             data={description}

@@ -5,13 +5,13 @@ import CourseResources from './CourseInfo/CourseResources'
 import CourseMeta from './CourseInfo/CourseMeta'
 import InstructorBio from './CourseInfo/InstructorBio'
 import CourseExercises from './CourseInfo/CourseExercises'
-import ShareButtons from './ShareButtons'
+import ShareButtons from './ShareCourse'
 import { DEFAULT_PROFILE_PIC } from '../../common/constants'
 import { getYoutubeThumbnail } from '../../common/util'
 import { getProfileById } from '../../services/api'
 import CourseCard from './CourseCard'
 import useCourseProgress from '../../hooks/useCourseProgress'
-import { Course, User } from '../../types/api.types'
+import { Course } from '../../types/api.types'
 
 type Props = {
   course: Course
@@ -83,18 +83,11 @@ const CourseInfoCards: React.FC<Props> = ({
       )}
       <CourseMeta tags={tags} lectures={sortedLectures} />
 
-      <div className="max-w-sm rounded overflow-hidden shadow-lg my-5 h-40 ">
-        <div className="px-6 py-3 bg-purple-800 mb-7">
-          <h1 className="text-white title text-lg items-center justify-center flex">
-            <span className="mx-1">{t('shareCourse')}</span>
-          </h1>
-        </div>
-        <ShareButtons
-          url={location.href}
-          title={`${title} by ${profile.name} @BarmagaIo `}
-          course={course}
-        />
-      </div>
+      <ShareButtons
+        url={location.href}
+        title={`${title} by ${profile.name} @BarmagaIo `}
+        course={course}
+      />
 
       <InstructorBio instructor={instructor} photo={instructorPhoto} />
     </>

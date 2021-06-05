@@ -34,7 +34,7 @@ const Layout: React.FC<LayoutProps> = ({
     children
   ) : (
     <>
-      <div className="bg-top-header bg-fixed">
+      <div className="brmg-bg-top-header bg-fixed">
         <div
           className={` ${
             isRtl ? 'flex-row-reverse' : ''
