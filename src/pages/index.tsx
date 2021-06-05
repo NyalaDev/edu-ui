@@ -56,7 +56,7 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
           description={t('landingPage.heroText')}
           title={t('landingPage.heroSubtitle')}
         />
-               <Layout modalOpen={open} isHomePage>
+        <Layout modalOpen={open} isHomePage>
           <LandingPage settings={settings} />
           <div className="brmg-container w-full mx-auto pt-10">
             <div className="w-full  mb-6 md:mt-2 text-brmg-black leading-normal">
@@ -65,13 +65,12 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
                 hidleFilters
                 courses={coursesToDisplay}
               />
-            </div> 
-            
+            </div>
+
             <TwitterWidget />
-            
+
             <SubscribeEmail title={t('upcomingCourse.notifyMe')} />
           </div>
-                 
         </Layout>
       </AppProvider>
 
