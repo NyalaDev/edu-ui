@@ -6,7 +6,9 @@ import { toast } from 'react-toastify'
 import { graphql, navigate } from 'gatsby'
 import { AuthContext } from '../../contexts/AuthContext'
 import Layout from '../../components/Layout'
-import SocialButton, { SocialProvider } from '../../components/SocialButton'
+import SocialButton, {
+  SocialProvider,
+} from '../../components/UsersPage/SocialButton'
 import useLanguage from '../../hooks/useLanguage'
 import { signUp } from '../../services/api'
 

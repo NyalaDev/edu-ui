@@ -1,23 +1,26 @@
 import React from 'react'
+import { useTranslation } from 'gatsby-plugin-react-i18next'
 import { ToastContainer } from 'react-toastify'
 import Header from './Header'
+import SubscribeEmail from './LandingPage/SubscribeEmail'
 import Footer from './Footer'
 import 'react-toastify/dist/ReactToastify.css'
 import './layout.css'
 import useLanguage from '../hooks/useLanguage'
-import SEO from './Seo'
+import SEO from './General/Seo'
 
 type LayoutProps = {
-  fullPage?: boolean
+  isHomePage?: boolean
   modalOpen?: boolean
   title?: string
 }
 const Layout: React.FC<LayoutProps> = ({
   children,
-  fullPage,
+  isHomePage,
   modalOpen,
   title,
 }) => {
+  const { t } = useTranslation()
   const { isRtl, language } = useLanguage()
   // this is to avoid this issue: https://joshwcomeau.com/react/the-perils-of-rehydration/
   const [hasMounted, setHasMounted] = React.useState(false)
@@ -27,25 +30,33 @@ const Layout: React.FC<LayoutProps> = ({
   if (!hasMounted) {
     return null
   }
-  const wrappedChildren = fullPage ? (
+  const wrappedChildren = isHomePage ? (
     children
   ) : (
-    <div className="container max-w-6xl w-full mx-auto pt-10">
-      <div className="w-full md:mt-2 mb-16 text-black-800 leading-normal">
-        {children}
+    <>
+      <div className="brmg-bg-top-header bg-fixed">
+        <div
+          className={` ${
+            isRtl ? 'flex-row-reverse' : ''
+          } title md:pb-10 md:mb-10`}
+        >
+          <Header />
+        </div>
       </div>
-    </div>
+      <div className="brmg-container">
+        <div className="w-full md:mt-2 mb-16 leading-normal">{children}</div>
+      </div>
+    </>
   )
+
   return (
     <div className={modalOpen ? 'opacity-40' : ''}>
       {title && <SEO title={title} />}
       <div
         className={`${isRtl ? 'rtl' : ''} ${
           language === 'am' ? 'amharic' : ''
-        } bg-gray-100 leading-normal tracking-normal`}
+        } bg-white leading-normal tracking-normal`}
       >
-        <Header />
-
         {wrappedChildren}
 
         <Footer />

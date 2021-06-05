@@ -17,6 +17,7 @@
     "skipLibCheck": true,
     "isolatedModules": true,
     "noUnusedParameters": true,
-    "removeComments": false
+    "removeComments": false,
+    "noImplicitAny": false
   }
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'gatsby-plugin-react-i18next'
-import Spinner from '../Spinner'
+import Spinner from '../General/Spinner'
 import { getYoutubeThumbnail } from '../../common/util'
 
 export type AlgoliaSearchResult = {

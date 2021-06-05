@@ -3,9 +3,10 @@ import { useTranslation } from 'gatsby-plugin-react-i18next'
 import { FaRegClock, FaRegCalendarAlt, FaInfoCircle } from 'react-icons/fa'
 import { DateTime } from 'luxon'
 import { calculateVideosDuration } from '../../../common/util'
-import Badge from '../../Badge'
+import Badge from '../../General/Badge'
 import useLanguage from '../../../hooks/useLanguage'
 import { Lecture, Tag } from '../../../types/api.types'
+import Card from '../../General/Card'
 
 type Props = {
   lectures: Lecture[]
@@ -21,19 +22,9 @@ const CourseMeta: React.FC<Props> = ({ lectures, tags }) => {
       ? courseCreatedDate.setLocale('ar').toLocaleString(DateTime.DATE_FULL)
       : courseCreatedDate.toLocaleString(DateTime.DATE_FULL)
   return (
-    <div
-      data-testid="about-course"
-      className="max-w-sm rounded overflow-hidden shadow-lg my-5 "
-    >
-      <div className="px-6 py-3 bg-purple-800">
-        <h1 className="text-white title text-lg items-center justify-center flex">
-          <FaInfoCircle />
-          <span className="mx-1">{t('aboutCourse')}</span>
-        </h1>
-      </div>
-
-      <div className="py-4 px-6">
-        <div className="flex items-center mt-4 text-gray-700">
+    <Card title={t('aboutCourse')} data-testid="about-course">
+      <div className="py-4 px-6 text-brmg-subtle">
+        <div className="flex items-center mt-4">
           <div className="font-bold pl-1 pr-4">{t('duration')}</div>
           <div className="px-2 text-sm">
             {calculateVideosDuration(lectures)}
@@ -41,26 +32,26 @@ const CourseMeta: React.FC<Props> = ({ lectures, tags }) => {
           <FaRegClock />
         </div>
 
-        <div className="flex items-center mt-4 text-gray-700">
+        <div className="flex items-center mt-4">
           <div className="font-bold pl-1 pr-4">{t('released')}</div>
           <div className="px-2 text-sm ">{courseDate}</div>
           <FaRegCalendarAlt />
         </div>
-        <div className=" mt-4 text-gray-700">
+        <div className="mt-4">
           <div className="font-bold pl-1 pr-4">{t('courseTags')}</div>
-          <div className="flex items-center font-bold mt-2">
+          <div className="flex items-center font-bold mt-2 px-2">
             {tags.map(tag => (
               <Badge
                 key={tag.id}
                 text={tag.tagName}
-                color="purple-800"
+                color="brmg-secondary"
                 link={`/tags/${tag.tagName}`}
               />
             ))}
           </div>
         </div>
       </div>
-    </div>
+    </Card>
   )
 }
 

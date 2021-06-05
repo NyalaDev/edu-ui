@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import useLanguage from '../hooks/useLanguage'
-import { appLanguages } from '../common/constants'
-import { AppLocale } from '../types/api.types'
+import useLanguage from '../../hooks/useLanguage'
+import { appLanguages } from '../../common/constants'
+import { AppLocale } from '../../types/api.types'
 
-const LanguageSwitcher: React.FC = () => {
+const LanguageSwitcher: React.FC<{ dark?: boolean }> = ({ dark }) => {
   const { language, changeLanguage } = useLanguage()
   const { isRtl } = useLanguage()
   const [open, setOpen] = useState(false)
@@ -29,7 +29,9 @@ const LanguageSwitcher: React.FC = () => {
   return (
     <div className="relative group">
       <button
-        className="p-1 border-2 border-transparent text-white flex items-center  hover:text-gray-300 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out"
+        className={`p-1 border-2 border-transparent ${
+          !dark ? 'text-white' : ''
+        } flex items-center focus:outline-none  transition duration-150 ease-in-out`}
         type="button"
         onClick={toggleOpen}
       >

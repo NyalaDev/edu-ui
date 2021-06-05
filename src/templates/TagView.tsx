@@ -1,6 +1,6 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import Seo from '../components/Seo'
+import Seo from '../components/General/Seo'
 import Layout from '../components/Layout'
 import CourseCard from '../components/Courses/CourseCard'
 import { getYoutubeThumbnail } from '../common/util'
@@ -62,9 +62,11 @@ export const pageQuery = graphql`
         title
         description
         slug
+        level
         lectures {
           url
           slug
+          duration
         }
         language {
           id

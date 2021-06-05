@@ -3,7 +3,7 @@ import { graphql } from 'gatsby'
 import { useTranslation } from 'react-i18next'
 import { getYoutubeThumbnail } from '../common/util'
 import Layout from '../components/Layout'
-import Seo from '../components/Seo'
+import Seo from '../components/General/Seo'
 import CourseCard from '../components/Courses/CourseCard'
 import { Course } from '../types/api.types'
 

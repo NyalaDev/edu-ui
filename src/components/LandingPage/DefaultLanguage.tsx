@@ -1,6 +1,6 @@
 import React from 'react'
-import useLanguage from '../hooks/useLanguage'
-import { appLanguages } from '../common/constants'
+import useLanguage from '../../hooks/useLanguage'
+import { appLanguages } from '../../common/constants'
 
 type DefaultLanguageProps = {
   onDismiss: VoidFunction

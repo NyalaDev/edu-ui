@@ -67,6 +67,19 @@ export type UserPrToReviewData = {
 
 export type AppLocale = 'en' | 'ar' | 'am' | 'sw'
 
+export type HomePageSettings = {
+  homeQuotes: Array<{
+    language: AppLocale
+    data: Array<{ text: string; author: string }>
+  }>
+  homeSettings: {
+    homeBullets: Array<{
+      language: AppLocale
+      data: Array<{ title: string; bullets: string[] }>
+    }>
+  }
+}
+
 type CourseStatus = 'Published' | 'Draft' | 'Upcoming'
 
 type CourseLevel = 'Beginner' | 'Intermediate' | 'Advanced'

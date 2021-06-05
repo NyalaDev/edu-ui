@@ -1,7 +1,7 @@
 import React from 'react'
 import { useTranslation, Link } from 'gatsby-plugin-react-i18next'
-import { FaUserAlt } from 'react-icons/fa'
 import { User } from '../../../types/api.types'
+import Card from '../../General/Card'
 
 type Props = {
   instructor: User
@@ -12,13 +12,7 @@ const InstructorBio: React.FC<Props> = ({ instructor, photo }) => {
   const { t } = useTranslation()
 
   return (
-    <div className="max-w-sm rounded overflow-hidden shadow-lg my-5">
-      <div className="px-6 py-3 bg-purple-800">
-        <h1 className="text-white title text-lg items-center justify-center flex">
-          <FaUserAlt />
-          <span className="mx-1">{t('instructorBio')}</span>
-        </h1>
-      </div>
+    <Card title={t('instructorBio')}>
       <div className="py-4 px-6">
         <div className=" mt-4 text-gray-700 text-center">
           <img
@@ -35,7 +29,7 @@ const InstructorBio: React.FC<Props> = ({ instructor, photo }) => {
           <div className="px-2 text-sm font-bold">{instructor.profile.bio}</div>
         </div>
       </div>
-    </div>
+    </Card>
   )
 }
 

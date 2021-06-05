@@ -5,7 +5,7 @@ import { useTranslation } from 'gatsby-plugin-react-i18next'
 import { orderBy } from 'lodash'
 import Layout from '../../components/Layout'
 import LecturesList from '../../components/LecturesList'
-import Seo from '../../components/Seo'
+import Seo from '../../components/General/Seo'
 import LectureNavigationButton from '../../components/Courses/LectureNavigationButton'
 import VideoPlayer from '../../components/Courses/VideoPlayer'
 import { getYoutubeThumbnail } from '../../common/util'
@@ -200,6 +200,8 @@ export const pageQuery = graphql`
       title
       description
       github_repo
+      status
+      level
       instructor {
         username
         profile {

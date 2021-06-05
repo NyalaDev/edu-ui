@@ -31,11 +31,7 @@ const LanguageView: React.FC<LanguageViewProps> = ({ data, pageContext }) => {
         {courses.map(course => {
           const { lectures, status } = course.node
           const { url: imageUrl } = lectures[0] || {}
-          if (status === 'Upcoming') {
-            return (
-              <CourseCardUpcoming key={course.node.id} course={course.node} />
-            )
-          }
+
           return (
             <CourseCard
               key={course.node.id}
@@ -69,6 +65,7 @@ export const pageQuery = graphql`
           lectures {
             url
             slug
+            duration
           }
           language {
             id

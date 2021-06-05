@@ -1,8 +1,8 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
 import { useStaticQuery, graphql } from 'gatsby'
-import useLanguage from '../hooks/useLanguage'
-import { AppLocale } from '../types/api.types'
+import useLanguage from '../../hooks/useLanguage'
+import { AppLocale } from '../../types/api.types'
 
 type SEOProps = {
   description?: string

@@ -2,23 +2,27 @@ import React, { useEffect, useState } from 'react'
 import { graphql } from 'gatsby'
 import { useTranslation } from 'gatsby-plugin-react-i18next'
 import Layout from '../components/Layout'
-import Seo from '../components/Seo'
+import Seo from '../components/General/Seo'
 import { getLocalStorage } from '../services/localStorage'
-import Modal from '../components/Modal'
-import DefaultLanguage from '../components/DefaultLanguage'
+import Modal from '../components/General/Modal'
+import DefaultLanguage from '../components/LandingPage/DefaultLanguage'
 import LandingPage from '../components/LandingPage'
+import SubscribeEmail from '../components/LandingPage/SubscribeEmail'
 import CoursesHome from '../components/Courses/CoursesHome'
 import { AppProvider } from '../contexts/AppContext'
-import { Course } from '../types/api.types'
+import { Course, HomePageSettings } from '../types/api.types'
+import TwitterWidget from '../components/LandingPage/TwitterWidget'
 
 type IndexPageProps = {
   data: {
     allStrapiCourse: { edges: { node: Course }[] }
+    strapiSettings: HomePageSettings
   }
 }
 const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
   const {
     allStrapiCourse: { edges },
+    strapiSettings: settings,
   } = data
   const numberOfCoursesToDisplay = 5
   const coursesList = edges.map(edge => edge.node)
@@ -44,26 +48,32 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
       setCoursesToDisplay(coursesList.slice(0, numberOfCoursesToDisplay))
     }
   }, [open])
+
   return (
     <>
-      <Seo
-        description={t('landingPage.heroText')}
-        title={t('landingPage.heroSubtitle')}
-      />
-      <Layout modalOpen={open} fullPage>
-        <LandingPage />
-        <div className="container max-w-6xl w-full mx-auto pt-10">
-          <div className="w-full md:mt-2 mb-16 text-black-800 leading-normal">
-            <AppProvider initialCoursesList={coursesToDisplay}>
+      <AppProvider initialCoursesList={coursesToDisplay}>
+        <Seo
+          description={t('landingPage.heroText')}
+          title={t('landingPage.heroSubtitle')}
+        />
+        <Layout modalOpen={open} isHomePage>
+          <LandingPage settings={settings} />
+          <div className="brmg-container w-full mx-auto pt-10">
+            <div className="w-full  mb-6 md:mt-2 text-brmg-black leading-normal">
               <CoursesHome
                 showMoreCard
                 hidleFilters
                 courses={coursesToDisplay}
               />
-            </AppProvider>
+            </div>
+
+            <TwitterWidget />
+
+            <SubscribeEmail title={t('upcomingCourse.notifyMe')} />
           </div>
-        </div>
-      </Layout>
+        </Layout>
+      </AppProvider>
+
       {open && (
         <div style={{ direction: 'ltr' }}>
           <Modal
@@ -118,11 +128,30 @@ export const pageQuery = graphql`
           lectures {
             slug
             url
+            duration
           }
           language {
             id
             name
             iso2
+          }
+        }
+      }
+    }
+    strapiSettings {
+      homeQuotes {
+        language
+        data {
+          text
+          author
+        }
+      }
+      homeSettings {
+        homeBullets {
+          language
+          data {
+            title
+            bullets
           }
         }
       }

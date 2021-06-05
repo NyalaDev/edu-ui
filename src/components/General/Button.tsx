@@ -2,9 +2,10 @@
 import React from 'react'
 
 const colors = {
-  info: 'text-indigo-800 bg-indigo-100 hover:bg-indigo-200',
-  error: 'text-white bg-red-600',
-  success: 'text-white bg-green-600',
+  info: 'text-white bg-brmg-secondary',
+  error: 'text-white bg-brmg-highlight',
+  success: 'text-white bg-brmg-success',
+  primary: 'text-white bg-brmg-primary',
 }
 const getClasses = (props: Partial<ButtonProps>) => {
   const classes = []
@@ -28,7 +29,7 @@ const getClasses = (props: Partial<ButtonProps>) => {
   return classes
 }
 type ButtonProps = {
-  mode?: 'info' | 'error' | 'success'
+  mode?: 'info' | 'error' | 'success' | 'primary'
   link?: boolean
   extraClasses?: string
   small?: boolean

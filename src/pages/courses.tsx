@@ -2,7 +2,7 @@ import React from 'react'
 import { graphql } from 'gatsby'
 import { useTranslation } from 'gatsby-plugin-react-i18next'
 import Layout from '../components/Layout'
-import Seo from '../components/Seo'
+import Seo from '../components/General/Seo'
 import { AppProvider } from '../contexts/AppContext'
 import CoursesHome from '../components/Courses/CoursesHome'
 import { Course } from '../types/api.types'
@@ -52,6 +52,7 @@ export const pageQuery = graphql`
           lectures {
             slug
             url
+            duration
           }
           language {
             id
