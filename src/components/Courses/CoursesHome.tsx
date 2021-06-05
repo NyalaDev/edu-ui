@@ -5,7 +5,6 @@ import { getYoutubeThumbnail } from '../../common/util'
 import { AppContext } from '../../contexts/AppContext'
 import CourseCard from './CourseCard'
 import Filters from './Filters'
-import SubscribeEmail from '../LandingPage/SubscribeEmail'
 import { Course } from '../../types/api.types'
 
 type Props = {

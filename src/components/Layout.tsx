@@ -58,9 +58,7 @@ const Layout: React.FC<LayoutProps> = ({
         } bg-white leading-normal tracking-normal`}
       >
         {wrappedChildren}
-        <div className="">
-          <SubscribeEmail title={t('upcomingCourse.notifyMe')} />
-        </div>
+
         <Footer />
         <ToastContainer />
       </div>
