@@ -68,9 +68,9 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
             </div>
 
             <TwitterWidget />
-
-            <SubscribeEmail title={t('upcomingCourse.notifyMe')} />
           </div>
+
+          <SubscribeEmail title={t('upcomingCourse.notifyMe')} />
         </Layout>
       </AppProvider>
 
