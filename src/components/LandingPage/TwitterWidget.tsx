@@ -7,73 +7,73 @@ import Button from '../General/Button'
 const TwitterWidget: React.FC = () => {
   const { t } = useTranslation()
 
-  const arr = [
+  const tweets = [
     '1393942312812691461',
     '1394964427074646020',
     '1386625779577106433',
     '1393679448600363016',
     '1393623123443036165',
   ]
-  const [firstTweetId, setFirstTweetId] = useState(0)
-  const [secondTweetId, setSecondTweetId] = useState(1)
+  const [carouselPosition, setCarouselPosition] = useState(0)
 
-  const totalTweets = arr.length
+  const tweetsPerSlide = 1
+  const totalSlides = Math.ceil(tweets.length / tweetsPerSlide)
 
-  const nextTweet = () => {
-    setFirstTweetId(secondTweetId)
-    if (secondTweetId >= totalTweets - 1) {
-      setSecondTweetId(0)
-    } else {
-      setSecondTweetId(secondTweetId + 1)
-    }
+  const nextTweets = () => {
+    if (carouselPosition === totalSlides - 1) return
+    setCarouselPosition(carouselPosition + 1)
   }
 
-  const previousTweet = () => {
-    setSecondTweetId(firstTweetId)
-    if (firstTweetId === 0) {
-      setFirstTweetId(totalTweets - 1)
-    } else {
-      setFirstTweetId(firstTweetId - 1)
-    }
+  const previousTweets = () => {
+    if (carouselPosition === 0) return
+    setCarouselPosition(carouselPosition - 1)
   }
 
+  const getTweetsToShow = () => {
+    const tweetCards = []
+    const position = carouselPosition * tweetsPerSlide
+    const finalPosition =
+      position + tweetsPerSlide > tweets.length
+        ? tweets.length
+        : position + tweetsPerSlide
+    for (let i = position; i < finalPosition; i += 1) {
+      tweetCards.push(
+        <TwitterTweetEmbed
+          key={tweets[i]}
+          tweetId={tweets[i]}
+          placeholder="Loading"
+          options={{ width: 550, cards: 'hidden' }}
+        />
+      )
+    }
+    return tweetCards
+  }
   return (
     <div>
-      <div className="flex items-center justify-around h-auto pt-36 pb-8">
+      <div
+        className="flex items-center justify-around pt-8 pb-8"
+        style={{ height: '460px' }}
+      >
         <button
           type="button"
-          className="m-3 rounded-full h-12 w-12 border shadow-lg"
-          onClick={previousTweet}
+          className="m-3 rounded-full h-12 w-12 border shadow-lg disabled:opacity-30 disabled:cursor-not-allowed"
+          onClick={previousTweets}
+          disabled={carouselPosition === 0}
         >
           {'<'}
         </button>
-        {arr.map(
-          (tweetId, index) =>
-            index === firstTweetId && (
-              <div className="flex justify-center space-x-10 w-3/4">
-                <TwitterTweetEmbed
-                  tweetId={arr[firstTweetId]}
-                  placeholder="Loading Tweet/"
-                  options={{ width: 550, cards: 'hidden' }}
-                />
-                <TwitterTweetEmbed
-                  tweetId={arr[secondTweetId]}
-                  placeholder="Loading Tweet"
-                  options={{ width: 400, cards: 'hidden' }}
-                />
-              </div>
-            )
-        )}
+        {getTweetsToShow()}
         <button
           type="button"
-          className="m-3 rounded-full h-12 w-12 border shadow-lg"
-          onClick={nextTweet}
+          className="m-3 rounded-full h-12 w-12 border shadow-lg disabled:opacity-30 disabled:cursor-not-allowed"
+          onClick={nextTweets}
+          disabled={carouselPosition === totalSlides - 1}
         >
           {'>'}
         </button>
       </div>
 
-      <div className="flex justify-center pb-24">
+      <div className="flex justify-center pb-12">
         <div>
           <Button
             link
