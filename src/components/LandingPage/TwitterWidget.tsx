@@ -6,6 +6,7 @@ import Button from '../General/Button'
 
 const TwitterWidget: React.FC = () => {
   const { t } = useTranslation()
+
   const arr = [
     '1393942312812691461',
     '1394964427074646020',
