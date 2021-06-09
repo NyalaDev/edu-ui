@@ -67,6 +67,10 @@ module.exports = {
       100: '1',
     },
   },
-  variants: {},
+  variants: {
+    extend: {
+      opacity: ['disabled'],
+    },
+  },
   plugins: [],
 }
