@@ -54,6 +54,7 @@ const HeroSection: React.FC = () => {
           <video
             className="w-auto h-96 rounded-xl"
             src="https://cdn.nyaladev.com/barmaga.io/barmaga-landing.mp4"
+            poster="https://cdn.nyaladev.com/barmaga.io/why_barmaga.png"
             controls
           >
             <source

@@ -3,6 +3,7 @@ import { navigate } from 'gatsby'
 import { Link, useTranslation } from 'gatsby-plugin-react-i18next'
 import { AuthContext } from '../../contexts/AuthContext'
 import { getProfilePicuteUrlFromUserObject } from '../../common/util'
+import { appConfig } from '../../common/config'
 
 const UserMenu: React.FC = () => {
   const { currentUser, isTeacher, logout } = useContext(AuthContext)
@@ -16,9 +17,7 @@ const UserMenu: React.FC = () => {
     navigate('/')
   }
   const profilePictureUrl = getProfilePicuteUrlFromUserObject(currentUser)
-  const dashboardUrl =
-    process.env.GATSBY_DASHBOARD_URL || 'https://edu-dashboard.barmaga.io'
-  // FIXME: Change Dropdown on desktop to open right
+
   return (
     <div className="ml-3 relative">
       <div className="mr-4">
@@ -41,7 +40,7 @@ const UserMenu: React.FC = () => {
       <div
         className={`${
           open ? '' : 'hidden'
-        } origin-top-right absolute right-0 mt-2 w-40 rounded-md shadow-lg`}
+        } origin-top-right absolute right-0 mt-2 w-40 rounded-md shadow-lg z-50`}
       >
         <div
           className="py-1 rounded-md bg-white shadow-xs"
@@ -51,7 +50,7 @@ const UserMenu: React.FC = () => {
         >
           {isTeacher && (
             <a
-              href={dashboardUrl}
+              href={appConfig.dashboardURL}
               className="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out"
               role="menuitem"
             >
