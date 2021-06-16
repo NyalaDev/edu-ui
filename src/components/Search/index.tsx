@@ -3,12 +3,14 @@ import algoliasearch from 'algoliasearch/lite'
 import SearchBox from './SearchField'
 import SearchResult, { AlgoliaSearchResult } from './SearchResult'
 import useClickOutside from '../../hooks/useClickOutside'
+import { appConfig } from '../../common/config'
 
 const searchClient = algoliasearch(
-  process.env.GATSBY_ALGOLIA_APP_ID!,
-  process.env.GATSBY_ALGOLIA_SEARCH_KEY!
+  appConfig.algolia.appId,
+  appConfig.algolia.searchKey
 )
 const indexName = process.env.GATSBY_ALGOLIA_INDEX_NAME || 'dev_course'
+
 const Search: React.FC = () => {
   const rootRef = createRef<HTMLDivElement>()
   const [searching, setSearching] = useState(false)

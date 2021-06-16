@@ -118,6 +118,9 @@ const MobileMenu: React.FC = () => {
             </div>
           )}
         </div>
+        <div className="px-4 py-2">
+          <Search />
+        </div>
       </div>
     </nav>
   )

@@ -58,7 +58,7 @@ const Footer: React.FC = () => {
         <div className="brmg-container flex justify-between flex-col md:flex-row w-full">
           <ul className="flex items-center justify-center flex-col md:flex-row ">
             <li className=" p-1">
-              <a href="/courses">{t('courses')}</a>
+              <Link to="/courses">{t('courses')}</Link>
             </li>
             |
             <li className="p-1">
