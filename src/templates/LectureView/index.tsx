@@ -14,6 +14,7 @@ import CourseCard from '../../components/Courses/CourseCard'
 import { AuthContext } from '../../contexts/AuthContext'
 import { ALLOWED_LECTURES_WHEN_NOT_LOGGED_IN } from '../../common/constants'
 import { Course, Lecture } from '../../types/api.types'
+import LectureQuestions from '../../components/Courses/LectureQuestions'
 
 type LectureViewProps = {
   data: {
@@ -28,13 +29,14 @@ type LectureViewProps = {
 const LectureView: React.FC<LectureViewProps> = ({ data, location }) => {
   const { t } = useTranslation()
   const { strapiLecture, strapiCourse, relatedCourses } = data
+  console.log(strapiLecture, 'lop')
   const sortedLectures = orderBy(strapiCourse.lectures, 'position', 'asc')
   const lecture = !strapiLecture ? sortedLectures[0] : strapiLecture
   const { isLoggedIn, currentUser } = useContext(AuthContext)
   if (!strapiCourse) {
     return <div />
   }
-  const { url, title: lectureTitle, position, strapiId } = lecture
+  const { url, title: lectureTitle, position, strapiId, questions } = lecture
   const {
     title: courseTitle,
     slug,
@@ -144,6 +146,13 @@ const LectureView: React.FC<LectureViewProps> = ({ data, location }) => {
                 courseStrapiId={courseStrapiId}
               />
             </div>
+            <div>
+              <LectureQuestions
+                questions={questions}
+                isLoggedIn={isLoggedIn}
+                lectureId={strapiId}
+              />
+            </div>
           </div>
         </div>
         {relatedCourses.edges.length !== 0 && (
@@ -191,6 +200,13 @@ export const pageQuery = graphql`
       created_at
       title
       position
+      questions {
+        id
+        text
+        replies {
+          reply
+        }
+      }
     }
 
     strapiCourse(slug: { eq: $courseSlug }) {
