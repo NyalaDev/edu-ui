@@ -36,7 +36,7 @@ const LectureView: React.FC<LectureViewProps> = ({ data, location }) => {
   if (!strapiCourse) {
     return <div />
   }
-  const { url, title: lectureTitle, position, strapiId, questions } = lecture
+  const { url, title: lectureTitle, position, strapiId } = lecture
   const {
     title: courseTitle,
     slug,
@@ -147,11 +147,7 @@ const LectureView: React.FC<LectureViewProps> = ({ data, location }) => {
               />
             </div>
             <div>
-              <LectureQuestions
-                questions={questions}
-                isLoggedIn={isLoggedIn}
-                lectureId={strapiId}
-              />
+              <LectureQuestions isLoggedIn={isLoggedIn} lectureId={strapiId} />
             </div>
           </div>
         </div>

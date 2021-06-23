@@ -3,18 +3,20 @@ import { toast } from 'react-toastify'
 import { useTranslation } from 'react-i18next'
 import { GoTriangleLeft } from 'react-icons/go'
 import { Question } from '../../types/api.types'
-import { updateQuestion, getQuestions } from '../../services/api'
+import { updateQuestion, getLectureQuestions } from '../../services/api'
 import { AuthContext } from '../../contexts/AuthContext'
 
 type Props = {
   question: Question
   isLoggedIn: boolean
+  lectureId: number
   updateQuestionsList: (data: Question[]) => void
 }
 
 const LectureQuestions: React.FC<Props> = ({
   question,
   isLoggedIn,
+  lectureId,
   updateQuestionsList,
 }) => {
   const { t } = useTranslation()
@@ -37,7 +39,7 @@ const LectureQuestions: React.FC<Props> = ({
           ...replies,
         ],
       })
-      const data = await getQuestions()
+      const data = await getLectureQuestions(lectureId)
       updateQuestionsList(data)
       setReplyInput('')
       toast.success('Reply submitted successfully')

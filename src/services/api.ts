@@ -101,8 +101,10 @@ export const subscribeToMailingList = async (
   return data
 }
 
-export const getQuestions = async (): Promise<Question[]> => {
-  const { data } = await axiosInstance().get(`/questions?_sort=created_at:DESC`)
+export const getLectureQuestions = async (id: number): Promise<Question[]> => {
+  const { data } = await axiosInstance().get(
+    `/questions?_sort=created_at:DESC&lecture=${id}`
+  )
   return data
 }
 

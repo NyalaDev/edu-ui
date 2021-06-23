@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { toast } from 'react-toastify'
 import { useTranslation } from 'react-i18next'
-import { addQuestion, getQuestions } from '../../services/api'
+import { addQuestion, getLectureQuestions } from '../../services/api'
 import { Question } from '../../types/api.types'
 import LectureQuestion from './LectureQuestion'
 
@@ -19,14 +19,14 @@ const LectureQuestions: React.FC<Props> = ({ isLoggedIn, lectureId }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await getQuestions()
+        const data = await getLectureQuestions(lectureId)
         setQuestions(data)
       } catch (e) {
         console.log(e)
       }
     }
     fetchData()
-  }, [])
+  }, [lectureId])
 
   const updateQuestionsList = data => {
     setQuestions(data)
@@ -39,7 +39,7 @@ const LectureQuestions: React.FC<Props> = ({ isLoggedIn, lectureId }) => {
         replies: [],
         lecture: lectureId,
       })
-      const data = await getQuestions()
+      const data = await getLectureQuestions(lectureId)
       updateQuestionsList(data)
       setQuestionInput('')
       toast.success('Question submitted successfully')
@@ -76,6 +76,7 @@ const LectureQuestions: React.FC<Props> = ({ isLoggedIn, lectureId }) => {
         <LectureQuestion
           question={question}
           isLoggedIn={isLoggedIn}
+          lectureId={lectureId}
           updateQuestionsList={updateQuestionsList}
         />
       ))}
