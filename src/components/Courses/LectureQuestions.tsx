@@ -12,8 +12,9 @@ type Props = {
 
 const LectureQuestions: React.FC<Props> = ({ isLoggedIn, lectureId }) => {
   const { t } = useTranslation()
-  const [questionInput, setQuestionInput] = useState('')
+
   const [questions, setQuestions] = useState<Question[]>([])
+  const [questionInput, setQuestionInput] = useState('')
 
   useEffect(() => {
     const fetchData = async () => {
@@ -40,6 +41,7 @@ const LectureQuestions: React.FC<Props> = ({ isLoggedIn, lectureId }) => {
       })
       const data = await getQuestions()
       updateQuestionsList(data)
+      setQuestionInput('')
       toast.success('Question submitted successfully')
     } catch (err) {
       const message = err.message.match(/(403|400)/)
@@ -51,7 +53,7 @@ const LectureQuestions: React.FC<Props> = ({ isLoggedIn, lectureId }) => {
 
   return (
     <div className="bg-gray-300">
-      <div className="text-3xl mb-5 ml-2">Questions:</div>
+      <div className="text-3xl mb-5 ml-2">{t('questions')}</div>
       {isLoggedIn && (
         <div className="flex mb-3">
           <input
@@ -66,7 +68,7 @@ const LectureQuestions: React.FC<Props> = ({ isLoggedIn, lectureId }) => {
             onClick={handleSubmit}
             className="bg-brmg-secondary hover:bg-brmg-primary text-white font-bold py-2 px-4 rounded"
           >
-            Ask Question
+            {t('addQuestion')}
           </button>
         </div>
       )}

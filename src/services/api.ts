@@ -102,7 +102,7 @@ export const subscribeToMailingList = async (
 }
 
 export const getQuestions = async (): Promise<Question[]> => {
-  const { data } = await axiosInstance().get(`/questions`)
+  const { data } = await axiosInstance().get(`/questions?_sort=created_at:DESC`)
   return data
 }
 

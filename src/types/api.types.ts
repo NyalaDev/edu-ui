@@ -116,6 +116,7 @@ export type Resource = {
 
 export type Reply = {
   reply: string
+  user: Partial<Profile>
 }
 
 export type Question = {
@@ -123,6 +124,7 @@ export type Question = {
   text: string
   replies: Reply[]
   lecture: number
+  user: User
 }
 
 export type Lecture = {

@@ -29,7 +29,7 @@ type LectureViewProps = {
 const LectureView: React.FC<LectureViewProps> = ({ data, location }) => {
   const { t } = useTranslation()
   const { strapiLecture, strapiCourse, relatedCourses } = data
-  console.log(strapiLecture, 'lop')
+
   const sortedLectures = orderBy(strapiCourse.lectures, 'position', 'asc')
   const lecture = !strapiLecture ? sortedLectures[0] : strapiLecture
   const { isLoggedIn, currentUser } = useContext(AuthContext)
@@ -200,13 +200,6 @@ export const pageQuery = graphql`
       created_at
       title
       position
-      questions {
-        id
-        text
-        replies {
-          reply
-        }
-      }
     }
 
     strapiCourse(slug: { eq: $courseSlug }) {

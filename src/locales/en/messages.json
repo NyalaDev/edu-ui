@@ -89,6 +89,9 @@
   "deleteUserData": "Delete My User Data",
   "confirmUserDelete": "Are you sure you want to delete all your user data ?",
   "cancel": "Cancel",
+  "questions": "Questions",
+  "addQuestion": "Ask Question",
+  "addReply": "Add Reply",
   "validation": {
     "required": "This field is required",
     "email": "Please enter a valid email"
