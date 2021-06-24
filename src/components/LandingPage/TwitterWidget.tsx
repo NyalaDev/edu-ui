@@ -30,7 +30,7 @@ const TwitterWidget: React.FC = () => {
   }
 
   const getTweetsToShow = () => {
-    const tweetCards = []
+    const tweetCards: React.ReactElement[] = []
     const position = carouselPosition * tweetsPerSlide
     const finalPosition =
       position + tweetsPerSlide > tweets.length
@@ -42,7 +42,7 @@ const TwitterWidget: React.FC = () => {
           key={tweets[i]}
           tweetId={tweets[i]}
           placeholder="Loading"
-          options={{ width: 550, cards: 'hidden' }}
+          options={{ width: 5000, cards: 'hidden' }}
         />
       )
     }
@@ -51,7 +51,7 @@ const TwitterWidget: React.FC = () => {
   return (
     <div>
       <div
-        className="flex items-center justify-around pt-8 pb-8"
+        className="flex items-center justify-around pt-8 md:pt-32 pb-8 md:mb-16"
         style={{ height: '460px' }}
       >
         <button
@@ -73,7 +73,7 @@ const TwitterWidget: React.FC = () => {
         </button>
       </div>
 
-      <div className="flex justify-center pb-12">
+      <div className="flex justify-center mb-12 md:mb-32">
         <div>
           <Button
             link

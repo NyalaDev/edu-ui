@@ -66,7 +66,7 @@ const MobileMenu: React.FC = () => {
         <div className="relative flex py-4 items-center justify-between">
           <Link className="flex-grow" to="/">
             <img
-              className="h-16 w-auto"
+              className="h-10 mx-2 w-auto"
               src="/images/barmaga-logo.png"
               alt="Barmaga Logo"
             />

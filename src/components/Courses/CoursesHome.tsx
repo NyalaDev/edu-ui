@@ -6,6 +6,7 @@ import { AppContext } from '../../contexts/AppContext'
 import CourseCard from './CourseCard'
 import Filters from './Filters'
 import { Course } from '../../types/api.types'
+import Button from '../General/Button'
 
 type Props = {
   courses: Course[]
@@ -44,16 +45,19 @@ const CoursesHome: React.FC<Props> = ({
             />
           )
         })}
-        {showMoreCard && (
-          <Link to="/courses">
-            <div className="mx-5 h-full items-center justify-center flex rounded overflow-hidden shadow-lg">
-              <div className="px-6 py-4 text-gray-600 text-3xl">
-                {t('moreCourses')}
-              </div>
-            </div>
-          </Link>
-        )}
       </div>
+      {showMoreCard && (
+        <div className="flex flex-col mt-16 justify-items-center items-center">
+          <div className="w-3/4 md:w-1/3">
+            <Link to="/courses">
+              <Button extraClasses="title" mode="primary">
+                {t('moreCourses')}
+              </Button>
+            </Link>
+          </div>
+        </div>
+      )}
+
       {courses.length === 0 && (
         <div className="text-center text-brmg-disabled mt-5 text-xl">
           {t('noCourse')}

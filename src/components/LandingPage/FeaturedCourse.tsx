@@ -12,9 +12,16 @@ const FeaturedCourse: React.FC = () => {
   const { language } = useLanguage()
   const { t } = useTranslation()
 
-  const coursesInLanguage = courses
+  let coursesInLanguage = courses
     .filter(c => c.language.iso2 === language && c.status === 'Published')
     .reverse()
+
+  if (!coursesInLanguage.length) {
+    coursesInLanguage = courses
+      .filter(c => c.language.iso2 === 'ar' && c.status === 'Published')
+      .reverse()
+  }
+
   const course = coursesInLanguage[coursesInLanguage.length - 1]
   if (!course) return null
   const firstLecture = course.lectures[0] || {}
@@ -23,14 +30,16 @@ const FeaturedCourse: React.FC = () => {
 
   return (
     <>
-      <h2 className="brmg-container title text-3xl mt-20">{t('newCourse')}</h2>
-      <div className="brmg-container flex mb-16 mt-8 p-8 h-128 text-white title bg-brmg-success rounded-lg">
-        <div className="w-1/2 md:w-3/5">
+      <h2 className="brmg-container title text-3xl px-8 md:px-0 mt-20">
+        {t('newCourse')}
+      </h2>
+      <div className="brmg-container flex mb-16 md:mb-32 mt-8 p-8 h-128 text-white title bg-brmg-success rounded-lg">
+        <div className="w-full md:w-3/5">
           <h2 className="text-3xl">{course.title}</h2>
-          <h2 className="text-base leading-loose md:w-1/2 mt-8">
+          <h2 className="text-base leading-loose md:w-3/4 mt-8">
             {course.description}
           </h2>
-          <div className="w-4/5 md:w-1/3 my-6">
+          <div className="w-full md:w-1/3 my-6">
             <Link to={cardLink}>
               <Button extraClasses="title" mode="primary">
                 {t('start')}
@@ -38,8 +47,8 @@ const FeaturedCourse: React.FC = () => {
             </Link>
           </div>
         </div>
-        <div className="w-1/2 md:w-2/5 relative">
-          <div className="absolute top-0 -mt-24">
+        <div className="w-1/2 md:w-1/3 relative hidden md:block">
+          <div className="absolute top-0 -mt-36">
             <CourseCard
               showTags
               fluidHeight
