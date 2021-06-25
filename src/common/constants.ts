@@ -36,5 +36,3 @@ export const getOriginalLanguageName = (locale: string): string | undefined => {
   const language = appLanguages.find(lang => lang.locale === locale)
   return language?.label
 }
-
-export const ALLOWED_LECTURES_WHEN_NOT_LOGGED_IN = 4

@@ -17,7 +17,6 @@ import {
   StyledDuration,
   StyledLockIcon,
 } from './styles'
-import { ALLOWED_LECTURES_WHEN_NOT_LOGGED_IN } from '../../common/constants'
 import { Lecture } from '../../types/api.types'
 
 const StyledButton = styled.button<{ isRtl: boolean }>`
@@ -53,6 +52,7 @@ const LectureList: React.FC<LectureListProps> = ({
     const value = index + 1
     return value
   }
+  const ALLOWED_LECTURES_WHEN_NOT_LOGGED_IN = Math.ceil(lectures.length / 3)
   const isCourseInProgress = useCourseProgress(courseStrapiId)
   const sortedLectures = orderBy(lectures, 'position', 'asc')
   const lectureIcon = (index: number) => {
