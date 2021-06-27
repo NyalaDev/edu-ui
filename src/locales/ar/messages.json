@@ -89,6 +89,9 @@
   "deleteUserData": "حذف كل بياناتي الشخصية",
   "confirmUserDelete": "هل انت متأكد من حذف كل بياناتك الشخصية ؟",
   "cancel": "الغاء",
+  "questions": "اﻷسئلة",
+  "addQuestion": "اضافة سؤال",
+  "addReply": "اضافة رد",
   "validation": {
     "required": "هذ الحقل مطلوب",
     "email": "الرجاء ادخال بريد الكتروني صحيح"

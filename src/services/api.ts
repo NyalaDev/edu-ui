@@ -11,6 +11,7 @@ import {
   UserSubscribeToMailingList,
   UserPrToReviewData,
   CourseRating,
+  Question,
 } from '../types/api.types'
 
 const axiosInstance = () => {
@@ -97,6 +98,28 @@ export const subscribeToMailingList = async (
     `https://barmga-lambda.nyaladev.com/email-subscribe`,
     values
   )
+  return data
+}
+
+export const getLectureQuestions = async (id: number): Promise<Question[]> => {
+  const { data } = await axiosInstance().get(
+    `/questions?_sort=created_at:DESC&lecture=${id}`
+  )
+  return data
+}
+
+export const addQuestion = async (
+  values: Partial<Question>
+): Promise<Question> => {
+  const { data } = await axiosInstance().post(`/questions`, values)
+  return data
+}
+
+export const updateQuestion = async (
+  questionId: number,
+  values: Partial<Question>
+): Promise<Question> => {
+  const { data } = await axiosInstance().put(`/questions/${questionId}`, values)
   return data
 }
 

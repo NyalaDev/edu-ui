@@ -114,8 +114,21 @@ export type Resource = {
   type: ResourceType
 }
 
-export type Lecture = {
+export type Reply = {
+  reply: string
+  user: Partial<Profile>
+}
+
+export type Question = {
   id: number
+  text: string
+  replies: Reply[]
+  lecture: number
+  user: User
+}
+
+export type Lecture = {
+  id: string
   strapiId: number
   title: string
   description?: string
@@ -124,6 +137,7 @@ export type Lecture = {
   position: number
   slug: string
   created_at: string
+  questions: Question[]
 }
 
 export type Course = {
