@@ -29,13 +29,13 @@ const Modal: React.FC<ModalProps> = ({
         <div className={`w-9/12 ${large ? '' : 'md:max-w-md '}mx-auto rounded`}>
           <div className="border-0 rounded-lg shadow-2xl relative flex flex-col w-full bg-white outline-none focus:outline-none">
             <div className="flex flex-row items-start justify-between p-5 border-b border-solid border-gray-300 rounded-t">
-              <h3
+              <div
                 className={`text-lg sm:text-2xl title flex-1 ${
                   titleCentered ? 'text-center' : ''
                 }`}
               >
                 {title}
-              </h3>
+              </div>
               {onDismiss && (
                 <button
                   type="button"

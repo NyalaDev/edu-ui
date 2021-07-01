@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { FaVideo, FaLock } from 'react-icons/fa'
+import { FaVideo, FaLock, FaFileAlt } from 'react-icons/fa'
 
 export const StyledLectureList = styled.ul`
   border-bottom: 1px solid #d4d4d4;
@@ -51,7 +51,7 @@ export const StyledDuration = styled.div`
 `
 export const StyledVideoIcon = styled(FaVideo)`
   position: absolute;
-  font-size: 12px;
+  font-size: 16px;
   color: #a6a6a6;
   left: 68px;
   top: 50%;
@@ -59,7 +59,15 @@ export const StyledVideoIcon = styled(FaVideo)`
 `
 export const StyledLockIcon = styled(FaLock)`
   position: absolute;
-  font-size: 12px;
+  font-size: 16px;
+  color: #a6a6a6;
+  left: 68px;
+  top: 50%;
+  transform: translateY(-50%);
+`
+export const StyledFileIcon = styled(FaFileAlt)`
+  position: absolute;
+  font-size: 16px;
   color: #a6a6a6;
   left: 68px;
   top: 50%;

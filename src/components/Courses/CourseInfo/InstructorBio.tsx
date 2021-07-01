@@ -21,9 +21,9 @@ const InstructorBio: React.FC<Props> = ({ instructor, photo }) => {
             src={photo}
           />
           <Link to={`/instructors/${instructor.profile.github}`}>
-            <h3 className="px-2 py-3 text-lg font-bold underline text-purple-800">
+            <div className="px-2 py-3 text-lg font-bold underline text-purple-800">
               {instructor.profile.name}
-            </h3>
+            </div>
           </Link>
 
           <div className="px-2 text-sm font-bold">{instructor.profile.bio}</div>

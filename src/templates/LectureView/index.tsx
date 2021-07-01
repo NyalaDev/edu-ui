@@ -7,7 +7,7 @@ import Layout from '../../components/Layout'
 import LecturesList from '../../components/LecturesList'
 import Seo from '../../components/General/Seo'
 import LectureNavigationButton from '../../components/Courses/LectureNavigationButton'
-import VideoPlayer from '../../components/Courses/VideoPlayer'
+import LectureViewer from '../../components/Courses/LectureViewer'
 import { getYoutubeThumbnail } from '../../common/util'
 import CourseInfoCards from '../../components/Courses/CourseInfoCards'
 import CourseCard from '../../components/Courses/CourseCard'
@@ -34,7 +34,14 @@ const LectureView: React.FC<LectureViewProps> = ({ data, location }) => {
   if (!strapiCourse) {
     return <div />
   }
-  const { url, title: lectureTitle, position, strapiId } = lecture
+  const {
+    url,
+    title: lectureTitle,
+    position,
+    strapiId,
+    type,
+    content,
+  } = lecture
   const {
     title: courseTitle,
     slug,
@@ -124,8 +131,10 @@ const LectureView: React.FC<LectureViewProps> = ({ data, location }) => {
                 </div>
               </div>
 
-              <VideoPlayer
+              <LectureViewer
                 url={url}
+                type={type}
+                content={content}
                 lectureStrapiId={strapiId}
                 courseStrapiId={courseStrapiId}
                 showFeedback={showFeedback}
@@ -149,9 +158,9 @@ const LectureView: React.FC<LectureViewProps> = ({ data, location }) => {
         {relatedCourses.edges.length !== 0 && (
           <div className="rounded shadow-lg bg-gray-200 my-6 py-2">
             <div className=" px-6 py-3 bg-gray-800">
-              <h1 className="text-white font-semibold text-lg text-center">
+              <div className="text-white font-semibold text-lg text-center">
                 {t('relatedCourses')}
-              </h1>
+              </div>
             </div>
             <div className="grid md:grid-cols-3 sm:grid-cols-1 gap-4 my-6 mx-3">
               {relatedCourses.edges.map(({ node: course }) => {
@@ -191,6 +200,8 @@ export const pageQuery = graphql`
       created_at
       title
       position
+      type
+      content
     }
 
     strapiCourse(slug: { eq: $courseSlug }) {
@@ -228,6 +239,7 @@ export const pageQuery = graphql`
         duration
         url
         created_at
+        type
       }
       resources {
         type

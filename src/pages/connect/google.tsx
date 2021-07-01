@@ -8,7 +8,7 @@ const Google: React.FC = () => {
     <div className="container section has-text-centered">
       <div className="columns is-centered">
         <div className="column is-half">
-          <h1 className="is-size-5">You are about to sign in using google</h1>
+          <div className="is-size-5">You are about to sign in using google</div>
           <Spinner />
           <Spinner />
         </div>
