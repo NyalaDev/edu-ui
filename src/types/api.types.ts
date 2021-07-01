@@ -124,6 +124,8 @@ export type Lecture = {
   position: number
   slug: string
   created_at: string
+  type: string
+  content: string
 }
 
 export type Course = {

@@ -23,13 +23,15 @@ const FeaturedCourse: React.FC = () => {
 
   return (
     <>
-      <h2 className="brmg-container title text-3xl mt-20">{t('newCourse')}</h2>
+      <div className="brmg-container title text-3xl mt-20">
+        {t('newCourse')}
+      </div>
       <div className="brmg-container flex mb-16 mt-8 p-8 h-128 text-white title bg-brmg-success rounded-lg">
         <div className="w-1/2 md:w-3/5">
-          <h2 className="text-3xl">{course.title}</h2>
-          <h2 className="text-base leading-loose md:w-1/2 mt-8">
+          <div className="text-3xl">{course.title}</div>
+          <div className="text-base leading-loose md:w-1/2 mt-8">
             {course.description}
-          </h2>
+          </div>
           <div className="w-4/5 md:w-1/3 my-6">
             <Link to={cardLink}>
               <Button extraClasses="title" mode="primary">

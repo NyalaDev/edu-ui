@@ -47,7 +47,9 @@ const SiginPage = () => {
     <Layout title={t('signIn')}>
       <div className="bg-white w-full max-w-lg rounded-lg shadow-md overflow-hidden mx-auto">
         <div className="py-4 px-6">
-          <h2 className="text-center text-gray-700 text-3xl">{t('signIn')}</h2>
+          <div className="text-center text-gray-700 text-3xl">
+            {t('signIn')}
+          </div>
           <div className="border-teal p-8 border-t-12 bg-white mb-6 rounded-lg  mt-3">
             <form onSubmit={formik.handleSubmit}>
               <div className="mb-4">
@@ -103,9 +105,9 @@ const SiginPage = () => {
                 </ActivityIndicator>
               </div>
               <div className="text-center">
-                <h1 className="font-bold text-grey-darker block mb-2 mt-5">
+                <div className="font-bold text-grey-darker block mb-2 mt-5">
                   {t('or')}
-                </h1>
+                </div>
               </div>
             </form>
 

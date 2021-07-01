@@ -16,6 +16,7 @@ import {
   StyledVideoIcon,
   StyledDuration,
   StyledLockIcon,
+  StyledFileIcon,
 } from './styles'
 import { ALLOWED_LECTURES_WHEN_NOT_LOGGED_IN } from '../../common/constants'
 import { Lecture } from '../../types/api.types'
@@ -53,11 +54,18 @@ const LectureList: React.FC<LectureListProps> = ({
     const value = index + 1
     return value
   }
+
   const isCourseInProgress = useCourseProgress(courseStrapiId)
+
   const sortedLectures = orderBy(lectures, 'position', 'asc')
+
   const lectureIcon = (index: number) => {
     if (isLoggedIn || index < ALLOWED_LECTURES_WHEN_NOT_LOGGED_IN)
-      return <StyledVideoIcon />
+      return sortedLectures[index].type === 'text' ? (
+        <StyledFileIcon />
+      ) : (
+        <StyledVideoIcon />
+      )
     return <StyledLockIcon />
   }
   const canWatch = (index: number) =>
@@ -90,9 +98,11 @@ const LectureList: React.FC<LectureListProps> = ({
                   <p className={`${isRtl ? 'rtl' : 'ltr'}`}>
                     <span className="text-gray-700">{lecture.title}</span>
                   </p>
-                  <StyledDuration>
-                    {formatDuration(lecture.duration)}
-                  </StyledDuration>
+                  {lecture.type !== 'text' && (
+                    <StyledDuration>
+                      {formatDuration(lecture.duration)}
+                    </StyledDuration>
+                  )}
                 </StyledListBody>
 
                 <div>{lectureIcon(index)}</div>

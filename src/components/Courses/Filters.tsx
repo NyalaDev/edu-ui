@@ -54,7 +54,7 @@ const Filters = () => {
   return (
     <div className="mb-6 sm:mx-5">
       <div className="flex flex-col md:flex-row w-full items-center">
-        <h1>{t('filters.title')}</h1>
+        <div>{t('filters.title')}</div>
         <select
           className="mx-4 placeholder-gray-500 focus:outline-none focus:bg-white"
           name="language"

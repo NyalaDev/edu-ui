@@ -38,7 +38,7 @@ const CourseRating: React.FC<CourseRatingProps> = ({
       </button>
 
       <div className="flex flex-col items-center h-full">
-        <h1 className="text-xl mb-3 border-b-2"> {t('rateCourse')}</h1>
+        <div className="text-xl mb-3 border-b-2"> {t('rateCourse')}</div>
 
         <div className="flex mb-2">
           {[...Array(totalStars)].map((_n: number, i: number) => (

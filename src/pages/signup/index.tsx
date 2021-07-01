@@ -72,7 +72,9 @@ const Signup: React.FC<FormikProps<FormValues>> = () => {
     <Layout title={t('signUp')}>
       <div className="bg-white w-full max-w-lg rounded-lg shadow-md overflow-hidden mx-auto">
         <div className="py-4 px-6">
-          <h2 className="text-center text-gray-700 text-3xl">{t('signUp')}</h2>
+          <div className="text-center text-gray-700 text-3xl">
+            {t('signUp')}
+          </div>
 
           <form onSubmit={formik.handleSubmit}>
             <div className="mt-4 w-full">
@@ -165,7 +167,7 @@ const Signup: React.FC<FormikProps<FormValues>> = () => {
             </div>
 
             <div className="text-center">
-              <h1 className="text-grey-darker block mb-2 mt-5">{t('or')}</h1>
+              <div className="text-grey-darker block mb-2 mt-5">{t('or')}</div>
             </div>
           </form>
 

@@ -17,11 +17,11 @@ const HeroSection: React.FC = () => {
               isRtl ? 'right ml-2' : 'left mr-2'
             }`}
           >
-            <h1 className="text-5xl tracking-tight">
+            <div className="text-5xl tracking-tight">
               <span className="block text-brmg-highlight xl:inline">
                 {t('landingPage.heroText')}
               </span>
-            </h1>
+            </div>
             <p className="mt-3 text-2xl text-brmg-black">
               {t('landingPage.heroSubtitle')}
             </p>
