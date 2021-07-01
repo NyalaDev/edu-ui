@@ -12,7 +12,6 @@ import { getYoutubeThumbnail } from '../../common/util'
 import CourseInfoCards from '../../components/Courses/CourseInfoCards'
 import CourseCard from '../../components/Courses/CourseCard'
 import { AuthContext } from '../../contexts/AuthContext'
-import { ALLOWED_LECTURES_WHEN_NOT_LOGGED_IN } from '../../common/constants'
 import { Course, Lecture } from '../../types/api.types'
 
 type LectureViewProps = {
@@ -48,6 +47,7 @@ const LectureView: React.FC<LectureViewProps> = ({ data, location }) => {
     lectures,
     strapiId: courseStrapiId,
   } = strapiCourse
+  const ALLOWED_LECTURES_WHEN_NOT_LOGGED_IN = Math.ceil(lectures.length / 3)
   const isLastLecture = position === lectures.length - 1
   const isFirstLecture = position === 0
   const completedLectures =
