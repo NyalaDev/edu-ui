@@ -74,5 +74,8 @@ jobs:
       - name: Install dependencies
         run: npx playwright install-deps
 
+      - name: Install Playwright
+        run: yarn add @playwright/test
+
       - name: Run tests [Chromium]
         run: npx playwright test playwright
