@@ -75,4 +75,4 @@ jobs:
         run: npx playwright install-deps
 
       - name: Run tests [Chromium]
-        run: npx playwright test playwright --browser=chromium
+        run: npx playwright test playwright
