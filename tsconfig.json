@@ -1,5 +1,5 @@
 {
-  "include": ["src", "jest-setup.ts"],
+  "include": ["src", "jest-setup.ts", "playwright"],
   "exclude": ["cypress"],
   "compilerOptions": {
     "target": "esnext",
