@@ -11,6 +11,7 @@ module.exports = {
     'cypress',
     `\\.cache`,
     `<rootDir>.*/public`,
+    'playwright',
   ],
   transformIgnorePatterns: [`node_modules/(?!(gatsby)/)`],
   globals: {
