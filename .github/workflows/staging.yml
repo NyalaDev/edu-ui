@@ -67,18 +67,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Run e2e tests
-        uses: cypress-io/github-action@v2
-        with:
-          config: baseUrl=https://edu.nyaladev.com
-      - uses: actions/upload-artifact@v1
-        if: failure()
-        with:
-          name: cypress-screenshots
-          path: cypress/screenshots
-      # Test run video was always captured, so this action uses "always()" condition
-      - uses: actions/upload-artifact@v1
-        if: always()
-        with:
-          name: cypress-videos
-          path: cypress/videos
+
+      - name: Install browsers
+        run: npx playwright install
+
+      - name: Install dependencies
+        run: npx playwright install-deps
+
+      - name: Install Playwright
+        run: yarn add @playwright/test
+
+      - name: Run tests [Chromium]
+        run: npx playwright test playwright

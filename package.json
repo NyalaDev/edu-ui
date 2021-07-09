@@ -45,6 +45,7 @@
   },
   "devDependencies": {
     "@babel/preset-typescript": "^7.13.0",
+    "@playwright/test": "^1.12.3",
     "@testing-library/react": "^11.2.6",
     "@types/gtag.js": "^0.0.4",
     "@types/jest": "^26.0.23",

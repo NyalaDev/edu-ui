@@ -34,15 +34,17 @@ const QuoteSection: React.FC<QuoteSectionProps> = ({ settings }) => {
               alt=""
               src={`/images/quote-${isRtl ? 'right' : 'left'}.png`}
               className={`w-16 md:w-24 h-auto absolute top-0 -mt-10 ${
-                isRtl ? 'right-0' : 'left-0 ml-12 -mb-4'
+                isRtl ? 'right:6 md:right-0' : 'left-6 md:left-0 -mb-4'
               }`}
             />
-            <div className="px-12 py-4 md:py-8">
-              <div className="text-white title text-2xl md:text-3xl mt-6 md:mt-12 text-justify md:leading-relaxed">
-                {quote.text}
-              </div>
-              <div className="text-brmg-warning text-xl md:text-2xl text-left mt-4 mb-6 md:mb-0">
-                {quote.author}
+            <div className="w-full p-8 md:p-0 md:w-3/4 py-12 md:py-0 flex h-full items-center">
+              <div>
+                <div className="text-white title text-xl md:text-2xl text-justify md:leading-relaxed">
+                  {quote.text}
+                </div>
+                <div className="text-brmg-warning text-lg md:text-xl text-left mt-4 mb-6 md:mb-0">
+                  {quote.author}
+                </div>
               </div>
             </div>
             <img
@@ -53,7 +55,7 @@ const QuoteSection: React.FC<QuoteSectionProps> = ({ settings }) => {
               }`}
             />
           </div>
-          <div className="w-full hidden md:w-1/2 px-4 text-brmg-subtle md:flex items-center">
+          <div className="w-full hidden md:w-1/2 px-12 text-brmg-subtle md:flex items-center">
             <div>
               {selectedLanguagePoints?.map(({ title, bullets }) => {
                 return (
