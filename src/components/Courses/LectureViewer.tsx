@@ -1,11 +1,12 @@
 import React, { useContext, useState } from 'react'
 import ReactPlayer from 'react-player'
 import { navigate } from 'gatsby'
+import ReactMarkdown from 'react-markdown'
 import { AuthContext } from '../../contexts/AuthContext'
 import { addProfile } from '../../services/api'
 import CourseRating from './CourseRating'
 
-type VideoPlayerProps = {
+type LectureViewerProps = {
   url: string
   lectureStrapiId: number
   courseStrapiId: number
@@ -15,10 +16,14 @@ type VideoPlayerProps = {
   isLastLecture: boolean
   isFirstLecture: boolean
   canNavigateToNext: boolean
+  type: string
+  content: string
 }
 
-const VideoPlayer: React.FC<VideoPlayerProps> = ({
+const LectureViewer: React.FC<LectureViewerProps> = ({
   url,
+  type,
+  content,
   lectureStrapiId,
   courseStrapiId,
   showFeedback,
@@ -73,16 +78,25 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
   }
   return (
     <div className="relative " style={{ paddingTop: '56.25%' }}>
-      <ReactPlayer
-        className="absolute top-0 right-0"
-        playing={!open && !isFirstLecture}
-        url={url}
-        width="100%"
-        height="100%"
-        controls
-        onProgress={isLoggedIn ? handleProgress : () => {}}
-        onEnded={handleCompleteVideo}
-      />
+      {type === 'text' && (
+        <div className="absolute top-0 left-0 ml-1">
+          <ReactMarkdown>{content}</ReactMarkdown>
+        </div>
+      )}
+      {type === 'video' && (
+        <div>
+          <ReactPlayer
+            className="absolute top-0 right-0"
+            playing={!open && !isFirstLecture}
+            url={url}
+            width="100%"
+            height="100%"
+            controls
+            onProgress={isLoggedIn ? handleProgress : () => {}}
+            onEnded={handleCompleteVideo}
+          />
+        </div>
+      )}
 
       {open && (
         <CourseRating
@@ -94,4 +108,4 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
     </div>
   )
 }
-export default VideoPlayer
+export default LectureViewer

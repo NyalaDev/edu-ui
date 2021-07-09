@@ -39,9 +39,9 @@ const ResetPassword = () => {
     <Layout>
       <div className="bg-white w-full max-w-lg rounded-lg shadow-md overflow-hidden mx-auto">
         <div className="py-4 px-6">
-          <h2 className="text-center font-bold text-gray-700 text-3xl">
+          <div className="text-center font-bold text-gray-700 text-3xl">
             {t('resetPass')}
-          </h2>
+          </div>
 
           <form onSubmit={formik.handleSubmit}>
             <div className="mt-4 w-full">
