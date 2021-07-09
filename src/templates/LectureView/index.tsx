@@ -228,6 +228,8 @@ export const pageQuery = graphql`
         duration
         url
         created_at
+        upcoming
+        publish_date
       }
       resources {
         type

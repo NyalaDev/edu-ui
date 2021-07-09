@@ -38,7 +38,7 @@ export const StyledCount = styled.div`
 `
 export const StyledListBody = styled.div`
   position: relative;
-  padding: 16px 130px 16px 105px;
+  padding: 16px 16px 16px 105px;
   :hover {
     background-color: #fff;
   }

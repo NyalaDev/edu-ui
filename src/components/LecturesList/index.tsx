@@ -18,6 +18,7 @@ import {
   StyledLockIcon,
 } from './styles'
 import { Lecture } from '../../types/api.types'
+import Badge from '../General/Badge'
 
 const StyledButton = styled.button<{ isRtl: boolean }>`
   background: none;
@@ -61,7 +62,9 @@ const LectureList: React.FC<LectureListProps> = ({
     return <StyledLockIcon />
   }
   const canWatch = (index: number) =>
-    isLoggedIn || (!isLoggedIn && index < ALLOWED_LECTURES_WHEN_NOT_LOGGED_IN)
+    isLoggedIn ||
+    (!isLoggedIn && index < ALLOWED_LECTURES_WHEN_NOT_LOGGED_IN) ||
+    !sortedLectures[index].upcoming
   return (
     <>
       <StyledLectureList>
@@ -87,12 +90,22 @@ const LectureList: React.FC<LectureListProps> = ({
                 </StyledCount>
 
                 <StyledListBody>
-                  <p className={`${isRtl ? 'rtl' : 'ltr'}`}>
-                    <span className="text-gray-700">{lecture.title}</span>
-                  </p>
-                  <StyledDuration>
-                    {formatDuration(lecture.duration)}
-                  </StyledDuration>
+                  <div className="flex">
+                    <div className="flex flex-1 flex-col">
+                      <p className={`${isRtl ? 'rtl' : 'ltr'}`}>
+                        <span className="text-gray-700">{lecture.title}</span>
+                      </p>
+                      <StyledDuration>
+                        {formatDuration(lecture.duration)}
+                      </StyledDuration>
+                    </div>
+                    {lecture.upcoming && (
+                      <div className="flex">
+                        <Badge text="upcoming" color="green-500" />
+                        <Badge text={lecture.publish_date} color="pink-600" />
+                      </div>
+                    )}
+                  </div>
                 </StyledListBody>
 
                 <div>{lectureIcon(index)}</div>
