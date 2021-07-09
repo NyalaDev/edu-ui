@@ -32,12 +32,12 @@ const CourseRating: React.FC<CourseRatingProps> = ({
     }
   }
   return (
-    <div className="rounded absolute p-4 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-1/2 bg-gray-100">
+    <div className="rounded w-full md:w-1/2  absolute p-4 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-3/4 w-1/2 bg-gray-100">
       <button type="button" className="m-1" onClick={onDismiss}>
         <div className="h-6 w-6 text-3xl font-bold hover:">×</div>
       </button>
 
-      <div className="flex flex-col items-center h-full">
+      <div className="flex flex-col items-center  h-full">
         <h1 className="text-xl mb-3 border-b-2"> {t('rateCourse')}</h1>
 
         <div className="flex mb-2">
