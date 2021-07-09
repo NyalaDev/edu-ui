@@ -56,12 +56,11 @@ const Footer: React.FC = () => {
     <Suspense fallback="loading">
       <footer className="flex justify-center px-4 text-brmg-text bg-brmg-disabled md:h-44 w-full">
         <div className="brmg-container flex justify-between flex-col md:flex-row w-full">
-          <ul className="flex items-center justify-center flex-col md:flex-row ">
-            <li className=" p-1">
+          <ul className="flex items-center justify-center flex-col md:flex-row py-12 md:py-0">
+            <li className="p-1 md:mx-2">
               <Link to="/courses">{t('courses')}</Link>
             </li>
-            |
-            <li className="p-1">
+            <li className="p-1 md:mx-2">
               <a
                 target="_blank"
                 rel="noreferrer"
@@ -70,8 +69,7 @@ const Footer: React.FC = () => {
                 {t('landingPage.supportUs')}
               </a>
             </li>
-            |
-            <li className="p-1">
+            <li className="p-1 md:mx-2">
               <a
                 target="_blank"
                 rel="noreferrer"
@@ -80,8 +78,7 @@ const Footer: React.FC = () => {
                 {t('landingPage.applyAsInstructor')}
               </a>
             </li>
-            |
-            <li className=" p-1">
+            <li className=" p-1 md:mx-2">
               <a href="mailto:info@barmaga.io">{t('landingPage.contactUs')}</a>
             </li>
           </ul>

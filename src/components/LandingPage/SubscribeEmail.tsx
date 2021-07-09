@@ -50,45 +50,45 @@ const SubscribeEmail: React.FC<SubscribeEmailProps> = ({ title = '' }) => {
     },
   })
   return (
-    <>
+    <div className="bg-brmg-warning text-center">
       <form
         onSubmit={formik.handleSubmit}
-        className="bg-brmg-warning h-60 flex justify-center items-center flex-col"
+        className="brmg-container flex flex-col justify-items-center items-center"
       >
-        <label className="title font-bold" htmlFor="email">
-          {title || t('landingPage.notifyMeWhenLaunch')}
-        </label>
+        <div className="w-full md:w-1/2 my-12 md:mt-32 md:mb-24 flex flex-col items-center">
+          <label className="title font-bold" htmlFor="email">
+            {title || t('landingPage.notifyMeWhenLaunch')}
+          </label>
 
-        <div>
           <input
-            className="mt-3 rounded-2xl px-2 h-8 w-120"
+            className="mt-3 rounded-2xl px-2 h-8 w-4/5 md:w-3/4"
             {...formik.getFieldProps('email')}
             type="text"
             placeholder={t('email')}
           />
-        </div>
-        <div className="w-32 mx-2 mt-2">
-          {loading ? (
-            <Spinner />
-          ) : (
-            <Button type="submit">{t('landingPage.subscribe')}</Button>
-          )}
-        </div>
-        {formik.touched.email && formik.errors.email ? (
-          <div className="font-bold text-red-600 mt-1">
-            {formik.errors.email}
+          <div className="w-32 mx-2 mt-2 text-center">
+            {loading ? (
+              <Spinner />
+            ) : (
+              <Button type="submit">{t('landingPage.subscribe')}</Button>
+            )}
           </div>
-        ) : null}
+          {formik.touched.email && formik.errors.email ? (
+            <div className="font-bold text-red-600 mt-1">
+              {formik.errors.email}
+            </div>
+          ) : null}
+        </div>
       </form>
       <div
-        className="w-full h-8"
+        className="w-full h-8 bg-brmg-warning"
         style={{
           backgroundImage: 'url(/images/subscribe-bg.png)',
-          backgroundSize: '40% 100%',
-          backgroundRepeat: 'repeat',
+          backgroundSize: 'contain',
+          backgroundRepeat: 'repeat-x',
         }}
       />
-    </>
+    </div>
   )
 }
 
