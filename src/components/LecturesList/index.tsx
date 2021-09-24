@@ -52,7 +52,7 @@ const LectureList: React.FC<LectureListProps> = ({
     const value = index + 1
     return value
   }
-  const ALLOWED_LECTURES_WHEN_NOT_LOGGED_IN = Math.ceil(lectures.length / 3)
+  const ALLOWED_LECTURES_WHEN_NOT_LOGGED_IN = Math.ceil(lectures.length / 2)
   const isCourseInProgress = useCourseProgress(courseStrapiId)
   const sortedLectures = orderBy(lectures, 'position', 'asc')
   const lectureIcon = (index: number) => {

@@ -12,7 +12,7 @@ import { getYoutubeThumbnail } from '../../common/util'
 import CourseInfoCards from '../../components/Courses/CourseInfoCards'
 import CourseCard from '../../components/Courses/CourseCard'
 import { AuthContext } from '../../contexts/AuthContext'
-import { ALLOWED_LECTURES_WHEN_NOT_LOGGED_IN } from '../../common/constants'
+
 import { Course, Lecture } from '../../types/api.types'
 
 type LectureViewProps = {
@@ -60,6 +60,7 @@ const LectureView: React.FC<LectureViewProps> = ({ data, location }) => {
     )
     return lectureByPosition ? lectureByPosition.slug : ''
   }
+  const ALLOWED_LECTURES_WHEN_NOT_LOGGED_IN = Math.ceil(lectures.length / 2)
   /**
    * Prevent the user from navigate next lecture when not logged in
    * @returns {boolean}
@@ -210,6 +211,8 @@ export const pageQuery = graphql`
           name
           bio
           github
+          twitter
+          linkedin
         }
       }
       language {
