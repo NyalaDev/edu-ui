@@ -62,6 +62,7 @@ export const pageQuery = graphql`
           slug
           level
           status
+          thumbnail
           lectures {
             url
             slug

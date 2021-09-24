@@ -17,14 +17,14 @@ const getYoutubeVideoId = (url: string) => {
  * @param {*} url The youtube vido URL
  * @return The Thumbnail URL
  */
-export const getYoutubeThumbnail = (url: string): string => {
+export const getYoutubeThumbnail = (url: string): string | undefined => {
   try {
     const videoId = getYoutubeVideoId(url)
     return videoId
       ? `https://i.ytimg.com/vi/${videoId}/mqdefault.jpg`
-      : 'https://cdn.nyaladev.com/barmaga.io/nyala-placeholder.png'
+      : undefined
   } catch (e) {
-    return 'https://cdn.nyaladev.com/barmaga.io/nyala-placeholder.png'
+    return undefined
   }
 }
 /**

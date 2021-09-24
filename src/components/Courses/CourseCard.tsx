@@ -15,7 +15,7 @@ import CourseCardUpcoming from './CourseCardUpcoming'
 
 type Props = {
   course: Course
-  image: string
+  image?: string
   lectureId?: number
   courseViewMode?: boolean
   isCourseInProgress?: boolean
@@ -55,6 +55,12 @@ const CourseCard: React.FC<Props> = ({
 
   const courseDuration = calculateVideosDuration(course.lectures)
 
+  let thumbnail = image
+  if (!image)
+    thumbnail =
+      course.thumbnail ||
+      'https://cdn.nyaladev.com/barmaga.io/nyala-placeholder.png'
+
   const inLanguages = {
     ar: 'بالعربي',
     sw: 'kwa kiswahili',
@@ -74,7 +80,7 @@ const CourseCard: React.FC<Props> = ({
       >
         <img
           className="w-full h-48 rounded-lg absolute -mt-10"
-          src={image}
+          src={thumbnail}
           alt={title}
         />
       </Link>

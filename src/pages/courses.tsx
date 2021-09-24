@@ -46,6 +46,7 @@ export const pageQuery = graphql`
           slug
           level
           status
+          thumbnail
           tags {
             tagName
           }

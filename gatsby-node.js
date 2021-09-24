@@ -33,6 +33,7 @@ exports.createPages = async ({ actions, graphql }) => {
             id
             slug
             status
+            thumbnail
             instructor {
               profile {
                 github
@@ -65,6 +66,7 @@ exports.createPages = async ({ actions, graphql }) => {
               id
               slug
               status
+              thumbnail
               resources {
                 type
                 text

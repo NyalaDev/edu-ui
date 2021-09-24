@@ -22,11 +22,11 @@ const NotFoundPage: React.FC<NotFoundPageProps> = props => {
   const randomCourse =
     coursesList[Math.floor(Math.random() * coursesList.length)]
   const { lectures = [] } = randomCourse || {}
-  let thumbnail = null
+  let thumbnail: string | undefined
   try {
     thumbnail = getYoutubeThumbnail(lectures[0].url)
   } catch (e) {
-    thumbnail = null
+    thumbnail = undefined
   }
   return (
     <Layout>
@@ -77,6 +77,7 @@ export const pageQuery = graphql`
           slug
           level
           status
+          thumbnail
           tags {
             tagName
           }

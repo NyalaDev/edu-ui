@@ -33,7 +33,7 @@ const LevelView: React.FC<LevelViewProps> = ({ data, pageContext }) => {
             <CourseCard
               key={course.node.id}
               course={course.node}
-              image={getYoutubeThumbnail(imageUrl)}
+              image={course.node.thumbnail || getYoutubeThumbnail(imageUrl)}
             />
           )
         })}
@@ -56,6 +56,7 @@ export const pageQuery = graphql`
           slug
           level
           status
+          thumbnail
           lectures {
             url
             slug
