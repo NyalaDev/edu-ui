@@ -89,6 +89,9 @@
   "deleteUserData": "Delete My User Data",
   "confirmUserDelete": "Are you sure you want to delete all your user data ?",
   "cancel": "Cancel",
+  "questions": "Questions",
+  "addQuestion": "Add Question",
+  "addReply": "Add Reply",
   "validation": {
     "required": "ይሄ ቦታ አስፈላጊ ነው",
     "email": "Please enter a valid email"

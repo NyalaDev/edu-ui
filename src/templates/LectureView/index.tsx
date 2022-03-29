@@ -14,6 +14,7 @@ import CourseCard from '../../components/Courses/CourseCard'
 import { AuthContext } from '../../contexts/AuthContext'
 
 import { Course, Lecture } from '../../types/api.types'
+import LectureQuestions from '../../components/Courses/LectureQuestions'
 
 type LectureViewProps = {
   data: {
@@ -28,6 +29,7 @@ type LectureViewProps = {
 const LectureView: React.FC<LectureViewProps> = ({ data, location }) => {
   const { t } = useTranslation()
   const { strapiLecture, strapiCourse, relatedCourses } = data
+
   const sortedLectures = orderBy(strapiCourse.lectures, 'position', 'asc')
   const lecture = !strapiLecture ? sortedLectures[0] : strapiLecture
   const { isLoggedIn, currentUser } = useContext(AuthContext)
@@ -144,6 +146,9 @@ const LectureView: React.FC<LectureViewProps> = ({ data, location }) => {
                 currentLecture={lecture}
                 courseStrapiId={courseStrapiId}
               />
+            </div>
+            <div>
+              <LectureQuestions isLoggedIn={isLoggedIn} lectureId={strapiId} />
             </div>
           </div>
         </div>
